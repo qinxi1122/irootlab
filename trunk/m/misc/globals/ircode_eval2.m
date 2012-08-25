@@ -1,0 +1,19 @@
+%> @ingroup globals code
+%> @file
+%> @brief Same as @ref ircode_eval() but without the assestion and parameter check.
+%> @sa ircode_eval.m
+%
+%> @param s Piece of code
+%> @param title Unused at the moment
+function ircode_eval2(s, title)
+if nargin < 2
+    title = [];
+end;
+flag_add = 1;
+
+evalin('base', s);
+
+if flag_add
+    ircode_add(s, title);
+end;
+

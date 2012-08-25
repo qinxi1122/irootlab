@@ -1,0 +1,15 @@
+%> @file
+%> @ingroup introspection globals
+%> @brief Asserts the @c CLASSMAP global is present and initialized.
+
+function classmap_assert()
+global CLASSMAP;
+if isempty(CLASSMAP)
+
+    fn = fullfile(get_rootdir(), 'CLASSMAP.mat');
+    if ~exist(fn, 'file')
+        classmap_compile();
+    else
+        load(fn);
+    end;
+end;

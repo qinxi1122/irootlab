@@ -1,0 +1,89 @@
+%> Forward Feature Selection
+%>
+%> @sa uip_as_fsel_forward.m
+classdef as_fsel_forward < as_fsel_fsg
+    properties
+        %> =10. Number of features to be selected
+        nf_select = 10;
+    end;
+    
+    methods
+        function o = as_fsel_forward()
+            o.classtitle = 'Forward';
+        end;
+    end;
+    
+    methods(Access=protected)
+        function log = do_go(o)
+            nf = o.data(1).nf;
+
+            nf_eff = min(o.nf_select, nf); % Effective number of features to be selected
+            v_in = [];
+            v_left = 1:nf;
+            nfxgrade = [];
+            flag_first = 1;
+
+            flag_progress = ~isempty(o.fsg.sgs);
+            if flag_progress
+                ipro = progress2_open('FSEL_forward', [], 0, nf_eff);
+                ii = 0;
+            end;
+                
+            for i = 1:nf_eff
+                if flag_first && ~flag_progress
+                    t = tic(); % Will record time to see if the iteration is "slow" (i.e., takes more than 1 second). If so, will "activate" the progress bar
+                end;
+                irverbose(sprintf('Number of features: %d', i));
+                
+                v_candidates = arrayfun(@(x) [v_in, x], v_left, 'UniformOutput', 0); % Creates candidates
+
+                % Evaluates candidates
+                candidatesgrades = o.get_idxsgrades(v_candidates);
+                g = candidatesgrades(:, :, 1);
+                [val, idx] = max(g);
+                
+                % verifies whether there is more than one candidate with maximum grade
+                ima = find(g == val);
+                n_ima = length(ima);
+                if n_ima > 1
+                    idx = ima(randi([1, n_ima])); % Random decision is probably the best that could be done here!                   
+                end;
+              
+                % Recordings
+                v_in = [v_in, v_left(idx)];
+                v_left(idx) = [];
+                nfxgrade(end+1) = val;
+
+                %---> Verboses
+                irverbose(['Selection so far: ', mat2str(v_in)], 1);
+                if flag_first && ~flag_progress
+                    if toc(t) > 1
+                        ipro = progress2_open('FSEL_forward', [], 0, nf_eff);
+                        flag_progress = 1;
+                        ii = 0;
+                    end;
+                end;
+                if flag_progress
+                    ii = ii+1;
+                    ipro = progress2_change(ipro, [], [], ii);
+                end;
+                
+                flag_first = 0;
+            end;
+            if flag_progress
+                progress2_close(ipro);
+            end;
+
+            % Output
+            log = log_as_fsel_forward();
+            log.v = v_in;
+            log.nfxgrade = nfxgrade;
+            log.grades = zeros(1, nf);
+            log.grades(log.v) = 1;
+            log.fea_x = o.data(1).fea_x;
+            log.xname = o.data(1).xname;
+            log.xunit = o.data(1).xunit;
+            log.yname = o.fsg.classtitle;
+        end;
+    end;
+end
