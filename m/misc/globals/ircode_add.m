@@ -6,7 +6,7 @@
 %> @param s Piece of code
 %> @param title Unused at the moment
 function ircode_add(s, title)
-global handles_iroot IRCODE;
+global handles_irootlab IRCODE;
 
 if ~iscell(IRCODE.s)
     IRCODE.s = {};
@@ -33,9 +33,9 @@ end;
 
 
 try
-    if ~isempty(handles_iroot)
-        set(handles_iroot.editCode, 'String', IRCODE.s);
-        set(handles_iroot.text_codefilename, 'String', ['File ' IRCODE.filename]);
+    if ~isempty(handles_irootlab)
+        set(handles_irootlab.editCode, 'String', IRCODE.s);
+        set(handles_irootlab.text_codefilename, 'String', ['File ' IRCODE.filename]);
     end;
 catch ME2
     %> nevermind

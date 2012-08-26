@@ -2,7 +2,7 @@
 %> @file
 %> @brief GUI for loading datasets from the SHEware database.
 %>
-%> The parameters names <b>Experiment</b>, <b>Domain</b>, <b>Deactivation Scheme</b>, <b>Tray</b>, and <b>Classifier</b> match SHEware terminology (e.g. "classifier" in IRoot has another meaning).
+%> The parameters names <b>Experiment</b>, <b>Domain</b>, <b>Deactivation Scheme</b>, <b>Tray</b>, and <b>Classifier</b> match SHEware terminology (e.g. "classifier" in IRootLab has another meaning).
 %>
 %> Each <b>Classifier</b> selected will generate one class level in the dataset.
 %>

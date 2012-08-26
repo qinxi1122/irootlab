@@ -1,3 +1,3 @@
 %>@ingroup misc compat
 %>@file
-iroot;
+irootlab;

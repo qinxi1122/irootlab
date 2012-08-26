@@ -31,7 +31,7 @@ end;
 
 if VERBOSE.flag_file
     if isempty(VERBOSE.filename)
-        VERBOSE.filename = find_filename('verbose_iroot', [], 'txt');
+        VERBOSE.filename = find_filename('irootlab_verbose', [], 'txt');
     end;
 
     try

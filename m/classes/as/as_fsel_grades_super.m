@@ -22,6 +22,7 @@ classdef as_fsel_grades_super < as_fsel
     methods
         function o = as_fsel_grades_super()
             o.classtitle = 'Grades super-object';
+            o.flag_ui = 0;
         end;
         
         function log2 = go(o)

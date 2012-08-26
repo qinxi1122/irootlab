@@ -169,7 +169,7 @@ classdef scenebuilder
             o = o.save_setup();
         end;
         
-        %> Saves irootsetup.m to point to pre-determined database
+        %> Saves irootlab_setup.m to point to pre-determined database
         function o = save_setup(o)
             setup_load();
             db_assert();
@@ -207,7 +207,7 @@ classdef scenebuilder
     
     methods
         function o = write_database(o)
-            irootsetup;
+            setup_load();
             assert_connected_to_cells();
             
             
@@ -269,7 +269,7 @@ classdef scenebuilder
 '% This function is suitable for being compiled', 10, ...
 'function run_tasks()', 10, ...
 'classcreator(); % Mentions the required files so that mcc compiles them together', 10, ...
-'irootsetup();', 10, ...
+'setup_load();', 10, ...
 'assert_connected_to_cells();', 10, ...
 'tm = taskmanager();', 10, ...
 'tm.scenename = ''', o.scenename, ''';', 10, ...

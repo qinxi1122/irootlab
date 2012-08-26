@@ -188,5 +188,5 @@ if x
   o = undersel_qdc();
   o = undersel_svm();
   o = underselmerger();
-  o = iroot();
+  o = irootlab();
 end

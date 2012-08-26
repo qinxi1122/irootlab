@@ -1,5 +1,5 @@
 %>@file
-%>@brief Adds all folders to the MATLAB path. This script needs to be run from the IRoot root folder.
+%>@brief Adds all folders to the MATLAB path. This script needs to be run from the IRootLab root folder.
 
 d = dir('*');
 n = {d.name};

@@ -19,7 +19,7 @@ end;
 
 vars = repmat({{}}, 1, no_classes);
 for i = 1:n
-    if ~ismember({'o', 'ans', 'out'}, vars0{i}) %> operational names such as 'o' are excluded from list
+    if ~ismember({'o', 'ans', 'out', 'TEMP'}, vars0{i}) %> operational names such as 'o' are excluded from list
         var = evalin('base', [vars0{i}, ';']);
         matches = arrayfun(@(cn) isa(var, cn{1}), classnames);
         if any(matches)

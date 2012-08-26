@@ -13,7 +13,7 @@
 %> @param Y "Response" variable. <b>This PLS works with one variable only!</b>
 %> @param no_factors Number of variables to be calculated.
 %> @return <code>[loadings]</code> or <code>[loadings, scores]</code>
-function varargout = iroot_pls(X, Y, no_factors)
+function varargout = irootlab_pls(X, Y, no_factors)
 
 if ~exist('no_factors', 'var')
     no_factors = 1;

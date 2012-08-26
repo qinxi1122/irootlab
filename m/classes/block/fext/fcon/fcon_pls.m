@@ -21,7 +21,7 @@ classdef fcon_pls < fcon_linear
     
     methods(Access=protected)
         function o = do_train(o, data)
-%             o.L = iroot_pls(data.X, data.classes, o.no_factors);
+%             o.L = irootlab_pls(data.X, data.classes, o.no_factors);
             [o.L, dummy] = plsregress(data.X, classes2boolean(data.classes), o.no_factors);
             o.L_fea_x = data.fea_x;
             o.xname = data.xname;
