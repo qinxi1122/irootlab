@@ -161,7 +161,7 @@ for i = 1:nl
         end;
 
         if flag_print_peaks
-            if exist('legends', 'var')
+            if ~isempty(legends)
                 s = sprintf('for ''%s''', legends{i});
             else
                 s = sprintf('%d', i);

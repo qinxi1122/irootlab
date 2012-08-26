@@ -12,10 +12,6 @@
 %> <h3>Stage 2</h3>
 %> Selects a number of features, either a fixed number of best-ranked features, or all features which ranked above a threshold (see
 %> as_fsel_grades::type).
-%> <h3> Stage 3 (optional)</h3>
-%> Ranks the features selected in the previous stage; builds sub-sets of these features, where the first sub-set contains the best-ranked
-%> feature only, and all succesive sub-sets contain the previous sub-set plus the next best-ranked feature; and grades all sub-sets using
-%> the @ref as_fsel_grades::fsg object again, to find out which sub-set is the best graded.
 %>
 %> If FSG returns more than one grade vector (i.e., it uses an SGS that has 3 or more bites, or the @c data property has 3 or more elements), 
 %> the second vector will be used in this stage. This corresponds to doing the 3rd stage optimization using test sets that are independent from 
@@ -39,9 +35,6 @@ classdef as_fsel_grades < as_fsel
         %> =[].
         peakdetector = [];
         
-        %> If true, uses as_fsel_grades::fsg (again) to determine the optimal number of features after ranking them
-        flag_optimize = 0;
-
         %> Feature Subset Grader object. Used for optimization of number of features
         fsg = [];
         
@@ -53,23 +46,32 @@ classdef as_fsel_grades < as_fsel
     
     methods
         function o = as_fsel_grades()
-            o.classtitle = 'Grades using grades vector';
+            o.classtitle = 'Grades-based';
         end;
 
         
         function log = go(o)
             log = log_as_fsel_grades();
             log.flag_peaks = ~isempty(o.peakdetector);
+            log.type = o.type;
+            log.fea_x = o.input.fea_x;
+            log.xname = o.input.xname;
+            log.xunit = o.input.xunit;
+            log.yname = o.input.yname;
+            log.yunit = o.input.yunit;
+            log.grades = o.input.grades;
+            log.threshold = o.threshold;
+            
 
             GRADE = 1; INDEX = 2; % defines for "howsorted"
             
             %%%%% STAGE 1 (optional): peak detection
             if ~log.flag_peaks
-                grades = o.input.grades;
-                idxs = 1:numel(grades);
+                yidxs = o.input.grades;
+                idxs = 1:numel(yidxs);
             else
                 idxs = o.peakdetector.use(o.input.fea_x, o.input.grades);
-                grades = o.input.grades(idxs);
+                yidxs = o.input.grades(idxs);
             end;
             howsorted = INDEX;
             
@@ -78,65 +80,31 @@ classdef as_fsel_grades < as_fsel
             switch o.type
                 case 'none'
                 case 'nf'
-                    if numel(grades) < o.nf_select
-                        nf_effective = numel(grades);
-                        irverbose(sprintf('INFO: Less than desired features will be selected (%d < %d)', numel(grades), o.nf_select), 1);
+                    if numel(yidxs) < o.nf_select
+                        nf_effective = numel(yidxs);
+                        irverbose(sprintf('INFO: Less than desired features will be selected (%d < %d)', numel(yidxs), o.nf_select), 1);
                     else
                         nf_effective = o.nf_select;
                     end;
 
-                    [dummy, sortedidxs] = sort(grades, 'descend');
+                    [dummy, sortedidxs] = sort(yidxs, 'descend');
                     newv = sortedidxs(1:nf_effective);
                     idxs = idxs(newv);
-                    grades = grades(newv);
+                    yidxs = yidxs(newv);
                     howsorted = GRADE; % Descending order of grades!
                 case 'threshold'
-                    [foundvalues, foundidxs] = find(grades > o.threshold);
+                    [foundvalues, foundidxs] = find(yidxs > o.threshold);
                     idxs = idxs(foundidxs);
-                    grades = grades(foundidxs);
+                    yidxs = yidxs(foundidxs);
                 otherwise
                     irerror(sprintf('Unknown univariate feature selection type ''%s''', o.type));
             end;
 
-
-            %%%%% STAGE 3: optimization
-            if o.flag_optimize
-                if howsorted ~= GRADE
-                    [dummy, sortedidxs] = sort(grades, 'descend');
-                    idxs = idxs(sortedidxs);
-                end;
-                
-                n = numel(idxs);
-                log.opt_subsets = cell(1, n);
-                vtemp = [];
-                for i = 1:n
-                    vtemp = [vtemp, idxs(i)];
-                    log.opt_subsets{i} = vtemp;
-                end;
-
-                % Please note that it is assumed that the FSG has been set-up already (with data, and booted) in calculate_grades(), 
-                % so I won't call these, because it can be time-consuming. Otherwise, the lines would be as follow
-                % % % % o.fsg.data = o.data;
-                % % % % o.fsg = o.fsg.boot();
-                gradestemp = o.fsg.calculate_grades(o.opt_subsets);
-                if size(gradestemp, 3) > 1
-                    log.opt_grades = gradestemp(:, :, 2);
-                    irverbose('Used independent test sets for as_fsel_grades optimization', 2);
-                else
-                    log.opt_grades = gradestemp;
-                end;
-
-                [valtemp, idxtemp] = max(o.opt_grades);
-
-                idxs = o.opt_subsets{idxtemp};
-                grades = o.input.grades(idxs);
-                howsorted = GRADE;
-            end;
             
             if howsorted == GRADE && strcmp(o.sortmode, 'index')
                 [idxs, dummy] = sort(idxs); %#ok<NASGU>
             elseif howsorted == INDEX && strcmp(o.sortmode, 'grade')
-                [dummy, idxtemp] = sort(grades, 'descend');
+                [dummy, idxtemp] = sort(yidxs, 'descend');
                 idxs = idxs(idxtemp);
             end;
             

@@ -29,7 +29,7 @@ classdef vis_as_fsel_hist_entropy < vis
     
     methods
         %> Constructor
-        function o = vis_s_fsel_hist_entropy(o) %#ok<*INUSD>
+        function o = vis_as_fsel_hist_entropy(o) %#ok<*INUSD>
             o.classtitle = 'Entropy curves';
             o.inputclass = 'as_fsel_hist';
         end;

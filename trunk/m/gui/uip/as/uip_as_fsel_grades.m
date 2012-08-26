@@ -1,21 +1,21 @@
 %> @ingroup guigroup
 %> @file uip_as_fsel_grades.m
-%> @brief Properties Window for @ref fsel_grades_fsg
+%> @brief Properties Window for @ref as_fsel_grades
 %> @image html Screenshot-uip_as_fsel_grades.png
 %>
-%> <b>Selection type</b> - see fsel_grades::type
+%> <b>Selection type</b> - see as_fsel_grades::type
 %>
-%> <b>Number of variables</b> - see fsel_grades::nf_select
+%> <b>Number of variables</b> - see as_fsel_grades::nf_select
 %>
-%> <b>Threshold</b> - see fsel_grades::threshold
+%> <b>Threshold</b> - see as_fsel_grades::threshold
 %>
-%> <b>Peak Detector</b> - see fsel_grades::peakdetector
+%> <b>Peak Detector</b> - see as_fsel_grades::peakdetector
 %>
-%> @sa fsel_grades_fsg
+%> @sa as_fsel_grades
 
 %> @cond
 function varargout = uip_as_fsel_grades(varargin)
-% Last Modified by GUIDE v2.5 07-Aug-2012 19:50:37
+% Last Modified by GUIDE v2.5 26-Aug-2012 13:53:09
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,7 +57,7 @@ try
     delete(gcf);
 catch
     output.flag_ok = 0;
-    output.params = {}
+    output.params = {};
     varargout{1} = output;
 end;
 
@@ -65,123 +65,123 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace('log_as_grades', handles.popupmenu_input, 0);
+listbox_load_from_workspace('log_grades', handles.popupmenu_input, 0);
 listbox_load_from_workspace('peakdetector', handles.popupmenuPeakdetector, 1);
-listbox_load_from_workspace('fsg', handles.popupmenu_fsg, ~handles.input.flag_needs_fsg);
-
-%############################################
-%############################################
 
 
-% --- Executes on button press in pushbuttonOk.
-function pushbuttonOk_Callback(hObject, eventdata, handles)
-try
-    types = {'none', 'nf', 'threshold'};
-    
-    sortmodes = {'grade', 'index'};
+%#########
+function view1(handles)
+cla(handles.axes1, 'reset');
+axes(handles.axes1); %#ok<MAXES>
+hold off;
 
-    flag_optimize = get(handles.checkbox_flag_optimize, 'Value');
-    
-    sinput = listbox_get_selected_1stname(handles.popupmenu_input);
-    if isempty(sinput)
-        irerror('Input not specified!');
+sinput = listbox_get_selected_1stname(handles.popupmenu_input);
+
+if isempty(sinput)
+    msgbox('Cannot draw, input not specified!', 'Information');
+else
+    try
+%         obj = evalin('base', [sinput, ';']); %#ok<NASGU>
+%         eval([sinput, ' = obj;']); % Creates variable with same name as in base workspace, so that the next line is executed.
+%         o = as_fsel_grades();
+        evalin('base', ['global TEMP; TEMP = as_fsel_grades(); TEMP = TEMP.setbatch(', params2str(get_params(handles)), ');']);
+        global TEMP; %#ok<*TLEV>
+        log = TEMP.go();
+        log.draw([], 1);
+        clear TEMP;
+    catch ME
+%         irerrordlg(ME.message, 'Error');
+rethrow(ME);
     end;
-
-    sfsg = listbox_get_selected_1stname(handles.popupmenu_fsg);
-    if isempty(sfsg)
-        if handles.input.flag_needs_fsg
-            irerror('FSG object not specified!');
-        elseif flag_optimize
-            irerror('FSG object needs to be specified to perform optimization of number of features!');
-        else
-            sfsg = '[]';
-        end;
-    end;
-
-    spd = listbox_get_selected_1stname(handles.popupmenuPeakdetector);
-    if isempty(spd)
-        spd = '[]';
-    end;
-    
-    other = uip_as_fsel();
-    if other.flag_ok
-        handles.output.params = [other.params, {...
-        'input', sinput, ...
-        'fsg', sfsg ...
-        'type', ['''' types{get(handles.popupmenuType, 'Value')} ''''], ...
-        'nf_select', int2str(eval(get(handles.editNf, 'String'))), ...
-        'threshold', get(handles.editThreshold, 'String'), ...
-        'peakdetector', spd, ...
-        'flag_optimize', int2str(flag_optimize), ...
-        'sortmode', ['''' sortmodes{get(handles.popupmenu_sortmode, 'Value')} ''''], ...
-        }];
-        handles.output.flag_ok = 1;
-        guidata(hObject, handles);
-        uiresume();
-    end;
-catch ME
-    irerrordlg(ME.message, 'Cannot continue');
-    
 end;
 
-function editVariables_Callback(hObject, eventdata, handles)
 
-% --- Executes during object creation, after setting all properties.
-function editVariables_CreateFcn(hObject, eventdata, handles)
+%#########
+function params = get_params(handles)
+
+types = {'none', 'nf', 'threshold'};
+sortmodes = {'grade', 'index'};
+
+
+sinput = listbox_get_selected_1stname(handles.popupmenu_input);
+if isempty(sinput)
+    irerror('Input not specified!');
+end;
+
+spd = listbox_get_selected_1stname(handles.popupmenuPeakdetector);
+if isempty(spd)
+    spd = '[]';
+end;
+    
+params = {...
+'input', sinput, ...
+'type', ['''' types{get(handles.popupmenuType, 'Value')} ''''], ...
+'nf_select', int2str(eval(get(handles.editNf, 'String'))), ...
+'threshold', get(handles.editThreshold, 'String'), ...
+'peakdetector', spd, ...
+'sortmode', ['''' sortmodes{get(handles.popupmenu_sortmode, 'Value')} ''''], ...
+};
+
+
+
+
+%############################################
+function pushbuttonOk_Callback(hObject, eventdata, handles)
+try
+    handles.output.params = get_params(handles);
+    handles.output.flag_ok = 1;
+    guidata(hObject, handles);
+    uiresume();
+catch ME
+    irerrordlg(ME.message, 'Cannot continue');
+end;
+
+
+function pushbutton_preview_Callback(hObject, eventdata, handles) %#ok<*INUSL>
+view1(handles);
+
+%############################################
+%############################################
+
+
+
+
+function editVariables_CreateFcn(hObject, eventdata, handles) %#ok<*DEFNU,*INUSD>
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-% --- Executes on selection change in popupmenuType.
 function popupmenuType_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function popupmenuType_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function editNf_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function editNf_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function editThreshold_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function editThreshold_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenuFsg_Callback(hObject, eventdata, handles)
-
 function popupmenuFsg_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenuPeakdetector_Callback(hObject, eventdata, handles)
-
 function popupmenuPeakdetector_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu_fsg_Callback(hObject, eventdata, handles)
-
 function popupmenu_fsg_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function checkbox_flag_optimize_Callback(hObject, eventdata, handles)
-
 function popupmenu_sortmode_Callback(hObject, eventdata, handles)
-
 function popupmenu_sortmode_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');

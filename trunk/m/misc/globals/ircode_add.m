@@ -14,7 +14,7 @@ if ~iscell(IRCODE.s)
 end;
 
 if isempty(IRCODE.filename)
-    IRCODE.filename = fullfile(pwd(), find_filename('iroot_code', '', 'm'));
+    IRCODE.filename = fullfile(pwd(), find_filename('irootlab_macro', '', 'm'));
     ircode_add(['% Log filename: ', IRCODE.filename, 10]);
 end;
 

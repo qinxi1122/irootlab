@@ -1,8 +1,12 @@
 %> Forward Feature Selection
 %>
 %> @sa uip_as_fsel_forward.m
-classdef as_fsel_forward < as_fsel_fsg
+classdef as_fsel_forward < as_fsel
     properties
+        %> Dataset
+        data;
+        %> Feature Subset Grader object.
+        fsg = [];
         %> =10. Number of features to be selected
         nf_select = 10;
     end;
@@ -13,8 +17,10 @@ classdef as_fsel_forward < as_fsel_fsg
         end;
     end;
     
-    methods(Access=protected)
-        function log = do_go(o)
+    methods
+        function log = go(o)
+            o.fsg.data = o.data;
+            o.fsg = o.fsg.boot();
             nf = o.data(1).nf;
 
             nf_eff = min(o.nf_select, nf); % Effective number of features to be selected
@@ -38,7 +44,7 @@ classdef as_fsel_forward < as_fsel_fsg
                 v_candidates = arrayfun(@(x) [v_in, x], v_left, 'UniformOutput', 0); % Creates candidates
 
                 % Evaluates candidates
-                candidatesgrades = o.get_idxsgrades(v_candidates);
+                candidatesgrades = o.fsg.calculate_grades(v_candidates);
                 g = candidatesgrades(:, :, 1);
                 [val, idx] = max(g);
                 
