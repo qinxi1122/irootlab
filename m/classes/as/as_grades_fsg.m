@@ -23,6 +23,7 @@ classdef as_grades_fsg < as_grades_data
             out.xname = da1.xname;
             out.xunit = da1.xunit;
             out.yname = o.fsg.classtitle;
+            out.yunit = '';
         end;
     end;
 end

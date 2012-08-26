@@ -24,5 +24,20 @@ classdef log_grades < irlog
         function n = get.nf(o)
             n = numel(o.fea_x);
         end;
+        
+%         function o = draw(.....)
+%         function o = draw(o, data_hint, flag_mark)
+%             if ~exist('data_hint', 'var')
+%                 data_hint = [];
+%             end;
+%             
+%             o.draw_grades(data_hint, 1);
+%             o.draw_markers();
+%             o.draw_finish();
+%         end;
+% 
+
+        
+        
     end;
 end

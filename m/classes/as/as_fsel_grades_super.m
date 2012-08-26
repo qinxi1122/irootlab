@@ -1,4 +1,7 @@
 %> @brief "Super-object" encapsulating both a @ref as_fsel_grades and a @ref as_grades_data object
+%>
+%> @arg The @ref as_grades_data object calculates the grades vector, whereas ...
+%> @arg the @ref as_fsel_grades performs itself the feature selection.
 classdef as_fsel_grades_super < as_fsel
     properties
         %> Dataset to be passed to the @ref as_grades_data object

@@ -7,6 +7,10 @@ classdef log_as_fsel_grades < log_as_fsel
         opt_grades;
         %> Whether the selected features are peaks
         flag_peaks;
+        %> 
+        type;
+        %>
+        threshold;
     end;
 
     methods
