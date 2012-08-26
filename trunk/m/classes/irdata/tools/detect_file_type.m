@@ -28,8 +28,8 @@ try
         s = fread(id, 8);
         s = strip_quotes(char(s)');
         if length(s) >= 7
-            if strcmp(lower(s(1:7)), 'irtools') || strcmp(lower(s(1:5)), 'iroot')
-                classname = 'dataio_txt_iroot';
+            if strcmp(lower(s(1:7)), 'irtools') || strcmp(lower(s(1:5)), 'irootlab')
+                classname = 'dataio_txt_irootlab';
                 break;
             end;
         end;

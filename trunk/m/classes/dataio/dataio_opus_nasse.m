@@ -95,7 +95,7 @@ classdef dataio_opus_nasse < dataio
         
         %> Saver
         function o = save(o, data)
-            irerror('Sorry, IRoot does not save files in OPUS format');
+            irerror('Sorry, IRootLab does not save files in OPUS format');
         end;
     end
 end

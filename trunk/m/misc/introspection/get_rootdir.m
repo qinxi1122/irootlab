@@ -3,9 +3,9 @@
 %> @brief Returns the root directory
 
 function s = get_rootdir()
-a = which('iroot');
+a = which('irootlab');
 if isempty(a)
-    irerror('iroot.m not found');
+    irerror('irootlab.m not found');
 end;
 
 poss = find(a == filesep);

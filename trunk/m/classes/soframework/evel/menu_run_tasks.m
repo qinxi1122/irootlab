@@ -1,6 +1,6 @@
 %> This script depends on a file called "scenesetup.m" which must create a scenebuilder variable called "a"
 scenesetup;
-irootsetup();
+setup_load();
 assert_connected_to_cells();
 tm = taskmanager();
 tm.scenename = a.scenename;

@@ -1,12 +1,12 @@
-%> @brief IRoot TXT loader/saver
+%> @brief IRootLab TXT loader/saver
 %>
 %> This file type is recommended if you want to edit the dataset in e.g. Excel, it is capable of storing all the properties of the dataset.
 %>
 %> See Figure 1 for example.
 %>
 %> @image html dataformat_iroot.png
-%> <center>Figure 1 - Example of IRoot TXT file open in a spreadsheet editing program.</center>
-classdef dataio_txt_iroot < dataio
+%> <center>Figure 1 - Example of IRootLab TXT file open in a spreadsheet editing program.</center>
+classdef dataio_txt_irootlab < dataio
     properties(SetAccess=protected)
     end;
     methods
@@ -64,7 +64,7 @@ classdef dataio_txt_iroot < dataio
                     flag_exp_table = 1;
                 else
                     s = strip_quotes(cc{1});
-                    if length(s) >= 7 && strcmp(s(1:7), 'IRoot')
+                    if length(s) >= 7 && strcmp(s(1:5), 'IRoot')
                     elseif strcmp(s, 'classlabels')
                         data.classlabels = eval(strip_quotes(cc{2}));
                     elseif strcmp(s, 'fea_x')
@@ -100,7 +100,7 @@ classdef dataio_txt_iroot < dataio
                 
             
             data.filename = o.filename;
-            data.filetype = 'txt_iroot';
+            data.filetype = 'txt_irootlab';
             data = data.make_groupnumbers();
         end;
     
@@ -141,7 +141,7 @@ classdef dataio_txt_iroot < dataio
             tab = sprintf('\t');
             newl = sprintf('\n');
             
-            fwrite(h, ['IRoot ' iroot_version() repmat(tab, 1, no_cols-1) newl]);
+            fwrite(h, ['IRootLab ' irootlab_version() repmat(tab, 1, no_cols-1) newl]);
             fwrite(h, ['classlabels' tab cell2str(data.classlabels) repmat(tab, 1, no_cols-2) newl]);
             temp = sprintf(['%g' tab], data.fea_x);
             fwrite(h, ['fea_x' tab temp(1:end-1) repmat(tab, 1, no_cols-data.nf-1) newl]);

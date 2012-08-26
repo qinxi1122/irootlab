@@ -6,7 +6,7 @@
 %>
 %> <h3>Classes and Class Levels</h3>
 %>
-%> In IRoot, dataset @c classes are 0-based, so valid classes will range from @c 0 to @c (\ref nc-1). @c Classes correspond to elements in the
+%> In IRootLab, dataset @c classes are 0-based, so valid classes will range from @c 0 to @c (\ref nc-1). @c Classes correspond to elements in the
 %> @c classlabels property.
 %>
 %> There are class code lower than zero with special meaning:

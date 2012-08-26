@@ -8,7 +8,7 @@
 %> @image html svm_c_gamma_result02.png
 
 
-%IRoot started @ 03-Jun-2010 21:15:26
+%IRootLab started @ 03-Jun-2010 21:15:26
 
 
 %Dataset load

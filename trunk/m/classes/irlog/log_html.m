@@ -23,7 +23,7 @@ o.html, 10, ...
         %> @return 
         function fn = save(o)
             if isempty(o.filename)
-                fn = find_filename('iroothtml', [], 'html');
+                fn = find_filename('irootlab_html', [], 'html');
             else
                 fn = o.filename;
             end;

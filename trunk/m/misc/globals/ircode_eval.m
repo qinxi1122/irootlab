@@ -1,6 +1,6 @@
 %> @ingroup globals code
 %> @file
-%> @brief Evaluates code in 'base' workspace, adds to IRCODE.s and to the IRoot log editbox if open
+%> @brief Evaluates code in 'base' workspace, adds to IRCODE.s and to the IRootLab log editbox if open
 %>
 %> @param s code
 %> @param title if provided, will be added before the code as comment

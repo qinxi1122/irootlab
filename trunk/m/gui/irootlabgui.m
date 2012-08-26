@@ -49,10 +49,10 @@ set(handles.pushbuttonObjtool, 'BackgroundColor', o.color);
 
 %> @todo move this OpenSpec GUI initialization
 % openspecgui initialization
-global handles_iroot;
+global handles_irootlab;
 ircode_assert();
-set(handles.textVersion, 'string', sprintf('%s', iroot_version));
-handles_iroot = handles;
+set(handles.textVersion, 'string', sprintf('%s', irootlab_version));
+handles_irootlab = handles;
 refresh_code();
 colors_markers();
 gui_set_position(hObject);
@@ -80,9 +80,9 @@ varargout{1} = handles.output;
 %#########
 function refresh_code()
 ircode_assert();
-global handles_iroot IRCODE;
-set(handles_iroot.editCode, 'String', IRCODE.s);
-set(handles_iroot.text_codefilename, 'String', ['File: ' IRCODE.filename]);
+global handles_irootlab IRCODE;
+set(handles_irootlab.editCode, 'String', IRCODE.s);
+set(handles_irootlab.text_codefilename, 'String', ['File: ' IRCODE.filename]);
 
 
 %##########################################################################
@@ -167,12 +167,12 @@ function pushbutton_mergetool_Callback(hObject, eventdata, handles)
 mergetool();
 
 function Untitled_open_help_Callback(hObject, eventdata, handles)
-iroothelp();
+help2();
 
 
 % --- Executes on button press in pushbutton_help.
 function pushbutton_help_Callback(hObject, eventdata, handles)
-iroothelp();
+help2();
 
 % --- Executes on button press in pushbutton_web.
 function pushbutton_web_Callback(hObject, eventdata, handles)

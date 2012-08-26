@@ -1,15 +1,15 @@
 % function make_release(flag_make_doc=0, flag_clean=1, flag_delete_fuzzy=1, flag_delete_soframework=0)
 %
-% This is a MATLAB script created to make a new release of IRoot.
+% This is a MATLAB script created to make a new release of IRootLab.
 %
 % It will create a directory outside the "root" folder (where this file is in),
-% Called "../iroot-<version>", where <version> will be picked by executing the file "iroot_version.m" inside the "trunk" folder
+% Called "../irootlab-<version>", where <version> will be picked by executing the file "irootlab_version.m" inside the "trunk" folder
 %
 % The steps are:
-% 1 Copy the whole "trunk" folder to "../iroot-"<version>
+% 1 Copy the whole "trunk" folder to "../irootlab-"<version>
 % 2 Call Doxygen to make fresh documentation (should update the contents of the "../last-generated-doc" directory)
-% 3 Copy whatever is inside "../last-generated-doc" to "../iroot-<version>/doc"
-% 4 Zips the folder into "../iroot-"<version> "../../iroot_releases"
+% 3 Copy whatever is inside "../last-generated-doc" to "../irootlab-<version>/doc"
+% 4 Zips the folder into "../irootlab-"<version> "../../irootlab_releases"
 %
 % Parameters:
 %   flag_make_doc=0 - whether to perform steps 2 and 3 above
@@ -27,7 +27,7 @@ if nargin < 2 || isempty(flag_clean)
 end;
 
 if nargin < 3 || isempty(flag_delete_fuzzy)
-    flag_delete_fuzzy = ~any(strfind(iroot_version, 'julio'));
+    flag_delete_fuzzy = ~any(strfind(irootlab_version, 'julio'));
 end;
 
 if nargin < 4 || isempty(flag_delete_soframework)
@@ -35,17 +35,21 @@ if nargin < 4 || isempty(flag_delete_soframework)
 end;
 
 
-addpath('./m'); % To call iroot_version;
-sversion = iroot_version();
-basename = ['iroot-', sversion, iif(flag_make_doc, '', '-nodoc')];
+addpath('./m'); % To call irootlab_version;
+sversion = irootlab_version();
+basename = ['irootlab-', sversion, iif(flag_make_doc, '', '-nodoc')];
 sdir = ['../../', basename];
 disp(['Version is "', sversion, '"']);
 
 % Step 0.1 - recompiles CLASSMAP.mat
 classmap_compile();
 
+% Step 0.2 - remakes classcreator.m
+make_classcreator();
+
+
 % Step 1
-disp('Copying IRoot m folder...');
+disp('Copying IRootLab m folder...');
 copyfile('./m', sdir);
 
 
@@ -92,6 +96,19 @@ end;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 if flag_make_doc
     % Step 2
     disp('Running Doxygen...');
@@ -100,12 +117,12 @@ if flag_make_doc
     cd('..');
 
     % Step 3
-    disp('Copying IRoot documentation folder...');
+    disp('Copying IRootLab documentation folder...');
     copyfile('../../last-generated-doc', [sdir, '/doc']);
 end;
 
 % Step 4
-zipfile = ['../../../../../iroot_releases/', basename, '.zip'];
+zipfile = ['../../../../../irootlab_releases/', basename, '.zip'];
 disp(['Creating zip file ', zipfile, '...']);
 zip(zipfile, basename, '../..');
 

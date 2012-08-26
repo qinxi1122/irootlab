@@ -1,7 +1,7 @@
 %> @file
 %>@ingroup introspection
 
-%> @brief Scans IRoot directories and build hierarchical class maps
+%> @brief Scans IRootLab directories and build hierarchical class maps
 classdef classmap < handle
     properties
         timestamp;
@@ -72,7 +72,7 @@ classdef classmap < handle
         end;
         
         
-        % Classname needs be a subdirectory of the IRoot root folder
+        % Classname needs be a subdirectory of the IRootLab root folder
         function o = build(o, classname)
 
             
