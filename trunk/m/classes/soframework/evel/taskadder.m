@@ -177,6 +177,8 @@ classdef taskadder
                         end;
                     end;
 
+                    fn_foldmerger_fitest_em = {};
+                    idxfoldmerger_fitest_em = [];
                     for m = 1:no_clembedded
                         scl = o.clembedded{m};
                         fn_foldmerger_fitest_em{m} = sprintf('output_foldmerger_fitest_%s____%s__ovr%02d.mat', spa, scl, i);

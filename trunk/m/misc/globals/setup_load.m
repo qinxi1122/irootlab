@@ -10,6 +10,6 @@ more_assert();
 
 if exist('irootlab_setup.m', 'file')
     irootlab_setup;
-elseif if exist('irootsetup.m', 'file') % Backward compatibility
+elseif exist('irootsetup.m', 'file') % Backward compatibility
     irootsetup;
 end;

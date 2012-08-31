@@ -127,7 +127,7 @@ classdef gencode < handle
             o.flag_o = 0;
             
             o.add_code('');
-            o.add_code(['% -- Code started at ', datestr(now), 10]);
+            o.add_code(['% -- @ ', datestr(now), 10]);
         end;
         
 

@@ -21,7 +21,7 @@ classdef fcon_pca < fcon_linear
                
         function o = do_train(o, data)
             if sum(var(data.X) < 1e-10) > 0
-                warning('There are variables with variance lower than 1e-10, something may go wrong here!');
+                irverbose('WARNING: There are variables with variance lower than 1e-10, something may go wrong here!', 3);
             end;
 
             V_star = princomp2(data.X);

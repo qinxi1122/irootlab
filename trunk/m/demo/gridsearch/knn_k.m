@@ -15,7 +15,7 @@ clssr_knn01 = clssr_knn();
 clssr_knn01 = clssr_knn01.setbatch({'k', 1});
 
 
-% -- Code started at 29-Aug-2011 23:53:39
+% -- @ 29-Aug-2011 23:53:39
 o = sgs_crossval();
 o = o.setbatch({'flag_group', 0, ...
 'flag_perclass', 0, ...

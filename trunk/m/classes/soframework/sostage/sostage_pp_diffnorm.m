@@ -7,42 +7,33 @@ classdef sostage_pp_diffnorm < sostage_pp
         diff_porder = 2;
         diff_ncoeff = 9;
         %> ='n'. Defaults to "Vector Normalization"
+        %> @warning Must not have any vertical normalization (e.g. standardization or mean-centering)! Because the pre-processing is applied to training and test sets separately sometimes.
         norm_types = 'n';
     end;
     
     methods
         function o = sostage_pp_diffnorm()
-            o.title = 'D-VN';
+            o.title = 'Diff-VN';
         end;
-        
-        function out = get_default(o)
+    end;
+
+    methods(Access=protected)
+        function out = do_get_block(o)
             cutter1 = fsel();
             cutter1 = cutter1.setbatch({'v_type', 'rx', ...
             'flag_complement', 0, ...
             'v', [1800, 900]});
 
             difer = pre_diff_sg();
-            difer.order = 1;
-            difer.porder = 2;
-            difer.ncoeff = 9;
+            difer.order = o.diff_order;
+            difer.porder = o.diff_porder;
+            difer.ncoeff = o.diff_ncoeff;
         
             norer = pre_norm();
-            norer.types = 'n';
+            norer.types = o.norm_types;
 
             out = block_cascade();    
-            out.blocks = {cutter1, difer, norer};
-        end;
-    end;
-    
-    
-    methods(Access=protected)
-        function out = do_get_block(o)
-            out = o.get_default();
-            out.blocks{2}.order = o.diff_order;
-            out.blocks{2}.porder = o.diff_porder;
-            out.blocks{2}.ncoeff = o.diff_ncoeff;
-
-            out.blocks{end}.types = o.norm_types;
+            out.blocks = {cutter1, difer, norer};            
         end;
     end;
 end
