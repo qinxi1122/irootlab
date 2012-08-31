@@ -33,7 +33,7 @@ fcon_lda01 = o;
 % -- Finished  at 25-Sep-2011 20:26:35
 
 
-% -- Code started at 25-Sep-2011 20:26:50
+% -- @ 25-Sep-2011 20:26:50
 o = block_cascade();
 o = o.setbatch({'blocks', {pre_meanc01, fcon_lda01}});
 % -- Finished  at 25-Sep-2011 20:26:50
@@ -42,7 +42,7 @@ block_cascade01 = o;
 % -- Finished  at 25-Sep-2011 20:26:50
 
 
-% -- Code started at 25-Sep-2011 20:27:16
+% -- @ 25-Sep-2011 20:27:16
 o = as_crossc();
 o = o.setbatch({'mold', block_cascade01, ...
 'sgs', [], ...
@@ -54,7 +54,7 @@ as_crossc01 = o;
 
 
 
-% -- Code started at 25-Sep-2011 20:32:28
+% -- @ 25-Sep-2011 20:32:28
 o = vis_scatter2d();
 o = o.setbatch({'idx_fea', [1,2], ...
 'confidences', [], ...
@@ -65,7 +65,7 @@ vis_scatter2d01 = o;
 % -- Finished  at 25-Sep-2011 20:32:28
 
 
-% -- Code started at 25-Sep-2011 21:33:31
+% -- @ 25-Sep-2011 21:33:31
 out = as_crossc01.go();
 % -- Finished  at 25-Sep-2011 21:33:34
 
@@ -74,7 +74,7 @@ as_crossc_crossc01 = out;
 
 
 
-% -- Code started at 25-Sep-2011 22:38:17
+% -- @ 25-Sep-2011 22:38:17
 o = vis_crossloadings();
 o = o.setbatch({'flag_abs', 0, ...
 'flag_trace_minalt', 0, ...
@@ -86,7 +86,7 @@ o = o.setbatch({'flag_abs', 0, ...
 figure;
 o.use(as_crossc_crossc01);
 
-% -- Code started at 25-Sep-2011 22:38:17
+% -- @ 25-Sep-2011 22:38:17
 o = vis_crossloadings();
 o = o.setbatch({'flag_abs', 0, ...
 'flag_trace_minalt', 0, ...
@@ -99,7 +99,7 @@ figure;
 o.use(as_crossc_crossc01);
 
 
-% -- Code started at 25-Sep-2011 23:11:10
+% -- @ 25-Sep-2011 23:11:10
 out = as_crossc_crossc01.extract_dataset();
 % -- Finished  at 25-Sep-2011 23:11:11
 
@@ -107,7 +107,7 @@ irdata_crossc01 = out;
 % -- Finished  at 25-Sep-2011 23:11:11
 
 
-% -- Code started at 25-Sep-2011 23:11:27
+% -- @ 25-Sep-2011 23:11:27
 o = vis_scatter2d();
 o = o.setbatch({'idx_fea', [1,2], ...
 'confidences', [], ...
@@ -119,12 +119,12 @@ o.use(irdata_crossc01);
 % -- Finished  at 25-Sep-2011 23:11:29
 
 
-% -- Code started at 25-Sep-2011 23:19:57
+% -- @ 25-Sep-2011 23:19:57
 pre_meanc01 = pre_meanc01.train(dataset);
 % -- Finished  at 25-Sep-2011 23:19:57
 
 
-% -- Code started at 25-Sep-2011 23:19:57
+% -- @ 25-Sep-2011 23:19:57
 [pre_meanc01, out] = pre_meanc01.use(dataset);
 % -- Finished  at 25-Sep-2011 23:19:57
 
@@ -132,12 +132,12 @@ lindo_meanc01 = out;
 % -- Finished  at 25-Sep-2011 23:19:57
 
 
-% -- Code started at 25-Sep-2011 23:20:01
+% -- @ 25-Sep-2011 23:20:01
 fcon_lda01 = fcon_lda01.train(lindo_meanc01);
 % -- Finished  at 25-Sep-2011 23:20:01
 
 
-% -- Code started at 25-Sep-2011 23:20:02
+% -- @ 25-Sep-2011 23:20:02
 [fcon_lda01, out] = fcon_lda01.use(lindo_meanc01);
 % -- Finished  at 25-Sep-2011 23:20:02
 
@@ -145,7 +145,7 @@ lindo_meanc01_lda01 = out;
 % -- Finished  at 25-Sep-2011 23:20:02
 
 
-% -- Code started at 25-Sep-2011 23:20:04
+% -- @ 25-Sep-2011 23:20:04
 figure;
 vis_scatter2d01.use(lindo_meanc01_lda01);
 % -- Finished  at 25-Sep-2011 23:20:05

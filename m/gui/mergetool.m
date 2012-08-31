@@ -45,7 +45,7 @@ end
 
 
 % --- Executes just before mergetool is made visible.
-function mergetool_OpeningFcn(hObject, eventdata, handles, varargin)
+function mergetool_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 
 % Choose default command line output for mergetool
 handles.output = hObject;
@@ -130,11 +130,10 @@ else
         end;
         name_new = find_varname('ds');
 
-        if type == 1
-            evalin('base', sprintf('[%s, flag_error] = pir2data(''%s'', %d, %d, %d);', name_new, path_, trimdot, flag_image, height));
-        else
-            evalin('base', sprintf('[%s, flag_error] = opus2data(''%s'', %d, %d, %d);', name_new, path_, trimdot, flag_image, height));
-        end;
+        
+        stypes = {'pir', 'opus', 'wire'};
+        evalin('base', sprintf('[%s, flag_error] = %s2data(''%s'', %d, %d, %d);', ...
+            name_new, stypes{type}, path_, trimdot, flag_image, height));
 
         ds = evalin('base', [name_new ';']);
         flag_error = evalin('base', 'flag_error;');

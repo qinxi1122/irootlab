@@ -49,8 +49,10 @@ errors = {};
 ii = 0;
 for i = 1:no_files
     filename = fullfile(path_, filenames{i});
+    flag_open = 0;
     try
         h = fopen(filename, 'r');
+        flag_open = 1;
 
         if h < 1
             irerror(sprintf('Could not open file ''%s''!', filename));
@@ -103,6 +105,7 @@ for i = 1:no_files
             end;
         end;
         fclose(h);
+        flag_open = 0;
 
         if flag_wants_wns
             irerror('Wavenumbers specification not found in file ''%s''!', filenames{i});
@@ -129,6 +132,10 @@ for i = 1:no_files
             irerror('Wrong number of data points in file ''%s''!', filenames{i});
         end;
     catch ME
+        if flag_open
+            fclose(h);
+        end;
+            
         irverbose(['ERROR: ', ME.message]);
         cnt_error = cnt_error+1;
         errors{end+1} = filename;

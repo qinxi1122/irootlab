@@ -73,7 +73,7 @@ block_cascade01 = o;
 
 %-------- The star of the demo
 
-% -- Code started at 29-Aug-2011 15:35:11
+% -- @ 29-Aug-2011 15:35:11
 o = reptt_hiesplit();
 o = o.setbatch({'data', ddemo_train, ...
 'postpr_test', [], ...

@@ -67,7 +67,7 @@ frbm02.flag_rtrecord = 1;
 frbm02.record_every = 3;
 frbm02.title = 'eClass1 1 rule only';
 
-% -- Code started at 28-Aug-2011 23:35:03
+% -- @ 28-Aug-2011 23:35:03
 o = sgs_randsub();
 o = o.setbatch({'flag_group', 0, ...
 'flag_perclass', 0, ...
@@ -80,7 +80,7 @@ sgs01 = o;
 
 o = estlog_classxclass();
 o.estlabels = ds01.classlabels;
-% -- Code started at 24-Jan-2012 19:20:43
+% -- @ 24-Jan-2012 19:20:43
 
 o.testlabels = ds01.classlabels;
 estlog_classxclass01 = o;

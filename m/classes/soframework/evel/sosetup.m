@@ -93,16 +93,16 @@ classdef sosetup
             
 
         % LDC properties
-        clarchsel_ldc_nfs = NaN;
+%         clarchsel_ldc_nfs = NaN;
         undersel_ldc_unders = NaN;
 
         % QDC properties
-        clarchsel_qdc_nfs = NaN;
+%         clarchsel_qdc_nfs = NaN;
         undersel_qdc_unders = NaN;
 
 
         % LS properties
-        clarchsel_ls_nfs = NaN;
+%         clarchsel_ls_nfs = NaN;
         undersel_ls_unders = NaN;
 
         % LS properties
@@ -110,7 +110,7 @@ classdef sosetup
         undersel_lsth_unders = NaN;
 
         % DIST properties
-        clarchsel_dist_nfs = NaN;
+%         clarchsel_dist_nfs = NaN;
         undersel_dist_unders = NaN;
         
         
@@ -222,18 +222,18 @@ classdef sosetup
             o.undersel_lsth_unders = UNDERS;
 
             
-            o.clarchsel_ann_nfs = [3, 5, 10, 15, 20, 25, 30];
+            o.clarchsel_ann_nfs = [3, 5, 10, 20, 50, 100];
             o.clarchsel_ann_archs = {[1], [3], [5], [10], [15], [20], [30], [7, 4], [10, 5], [10, 9], [20, 11]};  %#ok<*NBRAK>
         
         
             % Data Analysis Stage-independent
-            o.clarchsel_knn_nfs = [3, 5, 7, 9, 11, 13, 15, 20, 25, 30, 35];
+            o.clarchsel_knn_nfs = [3, 5, 7, 9, 11, 13, 15, 20, 25, 30, 35, 50];
             o.clarchsel_knn_ks = [1, 2, 3, 5, 7, 11, 13, 15, 17];
 
             
-            o.clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:80];
+            o.clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:152];
 
-            o.clarchsel_svm_nfs = [7, 10, 15];
+            o.clarchsel_svm_nfs = [7, 10, 15, 30, 50, 100];
             o.clarchsel_svm_cs = 10.^(2:.25:5);
             o.clarchsel_svm_gammas = 10.^(-7:.5:-1);
 
@@ -245,25 +245,25 @@ classdef sosetup
             
             o.fearchsel_fhana_nf_max = 50;
             
-            o.clarchsel_frbm_nfs = [3, 5, 10, 15, 20, 25, 30];
-            o.clarchsel_frbm_scales = 1; % No need to try different scales for FRBM
+%             o.clarchsel_frbm_nfs = [3, 5, 10, 15, 20, 25, 30, 50, 100];
+%             o.clarchsel_frbm_scales = 1; % No need to try different scales for FRBM
             
-            o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
+%             o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
 
 %             o.fearchsel_lasso_nfs = 3:3:81;
             
-            o.fearchsel_pca_nfs = [1:7, 9:2:21, 24:3:42, 46:4:70];
-            o.fearchsel_pls_nfs = [1:7, 9:2:21, 24:3:42, 46:4:70];
+            o.fearchsel_pca_nfs = [1:9, 11:2:151];
+            o.fearchsel_pls_nfs = [1:9, 11:2:151];
             
-            o.clarchsel_ldc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-
-            o.clarchsel_qdc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-
-            o.clarchsel_ls_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-
-            o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-
-            o.clarchsel_lsth_nfs = 3:3:81;
+%             o.clarchsel_ldc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
+% 
+%             o.clarchsel_qdc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
+% 
+%             o.clarchsel_ls_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
+% 
+%             o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
+% 
+%             o.clarchsel_lsth_nfs = 3:3:81;
             
             o.lcr2_no_folds = 50;
             o.lcr2_subdspercs = [.1, .15, .2:.1:1];

@@ -4,7 +4,7 @@
 function make_classcreator()
 
 
-files = {'goer', 'sodesigner'};
+files = {'goer', 'sodesigner', 'frbm'};
 dirs = {};
 for i = 1:numel(files)
     a = which(files{i}); % Gets full path to a random file that is inside the "jobs" directory

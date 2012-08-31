@@ -1,8 +1,8 @@
 %> ClArchSel base class for those classifiers whose only optimization is the number of features in the FE coupled stage
 classdef clarchsel_noarch < clarchsel
-    properties
-        nfs;
-    end;
+%     properties
+%         nfs;
+%     end;
     
     methods        
         function o = customize(o)

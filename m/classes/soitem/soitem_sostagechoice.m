@@ -5,6 +5,13 @@ classdef soitem_sostagechoice < soitem_sovalues
         dia;
     end;
     
+    methods
+        function o = soitem_sostagechoice()
+            o.classtitle = 'sostage choice';
+            o.moreactions = [o.moreactions, 'extract_sovalues'];
+        end;
+    end;
+    
     methods(Sealed)
         %> Retrieves a sostage from the sovalues to replace in the diagnosissystem
         function dia_out = get_modifieddia(o)
@@ -22,6 +29,10 @@ classdef soitem_sostagechoice < soitem_sovalues
                     dia_out.sostage_pp = sos;
                 end;
             end;
+        end;
+        
+        function out = extract_sovalues(o)
+            out = o.sovalues;
         end;
     end;        
 end

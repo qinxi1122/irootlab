@@ -4,6 +4,7 @@
 classdef sostage_pp_rubbernorm < sostage_pp
     properties
         %> ='1'. Defaults to "Amide 1 Peak"
+        %> @warning Must not have any vertical normalization (e.g. standardization or mean-centering)! Because the pre-processing is applied to training and test sets separately sometimes.
         norm_types = '1';
         
         

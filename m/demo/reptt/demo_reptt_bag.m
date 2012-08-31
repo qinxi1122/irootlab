@@ -15,24 +15,24 @@ ddemo = data_select_hierarchy(ddemo, 1);
 
 
 
-% -- Code started at 29-Aug-2011 01:02:05
+% -- @ 29-Aug-2011 01:02:05
 o = fcon_lda();
 o = o.setbatch({'penalty', 0});
 fcon_lda01 = o;
 
-% -- Code started at 29-Aug-2011 01:02:21
+% -- @ 29-Aug-2011 01:02:21
 o = clssr_dist();
 o = o.setbatch({'normtype', 'euclidean', ...
 'flag_pr', 0});
 clssr_dist01 = o;
 
-% -- Code started at 29-Aug-2011 01:02:49
+% -- @ 29-Aug-2011 01:02:49
 o = block_cascade();
 o = o.setbatch({'blocks', {fcon_lda01, clssr_dist01}});
 block_cascade01 = o;
 
 
-% -- Code started at 28-Aug-2011 23:35:03
+% -- @ 28-Aug-2011 23:35:03
 o = sgs_randsub();
 o = o.setbatch({'flag_group', 1, ...
 'flag_perclass', 0, ...
@@ -43,7 +43,7 @@ o = o.setbatch({'flag_group', 1, ...
 'no_reps', 1});
 sgs_randsub01 = o;
 
-% -- Code started at 28-Aug-2011 23:36:35
+% -- @ 28-Aug-2011 23:36:35
 o = aggr_bag();
 o = o.setbatch({'block_mold', block_cascade01, ...
 'sgs', sgs_randsub01});
@@ -93,7 +93,7 @@ reptt_bag01_bag01 = out;
 out = reptt_bag01_bag01.extract_curves();
 irdata_bag01 = out{1, 1};
 
-% -- Code started at 29-Aug-2011 12:23:39
+% -- @ 29-Aug-2011 12:23:39
 o = vis_alldata();
 figure;
 o.use(irdata_bag01);

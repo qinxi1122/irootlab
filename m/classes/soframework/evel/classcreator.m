@@ -188,5 +188,22 @@ if x
   o = undersel_qdc();
   o = undersel_svm();
   o = underselmerger();
+  o = frbm();
+  o = frbm_delete_rule();
+  o = frbm_firing_correlation();
+  o = frbm_firing_cosine();
+  o = frbm_firing_distmean();
+  o = frbm_firing_exp_default();
+  o = frbm_firing_exp_mahalanobis();
+  o = frbm_firing_pr();
+  o = frbm_mf_gauss();
+  o = frbm_save_movie();
+  o = frbm_train_subclust();
+  o = frbm_update_rules2();
+  o = frbm_update_rules_kg1();
+  o = frbm_update_rules_kg2();
+  o = frbm_update_rules_kg3();
+  o = frbm_update_rules_original();
+  o = frbm_update_rules_smalltweak();
   o = irootlab();
 end
