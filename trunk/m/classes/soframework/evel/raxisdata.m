@@ -1,13 +1,15 @@
-%> @brief Axis data for a sovalues object or a rresult object
+%> @brief Axis data for a sovalues object
 %>
 %>
 classdef raxisdata
     properties(Dependent)
+        %> Label of an axis (e.g., xlabel, ylabel)
         label;
+        %> Numerical values for axis positions
         values;
-        %> If empty, returns the valuees converted into a cell of strings
+        %> Cell of strings to use as axis ticks. If empty, returns the valuees converted into a cell of strings
         ticks;
-        %> If empty, returns the ticks
+        %> Cell of strings to use in a table or in a figure legend box. If empty, returns the ticks
         legends;
     end;
 
