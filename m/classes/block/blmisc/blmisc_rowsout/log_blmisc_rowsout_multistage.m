@@ -11,10 +11,10 @@ classdef log_blmisc_rowsout_multistage < irlog
         map;
     end;
     
-    methods(Access=protected)
-        function s = do_get_html(o)
-            s = do_get_html@irlog(o);
+    methods
+        function s = get_text(o)
             smodes = {'Cascade', 'Intersection', 'Union'};
+            s = '';
             s = cat(2, s, 'Mode: ', smodes{o.mode+1}, 10);
             s = cat(2, s, 'Number initial: ', int2str(o.inputno), 10);
             
@@ -32,6 +32,12 @@ classdef log_blmisc_rowsout_multistage < irlog
             end;
             
             s = cat(2, s, 'Number kept: ', int2str(numel(o.map)), 10, 'Number removed: ', int2str(o.inputno-numel(o.map)), 10);
+        end;
+    end;
+    
+    methods(Access=protected)
+        function s = do_get_html(o)
+            s = [do_get_html@irlog(o), '<pre>', 10, o.get_text(), 10, '</pre>', 10];
         end;
     end;
 end

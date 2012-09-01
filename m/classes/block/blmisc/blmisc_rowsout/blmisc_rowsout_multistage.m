@@ -14,6 +14,8 @@ classdef blmisc_rowsout_multistage < blmisc_rowsout
         %> @arg 1 - "intersection". Removes only the outliers yielded by all the stages.
         %> @arg 2 - "union". Removes the outliers yielded by any of the stages.
         mode = 0;
+        
+        log;
     end;
     
     methods
