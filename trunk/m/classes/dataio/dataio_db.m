@@ -16,7 +16,7 @@ classdef dataio_db < dataio
             flag_deact = ~isempty(o.iddeact);
             if flag_deact
                 fielddeact = '(flag_inactive is null or flag_inactive = 0) as flag_active, ';
-                fielddeact2 = 'flag_active, ';
+                fielddeact2 = 'flag_active';
                 wheredeact = ' AND (flag_inactive is null or flag_inactive = 0)';
                 ljdeact = [' LEFT JOIN deact_spectrum ON  deact_spectrum.idspectrum = spectrum.id and deact_spectrum.iddeact = ' mat2str(o.iddeact)];
             else
@@ -32,8 +32,8 @@ classdef dataio_db < dataio
             s_joins = [' LEFT JOIN series ON series.idspectrum = spectrum.id and series.iddomain = ' mat2str(o.iddomain) ljdeact ...
                 ' LEFT JOIN colony ON colony.id = spectrum.idcolony'];
             
-            s_fields = ['spectrum.id, spectrum.file_name, colony.id, colony.code, ' fielddeact 'series.vector, series.id'];
-            s_outputs = ['idspectrum, file_name, colony_id, colony_code, ' fielddeact2 'vector, series_id'];
+            s_fields = ['spectrum.id as idspectrum, spectrum.file_name, colony.id as colony_id, colony.code as colony_code, ' fielddeact 'series.vector, series.id as series_id'];
+            a_outputs = [{'idspectrum', 'file_name', 'colony_id', 'colony_code'}, fielddeact2, {'vector', 'series_id'}];
             s_outputs_params = [];
             s_wheres = [' WHERE spectrum.idexperiment = ' mat2str(o.idexperiment) wheredeact];
             for i_judge = 1:length(o.idjudge)
@@ -43,7 +43,7 @@ classdef dataio_db < dataio
                 s_joins = [s_joins ' LEFT JOIN spectrum_judge sj' s_ij ' on sj' s_ij '.idspectrum = spectrum.id and ' ...
                            'sj' s_ij '.idjudge = ' mat2str(o.idjudge(i_judge))];
 
-                s_outputs = [s_outputs ', ' fieldij];
+                a_outputs = [a_outputs, fieldij];
 
                 if ~isempty(s_outputs_params)
                     s_outputs_params = [s_outputs_params ', '];
@@ -59,13 +59,17 @@ classdef dataio_db < dataio
             
             s_select = ['SELECT ' s_fields ' FROM spectrum ' s_joins s_wheres ' HAVING series.id > 0 ORDER BY spectrum.idcolony, spectrum.id'];
             disp(s_select);
-            eval(['[' s_outputs '] = mym(''' s_select ''');']);
+            a = mym(s_select); %#ok<NASGU>
+            for i = 1:numel(a_outputs)
+                eval([a_outputs{i}, ' = a.', a_outputs{i}, ';']);
+            end;
             params_s = eval(['{' s_outputs_params '}']);
 
             disp('-- ... done --')
 
             no_obs = length(idspectrum);
-            [no_wn, wn1, wn2] = mym(['select wncount, wn1, wn2 from domain where id = ' mat2str(o.iddomain)]);
+            a = mym(['select wncount, wn1, wn2 from domain where id = ' mat2str(o.iddomain)]);
+            no_wn = a.wncount; wn1 = a.wn1; wn2 = a.wn2;
             no_judges = length(params_s);
 
             data = irdata(); % Creates new dataset object
