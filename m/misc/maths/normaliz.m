@@ -33,7 +33,7 @@ flag_range = sum(types == 'r') > 0;
 
 if flag_var
     if sum(var(X) == 0)
-        error('Can''t standardize data because there are variables with ZERO variance!');
+        irerror('Can''t standardize data because there are variables with ZERO variance!');
     end;
 end;
     

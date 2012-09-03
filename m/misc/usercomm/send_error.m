@@ -6,7 +6,7 @@
 
 function send_error(ME)
 
-if ~strcmp(ME.identifier, 'IRoot:bad')
+if ~strcmp(ME.identifier, 'IRootLab:bad')
     buggui(ME);
 else
     irerrordlg(ME.message, 'Error!');
