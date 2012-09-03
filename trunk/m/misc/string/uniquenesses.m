@@ -6,7 +6,7 @@
 %>
 %> @param cc Cell of strings
 %> @return dd Cell of strings
-function dd = replace_underscores(cc)
+function dd = uniquenesses(cc)
 
 n = numel(cc);
 nn = cellfun(@numel, cc);

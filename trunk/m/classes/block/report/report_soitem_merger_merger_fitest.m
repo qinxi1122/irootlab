@@ -1,12 +1,14 @@
 classdef report_soitem_merger_merger_fitest < report_soitem
     properties
+        %> =(auto). Minimum value for the colour scaling of the HTML cells
+        minimum = [];
     end;
     
     methods
         function o = report_soitem_merger_merger_fitest()
-            o.classtitle = 'X-X-X-X-X-X';
+            o.classtitle = 'Classification table';
             o.inputclass = 'soitem_merger_merger_fitest';
-            o.flag_params = 0;
+            o.flag_params = 1;
         end;
     end;
     
@@ -28,7 +30,7 @@ classdef report_soitem_merger_merger_fitest < report_soitem
         function s = get_html_graphics(o, item) %#ok<MANU>
             s = '';
             
-            s = cat(2, s, item.html_rates());
+            s = cat(2, s, item.html_rates(o.minimum));
         end;
     end;
 end

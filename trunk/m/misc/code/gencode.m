@@ -145,7 +145,7 @@ classdef gencode < handle
 
             if o.flag_leave_block && o.flag_o
                 o.blockname = find_varname([o.classname]); % Name for the block
-                o = o.add_code(sprintf('%s = o;', o.blockname));
+                o = o.add_code(sprintf('%s = o;\n', o.blockname));
                 o.flag_o = 0;
                 o = o.execute();
             end;
@@ -155,7 +155,7 @@ classdef gencode < handle
         function o = m_boot(o)
             o.assert_started();
             if o.refblock.flag_bootable
-                o = o.add_code(sprintf('%s = %s.boot();', o.varname, o.varname));
+                o = o.add_code(sprintf('%s = %s.boot();\n', o.varname, o.varname));
             end;
         end;
         
@@ -169,7 +169,7 @@ classdef gencode < handle
             end;
 
             if o.refblock.flag_trainable > 0
-                o = o.add_code(sprintf('%s = %s.train(%s);', o.varname, o.varname, o.get_sds()));
+                o = o.add_code(sprintf('%s = %s.train(%s);\n', o.varname, o.varname, o.get_sds()));
             end;
         end;
         
@@ -184,19 +184,19 @@ classdef gencode < handle
             sds = o.get_sds();
 
             if isa(o.refblock, 'vis') && o.refblock.flag_graphics
-                o = o.add_code(sprintf('figure;'));
+                o = o.add_code(sprintf('figure;\n'));
             end;
 
 
             if o.refblock.flag_out
-                o = o.add_code(sprintf('[%s, out] = %s.use(%s);', o.varname, o.varname, sds));
+                o = o.add_code(sprintf('[%s, out] = %s.use(%s);\n', o.varname, o.varname, sds));
                 o = extract_output(o);
                 
                 if isa(o.refblock, 'irreport')
                     o = o.open_in_browser();
                 end;
             else
-                o = o.add_code(sprintf('%s.use(%s);', o.varname, sds));
+                o = o.add_code(sprintf('%s.use(%s);\n', o.varname, sds));
             end;
         end;
 
@@ -214,7 +214,7 @@ classdef gencode < handle
 
 %             o = o.add_code(sprintf('out = %s.%s(%s);', o.varname, what, sds));
 
-            o = o.add_code(sprintf('out = %s.%s();', o.varname, what));
+            o = o.add_code(sprintf('out = %s.%s();\n', o.varname, what));
             
             o = extract_output(o);
         end;
@@ -261,10 +261,10 @@ classdef gencode < handle
 
                         if numel(outij) > 1
                             for k = 1:numel(outij)
-                                o = o.add_code(sprintf('%s_%02d = out%s(%d);', outname, k, sij, k));
+                                o = o.add_code(sprintf('%s_%02d = out%s(%d);\n', outname, k, sij, k));
                             end;
                         else
-                            o = o.add_code(sprintf('%s = out%s;', outname, sij));
+                            o = o.add_code(sprintf('%s = out%s;\n', outname, sij));
                         end;
 
                     else
@@ -272,7 +272,7 @@ classdef gencode < handle
 
                         suffix = get_suffix(class(o.refblock));
                         outname = find_varname([class(outij), '_', suffix]);
-                        o = o.add_code(sprintf('%s = out%s;', outname, sij));
+                        o = o.add_code(sprintf('%s = out%s;\n', outname, sij));
                         
                     end;
                     
@@ -283,7 +283,7 @@ classdef gencode < handle
             
         
         function o = open_in_browser(o)
-            o = o.add_code(sprintf('out.open_in_browser();'));
+            o = o.add_code(sprintf('out.open_in_browser();\n'));
         end;
      
         function o = finish(o)

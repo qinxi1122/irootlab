@@ -8,8 +8,9 @@
 %> @param flag_perc=0
 %> @param flag_rejected=(auto-detect)
 %> @param flag_color=1 Whether to use colors for cell background. If true, will paint the background with a red gradient which is
+%> @param SS Standard deviations (optional)
 %> proportional to the square root of the number inside divided by the square root of the corresponding row sum.
-function s = html_confusion(CC, rowlabels, collabels, flag_perc, flag_rejected, flag_color)
+function s = html_confusion(CC, rowlabels, collabels, flag_perc, flag_rejected, flag_color, SS)
 
 if ~exist('collabels', 'var') || isempty(collabels)
     collabels = rowlabels;
@@ -29,10 +30,20 @@ if ~exist('flag_color', 'var') || isempty(flag_color)
     flag_color = 1;
 end;
 
+
+if ~exist('SS', 'var')
+    SS = [];
+end;
+flag_std = ~isempty(SS);
+
 sperc = '';
 if flag_perc
     sperc = '%';
     CC = round(CC*100)/100; % To make 2 decimal places only
+    
+    if flag_std
+        SS = round(SS*100)/100;
+    end;
 end;
 
 
@@ -52,7 +63,7 @@ for i = 1:ni
     end;
 
     k = 0; % graphics column (whereas j is the matrix column)
-    for j = iif(flag_rejected, 1, 2):nj % column loop
+    for j = iif(flag_rejected || ni == nj, 1, 2):nj % column loop
         k = k+1;
         n = CC(i, j);
         if ~flag_color
@@ -61,7 +72,15 @@ for i = 1:ni
         else
             [bgcolor, fgcolor] = cellcolor(n, ma, 1);
         end;
-        h{k} = ['<td class="tdnu" style="color: #', fgcolor, '; background-color: #', bgcolor, ';">', num2str(n), sperc, '</td>'];
+        
+        if flag_std
+            sfrag = ['&plusmn;', num2str(SS(i, j)), sperc];
+        else
+            sfrag = '';
+        end;
+        
+        h{k} = ['<td class="tdnu" style="color: #', fgcolor, '; background-color: #', bgcolor, ';">', num2str(n), sperc, ...
+            sfrag, '</td>'];
     end;
 
     s = cat(2, s, ['<tr><td class="tdle">', rowlabels{i}, '</td>', strcat(h{:}), '</tr>', 10]);

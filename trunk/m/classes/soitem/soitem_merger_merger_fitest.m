@@ -11,12 +11,13 @@ classdef soitem_merger_merger_fitest < soitem
         %> @return [s, M, titles] @s is HTML; M is the comparison cube; @c titles describes each row in M
         %>
         %> @sa get_biocomparisoncube()
-        function [s, Y] = html_rates(o)
+        function [s, Y] = html_rates(o, minimum)
             so = o.get_sovalues();
             Y = so.get_Y('rates');
             means = mean(Y, 3);
             stds = std(Y, [], 3);
-            s = ['<center>', html_table_std(round(means*100)/100, round(stds*100)/100, so.ax(1).ticks, so.ax(2).ticks), '</center>', 10];
+            s = ['<center>', html_table_std_colors(round(means*100)/100, round(stds*100)/100, so.ax(1).ticks, so.ax(2).ticks, '', minimum), '</center>', 10];
+            
         end;
     end;        
     
@@ -29,13 +30,14 @@ classdef soitem_merger_merger_fitest < soitem
             out = sovalues();
             out.chooser = o.items(1).sovalues.chooser;
             out.ax(1) = o.items(1).sovalues.ax(1);
+            out.ax(1).ticks = uniquenesses({o.items(1).sovalues.values.title});
             for i = 1:ni
                 if i == 1
                     out.values = o.items(i).sovalues.values(:);
                 else
                     out.values(:, i) = o.items(i).sovalues.values(:);
                 end;
-                titles{i} = o.items(i).title;
+                titles{i} = o.items(i).sovalues.values(1).title;
             end;
             
 %             out.ax(1) = raxisdata();
@@ -45,7 +47,7 @@ classdef soitem_merger_merger_fitest < soitem
             
             out.ax(2) = raxisdata();
             out.ax(2).label = 'Model';
-            out.ax(2).ticks = titles;
+            out.ax(2).ticks = uniquenesses(titles);
         end;
     end;
 end

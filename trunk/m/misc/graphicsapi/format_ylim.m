@@ -2,8 +2,13 @@
 %>@file
 %>@brief Assigns y-limits based on [ymin, ymax] pair
 %
-%> @param vv [ymin, ymax] pair
+%> @param yy [ymin, ymax] pair; or @ref irdata object from where to extract y-limits
 function format_ylim(yy)
+
+if isa(yy, 'irdata')
+    temp = yy.X(:);
+    yy = [min(temp), max(temp)];
+end;
 
 d = diff(yy);
 if d < 0
