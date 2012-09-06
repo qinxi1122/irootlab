@@ -11,14 +11,14 @@ hold on;
 
 k = 0;
 class = 0;
-clear classes X;
+clear classes_ X;
 while 1
     [x,y, z] = ginput(1);
     
     if z == 1
         k = k+1;
         X(k, :) = [x, y];
-        classes(k, 1) = class;
+        classes_(k, 1) = class;
 
 
         plot(x, y, 'Color', colors(class+1), 'Marker', markers(class+1));
@@ -37,7 +37,7 @@ end;
 if k > 1
     data = irdata();
     data.X = X;
-    data.classes = classes;
+    data.classes = classes_;
     data = data.assert_fix();
     f = find_filename('userdata', '', 'txt');
     oio = dataio_txt_basic();
