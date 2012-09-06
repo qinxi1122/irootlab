@@ -220,6 +220,7 @@ classdef sosetup
             o.undersel_lasso_unders = UNDERS;
             o.undersel_ls_unders = UNDERS;
             o.undersel_lsth_unders = UNDERS;
+            o.undersel_dist_unders = UNDERS;
 
             
             o.clarchsel_ann_nfs = [3, 5, 10, 20, 50, 100];
