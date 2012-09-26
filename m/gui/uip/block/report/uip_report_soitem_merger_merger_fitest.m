@@ -15,7 +15,7 @@
 
 %>@cond
 function varargout = uip_report_soitem_merger_merger_fitest(varargin)
-% Last Modified by GUIDE v2.5 02-Sep-2012 14:28:19
+% Last Modified by GUIDE v2.5 13-Sep-2012 21:25:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,11 +60,11 @@ end;
 %############################################
 %############################################
 
-% --- Executes on button press in pushbuttonOK.
 function pushbuttonOK_Callback(hObject, eventdata, handles) %#ok<*DEFNU,*INUSL>
 try
     handles.output.params = {...
     'minimum', mat2str(eval(get(handles.edit_minimum, 'String'))), ...
+    'maximum', mat2str(eval(get(handles.edit_maximum, 'String'))) ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -73,9 +73,13 @@ catch ME
     irerrordlg(ME.message, 'Cannot continue');
     
 end;
-
 function edit_minimum_Callback(hObject, eventdata, handles) %#ok<*INUSD>
 function edit_minimum_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function edit_maximum_Callback(hObject, eventdata, handles)
+function edit_maximum_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end

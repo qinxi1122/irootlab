@@ -2,6 +2,8 @@ classdef report_soitem_merger_merger_fitest < report_soitem
     properties
         %> =(auto). Minimum value for the colour scaling of the HTML cells
         minimum = [];
+        %> =(auto). Maximum value for the colour scaling of the HTML cells
+        maximum = [];
     end;
     
     methods
@@ -30,7 +32,7 @@ classdef report_soitem_merger_merger_fitest < report_soitem
         function s = get_html_graphics(o, item) %#ok<MANU>
             s = '';
             
-            s = cat(2, s, item.html_rates(o.minimum));
+            s = cat(2, s, item.html_rates(o.minimum, o.maximum));
         end;
     end;
 end

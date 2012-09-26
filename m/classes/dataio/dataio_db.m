@@ -59,7 +59,7 @@ classdef dataio_db < dataio
             
             s_select = ['SELECT ' s_fields ' FROM spectrum ' s_joins s_wheres ' HAVING series.id > 0 ORDER BY spectrum.idcolony, spectrum.id'];
             disp(s_select);
-            a = mym(s_select); %#ok<NASGU>
+            a = irquery(s_select); %#ok<NASGU>
             for i = 1:numel(a_outputs)
                 eval([a_outputs{i}, ' = a.', a_outputs{i}, ';']);
             end;
@@ -68,7 +68,7 @@ classdef dataio_db < dataio
             disp('-- ... done --')
 
             no_obs = length(idspectrum);
-            a = mym(['select wncount, wn1, wn2 from domain where id = ' mat2str(o.iddomain)]);
+            a = irquery(['select wncount, wn1, wn2 from domain where id = ' mat2str(o.iddomain)]);
             no_wn = a.wncount; wn1 = a.wn1; wn2 = a.wn2;
             no_judges = length(params_s);
 

@@ -120,7 +120,7 @@ end;
 %#########
 function populate_experiment(hh)
 a = {'(Select)'};
-[ids, names] = mym(sprintf('select id, name from experiment order by name'));
+[ids, names] = irquery(sprintf('select id, name from experiment order by name'));
 for i = 1:numel(ids)
     a = [a sprintf('%s (id %d)', names{i}, ids(i))];
 end;
@@ -136,7 +136,7 @@ function populate_domain(hh)
 a = {'(Select)'};
 idexperiment = get_idexperiment(hh);
 if idexperiment > 0
-    [ids, names, counts] = mym(sprintf('select domain.id, domain.name, count(*) from series left join domain on domain.id = series.iddomain where series.idexperiment = %d group by series.iddomain order by domain.name', idexperiment));
+    [ids, names, counts] = irquery(sprintf('select domain.id, domain.name, count(*) from series left join domain on domain.id = series.iddomain where series.idexperiment = %d group by series.iddomain order by domain.name', idexperiment));
     for i = 1:numel(ids)
         a = [a sprintf('%s (id %d) - %d series', names{i}, ids(i), counts(i))];
     end;
@@ -152,10 +152,10 @@ switch_domain(hh);
 function populate_deact(hh)
 a = {'(Leave blank)'};
 idexperiment = get_idexperiment(hh);
-[ids, names] = mym(sprintf('select id, name from deact order by name'));
+[ids, names] = irquery(sprintf('select id, name from deact order by name'));
 if idexperiment > 0
     for i = 1:length(ids)
-        count = mym(sprintf('select count(*) from deact_spectrum left join spectrum on deact_spectrum.idspectrum = spectrum.id where iddeact = %d and spectrum.idexperiment = %d', ids(i), idexperiment));
+        count = irquery(sprintf('select count(*) from deact_spectrum left join spectrum on deact_spectrum.idspectrum = spectrum.id where iddeact = %d and spectrum.idexperiment = %d', ids(i), idexperiment));
         a = [a sprintf('%s (id %d) - %d outliers', names{i}, ids(i), count)];
     end;
 else
@@ -172,7 +172,7 @@ function populate_tray(hh)
 a = {'(Leave blank)'};
 idexperiment = get_idexperiment(hh);
 if idexperiment > 0
-    [ids, names, counts] = mym(sprintf(['select tray.id, tray.code, count(*) from spectrum ' ... 
+    [ids, names, counts] = irquery(sprintf(['select tray.id, tray.code, count(*) from spectrum ' ... 
         'left join colony on spectrum.idcolony = colony.id ' ...
         'left join slide on colony.idslide = slide.id ' ...
         'left join tray on slide.idtray = tray.id ' ...
@@ -192,7 +192,7 @@ function populate_judge(hh)
 a = {};
 idexperiment = get_idexperiment(hh);
 if idexperiment > 0
-    [ids, names, counts] = mym(sprintf(['select judge.id, judge.name, count(*) from spectrum_judge ' ...
+    [ids, names, counts] = irquery(sprintf(['select judge.id, judge.name, count(*) from spectrum_judge ' ...
         'left join spectrum on spectrum_judge.idspectrum = spectrum.id ' ...
         'left join judge on spectrum_judge.idjudge = judge.id ' ...
         'where spectrum.idexperiment = %d and judge.class_name = "judge_score_human" group by judge.id order by judge.name'], idexperiment));

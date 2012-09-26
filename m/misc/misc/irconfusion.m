@@ -216,7 +216,7 @@ classdef irconfusion < irlog
             set(gca, 'XTick', [], 'YTick', []);
             format_frank(gcf, 1, [hh, hh2]);
             for i = 1:numel(hh2)
-                set(hh2, 'FontSize', FONTSIZE*.75);
+                set(hh2, 'FontSize', FONTSIZE*scaled(.75));
             end;
         end;
 
