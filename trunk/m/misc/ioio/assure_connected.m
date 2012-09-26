@@ -7,7 +7,7 @@
 %> Should be called "assert_connected()", but nevermind
 
 function assure_connected()
-status = mym('status');
+status = irquery('status');
 if status ~= 0
     irerror('Not connected to database!')
 end

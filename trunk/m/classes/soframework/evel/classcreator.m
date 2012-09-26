@@ -82,7 +82,9 @@ if x
   o = goer_foldmerger_ffs();
   o = goer_foldmerger_fhg();
   o = goer_foldmerger_fitest_np();
+  o = goer_foldmerger_fitest_np_grag();
   o = goer_foldmerger_fitest_pa();
+  o = goer_foldmerger_fitest_pa_grag();
   o = goer_lcr2__ann();
   o = goer_lcr2__dist();
   o = goer_lcr2__frbm_kg1();
@@ -94,7 +96,6 @@ if x
   o = goer_merger_fhg();
   o = goer_merger_fitest();
   o = goer_merger_merger_fhg();
-  o = goer_merger_merger_fites();
   o = goer_merger_merger_fitest();
   o = goer_ni();
   o = goer_undersel____lasso();
@@ -192,6 +193,7 @@ if x
   o = foldmerger_fhg();
   o = foldmerger_fitest();
   o = foldmerger_fitest_np();
+  o = foldmerger_fitest_np_grag();
   o = foldmerger_fitest_pa();
   o = merger_fhg();
   o = merger_fitest();

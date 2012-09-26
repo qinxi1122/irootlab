@@ -196,9 +196,9 @@ classdef scenebuilder
         
         function flag = create_scene(o)
             flag = 0;
-            a = mym('select id from task_scene where name = "{S}"', o.scenename);
+            a = irquery('select id from task_scene where name = "{S}"', o.scenename);
             if isempty(a.id)
-                mym('insert into task_scene (name) values ("{S}")', o.scenename);
+                irquery('insert into task_scene (name) values ("{S}")', o.scenename);
                 flag = 1;
             end;
         end
@@ -227,6 +227,13 @@ classdef scenebuilder
             ta.fhg_others = o.fhg_others;
             ta.go();
         end
+        
+        function o = delete_tasks(o)
+            tm = taskmanager();
+            tm.scenename = o.scenename;
+            tm = tm.boot();
+            tm.delete_tasks();
+        end;
     end;
     
     

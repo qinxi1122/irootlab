@@ -17,11 +17,13 @@ blk = blk.train(ds_train);
 [blk, est] = blk.use(ds_test);
 
 if ~isempty(postpr_est)
+    postpr_est = postpr_est.boot();
     est = postpr_est.use(est);
 end;
 
 
 if ~isempty(postpr_test)
+    postpr_test = postpr_test.boot();
     dref = postpr_test.use(ds_test);
 else
     dref = ds_test;

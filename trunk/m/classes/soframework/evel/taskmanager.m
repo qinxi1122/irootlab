@@ -34,10 +34,15 @@ classdef taskmanager
         who;
     end;
     
-    
-    
-    
-    
+
+    methods(Static)
+        %> Calculates hash to be used as an identifier of the task
+        %>
+        %> Note that the scene ID and the file names suffice to uniquely define the task 
+        function n = calculate_crc(idscene, fns_input, fn_output)
+            n = pm_hash('crc', idscene, fns_input, fn_output);
+        end;
+    end;
     
     
     methods
@@ -67,7 +72,7 @@ classdef taskmanager
             o.assert_connected();
             
             % finds idscene corresponding to scenename
-            r = mym('select id from task_scene where name = "{S}"', o.scenename);
+            r = irquery('select id from task_scene where name = "{S}"', o.scenename);
             if isempty(r.id)
                 irerror(sprintf('Scene "%s" not registered in database!', o.scenename));
             end;
@@ -83,8 +88,7 @@ classdef taskmanager
         end;
 
         
-        
-        
+
         
         %> Buffers element into the @c data structure to later be saved to database
         function [o, idx] = add_task(o, classname, fns_input, fn_output, ovrindex, cvsplitindex, dependencies, stab)
@@ -95,9 +99,33 @@ classdef taskmanager
                 dependencies = dependencies(:)'; % Converts to row vector
             end;
             idx = size(o.data, 2)+1;
-            o.data(:, end+1) = {o.idscene, idx, classname, cell2str(fns_input), fn_output, ovrindex, cvsplitindex, mat2str(dependencies), stab};
+            o.data(:, end+1) = {o.idscene, idx, classname, cell2str(fns_input), fn_output, ovrindex, cvsplitindex, mat2str(dependencies), stab, ...
+                int2str(o.calculate_crc(o.idscene, cell2str(fns_input), fn_output))};
         end;
 
+        
+
+        %> Returns data cell
+        %>
+        %> Excludes tasks that are already registered in the database
+        function dat = get_filtered_data(o)
+            a = irquery('select count(*) as cnt from task_tasklist where idscene = {Si}', o.idscene);
+            dat = o.data;
+            idel = 0;
+            if a.cnt == 0
+            else
+                a = irquery('select hash from task_tasklist where idscene = {Si}', o.idscene);
+                for i = size(o.data, 2):-1:1
+                    if any(a.hash == o.calculate_crc(o.idscene, dat{4, i}, dat{5, i}))
+                        dat(:, i) = [];
+                        idel = idel+1;
+                    end;
+                end;
+            end;
+            irverbose(sprintf('>>>>> TM >>>>> INFO: Number of already existing tasks: %d', idel), 3);    
+        end;
+
+        
         %> Commits the @c data buffer to the database and cleans it.
         function o = commit_tasks(o)
             if isempty(o.data)
@@ -107,10 +135,12 @@ classdef taskmanager
             
             o.assert_connected();
             
-            ONEGO = 1000;
+            ONEGO = 1000; % Number of tasks to be added at once (I was experiencing too long insert time and subsequent timeout when the insert statement was too long)
             
-            template = '({Si}, {Si}, "{S}", "{S}", "{S}", {Si}, {Si}, "{S}", {Si})';
-            dat = o.data;
+            template = '({Si}, {Si}, "{S}", "{S}", "{S}", {Si}, {Si}, "{S}", {Si}, {S})';
+            
+            dat = o.get_filtered_data();
+            irverbose(sprintf('>>>>> TM >>>>> INFO: Number of tasks to add: %d', size(dat, 2)), 3);    
             try
                 while ~isempty(dat)
                     nrows = min(size(dat, 2), ONEGO);
@@ -126,8 +156,8 @@ classdef taskmanager
 
                     assert_connected_to_cells();
                     s = ['insert into task_tasklist ' ...
-                         '(idscene, idx, classname, fns_input, fn_output, ovrindex, cvsplitindex, dependencies, stabilization) values ', vv, ';'];
-                    n = mym(s, slice{:});
+                         '(idscene, idx, classname, fns_input, fn_output, ovrindex, cvsplitindex, dependencies, stabilization, hash) values ', vv, ';'];
+                    n = irquery(s, slice{:});
 
                     irverbose(sprintf('>>>>> TM >>>>> Number of tasks inserted: %d', n), 3);
                 end;
@@ -142,7 +172,7 @@ classdef taskmanager
         %> Returns a list of tasks run as second argument
         function [o, idxs] = run_until_all_gone(o)
             assert_connected_to_cells();
-            mym('SET autocommit = 1');
+            irquery('SET autocommit = 1');
 
             
             irverbose(['>>>>> TM >>>>> Scene name: "', o.scenename, '"'], 2);
@@ -176,7 +206,7 @@ classdef taskmanager
         %> Resets all "failed" statuses to "0".
         function o = reset_failed(o)
             o.assert_connected();
-            n = mym('update task_tasklist set status = "0" where status = "failed" and idscene = {Si}', o.idscene);
+            n = irquery('update task_tasklist set status = "0" where status = "failed" and idscene = {Si}', o.idscene);
             irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
         end;
     end;
@@ -190,7 +220,7 @@ classdef taskmanager
         %> Resets all "ongoing" statuses to "0". Careful!!!! Make sure no one is running any task!
         function o = reset_ongoing(o)
             o.assert_connected();
-            n = mym('update task_tasklist set status = "0" where status = "ongoing" and idscene = {Si}', o.idscene);
+            n = irquery('update task_tasklist set status = "0" where status = "ongoing" and idscene = {Si}', o.idscene);
             
             irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
         end;
@@ -198,7 +228,7 @@ classdef taskmanager
         %> Resets all tasks to "0". Careful!!!! Make sure no one is running any task!
         function o = reset_all(o)
             o.assert_connected();
-            n = mym('update task_tasklist set status = "0" where idscene = {Si}', o.idscene);
+            n = irquery('update task_tasklist set status = "0" where idscene = {Si}', o.idscene);
             irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
         end;
         
@@ -206,7 +236,7 @@ classdef taskmanager
         %> Deletes all the tasks!
         function o = delete_tasks(o)
             o.assert_connected();
-            n = mym('delete from task_tasklist where idscene = {Si}', o.idscene);
+            n = irquery('delete from task_tasklist where idscene = {Si}', o.idscene);
             irverbose(sprintf('>>>>> TM >>>>> Number of deleted rows: %d', n), 2);
         end;
     end;
@@ -262,7 +292,7 @@ classdef taskmanager
             o.assert_connected();
             flag = 1;
             
-            a = mym('select id, idx, status from task_tasklist where idscene = {Si} and status = "0" order by idx', o.idscene);
+            a = irquery('select id, idx, status from task_tasklist where idscene = {Si} and status = "0" order by idx', o.idscene);
             if isempty(a)
                 return;
             end;
@@ -287,7 +317,7 @@ classdef taskmanager
             idx = 0;
             
 %             while 1
-                a = mym('select id, idx, status from task_tasklist where idscene = {Si} and status = "0" order by idx', o.idscene);
+                a = irquery('select id, idx, status from task_tasklist where idscene = {Si} and status = "0" order by idx', o.idscene);
                 if isempty(a.id)
                     return;
                 end;
@@ -295,11 +325,11 @@ classdef taskmanager
                 z = o.res2items(a);
 
                 for i = 1:numel(z)
-                    a = mym('select status from task_tasklist where id = {Si}', z(i).id);
+                    a = irquery('select status from task_tasklist where id = {Si}', z(i).id);
                     if strcmp(a.status{1}, '0') % Checks once more (this is very important, since the initial list is big and a lot can happen in the meanwhile)
                         if o.get_flag_dependencies_met(z(i).idx)
                             % has to check if it is still available. It is possible that it has been taken while I was checking the dependencies
-                            a = mym('select status from task_tasklist where id = {Si}', z(i).id);
+                            a = irquery('select status from task_tasklist where id = {Si}', z(i).id);
                             y = o.res2items(a);
                             if strcmp(y.status, '0')
                                 idx = z(i).idx;
@@ -335,11 +365,11 @@ classdef taskmanager
             
             
             flag_return = 0;
-            mym('begin');
+            irquery('begin');
             try
-                a = mym('select * from task_tasklist where idscene = {Si} and idx = {Si} lock in share mode', o.idscene, idx);
+                a = irquery('select * from task_tasklist where idscene = {Si} and idx = {Si} lock in share mode', o.idscene, idx);
             catch ME
-                mym('rollback');
+                irquery('rollback');
                 irverbose(sprintf('>>>>> TM >>>>> (%s) The task %d is locked by someone else, ignoring request to run...', ME.message, idx))
                 flag_return = 1;
             end;
@@ -351,7 +381,7 @@ classdef taskmanager
             
 % % %             % Checks if it is really available. I think I could probably delete this part, since the status can only leave '0' if the record is locked
 % % %             if ~strcmp(z.status, '0')
-% % %                 mym('rollback');
+% % %                 irquery('rollback');
 % % %                 irverbose(sprintf('>>>>> TM >>>>> Task %d is no longer available, ignoring request to run...', idx))
 % % %                 return;
 % % %             end;
@@ -360,11 +390,11 @@ classdef taskmanager
             flag_return = 0;
             try
                 % Updates status & number of tries
-                mym('update task_tasklist set status = "ongoing", who = "{S}", tries = {Si}, when_started = "{S}" where id = {Si}', ...
+                irquery('update task_tasklist set status = "ongoing", who = "{S}", tries = {Si}, when_started = "{S}" where id = {Si}', ...
                     o.who, z.tries+1, datestr(now(), 'yyyy-mm-dd HH:MM:SS'), z.id);
-                mym('commit');
+                irquery('commit');
             catch ME
-                mym('rollback');
+                irquery('rollback');
                     irverbose(sprintf('>>>>> TM >>>>> Couldn''t set status to "ongoing" (%s) on task %d, ignoring request to run...', ME.message, idx))
                     flag_return = 1;
             end;
@@ -400,7 +430,7 @@ classdef taskmanager
                 flag = 1;
                 
                 o.assert_connected();
-                mym('update task_tasklist set status = "completed", when_finished = "{S}" where id = {Si}', ...
+                irquery('update task_tasklist set status = "completed", when_finished = "{S}" where id = {Si}', ...
                     datestr(now(), 'yyyy-mm-dd HH:MM:SS'), z.id);
             catch ME
                 % Failed
@@ -409,7 +439,7 @@ classdef taskmanager
                 
                 fr = [z.failedreports, 10, '#########', 10, ME.getReport()];
                 
-                mym('update task_tasklist set status = "failed", failedreports = "{S}", when_finished = "{S}" where id = {Si}', ...
+                irquery('update task_tasklist set status = "failed", failedreports = "{S}", when_finished = "{S}" where id = {Si}', ...
                     fr, datestr(now(), 'yyyy-mm-dd HH:MM:SS'), z.id);
             end;
         end;
@@ -424,7 +454,7 @@ classdef taskmanager
             o.assert_connected();
             
             % 1. retrieves the dependency indexes
-            a = mym('select dependencies from task_tasklist where idscene = {Si} and idx = {Si}', o.idscene, idx);
+            a = irquery('select dependencies from task_tasklist where idscene = {Si} and idx = {Si}', o.idscene, idx);
             dep = eval(char(a.dependencies{1})); 
 
             if ~isempty(dep)
@@ -435,7 +465,7 @@ classdef taskmanager
                 end;
                 % 2 - retrieves the dependency rows
                 s = ['select id, idx, status from task_tasklist where idscene = {Si} and (', sor, ')'];
-                a = mym(s, o.idscene);
+                a = irquery(s, o.idscene);
                 z = o.res2items(a);
             end;
         end;
@@ -447,7 +477,7 @@ classdef taskmanager
         function z = res2items(a)
             z = taskitem.empty();
             
-            ff = intersect(properties(taskitem()), fields(a)); % Figures out which fields are available from the mym result
+            ff = intersect(properties(taskitem()), fields(a)); % Figures out which fields are available from the query result
             for i = 1:numel(a.(ff{1}))
                 for j = 1:numel(ff)
                     if iscell(a.(ff{j}))

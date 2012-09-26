@@ -71,7 +71,7 @@ classdef taskadder
         function o = go(o)
             o = o.boot();
             
-            o.tm = o.tm.delete_tasks();
+%             o.tm = o.tm.delete_tasks();
             
             try
                 o = o.add_all();
@@ -95,7 +95,9 @@ classdef taskadder
             no_fhg_others = numel(o.fhg_others);
             
             
+            fhgtoken = {}; fn_fhgout = {}; idxfhgout = {}; idxundersel = {}; idxundersel_em = {};
             for i = 0:iif(o.nc > 2, o.nc-1, 0) % One-versus-reference (OVR) index
+                ii = i+1;
                 
                 fe_now = o.fe;
                 if i == 0 && o.nc > 2
@@ -105,7 +107,6 @@ classdef taskadder
                 
                 %-----> Distribution
 %                 nfhg = 0;
-                fhgtoken = {}; fn_fhgout = {}; idxfhgout = []; % Because the sizes of these may vary depending on "i"
                 for j = 1:o.k % Cross-validation (CV) index
                     r = 0;
                     for m = 1:no_clwrapper_eff
@@ -119,7 +120,7 @@ classdef taskadder
                             
                             [o.tm, idxfearchsel] = o.tm.add_task(sprintf('goer_fearchsel__%s__%s', sfe, scl), fn_clarchselout, fn_fearchselout, ...
                                 i, j, idxarch, -1);
-                            [o.tm, idxundersel(j, m, n)] = o.tm.add_task(sprintf('goer_undersel__%s__%s', sfe, scl), fn_fearchselout, ...
+                            [o.tm, idxundersel{ii}(j, m, n)] = o.tm.add_task(sprintf('goer_undersel__%s__%s', sfe, scl), fn_fearchselout, ...
                                 fn_undersel{j, m, n}, i, j, idxfearchsel, -1);
                         end;
                         
@@ -127,10 +128,10 @@ classdef taskadder
                             for q = 1:no_fhg_stab
                                 r = r+1;
                                 if j == 1
-                                    fhgtoken{r} = sprintf('ffs_%s__stab%02d', scl, o.fhg_stab(q)); % Needs this because I cannot construct suitable filenames at the merging phase otherwise
+                                    fhgtoken{ii}{r} = sprintf('ffs_%s__stab%02d', scl, o.fhg_stab(q)); % Needs this because I cannot construct suitable filenames at the merging phase otherwise
                                 end;
-                                fn_fhgout{j, r} = sprintf('output_fhg__ffs_%s__stab%02d__ovr%02d_cv%02d.mat', scl, o.fhg_stab(q), i, j);
-                                [o.tm, idxfhgout(j, r)] = o.tm.add_task('goer_fhg_ffs', fn_clarchselout, fn_fhgout{j, r}, i, j, idxarch, ...
+                                fn_fhgout{ii}{j, r} = sprintf('output_fhg__ffs_%s__stab%02d__ovr%02d_cv%02d.mat', scl, o.fhg_stab(q), i, j);
+                                [o.tm, idxfhgout{ii}(j, r)] = o.tm.add_task('goer_fhg_ffs', fn_clarchselout, fn_fhgout{ii}{j, r}, i, j, idxarch, ...
                                     o.fhg_stab(q));
                             end;
                         end;
@@ -141,7 +142,7 @@ classdef taskadder
                         fn_clarchselout = sprintf('output_clarchsel__%s__ovr%02d_cv%02d.mat', scl, i, j);
                         fn_undersel_em{j, m} = sprintf('output_undersel____%s__ovr%02d_cv%02d.mat', scl, i, j);
                         [o.tm, idxarch] = o.tm.add_task(sprintf('goer_clarchsel__%s', scl), '', fn_clarchselout, i, j, [], -1);
-                        [o.tm, idxundersel_em(j, m)] = o.tm.add_task(sprintf('goer_undersel____%s', scl), fn_clarchselout, ...
+                        [o.tm, idxundersel_em{ii}(j, m)] = o.tm.add_task(sprintf('goer_undersel____%s', scl), fn_clarchselout, ...
                             fn_undersel_em{j, m}, i, j, idxarch, -1);
                     end;
                     
@@ -149,10 +150,10 @@ classdef taskadder
                         if ~(i == 0 && o.nc > 2 && get_flag_2class(o.fhg_others{q}))
                             r = r+1;
                             if j == 1
-                                fhgtoken{r} = sprintf('%s', o.fhg_others{q});
+                                fhgtoken{ii}{r} = sprintf('%s', o.fhg_others{q});
                             end;
-                            fn_fhgout{j, r} = sprintf('output_fhg__%s__ovr%02d_cv%02d.mat', o.fhg_others{q}, i, j);
-                            [o.tm, idxfhgout(j, r)] = o.tm.add_task(sprintf('goer_fhg_%s', o.fhg_others{q}), '', fn_fhgout{j, r}, i, j, [], -1);
+                            fn_fhgout{ii}{j, r} = sprintf('output_fhg__%s__ovr%02d_cv%02d.mat', o.fhg_others{q}, i, j);
+                            [o.tm, idxfhgout{ii}(j, r)] = o.tm.add_task(sprintf('goer_fhg_%s', o.fhg_others{q}), '', fn_fhgout{ii}{j, r}, i, j, [], -1);
                         end;
                     end;
                 end;
@@ -173,7 +174,7 @@ classdef taskadder
                             sfe = fe_now{n};
                             fn_foldmerger_fitest{m, n} = sprintf('output_foldmerger_fitest_%s__%s__%s__ovr%02d.mat', spa, sfe, scl, i);
                             [o.tm, idxfoldmerger_fitest(m, n)] = o.tm.add_task(['goer_foldmerger_fitest_', spa], fn_undersel(:, m, n), ...
-                               fn_foldmerger_fitest{m, n}, i, 0, idxundersel(:, m, n), -1);
+                               fn_foldmerger_fitest{m, n}, i, 0, idxundersel{ii}(:, m, n), -1);
                         end;
                     end;
 
@@ -183,7 +184,7 @@ classdef taskadder
                         scl = o.clembedded{m};
                         fn_foldmerger_fitest_em{m} = sprintf('output_foldmerger_fitest_%s____%s__ovr%02d.mat', spa, scl, i);
                         [o.tm, idxfoldmerger_fitest_em(m)] = o.tm.add_task(['goer_foldmerger_fitest_', spa], fn_undersel_em(:, m), ...
-                            fn_foldmerger_fitest_em{m}, i, 0, squeeze(idxundersel_em(:, m)), -1);
+                            fn_foldmerger_fitest_em{m}, i, 0, squeeze(idxundersel_em{ii}(:, m)), -1);
                     end;
                     
                     % Now merges by classifier
@@ -207,21 +208,87 @@ classdef taskadder
                 end;
                 
                 %--> FHG
-                nfhg = numel(fhgtoken);
+                if isempty(fhgtoken)
+                    nfhg = 0;
+                else
+                    nfhg = numel(fhgtoken{ii});
+                end;
                 if nfhg > 0 % total number of FHG cases
                     % First concentrated the cross-validation results into single ones (FOLDMERGER)
                     fn_foldmerger_fhg = {};
                     idxfoldmerger_fhg = [];
                     for m = 1:nfhg
-                        token = fhgtoken{m};
+                        token = fhgtoken{ii}{m};
                         fn_foldmerger_fhg{m} = sprintf('output_foldmerger_fhg__%s__ovr%02d.mat', token, i);
-                        [o.tm, idxfoldmerger_fhg(m)] = o.tm.add_task('goer_foldmerger_fhg', fn_fhgout(:, m), fn_foldmerger_fhg{m}, i, 0, idxfhgout(:, m), -1);
+                        [o.tm, idxfoldmerger_fhg(m)] = o.tm.add_task('goer_foldmerger_fhg', fn_fhgout{ii}(:, m), fn_foldmerger_fhg{m}, i, 0, idxfhgout{ii}(:, m), -1);
                     end;
 
                     fn_merger_fhg = sprintf('output_merger_fhg__ovr%02d.mat', i);
                     [o.tm, dummy] = o.tm.add_task('goer_merger_fhg', fn_foldmerger_fhg, fn_merger_fhg, i, 0, idxfoldmerger_fhg, -1);  %#ok<NASGU>
                 end;
-            end;    
+            end;
+            
+            
+            % Another OVR loop to add the GrAg (Group Aggregation) tasks
+            % This loop has only the merging part
+            for i = 0:iif(o.nc > 2, o.nc-1, 0)
+                ii = i+1;
+                
+                fe_now = o.fe;
+                if i == 0 && o.nc > 2
+                    fe_now(strcmp(fe_now, 'lasso')) = []; % Ok I know that this is a hack, but easy fix and can be easily made general
+                end;
+                no_fe = numel(fe_now);
+                
+                %-----> Merging
+                
+                %--> Estimation of classification performance
+                flag_pairwise = i == 0 && o.nc > 2;
+                for p = 1:iif(flag_pairwise, 2, 1)
+                    spa = iif(p == 1, 'np', 'pa');
+                
+                    % First concentrated the cross-validation results into single ones (FOLDMERGER)
+                    fn_foldmerger_fitest = {};
+                    idxfoldmerger_fitest = [];
+                    for m = 1:no_clwrapper_eff
+                        scl = clwrapper_eff{m};
+                        for n = 1:no_fe
+                            sfe = fe_now{n};
+                            fn_foldmerger_fitest{m, n} = sprintf('output_foldmerger_fitest_%s_grag__%s__%s__ovr%02d.mat', spa, sfe, scl, i);
+                            [o.tm, idxfoldmerger_fitest(m, n)] = o.tm.add_task(['goer_foldmerger_fitest_', spa, '_grag'], fn_undersel(:, m, n), ...
+                               fn_foldmerger_fitest{m, n}, i, 0, idxundersel{ii}(:, m, n), -1);
+                        end;
+                    end;
+
+                    fn_foldmerger_fitest_em = {};
+                    idxfoldmerger_fitest_em = [];
+                    for m = 1:no_clembedded
+                        scl = o.clembedded{m};
+                        fn_foldmerger_fitest_em{m} = sprintf('output_foldmerger_fitest_%s_grag____%s__ovr%02d.mat', spa, scl, i);
+                        [o.tm, idxfoldmerger_fitest_em(m)] = o.tm.add_task(['goer_foldmerger_fitest_', spa, '_grag'], fn_undersel_em(:, m), ...
+                            fn_foldmerger_fitest_em{m}, i, 0, squeeze(idxundersel_em{ii}(:, m)), -1);
+                    end;
+                    
+                    % Now merges by classifier
+                    for m = 1:no_clwrapper_eff
+                        scl = clwrapper_eff{m};
+                        fn_merger_fitest = sprintf('output_merger_fitest_%s_grag____%s__ovr%02d.mat', spa, scl, i);
+                        [o.tm, dummy] = o.tm.add_task('goer_merger_fitest', fn_foldmerger_fitest(m, :), fn_merger_fitest, i, 0, ...
+                            idxfoldmerger_fitest(m, :), -1);  %#ok<NASGU>
+                    end;
+
+                    % Now merges by FE
+                    for n = 1:no_fe
+                        % Note that embedded classifiers are added to the end for comparison
+                        sfe = fe_now{n};
+                        fn_merger_fitest = sprintf('output_merger_fitest_%s_grag__%s____ovr%02d.mat', spa, sfe, i);
+                        [o.tm, dummy] = o.tm.add_task('goer_merger_fitest', ...
+                            [fn_foldmerger_fitest(:, n)', fn_foldmerger_fitest_em], ...
+                            fn_merger_fitest, i, 0, ...
+                            [idxfoldmerger_fitest(:, n)', idxfoldmerger_fitest_em], -1); %#ok<NASGU>
+                    end;
+                end;
+            end;
         end;
     end;
 end

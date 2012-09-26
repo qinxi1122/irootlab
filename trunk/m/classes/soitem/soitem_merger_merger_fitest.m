@@ -11,12 +11,12 @@ classdef soitem_merger_merger_fitest < soitem
         %> @return [s, M, titles] @s is HTML; M is the comparison cube; @c titles describes each row in M
         %>
         %> @sa get_biocomparisoncube()
-        function [s, Y] = html_rates(o, minimum)
+        function [s, Y] = html_rates(o, minimum, maximum)
             so = o.get_sovalues();
             Y = so.get_Y('rates');
             means = mean(Y, 3);
             stds = std(Y, [], 3);
-            s = ['<center>', html_table_std_colors(round(means*100)/100, round(stds*100)/100, so.ax(1).ticks, so.ax(2).ticks, '', minimum), '</center>', 10];
+            s = ['<center>', html_table_std_colors(round(means*100)/100, round(stds*100)/100, so.ax(1).ticks, so.ax(2).ticks, '', minimum, maximum), '</center>', 10];
             
         end;
     end;        
