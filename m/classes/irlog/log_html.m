@@ -7,6 +7,10 @@ classdef log_html < irlog
         filename;
     end;
     methods
+        function o = log_html()
+            o.flag_ui = 0;
+        end;
+        
         function s = get_embodied(o)
             s = [...
 '<html>', 10, ...

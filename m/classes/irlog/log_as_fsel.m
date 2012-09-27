@@ -21,6 +21,7 @@ classdef log_as_fsel < irlog
         function o = log_as_fsel()
             o.classtitle = 'Feature Selection';
             o.moreactions = [o.moreactions, {'extract_fsel'}];
+            o.flag_ui = 0;
         end;
         
         function blk = extract_fsel(o)

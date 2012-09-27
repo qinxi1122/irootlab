@@ -11,8 +11,12 @@
 %> @cond
 function result = uip_blmisc_classlabels_rename(o, data)
 result.flag_ok = 0;
-scl = cell2str(data.classlabels);
-n = numel(data.classlabels);
+scl = '{}';
+n = 0;
+if ~isempty(data) && isa(data, 'irdata')
+    scl = cell2str(data.classlabels);
+    n = numel(data.classlabels);
+end;
 while 1
     flag_break = 0;
     p = inputdlg('Enter new classlabels (class labels)', 'Rename', 1, {scl});
@@ -31,7 +35,7 @@ while 1
             if ~iscell(new_codes)
                 flag_error = 1;
                 serror = 'Invalid new class labels!';
-            elseif numel(new_codes) ~= n
+            elseif numel(new_codes) ~= n && n > 0
                 flag_error = 1;
                 serror = 'Wrong number of labels!';
             else

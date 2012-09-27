@@ -11,7 +11,7 @@ classdef aggr_ova < aggr
 
     methods
         function o = aggr_ova(o)
-            o.classtitle = '2-class';
+            o.classtitle = 'One-versus-all';
         end;
     end;
     

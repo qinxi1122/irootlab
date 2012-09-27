@@ -8,6 +8,7 @@ classdef as_fsel_corr < as_fsel
     methods
         function o = as_fsel_corr()
             o.classtitle = 'Corr';
+            o.flag_ui = 0;
         end;
 
         function o = go(o)

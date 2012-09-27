@@ -10,6 +10,7 @@ classdef as_fsel_lasso < as_fsel
     methods
         function o = as_fsel_lasso()
             o.classtitle = 'LASSO';
+            o.flag_ui = 0;
         end;
     end;
     

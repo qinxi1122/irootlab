@@ -9,7 +9,7 @@ classdef aggr_ovc < aggr
 
     methods
         function o = aggr_ovc(o)
-            o.classtitle = '2-class';
+            o.classtitle = 'One-versus-reference';
         end;
     end;
     

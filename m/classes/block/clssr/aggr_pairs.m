@@ -12,7 +12,7 @@ classdef aggr_pairs < aggr
 
     methods
         function o = aggr_pairs(o)
-            o.classtitle = '2-class';
+            o.classtitle = 'One-versus-one';
         end;
     end;
     

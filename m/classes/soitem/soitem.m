@@ -12,6 +12,7 @@ classdef soitem < irobj
         function o = soitem()
             o.classtitle = 'System Optimization Data Item';
             o.color = [244, 146, 29]/255;
+            o.flag_ui = 0;
         end;
     end;
 end

@@ -26,8 +26,6 @@ classdef clssr_incr < clssr
         
         %> Cell of @ref ttlog objects
         log_mold;
-        
-
     end;
     
     properties (SetAccess=protected)
@@ -46,6 +44,12 @@ classdef clssr_incr < clssr
         i_row;
         %> Whether recording has been allocated
         flag_allocated = 0;
+    end;
+    
+    methods
+        function o = clssr_incr()
+            o.classtitle = 'Incremental';
+        end;
     end;
     
     methods(Access=protected)

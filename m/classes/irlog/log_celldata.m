@@ -33,8 +33,9 @@ classdef log_celldata < irlog
     
     methods
         function o = log_celldata()
-            o.classtitle = 'Learning curve';
+            o.classtitle = 'Cell data';
             o.moreactions = [o.moreactions, {'extract_dataset'}];
+            o.flag_ui = 0;
         end;
 
         

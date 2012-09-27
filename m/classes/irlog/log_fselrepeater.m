@@ -30,6 +30,7 @@ classdef log_fselrepeater < irlog
         function o = log_fselrepeater()
             o.classtitle = 'Subsets log';
             o.moreactions = [o.moreactions, {'extract_dataset_nfxgrade', 'extract_dataset_stabilities'}];
+            o.flag_ui = 0;
         end;
 
         

@@ -40,6 +40,7 @@ classdef estestlog < ttlog
         function o = estestlog(o)
             o.classtitle = 'Component Classifiers';
             o.flag_params = 0;
+            o.flag_ui = 0;
         end;
         
         

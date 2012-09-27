@@ -28,6 +28,7 @@ classdef clssr_ls < clssr
     methods
         function o = clssr_ls()
             o.classtitle = 'Least-Squares';
+            o.flag_ui = 0;
         end;
 
         %> If title is not empty, will not mess with description too much
