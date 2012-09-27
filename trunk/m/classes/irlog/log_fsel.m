@@ -12,6 +12,7 @@ classdef log_fsel < irlog
     methods
         function o = log_fsel(o)
             o.classtitle = 'Feature Selection';
+            o.flag_ui = 0;
         end;
     end;
 end

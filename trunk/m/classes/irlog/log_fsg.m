@@ -12,6 +12,7 @@ classdef log_fsg < irlog
     methods
         function o = log_fsg(o)
             o.classtitle = 'FSG';
+            o.flag_ui = 0;
         end;
     end;
 end

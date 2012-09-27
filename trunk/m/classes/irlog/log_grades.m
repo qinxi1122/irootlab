@@ -21,6 +21,10 @@ classdef log_grades < irlog
     end;
     
     methods
+        function o = log_grades()
+            o.flag_ui = 0;
+        end;
+        
         function n = get.nf(o)
             n = numel(o.fea_x);
         end;

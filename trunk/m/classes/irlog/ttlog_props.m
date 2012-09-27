@@ -18,7 +18,6 @@ classdef ttlog_props < ttlog
         propvalues = {};
     end;
 
-    
     methods(Access=private)
         function z = get_flag_perc_(o, idx)
             if (~isempty(o.flag_perc) && numel(o.flag_perc) >= idx)
@@ -50,6 +49,7 @@ classdef ttlog_props < ttlog
             o.classtitle = 'Properties';
             o.flag_params = 0;
             o.moreactions = [o.moreactions, {'extract_dataset'}];
+            o.flag_ui = 0;
         end;
         
         function s = get_description(o)

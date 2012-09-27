@@ -20,6 +20,15 @@ classdef log_comparison < irlog
         %> Row and column labels indistincively
         labels;
     end;
+
+    methods
+        function o = log_comparison()
+            o.classtitle = 'Comparison';
+            o.flag_ui = 0;
+        end;
+    end;
+
+            
     
     methods(Access=protected)
         function s = do_get_html(o)

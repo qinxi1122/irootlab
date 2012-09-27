@@ -1,4 +1,4 @@
-%> @brief Log gneerated as a result of an AS_CROSSC go()
+%> @brief Log generated as a result of an AS_CROSSC go()
 %>
 %> Allows one to extract elements:
 %> @arg The average loadings matrix
@@ -20,6 +20,7 @@ classdef log_as_crossc < irlog
         function o = log_as_crossc()
             o.classtitle = 'Cross-Calculation';
             o.moreactions = [o.moreactions, {'extract_blocks', 'extract_block', 'extract_datasets', 'extract_dataset'}];
+            o.flag_ui = 0;
         end;
     end;
     
@@ -45,7 +46,6 @@ classdef log_as_crossc < irlog
             out.xname = o.data_out(1).xname;
             out.xunit = o.data_out(1).xunit;
         end;
-        
         
         %> Extracts datasets
         function out = extract_datasets(o)

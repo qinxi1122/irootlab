@@ -14,6 +14,7 @@ classdef log_iterativefsel < irlog
     methods
         function o = log_iterativefsel()
             o.classtitle = 'Feature Selection';
+            o.flag_ui = 0;
         end;
         
         function [nf_in, grades] = extract_curve(o)

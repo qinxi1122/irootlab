@@ -7,6 +7,7 @@ classdef block_bypass < block
             o.classtitle = 'By-pass';
             o.flag_bootable = 0;
             o.flag_trainable = 0;
+            o.flag_ui = 0;
         end;
     end;
 end

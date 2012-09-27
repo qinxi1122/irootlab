@@ -35,7 +35,9 @@ function uip_blmisc_classlabels_hierarchy_OpeningFcn(hObject, eventdata, handles
 if nargin > 4
     % Dataset is expected as parameter
     ds = varargin{2};
-    set(handles.text_caption, 'String', [get(handles.text_caption, 'String'), sprintf(' (number of levels in dataset: %d)', ds.get_no_levels)]);
+    if isa(ds, 'irdata')
+        set(handles.text_caption, 'String', [get(handles.text_caption, 'String'), sprintf(' (number of levels in dataset: %d)', ds.get_no_levels)]);
+    end;
 end;
 handles.output.flag_ok = 0;
 guidata(hObject, handles);

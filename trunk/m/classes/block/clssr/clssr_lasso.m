@@ -25,7 +25,8 @@ classdef clssr_lasso < clssr
 
     methods
         function o = clssr_lasso()
-            o.classtitle = 'Lasso';
+            o.classtitle = 'LASSO';
+            o.flag_ui = 0;
         end;
     end;
     

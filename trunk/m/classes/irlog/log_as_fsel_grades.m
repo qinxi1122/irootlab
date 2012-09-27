@@ -17,6 +17,7 @@ classdef log_as_fsel_grades < log_as_fsel
         function o = log_as_fsel_grades()
             o.classtitle = 'Grades';
             o.moreactions = [o.moreactions, {'extract_dataset'}];
+            o.flag_ui = 0;
         end;
 
         %> Creates a dataset with one row containing the @ref opt_grades property.

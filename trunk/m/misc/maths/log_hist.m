@@ -12,6 +12,7 @@ classdef log_hist < log_grades
             o.classtitle = 'Histogram';
             o.yname = 'Hits';
             o.yunit = '';
+            o.flag_ui = 0;
         end;
     end;
     

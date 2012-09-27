@@ -12,8 +12,8 @@ classdef vectorcomp_difference < vectorcomp
     end;
     
     methods
-        function o = vectorcomp_ttest(o)
-            o.classtitle = 'T-Test';
+        function o = vectorcomp_difference(o)
+            o.classtitle = 'Difference';
             o.flag_params = 0;
         end;
     end;

@@ -45,6 +45,7 @@ classdef log_cube < irlog
     methods
         function o = log_cube()
             o.classtitle = 'Log Cube';
+            o.flag_ui = 0;
         end;
     end;
 end
