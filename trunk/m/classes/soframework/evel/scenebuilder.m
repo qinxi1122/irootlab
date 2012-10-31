@@ -194,6 +194,10 @@ classdef scenebuilder
         
 
         
+        function flag = probe_scene(o)
+            flag = ~isempty(irquery('select id from task_scene where name = "{S}"', o.scenename));
+        end
+        
         function flag = create_scene(o)
             flag = 0;
             a = irquery('select id from task_scene where name = "{S}"', o.scenename);
@@ -202,29 +206,47 @@ classdef scenebuilder
                 flag = 1;
             end;
         end
-    end;
-
-    
-    methods
-        function o = write_database(o)
+        
+        function o = refresh(o)
             setup_load();
             assert_connected_to_cells();
-            
-            
-            o.create_scene();
-            
-            tm = taskmanager();
-            tm.scenename = o.scenename;
-            tm = tm.boot();
-
+            o.probe_scene();
+        end;
+        
+        function ta = get_taskadder(o)
             ta = taskadder();
-            ta.tm = tm;
             ta.clwrapper = o.clwrapper;
             ta.clembedded = o.clembedded;
             ta.fe = o.fe;
             ta.fhg_stab = o.fhg_stab;
             ta.fhg_ffs_cl = o.fhg_ffs_cl;
             ta.fhg_others = o.fhg_others;
+            ta.tm = o.get_taskmanager();
+        end;
+        
+        function tm = get_taskmanager(o)
+            tm = taskmanager();
+            tm.scenename = o.scenename;
+            
+            tm = tm.boot();
+        end;
+    end;
+
+    
+    methods
+        function o = check_tasks(o)
+            o.refresh();
+            
+            ta = o.get_taskadder();
+            ta = ta.add_all();
+            ta.tm.check_tasks();
+        end;
+        
+        
+        function o = write_database(o)
+            o = o.refresh();
+            o.create_scene();
+            ta = o.get_taskadder();
             ta.go();
         end
         

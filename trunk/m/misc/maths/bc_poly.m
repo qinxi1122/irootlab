@@ -46,7 +46,7 @@ end;
 % end;
 
 
-ii = 0;
+ipro = progress2_open('Polynomial baseline correction', [], 0, no);
 for i = 1:no
     y = X(i, :);
     y_save = y;
@@ -63,7 +63,14 @@ for i = 1:no
             
             % (29/03/2011) Least-Squares solution is faster than polyfit()
             
-            yp = (M*(MM\(M'*y')))';
+            warning off; %#ok<*WNOFF>
+            try
+                yp = (M*(MM\(M'*y')))';
+                warning on; %#ok<*WNON>
+            catch ME
+                warning on;
+                rethrow(ME);
+            end;
 %         end;
 
         % y for next iteration will be a chopped-peak version of y
@@ -83,10 +90,7 @@ for i = 1:no
    
     X(i, :) = y_save-yp;
     
-    
-    if ii == 10
-        fprintf('\n***\n***\n*** %5.1f%% <<-------------------------\n***\n***\n***\n', i/no*100);
-        ii = 0;
-    end;
-    ii = ii+1;
+
+    ipro = progress2_change(ipro, [], [], i);
 end;
+progress2_close(ipro);

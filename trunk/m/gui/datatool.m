@@ -6,7 +6,7 @@
 %
 %> @cond
 function varargout = datatool(varargin)
-% Last Modified by GUIDE v2.5 25-Jun-2011 19:57:54
+% Last Modified by GUIDE v2.5 29-Oct-2012 15:49:39
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -30,10 +30,6 @@ end
 % --- Executes just before datatool is made visible.
 function datatool_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 
-
-data = irdata(); % instantialized dataset to get its color
-set(hObject, 'Color', data.color);
-
 % Choose default command line output for datatool
 handles.output = hObject;
 
@@ -48,6 +44,7 @@ guidata(hObject, handles);
 
 global handles_datatool;
 handles_datatool = handles;
+handles_datatool.classname = 'irdata';
 datatool_refresh(1);
 colors_markers();
 
@@ -57,12 +54,6 @@ setup_load();
 
 % --- Outputs from this function are returned to the command line.
 function varargout = datatool_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Get default command line output from handles structure
 varargout{1} = handles.output;
 
 
@@ -78,14 +69,18 @@ varargout{1} = handles.output;
 
 %#########
 function datatool_refresh(which)
+global handles_datatool;
 datatool_load_from_workspace();
 datatool_show_description(which);
 nlog = length(get_varnames('irlog'));
+data = eval([handles_datatool.classname, ';']);
+set(handles_datatool.figure1, 'Color', data.color);
+
 
 %#########   
 function datatool_load_from_workspace()
 global handles_datatool;
-listbox_load_from_workspace('irdata', handles_datatool.listboxDatasets);
+listbox_load_from_workspace(handles_datatool.classname, handles_datatool.listboxDatasets);
 listbox_load_from_workspace('block', handles_datatool.listboxBlocks);
 
 %#########   
@@ -190,8 +185,26 @@ else
 end;
 
 
+%######################################
+function change_class_from_edit()
+global handles_datatool;
+classname = get(handles_datatool.edit_class, 'String');
+flag_ok = 0;
+try
+    data = eval([classname, ';']);
+    test = data.color;
+    flag_ok = 1;
+catch ME
+    s = sprintf('Class not accepted: "%s"', ME.message);
+    datatool_status(s);
+    irerror(s);
+end;
 
-    
+if flag_ok
+    handles_datatool.classname = classname;
+    guidata(handles_datatool.figure1, handles_datatool);
+    datatool_refresh(1);
+end;    
 
 %##########################################################################
 %##########################################################################
@@ -502,4 +515,20 @@ end
 function pushbuttonBlockOperate_Callback(hObject, eventdata, handles)
 datatool_status('');
 do_block(2, ['blbl']);
+
+
+
+function edit_class_Callback(hObject, eventdata, handles)
+change_class_from_edit();
+
+function edit_class_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function pushbutton_all_Callback(hObject, eventdata, handles)
+datatool_status('');
+do_block(1, 'block');
 %> @endcond
+
+

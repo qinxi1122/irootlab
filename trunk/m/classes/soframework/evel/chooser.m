@@ -32,6 +32,8 @@ classdef chooser < chooser_base
             end;
             
             rates = mean(ratess, 1);
+            stds = std(ratess, 1);
+            rates = rates-stds/100000; % Just to solve ties: if the rate is the same, chooses one with lower standard deviation
             [dummy, ii] = sort(rates, 'descend');
             times = mean(timess, 1);
             n = numel(rates);

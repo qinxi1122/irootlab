@@ -79,10 +79,10 @@ data = handles.input.data;
 if isempty(data)
     irerrordlg('Dataset not specified!', 'Cannot preview');
 end;
-o = handles.input.block;
-eval(['o = o.setbatch(', params2str(get_params(handles)), ');']);
-o = o.train(data);
-orhistgui(o, 1);
+blk = handles.input.block;
+eval(['blk = blk.setbatch(', params2str(get_params(handles)), ');']);
+blk = blk.train(data);
+orhistgui_show(blk);
 
 
 %#########

@@ -65,7 +65,7 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace('log_fselrepeater', handles.popupmenu_input, 0);
+listbox_load_from_workspace('log_fselrepeater', handles.popupmenu_input, 1);
 
 
 %#########
@@ -100,7 +100,7 @@ function params = get_params(handles)
     
 sinput = listbox_get_selected_1stname(handles.popupmenu_input);
 if isempty(sinput)
-    irerror('Input not specified!');
+    sinput = '[]'; %irerror('Input not specified!');
 end;
     
 nf4gradesmodes = {'fixed', 'stability'};

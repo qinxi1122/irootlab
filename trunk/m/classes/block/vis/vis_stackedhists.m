@@ -6,9 +6,6 @@ classdef vis_stackedhists < vis
         data_hint = [];
         peakdetector = def_peakdetector();
         colors = {[], .85*[1, 1, 1]};
-        no_informative = Inf;
-        %> see @ref as_fsel_hist::weightmode
-        weightmode = [];
     end;
     
     methods
@@ -22,11 +19,6 @@ classdef vis_stackedhists < vis
     methods(Access=protected)
         function [o, out] = do_use(o, obj)
             out = [];
-            
-            if ~isempty(o.weightmode)
-                obj.weightmode = o.weightmode;
-                obj = obj.update_from_subsets();
-            end;
 
             obj.draw_stackedhists(o.data_hint, o.colors, o.peakdetector);
         end;

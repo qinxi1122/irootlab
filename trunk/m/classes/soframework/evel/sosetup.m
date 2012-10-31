@@ -140,6 +140,9 @@ classdef sosetup
         fhg_lda_nf_select = NaN;
         
         fhg_pcalda_no_factors = NaN;
+        
+        %> Maximum percentage of total number of diagnosissystem's to include in the committee
+        committees_maxperc = 0.5;
     end;
 
     methods
@@ -223,18 +226,21 @@ classdef sosetup
             o.undersel_dist_unders = UNDERS;
 
             
-            o.clarchsel_ann_nfs = [3, 5, 10, 20, 50, 100];
+%             o.clarchsel_ann_nfs = [3, 5, 10, 20, 50, 100];
+            o.clarchsel_ann_nfs = -1; % Note that sostage_fe starts as a bypass
             o.clarchsel_ann_archs = {[1], [3], [5], [10], [15], [20], [30], [7, 4], [10, 5], [10, 9], [20, 11]};  %#ok<*NBRAK>
         
         
             % Data Analysis Stage-independent
-            o.clarchsel_knn_nfs = [3, 5, 7, 9, 11, 13, 15, 20, 25, 30, 35, 50];
+%             o.clarchsel_knn_nfs = [3, 5, 7, 9, 11, 13, 15, 20, 25, 30, 35, 50];
+            o.clarchsel_knn_nfs = -1; % Note that sostage_fe starts as a bypass
             o.clarchsel_knn_ks = [1, 2, 3, 5, 7, 11, 13, 15, 17];
 
             
             o.clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:152];
 
-            o.clarchsel_svm_nfs = [7, 10, 15, 30, 50, 100];
+%             o.clarchsel_svm_nfs = [7, 10, 15, 30, 50, 100];
+            o.clarchsel_svm_nfs = -1; % Note that sostage_fe starts as a bypass
             o.clarchsel_svm_cs = 10.^(2:.25:5);
             o.clarchsel_svm_gammas = 10.^(-7:.5:-1);
 

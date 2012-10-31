@@ -6,6 +6,15 @@
 function format_xaxis(par)
 
 if exist('par', 'var')
+    if isa(par, 'irdata')
+        if ~isempty(par.fea_names)
+            if ~isempty(par.fea_x)
+                set(gca, 'XTick', par.fea_x);
+            end;
+            set(gca, 'XTickLabel', par.fea_names);
+        end;
+    end;
+    
     if isobject(par) || isstruct(par)
         ff = fields(par);
         if ismember('L_fea_x', ff) % fcon_linear

@@ -49,5 +49,38 @@ classdef soitem_merger_merger_fitest < soitem
             out.ax(2).label = 'Model';
             out.ax(2).ticks = uniquenesses(titles);
         end;
+        
+        
+        %> Concatenates all values into one
+        function out = get_sovalues_1d(o)
+            ni = numel(o.items);
+
+            out = sovalues();
+            out.chooser = o.items(1).sovalues.chooser;
+            out.ax(2) = o.items(2).sovalues.ax(2);
+            out.ax(1) = o.items(1).sovalues.ax(1);
+            out.ax(1).ticks = uniquenesses({o.items(1).sovalues.values.title});
+            for i = 1:ni
+                if i == 1
+                    out.values = o.items(i).sovalues.values;
+                    out.ax(1) = o.items(1).sovalues.ax(1);
+                else
+                    out.values = [out.values; o.items(i).sovalues.values];
+                    out.ax(1).values = [out.ax(1).values, o.items(i).sovalues.ax(1).values];
+                    out.ax(1).ticks = [out.ax(1).ticks, o.items(i).sovalues.ax(1).ticks];
+                    out.ax(1).legends = [out.ax(1).legends, o.items(i).sovalues.ax(1).legends];
+                end;
+%                 titles{i} = o.items(i).sovalues.values(1).title;
+            end;
+            
+%             out.ax(1) = raxisdata();
+%             out.ax(1).label = 'System';
+%             out.ax(1).values = 1:ni;
+%             out.ax(1).legends = titles;
+            
+%             out.ax(2) = raxisdata();
+%             out.ax(2).label = 'Model';
+%             out.ax(2).ticks = uniquenesses(titles);
+        end;
     end;
 end

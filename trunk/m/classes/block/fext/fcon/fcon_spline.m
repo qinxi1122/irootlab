@@ -42,7 +42,9 @@ classdef fcon_spline < fcon_linear
             PREC = 1000; % This number only determines the precision and does not affect anything else.
             tt = 1:data.nf;
             tt2 = linspace(1, data.nf, PREC); 
-            p = polyfit(tt, [data.fea_x], min(data.nf-1, 10)); % Gives a warning but who cares
+            warning off;
+            p = polyfit(tt, [data.fea_x], min(data.nf-1, 10));
+            warning off;
             x2 = polyval(p, tt2);
             basismat = eval_basis(tt2, bb); % bases as columns
             [vals, idxs] = max(basismat);

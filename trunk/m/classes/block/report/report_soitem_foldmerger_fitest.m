@@ -1,6 +1,5 @@
-%> Wraps a report_estlog, to show confusion matrices
+%> Passes on to report_estlog, to show confusion matrices
 %>
-%> @todo implement the params GUI
 classdef report_soitem_foldmerger_fitest < report_soitem
     methods
         function o = report_soitem_foldmerger_fitest()
@@ -9,6 +8,8 @@ classdef report_soitem_foldmerger_fitest < report_soitem
             o.flag_params = 0;
         end;
     end;
+    
+    
     
     methods(Access=protected)
         function [o, out] = do_use(o, obj)

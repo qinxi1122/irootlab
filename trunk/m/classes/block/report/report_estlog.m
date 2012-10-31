@@ -1,4 +1,4 @@
-%> @brief @ref estlog 's HTML (confusion matrices
+%> @brief @ref estlog 's HTML (confusion matrices)
 %>
 %> @sa uip_report_estlog.m
 classdef report_estlog < irreport

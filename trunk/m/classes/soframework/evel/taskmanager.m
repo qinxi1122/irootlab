@@ -110,26 +110,34 @@ classdef taskmanager
         %> Excludes tasks that are already registered in the database
         function dat = get_filtered_data(o)
             a = irquery('select count(*) as cnt from task_tasklist where idscene = {Si}', o.idscene);
-            dat = o.data;
+            cnt = a.cnt;
             idel = 0;
-            if a.cnt == 0
+            dat = o.data;
+            no_tasks = size(dat, 2);
+            boo = ones(1, no_tasks);
+            if cnt == 0
             else
                 a = irquery('select hash from task_tasklist where idscene = {Si}', o.idscene);
-                for i = size(o.data, 2):-1:1
+                for i = no_tasks:-1:1
                     if any(a.hash == o.calculate_crc(o.idscene, dat{4, i}, dat{5, i}))
                         dat(:, i) = [];
+                        boo(i) = 0;
                         idel = idel+1;
                     end;
                 end;
             end;
-            irverbose(sprintf('>>>>> TM >>>>> INFO: Number of already existing tasks: %d', idel), 3);    
+            irverbose(sprintf('>>>>> TM >>>>> INFO: #task_list: %d; #tasks_in_db: %d; #*to add*: %d', no_tasks, cnt, size(dat, 2)), 3);
         end;
 
+        function dat = check_tasks(o)
+            dat = o.get_filtered_data();
+        end;
+        
         
         %> Commits the @c data buffer to the database and cleans it.
         function o = commit_tasks(o)
-            if isempty(o.data)
-                irverbose('>>>>> TM >>>>> INFO: no tasks to commit', 1);
+            dat = o.get_filtered_data();
+            if isempty(dat)
                 return;
             end;
             
@@ -139,8 +147,6 @@ classdef taskmanager
             
             template = '({Si}, {Si}, "{S}", "{S}", "{S}", {Si}, {Si}, "{S}", {Si}, {S})';
             
-            dat = o.get_filtered_data();
-            irverbose(sprintf('>>>>> TM >>>>> INFO: Number of tasks to add: %d', size(dat, 2)), 3);    
             try
                 while ~isempty(dat)
                     nrows = min(size(dat, 2), ONEGO);
@@ -175,13 +181,13 @@ classdef taskmanager
             irquery('SET autocommit = 1');
 
             
-            irverbose(['>>>>> TM >>>>> Scene name: "', o.scenename, '"'], 2);
+            irverbose(['>>>>> TM >>>>> Scene name: "', o.scenename, '"'], 3);
 
             
             idxs = [];
             while 1
                 if o.get_flag_all_gone()
-                    irverbose('>>>>> TM >>>>> All tasks are gone!', 2);
+                    irverbose('>>>>> TM >>>>> All tasks are gone!', 3);
                     break;
                 end;
                 
@@ -189,7 +195,7 @@ classdef taskmanager
                 if idx <= 0
                     % Supposedly there is some task with dependencies unmet, AND
                     % other processes are taking care of these tasks
-                    irverbose('>>>>> TM >>>>> No task is free to run, waiting 10 seconds...');
+                    irverbose('>>>>> TM >>>>> No task is free to run, waiting 10 seconds...', 3);
                     pause(10);
                 else
                     [o, flag] = o.run_task(idx);
@@ -207,7 +213,7 @@ classdef taskmanager
         function o = reset_failed(o)
             o.assert_connected();
             n = irquery('update task_tasklist set status = "0" where status = "failed" and idscene = {Si}', o.idscene);
-            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
+            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 3);
         end;
     end;
 
@@ -222,14 +228,14 @@ classdef taskmanager
             o.assert_connected();
             n = irquery('update task_tasklist set status = "0" where status = "ongoing" and idscene = {Si}', o.idscene);
             
-            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
+            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 3);
         end;
         
         %> Resets all tasks to "0". Careful!!!! Make sure no one is running any task!
         function o = reset_all(o)
             o.assert_connected();
             n = irquery('update task_tasklist set status = "0" where idscene = {Si}', o.idscene);
-            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 2);
+            irverbose(sprintf('>>>>> TM >>>>> Number reset: %d', n), 3);
         end;
         
         
@@ -237,7 +243,7 @@ classdef taskmanager
         function o = delete_tasks(o)
             o.assert_connected();
             n = irquery('delete from task_tasklist where idscene = {Si}', o.idscene);
-            irverbose(sprintf('>>>>> TM >>>>> Number of deleted rows: %d', n), 2);
+            irverbose(sprintf('>>>>> TM >>>>> Number of deleted rows: %d', n), 3);
         end;
     end;
     
@@ -370,7 +376,7 @@ classdef taskmanager
                 a = irquery('select * from task_tasklist where idscene = {Si} and idx = {Si} lock in share mode', o.idscene, idx);
             catch ME
                 irquery('rollback');
-                irverbose(sprintf('>>>>> TM >>>>> (%s) The task %d is locked by someone else, ignoring request to run...', ME.message, idx))
+                irverbose(sprintf('>>>>> TM >>>>> (%s) The task %d is locked by someone else, ignoring request to run...', ME.message, idx), 3)
                 flag_return = 1;
             end;
             if flag_return
@@ -382,7 +388,7 @@ classdef taskmanager
 % % %             % Checks if it is really available. I think I could probably delete this part, since the status can only leave '0' if the record is locked
 % % %             if ~strcmp(z.status, '0')
 % % %                 irquery('rollback');
-% % %                 irverbose(sprintf('>>>>> TM >>>>> Task %d is no longer available, ignoring request to run...', idx))
+% % %                 irverbose(sprintf('>>>>> TM >>>>> Task %d is no longer available, ignoring request to run...', idx), 3);
 % % %                 return;
 % % %             end;
             
@@ -395,7 +401,7 @@ classdef taskmanager
                 irquery('commit');
             catch ME
                 irquery('rollback');
-                    irverbose(sprintf('>>>>> TM >>>>> Couldn''t set status to "ongoing" (%s) on task %d, ignoring request to run...', ME.message, idx))
+                    irverbose(sprintf('>>>>> TM >>>>> Couldn''t set status to "ongoing" (%s) on task %d, ignoring request to run...', ME.message, idx), 3);
                     flag_return = 1;
             end;
             if flag_return
@@ -405,7 +411,7 @@ classdef taskmanager
 
             % Finally runs the task
             try
-                irverbose(sprintf('>>>>> TM >>>>> Running task %d ...', idx), 2);
+                irverbose(sprintf('>>>>> TM >>>>> Running task %d ...', idx), 3);
                 
                 obj = eval([z.classname, '();']);
                 

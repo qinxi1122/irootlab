@@ -1,3 +1,4 @@
+%> ?
 classdef report_soitem_merger_merger_fitest < report_soitem
     properties
         %> =(auto). Minimum value for the colour scaling of the HTML cells
@@ -8,7 +9,7 @@ classdef report_soitem_merger_merger_fitest < report_soitem
     
     methods
         function o = report_soitem_merger_merger_fitest()
-            o.classtitle = 'Classification table';
+            o.classtitle = '2D Classification table';
             o.inputclass = 'soitem_merger_merger_fitest';
             o.flag_params = 1;
         end;

@@ -16,6 +16,8 @@ classdef foldmerger_fitest < sodesigner
         %>
         %> The cell of diagnosissystem objects inside item can be nD, diacomp doesn't care
         function out = do_design(o)
+            out = soitem_foldmerger_fitest();
+
             items = o.input;
             
             dl = o.oo.dataloader;
@@ -40,14 +42,14 @@ classdef foldmerger_fitest < sodesigner
 
                 
                 dia = o.process_dia(items{i}.get_modifieddia());
+                out.diaa{i} = dia;
                 blk = dia.get_block();
                 
                 logs = singlett(logs, blk, ds_fit, ds_est, postpr_test, postpr_est);
             end;
                 
-            out = soitem_foldmerger_fitest();
-            out.dia = dia; % Just one of the possibilities
             out.logs = logs;
+            out.items = items;
             out.title = ['Cross-validation ', dia.get_sequencedescription()];
             out.dstitle = dstitle;
         end;

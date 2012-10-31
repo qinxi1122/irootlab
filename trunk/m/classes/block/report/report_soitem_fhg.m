@@ -1,4 +1,4 @@
-%> Comparison and p-values tables
+%> ?
 %>
 %> @todo implement the params GUI
 classdef report_soitem_fhg < report_soitem

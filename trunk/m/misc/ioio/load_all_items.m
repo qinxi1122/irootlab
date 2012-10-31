@@ -27,7 +27,7 @@ for i = 1:n
                 [a, b, c] = fileparts(name); %#ok<*NASGU,*ASGLU>
                 s = ['global TEMP; ', good_varname(b), ' = TEMP;'];
                 evalin('base', s);
-                irverbose(s, 1);
+                irverbose(s, 3);
             end;
         end;
 

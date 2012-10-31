@@ -9,6 +9,8 @@ groupcodes = {};
 filenames = {};
 orderref = [];
 
+
+
 % Resolves group code
 for k = 1:n
     if ~a(k).isdir
@@ -29,7 +31,11 @@ for k = 1:n
             elseif isempty(idxs)
                 irerror('No dots in filename!');
             end;
-            orderref(i) = eval(filenames{i}(idxs(idx_idx_trim)+1:idxs(idx_idx_trim+1)-1));
+            try
+                orderref(i) = eval(filenames{i}(idxs(idx_idx_trim)+1:idxs(idx_idx_trim+1)-1));
+            catch ME %#ok<NASGU>
+                irerror('Error trying to find a sequential number across the filenames!');
+            end;
         end;
     end;
 end;

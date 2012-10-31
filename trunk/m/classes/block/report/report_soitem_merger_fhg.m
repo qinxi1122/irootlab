@@ -1,3 +1,4 @@
+%> ?
 classdef report_soitem_merger_fhg < report_soitem
     properties
         peakdetector;

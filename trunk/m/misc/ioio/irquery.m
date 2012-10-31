@@ -5,7 +5,7 @@ function r = irquery(varargin)
 try
     r = mym(varargin{:});
 catch ME
-    if strfind(ME.message, 'gone away') || strfind(ME.message, 'ost connection')
+    if any(strfind(ME.message, 'gone away')) || any(strfind(ME.message, 'ost connection')) || any(strfind(ME.message, 'ot connected'))
         assert_connected_to_cells();
         r = mym(varargin{:}); % tries again
     else
