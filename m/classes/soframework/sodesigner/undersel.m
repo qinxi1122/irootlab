@@ -1,10 +1,7 @@
 %> Algorithm-independent design - correction for unbalanced dataset
 %>
-%> This class was originally comparing non-pairwise vs. pairwise X (carterian product) balancing strategy
 %>
-%> Now it is only addressing the balancing issue
-%>
-%>
+%> @sa 
 classdef undersel < sodesigner
     properties
         unders = NaN;
@@ -42,8 +39,8 @@ classdef undersel < sodesigner
                     ticks{i1} = sprintf('U%d', o.unders(iu));
                 end;
                     
-                dia.sostage_cl.flag_cb = iu == 0;
-                dia.sostage_cl.flag_under = iu > 0;
+                dia.sostage_cl.flag_cb = iu == 0; % Counterbalance
+                dia.sostage_cl.flag_under = iu > 0; % Undersampling
                 if iu > 0
                     dia.sostage_cl.under_no_reps = o.unders(iu);
                 else
@@ -54,7 +51,7 @@ classdef undersel < sodesigner
                 sostages{i1, 1} = dia.sostage_cl;
             end;
             
-            r = o.go_cube(ds, molds, sostages, ticks');
+            r = o.go_cube(ds, molds, sostages, ticks'); % Repeated sub-sampling
             
             r.ax(1).label = 'Undersampling strategy';
             r.ax(1).values = [iif(dia.sostage_cl.flag_cbable, [-1, 0], [0]), o.unders];

@@ -1,4 +1,4 @@
-%> @brief @ref ttlog_generic 's HTML (confusion matrices
+%> @brief @ref ttlog_generic 's HTML (confusion matrices)
 %>
 %> @sa uip_report_ttlog_generic.m
 classdef report_ttlog_generic < irreport

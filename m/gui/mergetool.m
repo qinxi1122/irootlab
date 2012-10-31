@@ -1,28 +1,34 @@
 %> @ingroup guigroup mainguis
 %> @file
-%> @brief Tool to merge several files into a new dataset in the workspace.
+%> @brief Tool to merge several files into a new dataset.
 %> @image html Screenshot-mergetool.png
-%> <b>Directory containing multiple files</b> - directory where your are stored.
-%> These were probably generated through the pre-processing OPUS macro.
+%> <b>Directory containing multiple files</b> - directory containing multiple single-spectrum files.
 %>
-%> <b>File filter</b> - usually "*.dat" or "*.DAT"
+%> <b>File filter</b> - wildcard filter. Examples: <code>*.*</code>; <code>*.dat</code>; <code>*.DAT</code>
 %>
-%> <b>Sample code trimming dot (right-to-left)</b> - allows you control over trimming off part of the filename for the <b>group code</b>.
+%> <b>Sample code trimming dot (right-to-left)</b> - allows you control over trimming off part of the filename for the <b>group code</b> of each spectrum.
 %> For example, you may have several files like:
-%> @code
-%> sample1.0.dat
-%> sample1.1.dat
-%> sample1.2.dat
-%> @endcode
-%> All these are replicates of the same sample (named "sample1"). Specifying "2" for the trimming dot will get rid of
+%> @verbatim
+%> sample1.000.dat
+%> sample1.001.dat
+%> sample1.002.dat
+%>        ^   ^ 
+%>        |   |
+%>        |   1 first dot (left-to-right)
+%>        |
+%>        2 second dot
+%> @endverbatim
+%> All these are spectra from the same sample (named "sample1"). Specifying "2" for the trimming dot will get rid of
 %> everything after the 2nd last dot counting from right to left. Thus, all spectra will have sample code "sample1".
+%>
 %>
 %> <h3>Image building options</h3>
 %> If <b>Build image is checked</b>, the image <b>height</b> needs to be informed. The width is automatically calculated as the number of files in the directory divided by the informed <b>height</b>.
+%> @note To build an image, the files need to have a sequential numbering between dots, as above. 
 
 %> @cond
 function varargout = mergetool(varargin)
-% Last Modified by GUIDE v2.5 07-Nov-2011 21:54:49
+% Last Modified by GUIDE v2.5 16-Oct-2012 09:00:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -67,6 +73,91 @@ varargout{1} = handles.output;
 
 
 %=======================================================================================================================
+
+%==============================
+function add_log(handles, s)
+a = get(handles.editStatus2, 'String');
+s = {s};
+set(handles.editStatus2, 'String', [a; s]);
+
+%==============================
+function morasse_lah(handles, filename, idx1, idx2, msg)
+add_log(handles, filename);
+% SLASH = '/';
+add_log(handles, [repmat(' ', 1, idx1-1), repmat('-', 1, idx2-idx1+1)]);
+add_log(handles, [repmat(' ', 1, idx2-1), '|']);
+add_log(handles, [repmat(' ', 1, idx2-1), msg]);
+
+%==============================
+function do_checks(handles)
+set(handles.editStatus2, 'String', '');
+add_log(handles, '==> Checking... ==>');
+try
+    try
+        wild = get_wild(handles);
+        trimdot = eval(get(handles.editTrimdot, 'String'));
+        flag_image = get(handles.checkbox_flag_image, 'Value');
+        height = eval(get(handles.edit_height, 'String'));
+    catch ME
+        irerror(['Error: ', ME.message]);
+    end;
+
+    if flag_image && trimdot < 1
+        irerror('For image building, "Sample code trimming dot" needs be at least 1!');
+    end;
+
+    a = dir(wild);
+    a([a.isdir]) = [];
+    n = numel(a);
+    add_log(handles, sprintf('Number of files found: %d', n));
+    
+    if n > 0
+        filename = a(1).name;
+        idxs = find([filename, '.'] == '.');
+        if numel(idxs) < trimdot+1
+            irerror(sprintf('File name such as "%s" has only %d dot%s, whereas "Sample code trimming dot" is %d!', filename, numel(idxs)-1, iif(numel(idxs)-1 > 1, 's', ''), trimdot));
+        end;
+        idx1 = 1;
+        idx2 = idxs(end-trimdot)-1;
+        code = filename(1:idx2);
+        morasse_lah(handles, filename, idx1, idx2, ['Sample code ("', code, '")']);
+
+        if flag_image
+            idx1 = idxs(end-trimdot)+1;
+            idx2 = idxs(end-trimdot+1)-1;
+            sorderref = filename(idx1:idx2);
+            morasse_lah(handles, filename, idx1, idx2, ['Sequence number for image pixels ("', sorderref, '")']);
+            orderref = str2double(sorderref);
+            if isnan(orderref)
+                irerror(sprintf('File part "%s" should be a number!', sorderref));
+            end;
+            
+            if flag_image
+                if height <= 0
+                    irerror('Please specify image height!');
+                end;
+
+                if n/height ~= floor(n/height)
+                    irerror(sprintf('Invalid image height: %d not divisible by %d!', n, height));
+                end;
+                
+                add_log(handles, sprintf('Image width: %d', n/height));
+            end;
+        end;
+    else
+        irerror('No files!');
+    end;        
+
+    [filenames, groupcodes] = resolve_dir(wild, trimdot, flag_image);
+    
+    add_log(handles, sprintf('Number of samples: %d', numel(unique(groupcodes))));
+    
+    add_log(handles, '===> ...Passed!');
+catch ME
+    add_log(handles, ['===> ...Checking error: ', ME.message]);
+    send_error(ME);
+end;
+
 
 function path_ = get_wild(handles)
 
@@ -113,7 +204,7 @@ end
 % --- Executes on button press in pushbuttonGo.
 function pushbuttonGo_Callback(hObject, eventdata, handles)
 set(handles.editStatus2, 'String', '');
-set(handles.editStatus2, 'ForegroundColor', [0, 0, 0]);
+do_checks(handles);
 path_ = get_wild(handles);
 a = dir(path_);
 if length(a) == 0
@@ -126,7 +217,7 @@ else
             height = eval(get(handles.edit_height, 'String'));
             type = get(handles.popupmenu_type, 'Value');
         catch ME
-            irerror(['Error reading window fields: ', ME.message]);
+            irerror(['Error: ', ME.message]);
         end;
         name_new = find_varname('ds');
 
@@ -143,12 +234,7 @@ else
         else
             ss = 'Success!';
         end;
-        set(handles.editStatus2, 'String', sprintf('%s! Variable name in workspace: %s; Number of rows: %d', ss, name_new, ds.no));
-        if flag_error
-            set(handles.editStatus2, 'ForegroundColor', [1, 0, 0]);
-        else
-            set(handles.editStatus2, 'ForegroundColor', [0, 0, 1]);
-        end;
+        add_log(handles, sprintf('%s! Variable name in workspace: %s; Number of rows: %d', ss, name_new, ds.no));
         
         path_assert();
         global PATH;
@@ -157,37 +243,6 @@ else
     catch ME
         send_error(ME);
     end;
-end;
-
-
-
-% --- Executes on button press in pushbuttonCheck.
-function pushbuttonCheck_Callback(hObject, eventdata, handles)
-set(handles.textStatus, 'String', 'Checking...');
-try
-    try
-        wild = get_wild(handles);
-        trimdot = eval(get(handles.editTrimdot, 'String'));
-        flag_image = get(handles.checkbox_flag_image, 'Value');
-        [filenames, groupcodes] = resolve_dir(wild, trimdot, flag_image);
-    catch ME
-        irerror(['Error reading window fields: ', ME.message]);
-    end;
-    
-    n = numel(filenames);
-    if n == 1
-        splural = '';
-    else
-        splural = 's';
-    end;
-    s1 = '';
-    if n > 0
-        s1 = [' Group code example: ', groupcodes{1}];
-    end;
-    set(handles.textStatus, 'String', [int2str(n), ' file' splural ' found.', s1]);
-catch ME
-    set(handles.textStatus, 'String', 'Error occured');
-    send_error(ME);
 end;
 
 
@@ -247,4 +302,6 @@ function popupmenu_type_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+function pushbutton_check_Callback(hObject, eventdata, handles)
+do_checks(handles);
 %> @endcond

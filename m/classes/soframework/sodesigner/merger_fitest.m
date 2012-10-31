@@ -7,9 +7,10 @@ classdef merger_fitest < sodesigner
             ni = numel(items);
             
             for i = 1:ni
-                titles{i, 1} = items{i}.dia.get_sequencedescription();
+                titles{i, 1} = items{i}.diaa{1}.get_sequencedescription();
                 values(i, 1) = sovalues.read_logs(items{i}.logs);
-                specs{i, 1} = items{i}.dia.get_sequencedescription();
+                specs{i, 1} = items{i}.diaa{1}.get_sequencedescription();
+                diaaa{i, 1} = items{i}.diaa;
             end;
             
             r = sovalues();
@@ -17,6 +18,7 @@ classdef merger_fitest < sodesigner
             r.values = values;
             r = r.set_field('title', titles);
             r = r.set_field('spec', specs);
+            r = r.set_field('diaa', diaaa);
             
             r.ax(1) = raxisdata();
             r.ax(1).label = 'System';

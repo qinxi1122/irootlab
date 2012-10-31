@@ -153,7 +153,6 @@ classdef report_biocomp_base < report_base
 
                     % Calculations
                     a.subsetsprocessor = osp;
-                    a = a.update_from_subsets();
                     pd = pd.boot(a.fea_x, a.grades);
 
                     % Collects biomarkers

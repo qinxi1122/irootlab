@@ -73,12 +73,19 @@ classdef blmisc_rowsout_uni < blmisc_rowsout
         function o = draw_histogram(o)
             o = o.calculate_hits();
             if ~isempty(o.hits)
+                
+                % Replaces infinities in ranges
+                ra = o.ranges;
+                di = o.edges(2)-o.edges(1);
+                ra(ra == -Inf) = o.edges(1)-di;
+                ra(ra == +Inf) = o.edges(end)+di;
+                
                 x = sum([o.edges(1:end-1); o.edges(2:end)], 1)/2;
                 maxy = max(o.hits)*1.1;
 
-                for i = 1:size(o.ranges, 1)
-                    if o.ranges(i, 2) > o.ranges(i, 1)
-                        draw_hachure([o.ranges(i, 1), 0, o.ranges(i, 2)-o.ranges(i, 1), maxy]);
+                for i = 1:size(ra, 1)
+                    if ra(i, 2) > ra(i, 1)
+                        draw_hachure([ra(i, 1), 0, ra(i, 2)-ra(i, 1), maxy]);
                     else
                         % ignores in drawing
                     end;

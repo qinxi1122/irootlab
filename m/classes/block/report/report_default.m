@@ -1,4 +1,4 @@
-% @brief Opens HTML report in MATLAB web browser.
+% @brief IROBJ's report
 classdef report_default < irreport
     methods
         function o = report_default()

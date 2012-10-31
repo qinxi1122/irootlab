@@ -82,6 +82,50 @@ classdef sovalues < irlog
                 end;
             end;
         end;
+        
+        
+        %> @param oo array of sovalue
+        %> @param flag_mean Whether to take means before merging
+        function out = foldmerge(oo, flag_mean)
+            % Identifies all numeric fields
+            sov = oo(1);
+            ff = fields(sov.values);
+            for i = numel(ff):-1:1
+                if ~isnumeric(sov.values(1).(ff{i}))
+                    ff(i) = [];
+                end;
+            end;
+            
+            nv = numel(sov.values);
+            nf = numel(ff);
+            no = numel(oo);
+            for i = 1:no
+                if i == 1
+                    % Initializes output ...
+                    out = oo(i);
+                    for k = 1:nf
+                        fn = ff{k};
+                        for j = 1:nv
+                            out.values(j).(fn) = []; % ... with empty values
+                        end;
+                    end;
+                end;
+                    
+                sov = oo(i);
+                for k = 1:nf
+                    fn = ff{k};
+                    for j = 1:nv
+                        v = sov.values(j).(fn);
+                        v = v(:)'; % Makes a row vector
+                        if flag_mean
+                            v = mean(v);
+                        end;
+                            
+                        out.values(j).(fn) = [out.values(j).(fn), v];
+                    end;
+                end;
+            end;
+        end;
     end;
     
     

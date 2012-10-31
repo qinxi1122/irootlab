@@ -1,4 +1,4 @@
-%> Plots the (nf)x(rates) curve
+%> AHA Plots the (nf)x(rates) curve
 %>
 classdef report_soitem_fs < report_soitem
     methods

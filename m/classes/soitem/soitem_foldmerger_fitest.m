@@ -1,11 +1,16 @@
 %> This SODATAITEM is generated a FOLDMERGER_FITEST class
 %>
 %> @sa foldmerger_fitest
-classdef soitem_foldmerger_fitest < soitem
+classdef soitem_foldmerger_fitest < soitem_items
     properties
         %> cell of ttlogs
         logs;
-        %> diagnosissystem object
-        dia;
+        %> Cell of diagnosissystem objects. Each element correspond to one system found at one fold of the k-fold cross-validation
+        diaa;
+    end;
+
+    methods
+        function o = soitem_foldmerger_fitest()
+        end;
     end;
 end

@@ -1,6 +1,5 @@
-%> Plots the (nf)x(rates) curves
+%> AHA Plots the (nf)x(rates) curves
 %>
-%> @todo implement the params GUI
 classdef report_soitem_foldmerger_ffs < report_soitem
     methods
         function o = report_soitem_foldmerger_ffs()

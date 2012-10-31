@@ -53,8 +53,11 @@ classdef report_soitem_sovalues < report_soitem
             if size(ratess, 2) > 1
                 irerror('I cannot handle results that have more than one column!', 2);
             end;
-            rates = mean(permute(ratess, [3, 1, 2]), 1);
-            [vv, ii] = sort(rates, 'descend'); %#ok<ASGLU>
+            
+            temp = permute(ratess, [3, 1, 2]);
+            rates = mean(temp, 1);
+            ratessort = rates-std(temp)/1e7-mean(permute(sovalues.getYY(values, 'times3'), [3, 1, 2]), 1)/1e10; % Just to solve ties: if the rate is the same, chooses one with lower standard deviation
+            [vv, ii] = sort(ratessort, 'descend'); %#ok<ASGLU>
             values = values(ii);
             if isempty(sor.chooser)
                 choiceidx = [];
@@ -121,10 +124,11 @@ classdef report_soitem_sovalues < report_soitem
                     
                 
                     mv = mean(v);
-                    civ = confint(v);
-                    civ = civ(end)-mv;
+%                     civ = confint(v);
+%                     civ = civ(end)-mv;
+                    civ = std(v); % Let's make standard deviation the standard for +- specifications
                 
-                    s0 = cat(2, s0, sprintf('<td class="nu%s">', clad), sprintf('%.2f +- %.2f', mv, civ), '</td>', 10);
+                    s0 = cat(2, s0, sprintf('<td class="nu%s">', clad), sprintf('%.2f &plusmn; %.2f', mv, civ), '</td>', 10);
                 end;
                 
                 if i == ni

@@ -20,7 +20,7 @@ classdef fearchsel_bypass < fearchsel
             out.sovalues = [];
             out.dia = dia;
             out.title = [upper(class(o)), ': ', out.dia.get_sequencedescription()];
-            out.dstitle = '(not used)'
+            out.dstitle = '(not used)';
         end;
     end;
 end

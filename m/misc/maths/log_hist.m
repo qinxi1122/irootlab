@@ -99,7 +99,7 @@ classdef log_hist < log_grades
                 peakdetector = [];
             end;
             
-            draw_stacked(o.fea_x, o.hitss, o.nf4grades, colors, xhint, yhint, peakdetector);
+            draw_stacked(o.fea_x, o.hitss, o.nf4grades, colors, xhint, yhint, peakdetector, 1, 1, 1, 1);
             format_xaxis(o);
             format_yaxis(o);
         end;

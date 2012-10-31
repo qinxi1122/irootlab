@@ -9,7 +9,7 @@
 
 %>@cond
 function varargout = uip_report_testtable(varargin)
-% Last Modified by GUIDE v2.5 27-Jun-2012 19:19:13
+% Last Modified by GUIDE v2.5 18-Oct-2012 17:50:34
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -36,8 +36,8 @@ function uip_report_testtable_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output.flag_ok = 0;
 guidata(hObject, handles);
 gui_set_position(hObject);
+refresh(handles);
 
-% --- Outputs from this function are returned to the command clae.
 function varargout = uip_report_testtable_OutputFcn(hObject, eventdata, handles) 
 try
     uiwait(handles.figure1);
@@ -50,11 +50,28 @@ catch
     varargout{1} = output;
 end;
 
+%############################################
+
+%#########
+function refresh(handles)
+listbox_load_from_workspace('fsg', handles.popupmenu_fsg, 1);
+fsg = def_fsg_testtable();
+set(handles.text_fsg, 'String', sprintf('Feature subsets grader (defaults to a %s)', fsg.classtitle));
+
+%############################################
+
+
 % --- Executes on button press in pushbuttonOK.
 function pushbuttonOK_Callback(hObject, eventdata, handles)
 try
+    sfsg = listbox_get_selected_1stname(handles.popupmenu_fsg);
+    if isempty(sfsg)
+        sfsg = '[]';
+    end;
+
     handles.output.params = {...
-    'idx_fea', mat2str(eval(get(handles.edit_idx_fea, 'String'))) ...
+    'idx_fea', mat2str(eval(get(handles.edit_idx_fea, 'String'))), ...
+    'fsg', sfsg, ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -64,11 +81,13 @@ catch ME
     
 end;
 
-
 function edit_idx_fea_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function edit_idx_fea_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function popupmenu_fsg_Callback(hObject, eventdata, handles)
+function popupmenu_fsg_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end

@@ -1,4 +1,6 @@
-%> Bypass to report_log_fselrepeater_histcomp
+%> Passes on to  to report_log_fselrepeater_histcomp
+%>
+%> @sa report_log_fselrepeater_histcomp
 classdef report_soitem_fhg_histcomp < report_soitem
     properties
         peakdetector;

@@ -2,6 +2,7 @@ function classcreator(x)
 if nargin < 1; x = 0; end
 
 if x
+  o = committees_np_grag();
   o = goer();
   o = goer_1i();
   o = goer_clarchsel__ann();
@@ -15,6 +16,10 @@ if x
   o = goer_clarchsel__lsth();
   o = goer_clarchsel__qdc();
   o = goer_clarchsel__svm();
+  o = goer_committees_np();
+  o = goer_committees_np_grag();
+  o = goer_committees_pa();
+  o = goer_committees_pa_grag();
   o = goer_fearchsel__bypass__ann();
   o = goer_fearchsel__bypass__dist();
   o = goer_fearchsel__bypass__frbm_kg1();
@@ -168,13 +173,15 @@ if x
   o = clarchsel_noarch();
   o = clarchsel_qdc();
   o = clarchsel_svm();
+  o = committees();
+  o = committees_np();
+  o = committees_pa();
   o = diacomp();
   o = diacomp_peaklocationsfe();
   o = fearchsel();
   o = fearchsel_bypass();
   o = fearchsel_factors();
   o = fearchsel_ffs();
-  o = fearchsel_fhana();
   o = fearchsel_fisher();
   o = fearchsel_fs_base();
   o = fearchsel_lasso();
@@ -193,7 +200,6 @@ if x
   o = foldmerger_fhg();
   o = foldmerger_fitest();
   o = foldmerger_fitest_np();
-  o = foldmerger_fitest_np_grag();
   o = foldmerger_fitest_pa();
   o = merger_fhg();
   o = merger_fitest();
