@@ -12,6 +12,7 @@ classdef vis_means < vis
         function [o, out] = do_use(o, obj)
             out = [];
             data_draw_means(obj);
+            make_box();
         end;
     end;
 end

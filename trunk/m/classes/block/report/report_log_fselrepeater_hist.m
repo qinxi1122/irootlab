@@ -37,8 +37,7 @@ classdef report_log_fselrepeater_hist < irreport
             s = '';
 
             ssp = def_subsetsprocessor(o.subsetsprocessor);
-            ssp.input = log;
-            hist = ssp.go();
+            hist = ssp.use(log);
         
             v = vis_stackedhists();
             v.data_hint = o.data_hint;

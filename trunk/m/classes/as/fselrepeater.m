@@ -3,8 +3,6 @@
 %> This is the starting point to generate a histogram
 classdef fselrepeater < as
     properties
-        %> Dataset
-        data;
         %> Subset Generation Specs to guide generation of different datasets to be passed to the Feature selection object.
         sgs;
         %> Feature selection object.
@@ -25,12 +23,12 @@ classdef fselrepeater < as
         end;
     end;
     
-    methods
+    methods(Access=protected)
         %> Creates a @ref log_fselrepeater object
         %>
         %> This function may pass 1 or 2 datasets to the @ref as_fsel, depending on the @ref sgs property. It
         %> does not check whether the @ref as_fselrep::as_fsel needs one or two datasets.
-        function log = go(o)
+        function log = go(o, data)
             flag_fext = ~isempty(o.fext);
             if flag_fext
                 ff = o.fext.boot();
@@ -38,7 +36,7 @@ classdef fselrepeater < as
                 ff = [];
             end;
 
-            obsidxs = o.sgs.get_obsidxs(o.data);
+            obsidxs = o.sgs.get_obsidxs(data);
             [no_reps, no_bites] = size(obsidxs); %#ok<NASGU>
             
             if ~o.flag_parallel
@@ -46,7 +44,7 @@ classdef fselrepeater < as
                 ipro = progress2_open('Feature Selection Repeater', [], 0, no_reps);
                 for i_rep = 1:no_reps % Cross-validation loop
                     % #SAMECODE begin
-                    datanow = o.data.split_map(obsidxs(i_rep, :), [], ff);
+                    datanow = data.split_map(obsidxs(i_rep, :), [], ff);
                     fsel_ = o.as_fsel;
                     fsel_.data = datanow;
                     log = fsel_.go(); % GO!
@@ -63,7 +61,7 @@ classdef fselrepeater < as
 
                 parfor i_rep = 1:no_reps % Cross-validation loop
                     % #SAMECODE begin
-                    datanow = o.data.split_map(obsidxs(i_rep, :), [], ff); %#ok<PFBNS>
+                    datanow = data.split_map(obsidxs(i_rep, :), [], ff); %#ok<PFBNS>
                     fsel_ = o.as_fsel;
                     fsel_.data = datanow;
                     log = fsel_.go(); % GO!
@@ -77,9 +75,9 @@ classdef fselrepeater < as
             end;
             
             log = log_fselrepeater();
-            log.fea_x = o.data.fea_x;
-            log.xname = o.data.xname;
-            log.xunit = o.data.xunit;
+            log.fea_x = data.fea_x;
+            log.xname = data.xname;
+            log.xunit = data.xunit;
             log.logs = logs;
         end;
     end;

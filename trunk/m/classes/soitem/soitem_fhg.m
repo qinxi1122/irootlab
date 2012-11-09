@@ -6,4 +6,14 @@ classdef soitem_fhg < soitem_sostagechoice
         stab;
         s_methodology;
     end;
+    
+    methods
+        function o = soitem_fhg()
+            o.moreactions = [o.moreactions, 'extract_log_fselrepeater'];
+        end;
+        
+        function out = extract_log_fselrepeater(o)
+            out = o.log;
+        end;
+    end;
 end

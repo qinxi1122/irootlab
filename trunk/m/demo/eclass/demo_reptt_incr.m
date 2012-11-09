@@ -7,10 +7,10 @@
 %> @image html demo_reptt_incr.png
 
 if 1
-    ds01 = load_she5trays();
+    ds01 = load_data_she5trays();
     ds01 = data_select_hierarchy(ds01, 2); % Only N/T
 else
-    ds01 = load_uci_wine();
+    ds01 = load_data_uci_wine();
 end;
 
 % 90% for training, 10% separate test set

@@ -8,10 +8,17 @@ function format_xaxis(par)
 if exist('par', 'var')
     if isa(par, 'irdata')
         if ~isempty(par.fea_names)
-            if ~isempty(par.fea_x)
-                set(gca, 'XTick', par.fea_x);
+            nf = numel(par.fea_x);
+            MAXTICKS = 16; % Maximum 12 ticks
+            nins = nf/MAXTICKS; 
+            if nins > 1
+                ii = round(1:nins:nf);
+            else
+                ii = 1:nf;
             end;
-            set(gca, 'XTickLabel', par.fea_names);
+                
+            set(gca, 'XTick', par.fea_x(ii));
+            set(gca, 'XTickLabel', par.fea_names(ii));
         end;
     end;
     
@@ -49,12 +56,13 @@ end;
 A = .99;
 if x1 == x2
     xabs = abs(x1);
-    set(gca, 'xlim', [x1+xabs*.9, x1+xabs*1.1]);
+    v_xlim = [x1+xabs*.9, x1+xabs*1.1];
 elseif x1 > x2
     set(gca, 'XDir', 'reverse');
-    set(gca, 'Xlim', [x2*A, x1+(x2*(1-A))]);
+    v_xlim = [x2*A, x1+(x2*(1-A))];
 else
-    set(gca, 'Xlim', [x1*A, x2+(x1*(1-A))]);
+    v_xlim = [x1*A, x2+(x1*(1-A))];
 end;
 
-
+% Xlim
+set(gca, 'XLim', v_xlim);

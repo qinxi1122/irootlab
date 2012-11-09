@@ -64,10 +64,12 @@ classdef log_hist < log_grades
                     if i < ni
                         set(gca, 'xtick', []);
                     end;
+                    make_box();
                 end;
             else
                 v = sum(o.hitss(idxs, :), 1);
                 draw_loadings(o.fea_x, v, xhint, yhint, [], 0, [], 0, 0, 0, 1);
+                make_box();
                 title(sprintf('Histograms taken: %s', mat2str(idxs)));
             end;
         end;
@@ -102,6 +104,7 @@ classdef log_hist < log_grades
             draw_stacked(o.fea_x, o.hitss, o.nf4grades, colors, xhint, yhint, peakdetector, 1, 1, 1, 1);
             format_xaxis(o);
             format_yaxis(o);
+            make_box();
         end;
         
         %> Draws each per-feature-position histogram as a line
@@ -114,6 +117,7 @@ classdef log_hist < log_grades
             format_xaxis(o);
             format_yaxis(o);
             format_frank();
+            make_box();
         end;
     end;
 end

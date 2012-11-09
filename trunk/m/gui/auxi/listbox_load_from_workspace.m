@@ -7,12 +7,18 @@
 %> @param classname
 %> @param h_list Handle to listbox or popupmenu
 %> @param flag_blank=0 Whether to include a "(leave blank)" option
-%> @param String to show instead of the default <b>(leave blank)</b> or <b>(none)</b> entries
-function listbox_load_from_workspace(classname, h_list, flag_blank, string_empty)
+%> @param string_empty (optional) String to show instead of the default <b>(leave blank)</b> or <b>(none)</b> entries
+%> @param input (optional) (may be either a string with a class name or an instance of such class) 
+%>        Input class to match. This is applicable only if @c classname is "block" or descendant.
+function listbox_load_from_workspace(classname, h_list, flag_blank, string_empty, input)
+
+if ~exist('input', 'var') 
+    input = [];
+end;
 
 idxs = get(h_list, 'Value');
 
-vars = get_varnames(classname);
+vars = get_varnames(classname, input);
 
 if ~exist('flag_blank', 'var') 
     flag_blank = 0;

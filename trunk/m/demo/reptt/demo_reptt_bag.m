@@ -7,7 +7,7 @@
 %>@image html Screenshot-demo_reptt_bag_result.png
 colors_markers();
 
-ddemo = load_she5trays;
+ddemo = load_data_she5trays;
 ddemo = data_select_hierarchy(ddemo, 1);
 
 

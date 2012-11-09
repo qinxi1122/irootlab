@@ -11,8 +11,6 @@
 %> @sa reptt_sgs.m
 classdef factorscurve < as
     properties
-        %> Input dataset
-        data;
         fcon_mold;
         %> The classifier
         clssr;
@@ -37,31 +35,32 @@ classdef factorscurve < as
             o.moreactions = [o.moreactions, {'go', 'extract_reptt'}];
         end;
 
-        function u = create_cube(o)
+        function u = create_cube(o, data)
             l1 = estlog_classxclass();
-            l1.estlabels = o.data.classlabels;
-            l1.testlabels = o.data.classlabels;
+            l1.estlabels = data.classlabels;
+            l1.testlabels = data.classlabels;
             l1.title = 'rates';
 
             u = reptt_blockcube();
             u.log_mold = {l1};
-            if numel(o.data) == 1
+            if numel(data) == 1
                 u.sgs = def_sgs(o.sgs);
             end;
             u.flag_parallel = o.flag_parallel;
 
             u.postpr_test = o.postpr_test;
             u.postpr_est = o.postpr_est;
-            u.data = o.data;
+            u.data = data;
         end;
-
-        
+    end;
+    
+    methods(Access=protected)
         %> @return irdata object
-        function out = go(o)
+        function [o, out] = go(o, data)
             if isempty(o.no_factors_max)
-                neff = o.data.nf;
+                neff = data.nf;
             else
-                neff = min(o.no_factors_max, o.data.nf);
+                neff = min(o.no_factors_max, data.nf);
             end;
             ss = pre_std(); % Standardization block
             bb = cell(1, neff); % Cell array of blocks
@@ -77,7 +76,7 @@ classdef factorscurve < as
                 bb{i} = blk;
             end;
             
-            u = o.create_cube();
+            u = o.create_cube(data);
             u.block_mold = bb;
             log = u.go();
             
@@ -94,6 +93,5 @@ classdef factorscurve < as
             out.classlabels = {o.fcon_mold.get_description()};
             out = out.assert_fix();
         end;
-
     end;
 end

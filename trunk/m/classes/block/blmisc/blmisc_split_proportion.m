@@ -26,7 +26,7 @@ classdef blmisc_split_proportion < blmisc_split
                 cut = floor(data.no_groups*o.proportion);
                 v1 = data.get_obsidxs_from_groupidxs(p(1:cut));
                 v2 = data.get_obsidxs_from_groupidxs(p(cut+1:end));
-                data = data.split_map({v1, v2});
+                datasets = data.split_map({v1, v2});
             end;
         end;
     end;  

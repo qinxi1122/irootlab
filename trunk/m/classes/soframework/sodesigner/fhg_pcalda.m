@@ -1,4 +1,4 @@
-%> FHG - Feature Histogram Generator - set for a univariate Feature Selection using the Fisher criterion
+%> FHG - Feature Histogram Generator
 %>
 %>
 classdef fhg_pcalda < fhg

@@ -38,6 +38,11 @@ end
 
 % --- Executes just before uip_subsetsprocessor is made visible.
 function uip_subsetsprocessor_OpeningFcn(hObject, eventdata, handles, varargin)
+if nargin >= 5
+    handles.inputlog = varargin{2};
+else
+    handles.inputlog = [];
+end;
 if numel(varargin) < 3
     handles.input.flag_needs_fsg = 0;
 else
@@ -46,7 +51,6 @@ end;
 handles.output.flag_ok = 0;
 guidata(hObject, handles);
 gui_set_position(hObject);
-refresh(handles);
 
 % --- Outputs from this function are returned to the command clae.
 function varargout = uip_subsetsprocessor_OutputFcn(hObject, eventdata, handles) 
@@ -63,10 +67,6 @@ end;
 
 %############################################
 
-%#########
-function refresh(handles)
-listbox_load_from_workspace('log_fselrepeater', handles.popupmenu_input, 1);
-
 
 %#########
 function view1(handles)
@@ -74,44 +74,32 @@ cla(handles.axes1, 'reset');
 axes(handles.axes1); %#ok<MAXES>
 hold off;
 
-sinput = listbox_get_selected_1stname(handles.popupmenu_input);
+input = handles.inputlog;
 
-if isempty(sinput)
+if isempty(input)
     msgbox('Cannot draw, input not specified!', 'Information');
 else
     try
         set(handles.text_wait, 'String', 'Wait...', 'ForegroundColor', [0, 0, .8]);
-        obj = evalin('base', [sinput, ';']); %#ok<NASGU>
-        eval([sinput, ' = obj;']); % Creates variable with same name as in base workspace, so that the next line is executed.
         o = subsetsprocessor();
         eval(['o = o.setbatch(', params2str(get_params(handles)), ');']);
         set(handles.text_wait, 'String', 'Ok', 'ForegroundColor', [0, 0.7, 0]);
-        log_hist = o.go();
+        log_hist = o.use(input);
         log_hist.draw_stackedhists([], {[], .80*[1, 1, 1]}, def_peakdetector());
     catch ME
         set(handles.text_wait, 'String', '');
-        irerrordlg(ME.message, 'Error');
+        send_error(ME); % irerrordlg(ME.message, 'Error');
     end;
 end;
 
 
 %#########
 function params = get_params(handles)
-    
-sinput = listbox_get_selected_1stname(handles.popupmenu_input);
-if isempty(sinput)
-    sinput = '[]'; %irerror('Input not specified!');
-end;
-    
 nf4gradesmodes = {'fixed', 'stability'};
 snf4gradesmode = nf4gradesmodes{get(handles.popupmenu_nf4gradesmode, 'Value')};
-    
-stabilitytypes = {'kuncheva'};
+stabilitytypes = {'kun'};
 sstabilitytype = stabilitytypes{get(handles.popupmenu_stabilitytype, 'Value')};
-  
-    
 params = {...
-        'input', sinput, ...
         'nf4gradesmode', ['''' snf4gradesmode ''''], ...
         'stabilitytype', ['''' sstabilitytype ''''], ...
         'nf4grades', int2str(eval(get(handles.edit_nf4grades, 'String'))), ...

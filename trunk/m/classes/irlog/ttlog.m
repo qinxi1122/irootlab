@@ -16,7 +16,7 @@ classdef ttlog < irlog
 
     methods(Access=protected)
         %> Abstract.
-        function o = do_record(o, est, dref, clssr)
+        function o = do_record(o, est, ds_test, clssr)
         end;
         
         %> Abstract. Called to pre-allocate matrices. Must be called only when @c collabels and @c rowlabels can be resolved
@@ -33,7 +33,7 @@ classdef ttlog < irlog
             o.moreactions{end+1} = 'extract_datasets';
         end;
         
-        %> @param pars Structure with varying fields: @c .dref ; %c .est ; @c .clssr .
+        %> @param pars Structure with varying fields: @c .ds_test ; %c .est ; @c .clssr .
         function o = record(o, pars) %#ok<*INUSD>
         end;
         

@@ -1,3 +1,5 @@
+THink about a name for this and possible descendants
+
 %> @brief REPeated Train-Test
 %>
 %> Different behaviuors and applications implemented in descendants.

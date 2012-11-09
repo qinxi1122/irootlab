@@ -5,7 +5,7 @@
 %>@image html demo_rater_result03.png
 colors_markers();
 
-ddemo = load_she5trays;
+ddemo = load_data_she5trays;
 ddemo = data_select_hierarchy(ddemo, 1); % Selects B/C/E/F/G classes only
 
 o = rater();

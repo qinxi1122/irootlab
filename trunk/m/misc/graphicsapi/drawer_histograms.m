@@ -1,5 +1,5 @@
 %> @ingroup graphicsapi
-%> @brief Draws a set of histograms in a subplot
+%> @brief Draws 2 subplots, one with individual rank-wise hits, and on the right, a histogram using given subsetsprocessor
 %>
 %> This class is auxiliary for report generation
 classdef drawer_histograms
@@ -13,7 +13,7 @@ classdef drawer_histograms
     methods
         %> 3 subplots
         %> @param log log_fselrepeater
-        function o = draw(o, log)
+        function hist = draw(o, log)
             ds_hint = load_hintdataset();
 
             
@@ -22,8 +22,7 @@ classdef drawer_histograms
             
             % First shows the individual individual per-selection-order histograms as lines overlapping each other
             ssp = subsetsprocessor(); %#ok<CPROP,PROP>
-            ssp.input = log;
-            hist = ssp.go();
+            hist = ssp.use(log);
             
             subplot(1, 2, 1);
             hist.draw_as_lines();
@@ -38,8 +37,7 @@ classdef drawer_histograms
             
             % Second plot is a stacked histogram calculated using the subsetsprocessor
             ssp = def_subsetsprocessor(o.subsetsprocessor);
-            ssp.input = log;
-            hist = ssp.go();
+            hist = ssp.use(log);
 
             subplot(1, 2, 2);
             hist.draw_stackedhists(ds_hint, {[], .8*[1 1 1]}, def_peakdetector(o.peakdetector));
@@ -61,8 +59,7 @@ classdef drawer_histograms
             ds_hint = [];
             
             ssp = subsetsprocessor(); %#ok<CPROP,PROP>
-            ssp.input = log;
-            hist = ssp.go();
+            hist = ssp.use(log);
 
             % Second plot is a stacked histogram with all features informative
             hist.draw_stackedhists(ds_hint, {[], [.8, .8, .8]}, def_peakdetector(o.peakdetector));

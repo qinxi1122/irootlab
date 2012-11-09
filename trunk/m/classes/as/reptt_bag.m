@@ -1,3 +1,4 @@
+Would be good to honour
 %> @ingroup as needsrevision
 %>
 %> @todo I will probably delete this class because I won't work with bagging anyway
@@ -181,12 +182,12 @@ classdef reptt_bag < reptt
 
 
                     if ~isempty(o.postpr_test)
-                        dref = o.postpr_test.use(o.datasets(i_rep, 2));
+                        ds_test = o.postpr_test.use(o.datasets(i_rep, 2));
                     else
-                        dref = o.datasets(i_rep, 2);
+                        ds_test = o.datasets(i_rep, 2);
                     end;
 
-                    pars = struct('est', {est}, 'dref', {dref}, 'clssr', {bl});
+                    pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {bl});
                     for j = 1:nl
                         o.logs{j, i, o.i_bagrep} = o.logs{j, i, o.i_bagrep}.record(pars);
                     end;

@@ -19,6 +19,7 @@ classdef vis_scatter2d < vis
         function [o, out] = do_use(o, obj)
             out = [];
             data_draw_scatter_2d(obj, o.idx_fea, o.confidences, o.textmode);
+            make_box();
         end;
     end;
 end

@@ -32,17 +32,17 @@ classdef estlog_classxclass < estlog
 
         function o = do_record(o, pars)
             est = pars.est;
-            dref = pars.dref;
-            if numel(est.classes) ~= numel(dref.classes)
+            ds_test = pars.ds_test;
+            if numel(est.classes) ~= numel(ds_test.classes)
                 irerror('Number of items in estimation is different from number of items in reference dataset!');
             end;
             estclasses = renumber_classes(est.classes, est.classlabels, o.estlabels);
             for i = 1:numel(o.testlabels)
-                classidx = find(strcmp(o.testlabels{i}, dref.classlabels)); % rowlabel of turn class index in reference dataset
+                classidx = find(strcmp(o.testlabels{i}, ds_test.classlabels)); % rowlabel of turn class index in reference dataset
                 if isempty(classidx)
                     % Class was not tested <--> not present in reference (test) dataset
                 else
-                    rowidxs = dref.classes == classidx-1; % Indexes of rows belonging to i-th class
+                    rowidxs = ds_test.classes == classidx-1; % Indexes of rows belonging to i-th class
                     sel = estclasses(rowidxs);
                     if o.flag_support
                         supp = est.X(rowidxs, 1)';

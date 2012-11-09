@@ -16,8 +16,6 @@
 %> [1] Wolpert, "Stacked Generalization", 1992.
 %>
 %> [2] Kuncheva, "Combining Pattern Classifiers", 2004, page 109.
-%>
-%> @sa blsp_crossc
 classdef as_crossc < as
     properties
         sgs;
@@ -26,8 +24,6 @@ classdef as_crossc < as
     end;
     
     properties (SetAccess=protected)
-        data_out;
-        blocks;
         obsidxs;
         %> This will be set at go() time and used subsequently to reorder
         %> the classlabels of extracted dataset(s)
@@ -41,11 +37,11 @@ classdef as_crossc < as
     end;
     
     
-    methods
+    methods(Access=protected)
         %> Populates the @ref log_crossc and @ref data_out properties
         %>
         %> @todo does not check whether there are differences in the number of variables
-        function log = go(o)
+        function [o, log] = do_use(o)
             log = log_as_crossc();
             if isempty(o.sgs)
                 log.sgs = get_default_sgs_crossc();
@@ -71,20 +67,6 @@ classdef as_crossc < as
 
                 block = mold_.train(d_train);
                 if flag_linear
-
-% % % %                     % If linear case, will create fixed transformations instead
-% % % %                     log = fcon_linear_fixed();
-% % % %                     log.L = block.L;
-% % % %                     log.L_fea_x = o.data.fea_x;
-% % % %                     log.xname = o.data.xname;
-% % % %                     log.xunit = o.data.xunit;
-% % % %                     
-% % % %                     block = out;
-% % % %                    
-% % % %                     Claro que nao, vai inserir um +1/-1 bloco aqui
-                    
-                    
-                    
                     if i_rep > 1
                         if any(size(block.L) ~= size(block_last.L))
                             s = ['Sorry, mate but blocks are giving different L sizes: ', mat2str([size(block.L)]), ...
@@ -122,7 +104,6 @@ classdef as_crossc < as
                 ipro = progress2_change(ipro, [], [], i_rep);
             end;
             progress2_close(ipro);
-            
             
             log.classlabels = o.data.classlabels;
         end;

@@ -71,6 +71,7 @@ classdef fcon_mea_pick < fcon_mea
             
             format_xaxis(data);
             format_frank();
+            make_box();
         end;
     end;
     

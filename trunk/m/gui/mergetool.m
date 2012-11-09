@@ -1,7 +1,13 @@
 %> @ingroup guigroup mainguis
 %> @file
-%> @brief Tool to merge several files into a new dataset.
+%> @brief Tool to merge several single-spectrum files into a dataset.
 %> @image html Screenshot-mergetool.png
+%>
+%> <b>File type</b> - Currently supported types are:
+%> @arg "Pirouette .DAT" text format
+%> @arg OPUS binary format
+%> @arg Wire TXT format
+%>
 %> <b>Directory containing multiple files</b> - directory containing multiple single-spectrum files.
 %>
 %> <b>File filter</b> - wildcard filter. Examples: <code>*.*</code>; <code>*.dat</code>; <code>*.DAT</code>

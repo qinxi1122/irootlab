@@ -5,6 +5,7 @@ classdef report_soitem_fhg < report_soitem
     properties
         peakdetector;
         subsetsprocessor;
+        data_hint;
     end;
     
     methods
@@ -37,15 +38,34 @@ classdef report_soitem_fhg < report_soitem
             od.subsetsprocessor = o.subsetsprocessor;
             od.peakdetector = o.peakdetector;
             
-            figure;
-            od.draw(log_rep);
-            maximize_window([], 6);
-            s = o.save_n_close([], 0);
+            v = vis_stackedhists();
+            v.data_hint = o.data_hint;
+            v.peakdetector = def_peakdetector(o.peakdetector);
             
+            s = '';
+            
+            % Legend
             figure;
             od.draw_for_legend(log_rep);
             show_legend_only();
             s = cat(2, s, o.save_n_close([], 0));
+
+            % 2-subplot
+            figure;
+            hist = od.draw(log_rep);
+            maximize_window([], 6);
+            s = cat(2, s, o.save_n_close([], 0));
+
+            % One histogram only
+            
+            figure;
+            v.use(hist);
+            set(gca, 'color', 1.15*[0.8314    0.8157    0.7843]);
+            maximize_window(gcf(), 4);
+            set(gcf, 'InvertHardCopy', 'off'); % This is apparently needed to preserve the gray background
+            set(gcf, 'color', [1, 1, 1]);
+            legend off;
+            s = cat(2, s, o.save_n_close());
 
             % Stability curve
             ds_stab = log_rep.extract_dataset_stabilities();

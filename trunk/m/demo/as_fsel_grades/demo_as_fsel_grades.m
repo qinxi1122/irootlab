@@ -4,7 +4,7 @@
 %>
 %> This file demonstrates how to use @ref as_fsel_grades class.
 
-ds = load_she5trays();
+ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2);
 
 o = clssr_d();

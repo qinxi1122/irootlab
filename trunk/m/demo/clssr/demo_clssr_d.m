@@ -7,7 +7,7 @@
 %>
 %> @image html demo_clssr_d_result01.png
 
-dslila = load_userdata_nc2nf2;
+dslila = load_data_userdata_nc2nf2;
 
 clssr = clssr_d();
 clssr.flag_use_priors = 0;

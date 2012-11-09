@@ -1,10 +1,8 @@
 %> @brief Feature Selection based on a "grades" vector.
 %>
-%> "grades" = <code>o.input.grades</code>
+%> Input class is @ref log_grades
 %>
-%> The "grades" vector is typically calculated by a @ref as_grades class.
-%>
-%> Based on "grades", the features are selected in a three-step procedure:
+%> The features are selected in a two steps:
 %>
 %> <h3>Stage 1 (optional)</h3>
 %> In this step, a @ref peakdetector is used to select "peak" features for the next stage. If this stage is skipped, all the features remain
@@ -20,9 +18,6 @@
 %> This is univariate feature selection
 classdef as_fsel_grades < as_fsel
     properties
-        %> A @ref log_grades object
-        input;
-        
         %> =10
         nf_select = 10;
         %> =.03
@@ -30,7 +25,7 @@ classdef as_fsel_grades < as_fsel
         %> ='nf'. Possibilities: 
         %> @arg 'none': Skips the second stage
         %> @arg 'nf': o.nf_select best ranked will be selected
-        %> @arg 'threshold': features with grade (o.input.grades property) above o.threshold will be selected
+        %> @arg 'threshold': features with grade above o.threshold will be selected
         type = 'nf';
         %> =[].
         peakdetector = [];
@@ -47,19 +42,22 @@ classdef as_fsel_grades < as_fsel
     methods
         function o = as_fsel_grades()
             o.classtitle = 'Grades-based';
+            o.inputclass = 'log_grades';
         end;
-
+    end;
+    
+    methods(Access=protected)
         
-        function log = go(o)
+        function [o, log] = do_use(o, input)
             log = log_as_fsel_grades();
             log.flag_peaks = ~isempty(o.peakdetector);
             log.type = o.type;
-            log.fea_x = o.input.fea_x;
-            log.xname = o.input.xname;
-            log.xunit = o.input.xunit;
-            log.yname = o.input.yname;
-            log.yunit = o.input.yunit;
-            log.grades = o.input.grades;
+            log.fea_x = input.fea_x;
+            log.xname = input.xname;
+            log.xunit = input.xunit;
+            log.yname = input.yname;
+            log.yunit = input.yunit;
+            log.grades = input.grades;
             log.threshold = o.threshold;
             
 
@@ -67,11 +65,11 @@ classdef as_fsel_grades < as_fsel
             
             %%%%% STAGE 1 (optional): peak detection
             if ~log.flag_peaks
-                yidxs = o.input.grades;
+                yidxs = input.grades;
                 idxs = 1:numel(yidxs);
             else
-                idxs = o.peakdetector.use(o.input.fea_x, o.input.grades);
-                yidxs = o.input.grades(idxs);
+                idxs = o.peakdetector.use(input.fea_x, input.grades);
+                yidxs = input.grades(idxs);
             end;
             howsorted = INDEX;
             

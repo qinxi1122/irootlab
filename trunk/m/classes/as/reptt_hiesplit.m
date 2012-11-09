@@ -1,3 +1,4 @@
+Would be good to honour
 %> @brief Hierarchical split 
 %> @ingroup as needsrevision
 %>
@@ -128,7 +129,7 @@ classdef reptt_hiesplit < reptt
                             irerror('Estimation post-processing did not assign classes!');
                         end;
 
-                        pars = struct('est', {est}, 'dref', {o.pvt_data_test}, 'clssr', {bl});
+                        pars = struct('est', {est}, 'ds_test', {o.pvt_data_test}, 'clssr', {bl});
                         for j = 1:nl
                             o.logs{j, i, i_rep} = o.logs{j, i, i_rep}.record(pars);
                         end;

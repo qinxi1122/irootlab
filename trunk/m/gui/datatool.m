@@ -6,7 +6,7 @@
 %
 %> @cond
 function varargout = datatool(varargin)
-% Last Modified by GUIDE v2.5 29-Oct-2012 15:49:39
+% Last Modified by GUIDE v2.5 08-Nov-2012 12:32:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -530,5 +530,3 @@ function pushbutton_all_Callback(hObject, eventdata, handles)
 datatool_status('');
 do_block(1, 'block');
 %> @endcond
-
-

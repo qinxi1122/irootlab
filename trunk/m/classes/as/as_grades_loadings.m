@@ -1,8 +1,7 @@
 %> @ingroup as tentative
-%> @brief Calculates grades as loadings vector
+%> @brief Extracts loadings vector as grades
 %>
-%> @sa feasel_corr
-classdef as_grades_loadings < as_grades_data
+classdef as_grades_loadings < as_grades
     properties
         %> @ref fcon_linear block to calculade loadings
         fcon_linear;
@@ -14,9 +13,11 @@ classdef as_grades_loadings < as_grades_data
         function o = as_grades_loadings()
             o.classtitle = 'Loadings';
         end;
-
-        function out = go(o)
-            da1 = o.data(1);
+    end;
+    
+    methods(Access=protected)
+        function [o, out] = do_use(o, data)
+            da1 = data(1);
 
             blk = o.fcon_linear.boot();
             blk = blk.train(da1);

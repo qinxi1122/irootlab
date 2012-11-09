@@ -27,25 +27,25 @@ classdef fsg_clssr < fsg
                 z = zeros(npair, nidx);
                 for ipair = 1:npair % Pairwise LOOP
                     for itt = ntt:-1:1 % Backwards to pre-allocate
-                        traintest(:, itt) = o.datasets(ipair, itt).select_features(idxs)';
+                        train_test(:, itt) = o.datasets(ipair, itt).select_features(idxs)';
                     end;
 
                     for iidx = nidx:-1:1
 %                         t = tic();
                         cl = o.clssr.boot();
-                        cl = cl.train(traintest(iidx, 1));
+                        cl = cl.train(train_test(iidx, 1));
                         for k = 2:ntt
                             
-                            est = cl.use(traintest(iidx, k));
+                            est = cl.use(train_test(iidx, k));
                             est = o.postpr_est.use(est);
 
                             if ~isempty(o.postpr_test)
-                                dref = o.postpr_test.use(traintest(iidx, k));
+                                ds_test = o.postpr_test.use(train_test(iidx, k));
                             else
-                                dref = traintest(iidx, k);
+                                ds_test = train_test(iidx, k);
                             end;
 
-                            pars = struct('est', {est}, 'dref', {dref}, 'clssr', {cl});
+                            pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {cl});
 
                             lo = o.estlog.allocate(1);
                             lo = lo.record(pars);
@@ -64,7 +64,7 @@ classdef fsg_clssr < fsg
 %                     for irep = nreps:-1:1
 %                         for itt = 2:-1:1 % Backwards to pre-allocate
 %                             % (feature case, whether train/test, sgs repetition)
-%                             traintest(:, itt, irep) = dd(irep, itt).select_features(idxs)';
+%                             train_test(:, itt, irep) = dd(irep, itt).select_features(idxs)';
 %                         end;
 %                     end;
 
@@ -99,12 +99,12 @@ classdef fsg_clssr < fsg
                                 est = o.postpr_est.use(est);
 
                                 if ~isempty(o.postpr_test)
-                                    dref = o.postpr_test.use(dnow(k));
+                                    ds_test = o.postpr_test.use(dnow(k));
                                 else
-                                    dref = dnows(irep, k, iidx);
+                                    ds_test = dnows(irep, k, iidx);
                                 end;
 
-                                pars = struct('est', {est}, 'dref', {dref}, 'clssr', {cl});
+                                pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {cl});
                                 lo(k-1) = lo(k-1).record(pars);
                             end;
                         end;

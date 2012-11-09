@@ -19,8 +19,8 @@ classdef fsg_test_fisher < fsg_test
     end;
     
     methods
-        function o = fsg_test_var(o)
-            o.classtitle = 'Variance';
+        function o = fsg_test_fisher(o)
+            o.classtitle = 'Fisher''s test';
             o.flag_pairwise = 0;
             o.flag_univariate = 1;
             o.flag_params = 0;

@@ -41,7 +41,7 @@ classdef fitest < sodesigner
                 item = o.process_item(items{i});
                 blk = item.dia.get_block(); % I am not sure whether it is a diaa or what, here
                 
-                logs = singlett(logs, blk, ds_fit, ds_est, postpr_test, postpr_est);
+                logs = traintest(logs, blk, ds_fit, ds_est, postpr_test, postpr_est);
             end;
                 
             out = sodataitem_fitestout();

@@ -8,11 +8,11 @@
 %> @param S Matrix of standard deviations. This one must be a matrix
 %> @param rowlabels cell of row labels
 %> @param collabels cell of column labels
-%> @param B matrix with 2-bit elements: less significant bit: "flag_better"; most significant bit: "statistically significant?"
 %> @param cornerstr =''. String to put in the corner
 %> @param minimum
 %> @param maximum
-function s = html_table_std_colors(M, S, rowlabels, collabels, cornerstr, minimum, maximum)
+%> @param pow =10. Color function power. See internal function cellcolor2()
+function s = html_table_std_colors(M, S, rowlabels, collabels, cornerstr, minimum, maximum, pow)
 
 flag_std = nargin > 1 && ~isempty(S);
 
@@ -25,6 +25,9 @@ end;
 if nargin < 7 || isempty(maximum)
     maximum = max(M(:));
 end;
+if nargin < 8 || isempty(pow)
+    pow = 10;
+end;
 
 
 funla = @(x) ['<td class="bob"><div class="hec">', iif(isnumeric(x), mat2str(x), x), '</div></td>'];
@@ -36,9 +39,14 @@ s = cat(2, s, sprintf('<tr><td class="bobbor">%s</td>', cornerstr), cat(2, hete{
 for i = 1:size(M, 1)
     s = cat(2, s, '<tr><td class="bor"><div class="hel">', iif(isnumeric(rowlabels{i}), mat2str(rowlabels{i}), rowlabels{i}), '</td>', 10);
     for j = 1:size(M, 2)
-        [fg, bg] = cellcolor2(M(i, j), minimum, maximum);
+        [fg, bg] = cellcolor2(M(i, j), minimum, maximum, pow);
+        if flag_std
+            ssij = ['&plusmn;', num2str(S(i, j))];
+        else
+            ssij = '';
+        end;
         s = cat(2, s, '<td class="nu" style="background-color: #', bg, '; color: #', fg, ';">', ...
-            num2str(M(i, j)), iif(flag_std, ['&plusmn;', num2str(S(i, j))], ''), '</td>', 10);
+            num2str(M(i, j)), ssij, '</td>', 10);
     end;
     s = cat(2, s, '</tr>', 10);
 end;
@@ -56,7 +64,7 @@ s = cat(2, s, '</table>', 10);
 %> @param n intensity
 %> @param ma Maximum
 %> @retval [bgcolor] or [bgcolor, fgcolor]
-function [fg, bg] = cellcolor2(n, min, max)
+function [fg, bg] = cellcolor2(n, min, max, pow)
 
 
 % n = exp(n);
@@ -64,9 +72,9 @@ function [fg, bg] = cellcolor2(n, min, max)
 % max = exp(max);
 
 
-n = n^10;
-min = min^10;
-max = max^10;
+n = n^pow;
+min = min^pow;
+max = max^pow;
 
 
 N = 100;

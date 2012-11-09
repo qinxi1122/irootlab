@@ -31,12 +31,12 @@ classdef estlog_groupxclass < estlog
         function o = do_record(o, pars)
             est = pars.est;
             estclasses = renumber_classes(est.classes, est.classlabels, o.estlabels);
-            dref = pars.dref;
-            [drefgroupcodes, dummy, map] = unique(dref.groupcodes); % map contains information similar to crossvalind() output, i.e., repeated numbers mean same group.
+            ds_test = pars.ds_test;
+            [ds_testgroupcodes, dummy, map] = unique(ds_test.groupcodes); % map contains information similar to crossvalind() output, i.e., repeated numbers mean same group.
             for i = 1:max(map)
-                idxi = find(strcmp(drefgroupcodes{i}, o.groupcodes)); % Finds where current group sits in o.groupcodes
+                idxi = find(strcmp(ds_testgroupcodes{i}, o.groupcodes)); % Finds where current group sits in o.groupcodes
                 if isempty(idxi)
-                    irerror(sprintf('Group "%s" not found in groupcodes list!', drefgroupcodes{i}));
+                    irerror(sprintf('Group "%s" not found in groupcodes list!', ds_testgroupcodes{i}));
                 end;
                 
                 rowidxs = map == i;

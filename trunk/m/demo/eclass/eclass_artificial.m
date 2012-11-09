@@ -18,7 +18,7 @@ colors_markers();
 
 
 %Dataset load
-ds01 = load_userdata_nc2nf2;
+ds01 = load_data_userdata_nc2nf2;
 
 o = frbm();
 o = o.setbatch({'scale', 1.6, ...
@@ -78,7 +78,7 @@ lo = estlog_classxclass();
 lo.testlabels = dstest.classlabels;
 lo.estlabels = est2.classlabels;
 lo.flag_inc_t = 0;
-pars2.dref = dstest;
+pars2.ds_test = dstest;
 pars2.est = est2;
 lo = lo.allocate(1);
 lo = lo.record(pars2);

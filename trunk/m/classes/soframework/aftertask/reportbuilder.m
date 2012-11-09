@@ -2,12 +2,15 @@
 classdef reportbuilder
     properties
         map = {...
-               'soitem_diachoice', {'get_report_soitem_sovalues'}; ...
-%                'soitem_foldmerger_fitest', {'get_report_soitem_foldmerger_fitest'}; ...
-%                'soitem_fhg', {'get_report_soitem_fhg_histcomp'}; ...
+%                'soitem_sovalues', {'get_report_soitem_sovalues'}; ...
+               'soitem_items', {'get_report_soitem_items'}; ...
+               'soitem_foldmerger_fitest', {'get_report_soitem_foldmerger_fitest'}; ...
+               'soitem_fhgs', {'get_report_soitem_fhg', 'get_report_soitem_fhg_histcomp'}; ...
                'soitem_merger_fhg', {'get_report_soitem_merger_fhg'}; ...
                'soitem_merger_merger_fhg', {'get_report_soitem_merger_merger_fhg'}; ...
+               'soitem_merger_merger_fitest', {'get_report_soitem_merger_merger_fitest', 'get_report_soitem_merger_merger_fitest_1d'}; ...
               };
+          
         %> If activated, won't call the "use()" methods of the reports
         flag_simulation = 0;
     end;
@@ -35,7 +38,8 @@ classdef reportbuilder
             cd(o.dirname);
             try
                 s = cat(2, s, '<center>', o.process_dir(), '</center>', 10);
-                o_html = log_html;
+                o_html = log_html();
+                o_html.title = sprintf('Index of reports for directory "%s"', pwd());
                 o_html.html = s;
                 o.save('index.html', o_html);
                 cd(s_pwd);
@@ -50,7 +54,7 @@ classdef reportbuilder
             s = '';
             s_back = ['<p><input type="button" value="Back" onclick="window.history.back();" />&nbsp;&nbsp;<a href="index.html">Back</a></p>', 10];
             a = o.map;
-            classes = a(:, 1);
+            classes = a(:, 1); no_classes = numel(classes);
             getters = a(:, 2);
             
             dd = dir('../output*.mat'); % Probes if there is any mat file at current directory
@@ -64,6 +68,8 @@ classdef reportbuilder
                 s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
                 
                 ipro = progress2_open('Report builder', [], 0, no_files);
+                no_files_eff = no_files;
+                no_processed = 0;
                 for i = 1:no_files
                     fn = names{i};
                     try
@@ -72,39 +78,51 @@ classdef reportbuilder
                         
                         if ~exist('r', 'var')
                             % MAT file has no "r" variable, skips file
+                            no_files_eff = no_files_eff-1;
                         else
                             item = r.item;
-                            s_class = class(item);
-                            i_class = find(strcmp(classes, s_class));
-                            if isempty(i_class)
-                                % Class not handled, skips file
-                            else
-                                irverbose(sprintf('Processing file "%s"...', fn));
-                                s_getters = getters{i_class};
-                                s_reports = '';
-                                for j = 1:numel(s_getters)
-                                    o_report = o.(s_getters{j});
-                                    if ~o.flag_simulation
-                                        o_html = o_report.use(item);
-                                    else
-                                        o_html = log_html;
-                                        o_html.html = 'Ficassi tansu';
+                            flag_has = 0;
+                            s_reports = '';
+                            for z = 1:no_classes
+                                if isa(item, classes{z})
+                                    irverbose(sprintf('Processing file "%s"...', fn));
+                                    s_getters = getters{z};
+                                    for j = 1:numel(s_getters)
+                                        o_report = o.(s_getters{j});
+                                        o_report.title = ['File "', fn, '"'];
+                                        if ~o.flag_simulation
+                                            o_html = o_report.use(item);
+                                        else
+                                            o_html = log_html;
+                                            o_html.html = 'Simulation mode';
+                                        end;
+                                        if ~isempty(o_html.html)
+                                            flag_has = 1;
+                                            o_html.html = cat(2, s_back, o_html.html, s_back);
+                                            filename = [fn, '__', class(o_report), '.html'];
+                                            o.save(filename, o_html);
+                                            s_reports = cat(2, s_reports, sprintf('<a href="%s">%s</a><br />\n', filename, o_report.classtitle));
+                                        else
+                                            s_reports = cat(2, s_reports, sprintf('<font color=blue>Jogou fora um vazio %s</font><br />', filename));
+                                        end;
                                     end;
-                                    o_html.html = cat(2, s_back, o_html.html, s_back);
-                                    filename = [fn, '__', class(o_report), '.html'];
-                                    o.save(filename, o_html);
-                                    s_reports = cat(2, s_reports, sprintf('<a href="%s">%s</a><br />\n', filename, o_report.classtitle));
                                 end;
+                            end;
+                            
+                            if flag_has
                                 temp = cellfun(@(x) ['<td class=bob1>', x, '</td>', 10], {fn, num2str(r.time_go), item.get_description, item.dstitle, s_reports}, 'UniformOutput', 0);
                                 s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
+                                no_processed = no_processed+1;
+                            else
+                                no_files_eff = no_files_eff-1;
                             end;
                         end;                        
                     catch ME
-                        s = cat(2, s, '<tr>', '<td colspan=5 class=bob1>', strrep(ME.getReport(), char(10), '<br />'), '</td>', 10, '</tr>', 10);
+                        s = cat(2, s, '<tr>', sprintf('<td colspan=5 class=bob1><p>Error processing file "%s"</p>', fn), strrep(ME.getReport(), char(10), '<br />'), '</td>', 10, '</tr>', 10);
                         irverbose(sprintf('Failed processing file "%s": %s', fn, ME.message));
                     end;
                     
-                    ipro = progress2_change(ipro, [], [], i);
+                    ipro = progress2_change(ipro, [], [], no_processed, no_files_eff);
                 end;
                 progress2_close(ipro);
                 s = cat(2, s, '</table>', 10);
@@ -159,6 +177,14 @@ classdef reportbuilder
             r.subsetsprocessor = [];
         end;
 
+        function r = get_report_soitem_fhg_hist(o)
+            r = report_soitem_fhg_hist();
+            r.data_hint = load_hintdataset();
+            r.peakdetector = [];
+            r.subsetsprocessor = [];
+        end;
+
+        
         function r = get_report_soitem_fhg_histcomp(o)
             r = report_soitem_fhg_histcomp();
             r.flag_images = 1;
@@ -192,12 +218,25 @@ classdef reportbuilder
             r.flag_tables = 1;
             r.flag_ptable = 1;
         end;
-        
-
+                
         function r = get_report_soitem_foldmerger_fitest(o)
             r = report_soitem_foldmerger_fitest();
             r.flag_images = 1;
             r.flag_tables = 1;
-        end;        
+        end;
+        
+       function r = get_report_soitem_items(o)
+            r = report_soitem_items();
+       end;
+
+       function r = get_report_soitem_merger_merger_fitest(o)
+            r = report_soitem_merger_merger_fitest();
+            r.minimum = [];
+            r.maximum = [];
+       end;
+
+       function r = get_report_soitem_merger_merger_fitest_1d(o)
+            r = report_soitem_merger_merger_fitest_1d();
+       end;
     end;
 end

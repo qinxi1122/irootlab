@@ -84,6 +84,7 @@ classdef vis_curvefit < vis
             ylabel('Distance from reference class');
             title('Effect curve');
             format_frank();
+            make_box();
         end;
     end;
 end

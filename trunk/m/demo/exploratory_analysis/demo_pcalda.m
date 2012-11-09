@@ -1,4 +1,4 @@
-ds01 = load_she5trays();
+ds01 = load_data_she5trays();
 
 o = blmisc_classlabels_hierarchy();
 o = o.setbatch({'hierarchy', 1});

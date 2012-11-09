@@ -9,7 +9,7 @@ classdef reptt_blockcube < reptt
         %> instead
         sgs;
         
-        %>
+        %> Alternative to SGS
         obsidxs;
         
         %> =0. Whether to run in parallel mode!
@@ -89,12 +89,12 @@ classdef reptt_blockcube < reptt
                         end;
 
                         if ~isempty(o.postpr_test)
-                            dref = o.postpr_test.use(datasets(2));
+                            ds_test = o.postpr_test.use(datasets(2));
                         else
-                            dref = datasets(2);
+                            ds_test = datasets(2);
                         end;
 
-                        pars = struct('est', {est}, 'dref', {dref}, 'clssr', {bl});
+                        pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {bl});
                         for il = 1:nl
                             log.logs{ii, ij, ik, il} = log.logs{ii, ij, ik, il}.record(pars);
                         end;
@@ -146,12 +146,12 @@ classdef reptt_blockcube < reptt
                             end;
 
                             if ~isempty(o.postpr_test)
-                                dref = o.postpr_test.use(datasets(2));
+                                ds_test = o.postpr_test.use(datasets(2));
                             else
-                                dref = datasets(2);
+                                ds_test = datasets(2);
                             end;
 
-                            pars = struct('est', {est}, 'dref', {dref}, 'clssr', {bl});
+                            pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {bl});
                             for il = 1:nl
                                 if ids == 1
                                     v_logs{i}{il} = log.logs{ii, ij, ik, il}; %#ok<PFBNS>

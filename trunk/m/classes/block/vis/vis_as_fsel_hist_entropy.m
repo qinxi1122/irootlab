@@ -45,11 +45,13 @@ classdef vis_as_fsel_hist_entropy < vis
             plot(hitsentropy(a.hitss, 'uni'), 'LineWidth', scaled(2.5));
             title('Entropy of each histogram');
             format_frank();
-
+            make_box();
+            
             subplot(1, 2, 2);
             plot(hitsentropy(a.hitss, 'accum'), 'LineWidth', scaled(2.5));
             title('Entropy of accumulated histogram');
             format_frank(); 
+            make_box();
         end;
     end;
 end

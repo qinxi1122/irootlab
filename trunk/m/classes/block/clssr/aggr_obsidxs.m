@@ -15,7 +15,7 @@ classdef aggr_obsidxs < aggr
     end;
 
     methods
-        function o = aggr_bag(o)
+        function o = aggr_obsidxs()
             o.classtitle = 'Fixed sub-sampling';
         end;
     end;

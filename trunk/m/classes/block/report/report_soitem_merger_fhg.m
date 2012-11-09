@@ -258,6 +258,7 @@ classdef report_soitem_merger_fhg < report_soitem
                     end;
                     format_xaxis(ds_stab(1));
                     format_yaxis(ds_stab(1));
+                    make_box();
                     
                     if j == 1
                         legend(cat(2, ds_stab.classlabels));

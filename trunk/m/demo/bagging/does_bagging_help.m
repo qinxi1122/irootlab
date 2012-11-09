@@ -13,7 +13,7 @@
 
 
 
-ddemo = load_she5trays;
+ddemo = load_data_she5trays;
 ddemo = data_select_hierarchy(ddemo, 2); % N/T only
 
 sp = sgs_randsub();
@@ -122,7 +122,7 @@ for i = 1:n
     
     ss = struct();
     ss.est = est;
-    ss.dref = dstest;
+    ss.ds_test = dstest;
     ss.clssr = clssr;
     lob = lob.allocate(1);
     lob = lob.record(ss);
@@ -143,7 +143,7 @@ est = de.use(est);
 
 ss = struct();
 ss.est = est;
-ss.dref = dstest;
+ss.ds_test = dstest;
 ss.clssr = clssr;
 lob = lob.allocate(1);
 lob = lob.record(ss);

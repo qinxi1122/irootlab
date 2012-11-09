@@ -89,6 +89,7 @@ classdef log_celldata < irlog
             format_xaxis(o);
             format_yaxis(o);
             format_frank();
+            make_box();
         end;
 
         

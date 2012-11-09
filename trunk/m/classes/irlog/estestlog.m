@@ -69,7 +69,7 @@ classdef estestlog < ttlog
             z = o.log_mold.rowlabels;
         end;
 
-        %> This function needs @c pars to have @c dref , @c ests . Other fields depend on the specific class of @c log_mold
+        %> This function needs @c pars to have @c ds_test , @c ests . Other fields depend on the specific class of @c log_mold
         function o = record(o, pars)
             if ~pars.clssr.flag_ests
                 irerror('Classifier is not recording the estimations from the component classifiers!');

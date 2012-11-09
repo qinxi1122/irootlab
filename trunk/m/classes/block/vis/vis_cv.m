@@ -56,6 +56,7 @@ classdef vis_cv < vis
                       
                       
             format_xaxis(o.data_input);
+            make_box();
         end;
     end;
 end

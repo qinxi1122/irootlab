@@ -160,10 +160,10 @@ classdef mapitem < handle
                 end;
                 indent = [repmat('&nbsp;', 1, (l(i).level-1)*3), '<span style="background-color: #', color2hex(l(i).color), '">&nbsp;&nbsp;&nbsp;</span>&nbsp;'];
                 try
-                    obj = eval(l(i).name, '();');
+                    obj = eval([l(i).name, '();']);
                 catch ME
                     irverbose(sprintf('Error creating instance of class "%s"', l(i).name));
-                    rethrow ME;
+                    rethrow(ME);
                 end;
                 s = cat(2, s, '<tr><td>', indent, l(i).name, '</td><td>', indent, l(i).title, '</td>', ...
                               '<td>', obj.get_ancestry(1), '</td>', '</tr>', 10);

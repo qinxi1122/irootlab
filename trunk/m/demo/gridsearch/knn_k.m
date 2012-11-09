@@ -1,3 +1,5 @@
+Rewrite this using reptt_blockcube to show the concept
+
 %>@ingroup demo
 %>@file
 %>@brief Grid search to obtain best k-NN's k
@@ -8,7 +10,7 @@
 
 
 %Dataset load
-ds01 = load_uci_wine;
+ds01 = load_data_uci_wine;
 
 %Creates classifier
 clssr_knn01 = clssr_knn();

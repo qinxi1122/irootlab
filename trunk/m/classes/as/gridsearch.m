@@ -1,3 +1,5 @@
+Get rid of this once I rewrite the demos to be free of it
+
 %>@todo I feel like getting rid of this class
 %>@ingroup maths
 %> Grid Search
