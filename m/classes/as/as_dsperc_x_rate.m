@@ -1,5 +1,7 @@
 %> @brief (dataset %) x (classification rate) curve
 %>
+%> @ingroup as needsrevision
+%>
 %> Runs a repeated sub-sampling loop for a given percentual with recording each generated @ref ttlog. Then,
 %> Increases this percentual, runs the cross-validation loop again, and so on.
 %>

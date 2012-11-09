@@ -28,7 +28,7 @@ classdef fselrepeater < as
         %>
         %> This function may pass 1 or 2 datasets to the @ref as_fsel, depending on the @ref sgs property. It
         %> does not check whether the @ref as_fselrep::as_fsel needs one or two datasets.
-        function log = go(o, data)
+        function [o, log] = do_use(o, data)
             flag_fext = ~isempty(o.fext);
             if flag_fext
                 ff = o.fext.boot();

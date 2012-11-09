@@ -1,8 +1,5 @@
-Would be good to honour
 %> @brief Hierarchical split 
 %> @ingroup as needsrevision
-%>
-%> @todo I will probably get rid of this class, although it is interesting
 %>
 %> Feeds blocks with successive sub-datasets obtaining by splitting @c data using the @c hie_split class levels
 %>
@@ -32,7 +29,14 @@ classdef reptt_hiesplit < reptt
         pieces;
         pvt_data_test;
     end;
-    
+    methods
+        function o = reptt_hiesplit(o)
+            o.classtitle = 'Class-Hierarchical Split';
+%            o.moreactions = {'go', 'extract_logs', 'extract_curves'};
+            o.flag_ui = 0;
+        end;
+    end;
+%{    
     methods (Access=protected)
         %> Allocates cell of logs (no_logs)X(no_blocks)X(no_reps) allocated with no_pieces slots
         function o = allocate_logs(o)
@@ -77,11 +81,6 @@ classdef reptt_hiesplit < reptt
     
 
     methods
-        function o = reptt_hiesplit(o)
-            o.classtitle = 'Class-Hierarchical Split';
-            o.moreactions = {'go', 'extract_logs', 'extract_curves'};
-        end;
-        
         function o = go(o)
             o = o.boot_postpr(); % from reptt
 
@@ -170,4 +169,5 @@ classdef reptt_hiesplit < reptt
             end;
         end;
     end;
+%}    
 end

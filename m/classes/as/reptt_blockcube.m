@@ -24,15 +24,17 @@ classdef reptt_blockcube < reptt
         function o = reptt_blockcube()
             o.classtitle = 'Block Cube';
         end;
-
+    end;
+    
+    methods(Access=protected)
         %> Goes somewhere
-        function log = go(o)
+        function [o, log] = do_use(o, data)
             log = log_cube();
             o = o.boot_postpr(); % from reptt
 
             flag_obsidxs = 1;
             if ~isempty(o.sgs)
-                obsidxs_ = o.sgs.get_obsidxs(o.data);
+                obsidxs_ = o.sgs.get_obsidxs(data);
                 nds = size(obsidxs_, 1);
             elseif ~isempty(o.obsidxs)
                 obsidxs_ = o.obsidxs;
@@ -70,12 +72,12 @@ classdef reptt_blockcube < reptt
 
                     if flag_obsidxs
                         if ids ~= ids_save
-                            datasets = o.data.split_map(obsidxs_(ids, :));
+                            datasets = data.split_map(obsidxs_(ids, :));
                             ids_save = ids;
                         end;
 
                     else
-                        datasets = o.data;
+                        datasets = data;
                     end;
                     
                     if ~isempty(o.block_mold{ii, ij, ik})
@@ -130,7 +132,7 @@ classdef reptt_blockcube < reptt
 
                     for ids = 1:nds
                         if flag_obsidxs
-                            datasets = o.data.split_map(obsidxs_(ids, :)); %#ok<PFBNS>
+                            datasets = data.split_map(obsidxs_(ids, :)); %#ok<PFBNS>
                         else
                             datasets = o_data;
                         end;
@@ -180,7 +182,6 @@ classdef reptt_blockcube < reptt
                 end;
             end;
         end;
-
     end;
 end
                 

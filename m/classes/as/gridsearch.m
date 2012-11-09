@@ -1,6 +1,3 @@
-Get rid of this once I rewrite the demos to be free of it
-
-%>@todo I feel like getting rid of this class
 %>@ingroup maths
 %> Grid Search
 %>
@@ -22,7 +19,6 @@ Get rid of this once I rewrite the demos to be free of it
 %>
 %> @sa gridsearchparam
 classdef gridsearch < as
-    
     properties
         no_iterations = 3;
         %> zoom factor for next iteration

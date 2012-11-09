@@ -37,7 +37,7 @@ end
 % End initialization code - DO NOT EDIT
 
 % --- Executes just before uip_as_grades_fsg is made visible.
-function uip_as_grades_fsg_OpeningFcn(hObject, eventdata, handles, varargin)
+function uip_as_grades_fsg_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 if numel(varargin) < 3
     handles.input.flag_needs_fsg = 0;
 else
@@ -57,7 +57,7 @@ try
     delete(gcf);
 catch
     output.flag_ok = 0;
-    output.params = {}
+    output.params = {};
     varargout{1} = output;
 end;
 
@@ -65,7 +65,6 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace('irdata', handles.popupmenu_data, 0);
 listbox_load_from_workspace('fsg', handles.popupmenu_fsg, 0);
 
 %############################################
@@ -73,20 +72,15 @@ listbox_load_from_workspace('fsg', handles.popupmenu_fsg, 0);
 
 
 % --- Executes on button press in pushbuttonOk.
-function pushbuttonOk_Callback(hObject, eventdata, handles)
+function pushbuttonOk_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 try
-    sdata = listbox_get_selected_1stname(handles.popupmenu_data);
-    if isempty(sdata)
-        irerror('Input dataset not specified!');
-    end;
     sfsg = listbox_get_selected_1stname(handles.popupmenu_fsg);
     if isempty(sfsg)
         irerror('FSG not specified!');
     end;
 
     handles.output.params = {...
-    'fsg', sfsg ...
-    'data', sdata, ...
+    'fsg', sfsg, ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -96,7 +90,7 @@ catch ME
     
 end;
 
-function editVariables_Callback(hObject, eventdata, handles)
+function editVariables_Callback(hObject, eventdata, handles) %#ok<*INUSD>
 
 % --- Executes during object creation, after setting all properties.
 function editVariables_CreateFcn(hObject, eventdata, handles)

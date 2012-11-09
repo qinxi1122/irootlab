@@ -27,11 +27,11 @@ classdef as_fsel_eclass < as_fsel
     end;
     
 %     methods
-%         function [o, log] = do_use(o)
-%             idxsobs = sgs_get_obs_idxs(o.sgs, o.data);
+%         function [o, log] = do_use(o, data)
+%             idxsobs = sgs_get_obs_idxs(o.sgs, data);
 %             no_reps = length(idxsobs.reps);
 % 
-%             X = o.data.X;
+%             X = data.X;
 % 
 %             koeff = zeros(size(X, 2)+1, 1);
 % 
@@ -39,7 +39,7 @@ classdef as_fsel_eclass < as_fsel
 %                 fprintf('$*$*$*$ as_fsel_eclass session %d/%d. $*$*$*$\n', i_rep, no_reps);
 % 
 %                 idxstraintest = idxsobs.reps(i_rep).obs;
-%                 d_train = o.data.map_rows(o.data, idxstraintest.train);
+%                 d_train = data.map_rows(data, idxstraintest.train);
 % 
 %                 o.clssr = o.clssr.boot();
 %                 o.clssr = o.clssr.train(d_train);

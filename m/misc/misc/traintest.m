@@ -25,11 +25,13 @@ end;
 if ~isempty(postpr_test)
     postpr_test = postpr_test.boot();
     ds_test = postpr_test.use(ds_test);
-else
-    ds_test = ds_test;
 end;
 
 pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {blk});
-for il = 1:numel(logs)
-    logs{il} = logs{il}.record(pars);
+if iscell(logs)
+    for il = 1:numel(logs)
+        logs{il} = logs{il}.record(pars);
+    end;
+else
+    logs = logs.record(pars);
 end;

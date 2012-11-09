@@ -15,7 +15,7 @@ classdef as_fsel_forward < as_fsel
         end;
     end;
     
-    methods
+    methods(Access=protected)
         function [o, log] = do_use(o, data)
             o.fsg.data = data;
             o.fsg = o.fsg.boot();

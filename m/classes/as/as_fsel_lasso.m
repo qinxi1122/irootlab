@@ -13,7 +13,7 @@ classdef as_fsel_lasso < as_fsel
     end;
     
     methods(Access=protected)
-        function log = go(o, data)
+        function [o, log] = do_use(o, data)
             ds = data(1);
             if ds.nc > 2
                 irerror('LASSO feature selection works with 2-class datasets only!');

@@ -20,6 +20,7 @@ classdef rater < as
         postpr_test;
         %> Block to post-process the estimation issued by the classifier.
         postpr_est;
+        ttlog;
     end;
     
     properties(SetAccess=protected)
@@ -31,14 +32,16 @@ classdef rater < as
         function o = rater()
             o.classtitle = 'Rater';
         end;
-
+    end;
+    
+    methods(Access=protected)
         %> Returns the object with its ttlog ready to have its get_rate() called.
         function [o, log] = do_use(o, data)
-            o = o.check();
+            o = o.check(data);
             
             if o.flag_sgs
                 obsidxs = o.sgs.get_obsidxs(data);
-                datasets = o.data.split_map(obsidxs(:, [1, 2]));
+                datasets = data.split_map(obsidxs(:, [1, 2]));
 
                 no_reps = size(obsidxs, 1);
             
@@ -65,14 +68,13 @@ classdef rater < as
             log = o.go();
             z = log.get_rate();
         end;
-    end;
-    
 
-    methods(Access=protected)
         function o = check(o, data)
             o.clssr = def_clssr(o.clssr);
-            o.postpr_test = def_postpr_test(o.postpr_test);
-            o.postpr_est = def_postpr_est(o.postpr_est);
+            if isempty(o.postpr_est)
+                o.postpr_est = def_postpr_est();
+                o.postpr_test = def_postpr_test(); % Overrides pospr_test because need a harmonic pair
+            end;
 
             o.flag_sgs = 1;
             if isempty(o.sgs) 
@@ -87,7 +89,7 @@ classdef rater < as
             if isempty(o.ttlog)
                 irverbose('Rater is creating default ttlog estlog_classxclass', 2);
                 z = estlog_classxclass();
-                z.estlabels = o.data(1).classlabels;
+                z.estlabels = data(1).classlabels;
                 z.testlabels = z.estlabels;
                 o.ttlog = z;
             end;
