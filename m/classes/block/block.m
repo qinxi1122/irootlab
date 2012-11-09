@@ -63,7 +63,7 @@ classdef block < irobj
         %block_assert_trained: Makes sure that the block is trained [before used]
         function o = assert_trained(o)
             if o.flag_trainable > 0 && ~o.flag_trained
-                irerror(sprintf('Tried to use() block of class ´%s´, which has level=%d, but has not been trained', class(o), o.flag_trainable));
+                irerror(sprintf('Tried to use block of class ´%s´ before training', class(o)));
             end;
         end;
         

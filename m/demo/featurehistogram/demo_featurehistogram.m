@@ -1,7 +1,7 @@
 % Demonstrates the generation of a Feature Histogram
 
 % The dataset
-ds = load_she5trays();
+ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2); % Classes: N/T
 
 % The classifier
@@ -60,7 +60,6 @@ maximize_window(gcf(), 4);
 %%
 
 ssp = subsetsprocessor();
-ssp.input = log_rep;
 
 % Plots histogram in 3 different styles
 figure;
@@ -83,7 +82,7 @@ for i = 1:3
         ssp.stabilitythreshold = 0.05;
         colors = {[.6, 0, 0], [1, 0, 0], [.7, .7, .7], [.9, .9, .9]};
     end;
-    log_ssp = ssp.go();
+    log_ssp = ssp.use(log_rep);
     
     subplot(3, 1, i);
     log_ssp.draw_stackedhists(ds, colors, []);

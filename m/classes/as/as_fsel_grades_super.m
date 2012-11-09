@@ -1,12 +1,11 @@
 %> @brief "Super-object" encapsulating both a @ref as_fsel_grades and a @ref as_grades_data object
 %>
+%> This class allows the input to be a dataset (@ref irdata) instead of a @ref log_grades
+%>
 %> @arg The @ref as_grades_data object calculates the grades vector, whereas ...
 %> @arg the @ref as_fsel_grades performs itself the feature selection.
 classdef as_fsel_grades_super < as_fsel
     properties
-        %> Dataset to be passed to the @ref as_grades_data object
-        data;
-        
         %> @ref as_grades_data object
         as_grades_data;
         
@@ -25,13 +24,6 @@ classdef as_fsel_grades_super < as_fsel
             o.flag_ui = 0;
         end;
         
-        function log2 = go(o)
-            o.as_grades_data.data = o.data;
-            log1 = o.as_grades_data.go();
-            o.as_fsel_grades.input = log1;
-            log2 = o.as_fsel_grades.go();
-        end;
-        
         function n = get.nf_select(o)
             n = NaN;
             if ~isempty(o.as_fsel_grades)
@@ -43,6 +35,15 @@ classdef as_fsel_grades_super < as_fsel
             if ~isempty(o.as_fsel_grades)
                 o.as_fsel_grades.nf_select = n;
             end;
+        end;
+    end;        
+    
+    methods(Access=protected)
+        function [o, log2] = do_use(o, data)
+            o.as_grades_data.data = data;
+            log1 = o.as_grades_data.go();
+            o.as_fsel_grades.input = log1;
+            log2 = o.as_fsel_grades.go();
         end;
     end;
 end

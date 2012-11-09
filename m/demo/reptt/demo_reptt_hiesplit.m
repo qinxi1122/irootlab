@@ -11,7 +11,7 @@ colors_markers();
 
 %----- The dataset
 
-ddemo = load_she5trays;
+ddemo = load_data_she5trays;
 
 o = blmisc_split_classes();
 o = o.setbatch({'hierarchy', 1});

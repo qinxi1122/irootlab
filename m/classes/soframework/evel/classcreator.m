@@ -2,7 +2,6 @@ function classcreator(x)
 if nargin < 1; x = 0; end
 
 if x
-  o = committees_np_grag();
   o = goer();
   o = goer_1i();
   o = goer_clarchsel__ann();
@@ -84,12 +83,12 @@ if x
   o = goer_fhg_manova();
   o = goer_fhg_pcalda10();
   o = goer_fhg_pcalda20();
-  o = goer_foldmerger_ffs();
   o = goer_foldmerger_fhg();
   o = goer_foldmerger_fitest_np();
   o = goer_foldmerger_fitest_np_grag();
   o = goer_foldmerger_fitest_pa();
   o = goer_foldmerger_fitest_pa_grag();
+  o = goer_foldmerger_items();
   o = goer_lcr2__ann();
   o = goer_lcr2__dist();
   o = goer_lcr2__frbm_kg1();
@@ -196,11 +195,11 @@ if x
   o = fhg_lda();
   o = fhg_manova();
   o = fhg_pcalda();
-  o = foldmerger_ffs();
   o = foldmerger_fhg();
   o = foldmerger_fitest();
   o = foldmerger_fitest_np();
   o = foldmerger_fitest_pa();
+  o = foldmerger_items();
   o = merger_fhg();
   o = merger_fitest();
   o = merger_merger_fhg();
@@ -216,7 +215,6 @@ if x
   o = undersel_ls();
   o = undersel_qdc();
   o = undersel_svm();
-  o = underselmerger();
   o = frbm();
   o = frbm_delete_rule();
   o = frbm_firing_correlation();

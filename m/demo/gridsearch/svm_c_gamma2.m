@@ -1,3 +1,5 @@
+Why do I need a "2"?
+
 %>@ingroup demo
 %>@file
 %>@brief Grid search to SVM's best c and gamma
@@ -18,7 +20,7 @@
 %>
 
 %Dataset load
-ds01 = load_she5trays;
+ds01 = load_data_she5trays;
 o = blmisc_classlabels_hierarchy();
 o = o.setbatch({'hierarchy', 2});
 blmisc_classlabels_hierarchy01 = o;

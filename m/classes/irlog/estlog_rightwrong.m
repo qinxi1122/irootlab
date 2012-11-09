@@ -43,9 +43,9 @@ classdef estlog_rightwrong < estlog
         
         function o = do_record(o, pars)
             est = pars.est;
-            dref = pars.dref;
+            ds_test = pars.ds_test;
             classes1 = renumber_classes(est.classes, est.classlabels, o.estlabels);
-            classes2 = renumber_classes(dref.classes, dref.classlabels, o.estlabels);
+            classes2 = renumber_classes(ds_test.classes, ds_test.classlabels, o.estlabels);
             
             boolc = classes1 == classes2;
             boolr = classes1 == -1;

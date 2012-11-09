@@ -45,7 +45,7 @@ classdef foldmerger_fitest < sodesigner
                 out.diaa{i} = dia;
                 blk = dia.get_block();
                 
-                logs = singlett(logs, blk, ds_fit, ds_est, postpr_test, postpr_est);
+                logs = traintest(logs, blk, ds_fit, ds_est, postpr_test, postpr_est);
             end;
                 
             out.logs = logs;

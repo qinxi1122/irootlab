@@ -100,12 +100,12 @@ classdef clssr_incr < clssr
                 end;
 
                 if ~isempty(o.postpr_test)
-                    dref = o.postpr_test.use(o.data_test);
+                    ds_test = o.postpr_test.use(o.data_test);
                 else
-                    dref = o.data_test;
+                    ds_test = o.data_test;
                 end;
 
-                pars = struct('est', {est}, 'dref', {dref}, 'clssr', {o});
+                pars = struct('est', {est}, 'ds_test', {ds_test}, 'clssr', {o});
 
                 for i = 1:numel(o.log_mold)
                     log = o.log_mold{i}.allocate(1);

@@ -6,6 +6,8 @@ classdef report_soitem_fhg_histcomp < report_soitem
         peakdetector;
         biocomparer;
         subsetsprocessors;
+        %> =1. Whether to plot the histograms
+        flag_plot_hists = 1;
     end;
     
     methods
@@ -23,6 +25,7 @@ classdef report_soitem_fhg_histcomp < report_soitem
             r.peakdetector = o.peakdetector;
             r.biocomparer = o.biocomparer;
             r.subsetsprocessors = o.subsetsprocessors;
+            r.flag_plot_hists = o.flag_plot_hists;
 
             out = r.use(obj.log);
         end;

@@ -3,8 +3,6 @@
 %> @sa uip_as_fsel_forward.m
 classdef as_fsel_forward < as_fsel
     properties
-        %> Dataset
-        data;
         %> Feature Subset Grader object.
         fsg = [];
         %> =10. Number of features to be selected
@@ -18,10 +16,10 @@ classdef as_fsel_forward < as_fsel
     end;
     
     methods
-        function log = go(o)
-            o.fsg.data = o.data;
+        function [o, log] = do_use(o, data)
+            o.fsg.data = data;
             o.fsg = o.fsg.boot();
-            nf = o.data(1).nf;
+            nf = data(1).nf;
 
             nf_eff = min(o.nf_select, nf); % Effective number of features to be selected
             v_in = [];
@@ -86,9 +84,9 @@ classdef as_fsel_forward < as_fsel
             log.nfxgrade = nfxgrade;
             log.grades = zeros(1, nf);
             log.grades(log.v) = 1;
-            log.fea_x = o.data(1).fea_x;
-            log.xname = o.data(1).xname;
-            log.xunit = o.data(1).xunit;
+            log.fea_x = data(1).fea_x;
+            log.xname = data(1).xname;
+            log.xunit = data(1).xunit;
             log.yname = o.fsg.classtitle;
         end;
     end;

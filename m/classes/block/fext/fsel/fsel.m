@@ -89,6 +89,7 @@ classdef fsel < fext
 
                 format_xaxis(o);
                 ylabel(gca, o.yname);
+                make_box();
             else
                 irerror('v_type must be ''i'' and flag_complement must be off@!');
             end;

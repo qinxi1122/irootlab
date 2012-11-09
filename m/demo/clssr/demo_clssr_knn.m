@@ -7,7 +7,7 @@
 %>
 %> @image html demo_clssr_knn_result01.png
 
-dslila = load_userdata_nc2nf2;
+dslila = load_data_userdata_nc2nf2;
 
 clssr = clssr_knn();
 

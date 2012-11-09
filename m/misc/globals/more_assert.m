@@ -1,6 +1,8 @@
 %> @ingroup globals
 %> @file
 %> @brief Makes sure that the MORE global exists
+%>
+%> @sa def_biocomparer.m, def_peakdetector.m, def_subsetsprocessor.m, def_postpr_est.m, def_postpr_test.m
 function more_assert()
 global MORE;
 if isempty(MORE)
@@ -14,4 +16,6 @@ if isempty(MORE)
     MORE.ssp_nf4gradesmode = 'fixed';
     
     MORE.bc_halfheight = 45;
+    
+    MORE.flag_postpr_grag = 0;
 end;

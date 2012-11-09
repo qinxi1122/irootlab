@@ -12,6 +12,7 @@ classdef vis_alldata < vis
         function [o, out] = do_use(o, obj);
             out = [];
             data_draw(obj);
+            make_box();
         end;
     end;
 end

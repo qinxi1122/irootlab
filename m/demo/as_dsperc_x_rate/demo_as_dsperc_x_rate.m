@@ -8,7 +8,7 @@
 %> @sa as_dsperc_x_rate
 colors_markers();
 
-ddemo = load_she5trays;
+ddemo = load_data_she5trays;
 ddemo = data_select_hierarchy(ddemo, 2);
 
 % Applied some feature reduction to eliminate the problem with singular pooled covariance matrix in classify()

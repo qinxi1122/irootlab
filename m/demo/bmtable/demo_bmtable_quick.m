@@ -11,7 +11,7 @@ FONTSIZE = 20;
 
 
 %%%%%%%%% Dataset
-ds01 = load_she5trays;
+ds01 = load_data_she5trays;
 
 pieces = data_split_classes(ds01, 1); % Splits by tray. Each piece will have two classes: Non-transformed vs Transformed
 for i = 1:numel(pieces)

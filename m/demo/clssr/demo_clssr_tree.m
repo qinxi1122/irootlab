@@ -22,7 +22,7 @@
 %>
 %> @image html demo_clssr_tree_result.png
 
-dslila = load_userdata_nc2nf2;
+dslila = load_data_userdata_nc2nf2;
 
 % ofsgt = fsgt_fisher();
 ofsgt = fsgt_infgain();

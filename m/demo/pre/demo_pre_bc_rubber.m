@@ -3,7 +3,7 @@
 %> @brief Demonstrates the Convex Polynomial Line baseline correction
 
 
-x = load_uglyspectrum();
+x = load_data_uglyspectrum();
 
 opre = pre_bc_rubber();
 opre.flag_trim = 0;
@@ -22,3 +22,4 @@ h(3) = plot(x.fea_x, y.X, 'LineWidth', 4, 'Color', [0, 0.65, 0]);
 legend(h, {'Original', 'Baseline', 'Corrected'});
 format_xaxis(x);
 format_frank();
+make_box();

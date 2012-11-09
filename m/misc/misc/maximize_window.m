@@ -17,7 +17,7 @@ end;
 p = get(0,'Screensize'); % p(3) is width, and p(4) is height
 p(3:4) = floor(p(3:4)*.99);
 
-if p(3)/p(4) > 1.9
+if p(3)/p(4) > 2.5
     % Likely to be picking the full double monitor screen size
     p(3) = floor(p(3)/2);
 end;

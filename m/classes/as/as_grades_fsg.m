@@ -1,5 +1,5 @@
 %> @brief Calculates grades using a Feature Subset Grader (FSG) object
-classdef as_grades_fsg < as_grades_data
+classdef as_grades_fsg < as_grades
     properties
         %> Feature Subset Grader (FSG) object
         fsg;
@@ -9,9 +9,11 @@ classdef as_grades_fsg < as_grades_data
         function o = as_grades_fsg()
             o.classtitle = 'Using FSG';
         end;
-
-        function out = go(o)
-            da1 = o.data(1);
+    end;
+    
+    methods(Access=protected)
+        function [o, out] = do_use(o, data)
+            da1 = data(1);
             idxs = num2cell(1:da1.nf);
             o.fsg.data = da1;
             o.fsg = o.fsg.boot();

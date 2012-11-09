@@ -9,6 +9,9 @@ classdef report_log_fselrepeater_histcomp < report_soitem
         peakdetector;
         %> =def_biocomparer(). A @ref biocomparer object
         biocomparer;
+        
+        %> =1. Whether to plot the histograms
+        flag_plot_hists = 1;
 
         %> Hint dataset
         ds_hint;
@@ -44,37 +47,41 @@ classdef report_log_fselrepeater_histcomp < report_soitem
             n = numel(hists);
         
 
-            %---> The Legend
-            od = drawer_histograms();
-            od.subsetsprocessor = subsetsprocessor();
-            od.peakdetector = o.peakdetector;
+            if o.flag_plot_hists
             
-            figure;
-            od.draw_for_legend(log);
-            show_legend_only();
-            s = cat(2, s, o.save_n_close([], 0, []));
-            
-            %---> Histograms
-            for i = 1:n
-                hist = hists(i);
+                %---> The Legend
+                od = drawer_histograms();
+                od.subsetsprocessor = subsetsprocessor();
+                od.peakdetector = o.peakdetector;
+
                 figure;
-                hist.draw_stackedhists(o.ds_hint, {[], .8*[1 1 1]}, def_peakdetector(o.peakdetector));
-                xlabel('');
-                ylabel('');
-                set(gca, 'color', 1.15*[0.8314    0.8157    0.7843]);
-                set(gca, 'Outerposition', [-0.1121    0.0502    1.2188    0.9498]);
-                legend off;
-                title(replace_underscores(hist.title));
-                maximize_window(gcf(), 4);
-                set(gcf, 'InvertHardCopy', 'off'); % This is apparently needed to preserve the gray background
-                set(gcf, 'color', [1, 1, 1]);
-                s = cat(2, s, o.save_n_close());
+                od.draw_for_legend(log);
+                show_legend_only();
+                s = cat(2, s, o.save_n_close([], 0, []));
+
+                %---> Histograms
+                for i = 1:n
+                    hist = hists(i);
+                    figure;
+                    hist.draw_stackedhists(o.ds_hint, {[], .8*[1 1 1]}, def_peakdetector(o.peakdetector));
+                    xlabel('');
+                    ylabel('');
+                    set(gca, 'color', 1.15*[0.8314    0.8157    0.7843]);
+                    set(gca, 'Outerposition', [-0.1121    0.0502    1.2188    0.9498]);
+                    legend off;
+                    title(replace_underscores(hist.title));
+                    maximize_window(gcf(), 4);
+                    set(gcf, 'InvertHardCopy', 'off'); % This is apparently needed to preserve the gray background
+                    set(gcf, 'color', [1, 1, 1]);
+                    s = cat(2, s, o.save_n_close());
+                end;
             end;
                 
             %---> Biomarkers comparison table
-            s = cat(2, s, '<h2>Biomarkers comparison (using biomarkers coherence index)</h2>');
+            bc = def_biocomparer(o.biocomparer);
+            s = cat(2, s, '<h2>Biomarkers comparison using ', bc.get_description(), '</h2>');
             [M, titles] = o.get_biocomparisontable(hists);
-            s = cat(2, s, '<center>', html_comparison(round(M*1000)/1000, titles), '</center>', 10);
+            s = cat(2, s, '<center>', html_table_std_colors(round(M*1000)/1000, [], titles, titles, '\', 0.5, 1, 4), '</center>', 10);
         end;
         
         
@@ -85,8 +92,7 @@ classdef report_log_fselrepeater_histcomp < report_soitem
             % Histograms
             for i = 1:n
                 ssp = ssps{i};
-                ssp.input = log;
-                hists(i) = ssp.go(); %#ok<*AGROW>
+                hists(i) = ssp.use(log); %#ok<*AGROW>
                 hists(i).title = ssp.title;
             end;
         end;
@@ -109,7 +115,7 @@ classdef report_log_fselrepeater_histcomp < report_soitem
                 pdidxs = pd.use([], hist.grades);
                 wnss{i} = hist.fea_x(pdidxs);
                 weightss{i} = hist.grades(pdidxs);
-                titles{i} = hist.get_description();
+                titles{i} = hist.title;
             end;
 
             % + Mounts table

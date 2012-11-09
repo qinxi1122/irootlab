@@ -7,7 +7,7 @@
 classdef pre_abs2atr < pre
     methods
         function o = pre_abs2atr(o)
-            o.classtitle = 'AB->ATR';
+            o.classtitle = 'Absorbance-to-ATR';
             o.flag_params = 0;
         end;
     end;

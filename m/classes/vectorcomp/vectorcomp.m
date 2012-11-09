@@ -1,6 +1,6 @@
-%> @brief Vector Comparer base class
+%> @brief Paired Vector Comparer base class
 %>
-%> Compares two vectors. This is linked to hypothesis test. This is applied to:
+%> Compares two vectors. Number of elements must be the same in both vector. This is applied to:
 %> @arg comparing two classifiers (see @ref reptt_sgs, which has a @ref reptt_sgs::vectorcomp property)
 %> @arg measusing the diversity of two classifiers (example: @ref reptt_xornorm)
 %>

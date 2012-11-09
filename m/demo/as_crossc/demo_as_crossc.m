@@ -15,7 +15,7 @@
 
 colors_markers();
 
-dataset = load_she5trays();
+dataset = load_data_she5trays();
 o = blmisc_classlabels_hierarchy();
 o = o.setbatch({'hierarchy', 1});
 blmisc_classlabels_hierarchy01 = o;

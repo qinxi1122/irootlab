@@ -90,8 +90,7 @@ classdef soitem_merger_fhg < soitem
             no = numel(idxs);
             for i = 1:no
                 log_rep = o.logs(idxs(i));
-                ssp.input = log_rep;
-                hist = ssp.go();
+                hist = ssp.use(log_rep);
 
                 pd = pd.boot(hist.fea_x, hist.grades);
 
@@ -145,13 +144,12 @@ classdef soitem_merger_fhg < soitem
             M = repmat(eye(nf4gradesmax), [1, 1, n]);
             for i = 1:n
                 log_rep = o.logs(idxs(i));
-                ssp.input = log_rep;
                 for j = 1:nf4gradesmax
                     if i == 1
                         titles{j} = sprintf('%d', j);
                     end;
                     ssp.nf4grades = j;
-                    hist = ssp.go();
+                    hist = ssp.use(log_rep);
                     pd = pd.boot(hist.fea_x, hist.grades);
 
                     % Collects biomarkers
@@ -199,8 +197,7 @@ classdef soitem_merger_fhg < soitem
                 for j = 1:nssps
                     ssp = ssps{j};
                     if i == 1; titles{j} = ssp.title; end;
-                    ssp.input = log_rep;
-                    hist = ssp.go();
+                    hist = ssp.use(log_rep);
                     pd = pd.boot(hist.fea_x, hist.grades);
 
                     % Collects biomarkers
@@ -243,11 +240,10 @@ classdef soitem_merger_fhg < soitem
                 for j = 1:no_stabs
                     idx = groupidxs{i}(j);
                     log_rep = o.logs(idx);
-                    ssp.input = log_rep;
                     if i == 1
                         titles{j} = sprintf('stab%02d', o.stabs(idx));
                     end;
-                    hist = ssp.go();
+                    hist = ssp.use(log_rep);
                     pd = pd.boot(hist.fea_x, hist.grades);
 
                     % Collects biomarkers
@@ -279,8 +275,7 @@ classdef soitem_merger_fhg < soitem
             v = zeros(1, no);
             for i = 1:no
                 log_rep = o.logs(idxs(i));
-                ssp.input = log_rep;
-                v(i) = ssp.get_nf4grades();
+                v(i) = ssp.get_nf4grades(log_rep);
                 titles{i} = o.get_logdescription(idxs(i));
             end;
         end;

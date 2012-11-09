@@ -86,7 +86,7 @@ classdef committees < sodesigner
                 
                 for j = 1:no_folds
                     blk = aggs(i, j);
-                    logs = singlett(logs, blk, dss(j, 1), dss(j, 2), postpr_test, postpr_est);
+                    logs = traintest(logs, blk, dss(j, 1), dss(j, 2), postpr_test, postpr_est);
                     ii = ii+1;
                     ipro = progress2_change(ipro, [], [], ii);
                 end;

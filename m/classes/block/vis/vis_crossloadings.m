@@ -68,6 +68,7 @@ classdef vis_crossloadings < vis
                 y1 = ymax+yspan*0.05;
             end;
             set(gca, 'YLim', [y0, y1]);
+            make_box();
         end;
     end;
 end

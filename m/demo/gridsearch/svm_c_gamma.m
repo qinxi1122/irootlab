@@ -1,3 +1,5 @@
+Rewrite this using reptt_blockcube to show the concept
+
 %>@ingroup demo
 %>@file
 %>@brief Grid search to SVM's best c and gamma
@@ -12,7 +14,7 @@
 
 
 %Dataset load
-ds01 = load_userdata_nc2nf2;
+ds01 = load_data_userdata_nc2nf2;
 
 %Creates classifier
 clssr_svm01 = clssr_svm();

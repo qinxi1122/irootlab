@@ -1,9 +1,9 @@
 %> @brief (dataset %) x (classification rate) curve
 %>
-%> Runs a cross-validation loop for a given percentual with recording each generated @ref ttlog. Then,
+%> Runs a repeated sub-sampling loop for a given percentual with recording each generated @ref ttlog. Then,
 %> Increases this percentual, runs the cross-validation loop again, and so on.
 %>
-%> @sa uip_learnincurve.m
+%> @sa uip_dsperc_x_rate.m
 classdef as_dsperc_x_rate < as
     properties
         %> reptt_blockcube object to do the evaluation
@@ -18,21 +18,15 @@ classdef as_dsperc_x_rate < as
 
     methods
         function o = as_dsperc_x_rate(o)
-            o.classtitle = 'Learning curve';
-            o.moreactions = {'go'};
+            o.classtitle = '(dataset%)x(performance) curve';
             o.flag_ui = 0; % Not published in GUI
         end;
-
-        
-        %> Returns the @c logs property
-        function out = extract_logs(o)
-            out = o.logs;
-        end;
-
-
+    end;
+    
+    methods(Access=protected)
         %> Fills in the @ref logs property
         %> @todo I think this is not working
-        function log = go(o)
+        function [o, log] = do_use(o, data)
             if ~isa(o.evaluator, 'reptt_blockcube')
                 irerror('Evaluator must be a reptt_blockcube!');
             end;

@@ -110,6 +110,7 @@ classdef plotter_1d
             format_frank();
 %             maximize_window();
 %             set(gca, 'Position', [0.0661    0.0927    0.8953    0.8382]); % Empirical
+            make_box();
         end;
         
 
@@ -235,7 +236,7 @@ classdef plotter_1d
                     
                     title(o.ax(2).legends{k}, 'FontWeight', 'bold');
                     format_frank();
-                    box off;
+                    make_box();
                     
                     x0 = x0+(subw+XSPACING);
                 end;
@@ -349,18 +350,14 @@ classdef plotter_1d
             end;
             axis image;
             hold on;
-% % %             imagesc(aaba.rates');
 
-
-            
-
-% % %             set(gca, 'Xlim', aaba.xticks([1, end]), 'Ylim', aaba.yticks([1, end]));
 
             xlabel(o.ax(a1).label);
             ylabel(o.ax(a2).label);
             
             set(gca, 'XTick', xx, 'YTick', yy, 'XTickLabel', o.ax(a1).ticks, 'YTickLabel', o.ax(a2).ticks);
-% THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
+
+            % THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
 % rotateticklabel(gca, 90);
 
             
@@ -369,9 +366,8 @@ classdef plotter_1d
             end;
             h = colorbar;
             format_frank([], [], h);
-            
-            
-            
+            decimate_ticks([], [7, 13]);
+            make_box(); % This is image, makebox maybe not
         end;
     end;
     

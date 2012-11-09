@@ -1,6 +1,6 @@
 %> Calculates a curve (number of factors)X(Classification rate)
 
-ds = load_she5trays();
+ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2); % N/T
 
 cl = clssr_d();

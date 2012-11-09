@@ -18,4 +18,3 @@ if isobject(par) || isstruct(par)
         ylabel(s);
     end;
 end;
-

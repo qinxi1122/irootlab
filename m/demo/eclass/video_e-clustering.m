@@ -12,7 +12,7 @@ colors_markers();
 
 
 %Dataset load
-ds01 = load_userdata_nc2nf2;
+ds01 = load_data_userdata_nc2nf2;
 
 
 o = frbm();

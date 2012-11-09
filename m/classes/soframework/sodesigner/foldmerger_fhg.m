@@ -2,22 +2,27 @@
 classdef foldmerger_fhg < sodesigner
     methods(Access=protected)
         function out = do_design(o)
+            out = soitem_fhgs();
+
             items = o.input;
             ni = numel(items);
-            
-            log = items{1}.log; % Takes first log_fselrepeater and ... (see below)
-            
-            for i = 2:ni
-                % ... merges with other log_fselrepeater
-                temp = items{i}.log;
-                log.logs = [log.logs, temp.logs];
-%                 log.subsets = [log.subsets, temp.subsets];
-%                 log.nfxgrade = [log.nfxgrade; temp.nfxgrade]; % This one will be filled in only for the FHG_FFS case
-            end;
-            
+            if ni > 0
+                item1 = items{1};
+                logs(1) = item1.log; % first log_fselrepeater 
+                log = item1.log; 
+                for i = 2:ni
+                    % ... merges with other log_fselrepeater
+                    temp = items{i}.log;
+                    logs(i) = temp;
+                    log.logs = [log.logs, temp.logs];
+                end;
 
-            out = items{1};
-            out.log = log;
+                out.items = o.input;
+                out.logs = logs;
+                out.log = log;
+                out.stab = item1.stab;
+                out.s_methodology = item1.s_methodology;
+            end;
         end;
     end;
 end
