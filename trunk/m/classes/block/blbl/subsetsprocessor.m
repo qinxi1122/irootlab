@@ -1,8 +1,9 @@
-%>@ingroup as maths
+%>@ingroup maths
 %>@file
-%>@brief Processor of a set of subsets of features.
+%>@brief Processor of a set of subsets of features
 %>
-%> <code>go()</code> returns a @ref log_hist
+%> @arg Histogram generation
+%> @arg "grades" vector calculation from histogram
 %>
 %> <h3>Usage</h3>
 %> Set the @ref subsets and @ref nf properties, and call go().
@@ -11,11 +12,8 @@
 %> all properties that affect the way in which @ref grades is calculated.
 %>
 %> @ref gradethreshold is applied after @ref grades has been calculated.
-classdef subsetsprocessor < as_grades
+classdef subsetsprocessor < blbl
     properties
-        %> A @ref log_fselrepeater object
-        input;
-
         %> Number of position-related histograms to add up to form the grades. If not specified, will use the maximum
         nf4grades = [];
         
@@ -39,47 +37,71 @@ classdef subsetsprocessor < as_grades
         %> ='kun'. stability type to pass to the function ref featurestability.m
         stabilitytype = 'kun';
         
-        % Post-processing of the HISTOGRAMS AFTER generated
+% % % % %         %> =0 (without effect). 
 
-        %> Not implemented yet
-        hist_trim_after;
+       % Post-processing of the HISTOGRAMS AFTER generated
+       
+       %> =0. Minimum number of hits within the histogram matrix. All values will be trimmed to zero below that. It is expressed
+       %> as a fraction of the total number of hits of each position-wise histogram.
+       minhits_perc = 0;
     end;
     
-    properties(Dependent)
-        %> Number of features of dataset
-        nf = [];
-    end;
-        
-    % Calculations
+%     properties(Dependent)
+%         %> Number of features of dataset
+%         nf = [];
+%     end;
+
+    
+    
     methods
-        function nf = get.nf(o)
-            nf = numel(o.input.fea_x);
+        function o = subsetsprocessor()
+            o.classtitle = 'Feature subsets processor';
+            o.inputclass = 'log_fselrepeater';
         end;
+    end;
+    
+    
+    % Calculations
+    methods(Access=protected)
+% %         function nf = get.nf(o)
+% %             nf = numel(o.input.fea_x);
+% %         end;
         
-        function log = go(o)
+        %> Input is a 
+        function [o, log] = do_use(o, input)
             log = log_hist();
-            log.hitss = o.get_hitss();
-            log.nf4grades = o.get_nf4grades();
-            log.grades = sum(log.hitss(1:log.nf4grades, :), 1);
-            log.fea_x = o.input.fea_x; log.xname = o.input.xname; log.xunit = o.input.xunit;
+            log.hitss = o.get_hitss(input);
+            
+            n = o.get_nf4grades(input);
+            log.nf4grades = n;
+            
+            log.grades = sum(log.hitss(1:n, :), 1);
+            log.xname = input.xname;
+            log.xunit = input.xunit;
+            log.fea_x = input.fea_x;
+            log.yname = 'Hits';
+            log.yunit = '';
         end;
-        
-        function n = get_nf4grades(o)
+    
+    end;
+    
+    methods
+        function n = get_nf4grades(o, input)
             switch o.nf4gradesmode
                 case 'fixed'
                     if isempty(o.nf4grades)
-                        n = o.get_nf_select();
+                        n = o.get_nf_select(input);
                     else
                         n = o.nf4grades;
                     end;
                 case 'stability'
-                    w = o.get_stabilities();
+                    w = o.get_stabilities(input);
                     wmax = max(w);
                     ii = find(w/wmax < o.stabilitythreshold);
                     if ~isempty(ii)
                         n = ii(1)-1;
                     else
-                        n = numel(o.get_nf_select());
+                        n = o.get_nf_select(input);
                     end;
                     
                 otherwise
@@ -88,16 +110,16 @@ classdef subsetsprocessor < as_grades
         end;
         
         %> Calculates the number of features to be selected as the maximum subset size
-        function n = get_nf_select(o)
-            n = max(cellfun(@numel, o.input.subsets));
+        function n = get_nf_select(o, input)
+            n = max(cellfun(@numel, input.subsets));
         end;
         
 
         %> Returns the "Hit Weights".
         %>
         %> Hit weights are used to give, when assembling the histograms, more importance to variables that are selected first
-        function w = get_positionweights(o)
-            nnf = o.get_nf_select();
+        function w = get_positionweights(o, input)
+            nnf = o.get_nf_select(input);
             
             switch o.weightmode
                 case 'uniform'
@@ -109,22 +131,23 @@ classdef subsetsprocessor < as_grades
                 case 'sig'
                     irerror('"sig" not implemented yet');
                 case 'stability'
-                    w = o.get_stabilities();
+                    w = o.get_stabilities(input);
             end;
         end;
 
         
         %> Calculates histss from the subsets property.
-        function H = get_hitss(o)
-            w = o.get_positionweights();
+        function H = get_hitss(o, input)
+            subsets = input.subsets;
+            w = o.get_positionweights(input);
             
-            H = zeros(o.get_nf_select(), o.nf);
+            H = zeros(o.get_nf_select(input), numel(input.fea_x));
             
             
-            nreps = numel(o.input.subsets);
+            nreps = numel(subsets);
             
             for i = 1:nreps
-                s = o.input.subsets{i};
+                s = subsets{i};
                 for j = 1:numel(s)
                     H(j, s(j)) = H(j, s(j))+w(j);
                 end;
@@ -132,13 +155,17 @@ classdef subsetsprocessor < as_grades
             
             % Post-processing
             
+            if o.minhits_perc > 0
+                ma = sum(H(1, :));
+                H(H < ma*o.minhits_perc) = 0;
+            end;
         end;
 
         %> Returns a (feature position)x(stability curve)
         %>
         %> Calculates according to the @ref stabilitytype property
-        function z = get_stabilities(o)
-            z = o.input.get_stabilities(o.stabilitytype, 'uni');
+        function z = get_stabilities(o, input)
+            z = input.get_stabilities(o.stabilitytype, 'uni');
         end;
     end;
 end
