@@ -12,7 +12,6 @@ temp.build('sgs');
 temp.build('fsg');
 temp.build('peakdetector');
 temp.build('irlog');
-temp.build('as');
 temp.build('vectorcomp');
 temp.build('soitem');
 CLASSMAP = temp;

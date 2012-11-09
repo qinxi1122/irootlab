@@ -22,6 +22,7 @@ if ma == 0
     ma = 1;
 end;
 
+n(isnan(n)) = 0;
 
 if 1
     bgcolor = [1, [1, 1]*(1-sqrt(n)/ma)];

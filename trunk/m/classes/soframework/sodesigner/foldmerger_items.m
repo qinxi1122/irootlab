@@ -12,9 +12,6 @@ classdef foldmerger_items < sodesigner
     
     % Bit lower level
     methods(Access=protected)
-        %> Item must be a soitem_diaa
-        %>
-        %> The cell of diagnosissystem objects inside item can be nD, diacomp doesn't care
         function out = do_design(o)
             out = soitem_items();
 

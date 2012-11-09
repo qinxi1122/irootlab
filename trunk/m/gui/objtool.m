@@ -391,7 +391,7 @@ guidata(handles.figure1, handles);
 % Populates actions listbox
 function populate_actions()
 handles = find_handles();
-if get(handles.listbox_actions, 'Value') > numel(handles.a)
+if get(handles.listbox_actions, 'Value') > numel(handles.idxs_in)
     set(handles.listbox_actions, 'Value', 1);
 end;
 set(handles.listbox_actions, 'String', handles.a(handles.idxs_in));

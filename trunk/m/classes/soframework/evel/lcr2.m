@@ -45,9 +45,8 @@ classdef lcr2 < sodesigner
 
                     nds = numel(dss);
                     for i = 1:nds % This is the heavy loop!
-                        cube.data = dss(i);
-                        cube = cube.go();
-                        r0 = r0.read_log_cube(cube, i);
+                        log = cube.use(dss(i));
+                        r0 = r0.read_log_cube(log, i);
                     end;
                     
                     sors(ifold) = r0;

@@ -41,7 +41,7 @@ classdef as_crossc < as
         %> Populates the @ref log_crossc and @ref data_out properties
         %>
         %> @todo does not check whether there are differences in the number of variables
-        function [o, log] = do_use(o)
+        function [o, log] = do_use(o, data)
             log = log_as_crossc();
             if isempty(o.sgs)
                 log.sgs = get_default_sgs_crossc();
@@ -49,21 +49,21 @@ classdef as_crossc < as
                 log.sgs = o.sgs;
             end;
             
-            log.obsidxs = log.sgs.get_obsidxs(o.data);
+            log.obsidxs = log.sgs.get_obsidxs(data);
             no_reps = size(log.obsidxs, 1);
 
             mold_ = o.mold.boot();
             flag_linear = isa(mold_, 'fcon_linear') || isa(mold_, 'block_cascade_base') && mold_.flag_fcon_linear;
 
             if flag_linear
-                block_ref = mold_.train(o.data); % Trains the mold block on the whole dataset to have its loadings as a loadings orientation reference
+                block_ref = mold_.train(data); % Trains the mold block on the whole dataset to have its loadings as a loadings orientation reference
             end;
                 
             
             ipro = progress2_open('as_crossc', [], 0, no_reps);
             for i_rep = 1:no_reps
-                d_train = o.data.map_rows(log.obsidxs{i_rep, 1});
-                d_test = o.data.map_rows(log.obsidxs{i_rep, 2});
+                d_train = data.map_rows(log.obsidxs{i_rep, 1});
+                d_test = data.map_rows(log.obsidxs{i_rep, 2});
 
                 block = mold_.train(d_train);
                 if flag_linear
@@ -105,7 +105,7 @@ classdef as_crossc < as
             end;
             progress2_close(ipro);
             
-            log.classlabels = o.data.classlabels;
+            log.classlabels = data.classlabels;
         end;
     end;
 end

@@ -166,9 +166,8 @@ classdef filesession < as
         %> @param specs Set of descriptors for each particular case. Important for when methods are chosen, then compared
         function sor = go_cube(o, ds, molds, sostages, specs)
             cube = o.oo.cubeprovider.get_cube(ds);
-            cube.data = ds;
             cube.block_mold = molds;
-            cube = cube.go();
+            log = cube.use(ds);
             
             sor = sovalues();
             sor = sor.read_log_cube(cube, []);

@@ -1,5 +1,3 @@
-Would be good to honour
-
 %> @file
 %> @ingroup parallelgroup as needsrevision
 %
@@ -45,7 +43,16 @@ classdef reptt_incr < reptt
         %> Cell of datasets: each corresponding to one element in reptt_incr::log_mold
         results;
     end;
+    
+    methods
+        function o = reptt_incr()
+            o.classtitle = 'Incremental';
+            o.moreactions = [o.moreactions, {'extract_datasets'}];
+            o.flag_ui = 0; % Not published in GUI
+        end;
+    end;
 
+%{
     methods(Access=protected)
         %> Returns number of recordings based on internal setup
         %>
@@ -114,12 +121,6 @@ classdef reptt_incr < reptt
     end;
     
     methods
-        function o = reptt_incr()
-            o.classtitle = 'Incremental';
-            o.moreactions = [o.moreactions, {'extract_datasets'}];
-            o.flag_ui = 0; % Not published in GUI
-        end;
-
         %> Asserts that the SGS object is a randsub one
         function o = assert_randsub(o)
             if ~isempty(o.sgs) && ~isa(o.sgs, 'sgs_randsub_base')
@@ -259,4 +260,5 @@ classdef reptt_incr < reptt
         end;
 
     end;
+%}
 end

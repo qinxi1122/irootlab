@@ -133,7 +133,7 @@ classdef classmap < handle
                 if ~strcmp(list(i).name, classname)
                     [val, idx] = find(strcmp(names, list(i).ancestor));
                     if (isempty(idx))
-                        irerror('Ancestor ''%s'' for class ''%s'' not found!', list(i).ancestor, list(i).name);
+                        irerror(sprintf('Ancestor ''%s'' for class ''%s'' not found!', list(i).ancestor, list(i).name));
                     end;
             %         fprintf('********%s %d\n', list(i).ancestor, idx);
                     list(idx).descendants(end+1) = list(i);
