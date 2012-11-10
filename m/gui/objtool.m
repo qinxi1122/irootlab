@@ -5,7 +5,7 @@
 
 %> @param classname='irdata'
 function varargout = objtool(varargin)
-% Last Modified by GUIDE v2.5 10-Nov-2012 12:22:06
+% Last Modified by GUIDE v2.5 10-Nov-2012 22:53:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -69,6 +69,9 @@ setup_load();
 
 refresh();
 move_popup(idx);
+
+% handles = guidata(hObject);
+% handles.K1 = 
 
 
 function varargout = objtool_OutputFcn(hObject, eventdata, handles) 
@@ -200,7 +203,7 @@ else
     p(1) = 0.671875;
     set(handles.pushbuttonClear, 'position', p);
 end;
-set(handles.uipanelObjects, 'Title', sprintf('Existing objects of class "%s"', s));
+set(handles.uipanel_middle, 'Title', sprintf('Existing objects of class "%s"', s));
 
 
 %#####
@@ -268,6 +271,45 @@ end;
 p = get(handles.listbox_actions, 'position');
 p(4) = hei;
 set(handles.listbox_actions, 'position', p);
+
+%#####
+function refresh_sliders()
+handles = find_handles();
+
+h1 = handles.uipanel_left;
+p1 = get(h1, 'position');
+h2 = handles.uipanel_middle;
+p2 = get(h2, 'position');
+h3 = handles.uipanel_right;
+p3 = get(h3, 'position');
+
+
+
+
+% K1 = 0.42;
+% K2 = 0.
+
+psl1 = get(handles.slider1, 'position');
+psl2 = get(handles.slider2, 'position');
+
+mark1 = psl1(3)*get(handles.slider1, 'Value')/get(handles.slider1, 'Max') ;
+mark2 = psl2(1)+psl2(3)*get(handles.slider2, 'Value')/get(handles.slider2, 'Max');
+
+% mark2 = 0.5+0.79*get(handles.slider2, 'Value')/get(handles.slider2, 'Max');
+
+p1(3) = mark1;
+set(h1, 'position', p1);
+
+p2(1) = mark1;
+p2(3) = mark2-mark1;
+set(h2, 'position', p2);
+
+p3(1) = mark2;
+p3(3) = psl2(1)+psl2(3)-mark2;
+set(h3, 'position', p3);
+
+
+
 
 
 
@@ -881,3 +923,50 @@ function pushbutton_clear_block_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_clear_block (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton63.
+function pushbutton63_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton63 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton64.
+function pushbutton64_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton64 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on slider movement.
+function slider1_Callback(hObject, eventdata, handles)
+refresh_sliders();
+
+
+% --- Executes during object creation, after setting all properties.
+function slider1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+% --- Executes on slider movement.
+function slider2_Callback(hObject, eventdata, handles)
+refresh_sliders();
+
+% --- Executes during object creation, after setting all properties.
+function slider2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end

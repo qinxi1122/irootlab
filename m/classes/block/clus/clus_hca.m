@@ -56,6 +56,10 @@ classdef clus_hca < clus
             dout.X = double(Xnew);
             dout.fea_x = o.nc_min:o.nc_max;
             dout.title = [dout.title, ' - HCA'];
+            dout.xname = 'Number of clusters';
+            dout.xunit = '';
+            dout.yname = 'Cluster number';
+            dout.yunit = '';
             
             ipro = progress2_change(ipro, 'HCA - finished!', [], 2);
             progress2_close(ipro);

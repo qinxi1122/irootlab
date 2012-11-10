@@ -81,18 +81,20 @@ try
     blk = blk.train(data);
     orhistgui_show(blk);
 catch ME
-    
+    irerrordlg(sprintf('Couldn''t preview: "%s"', ME.message), 'Sorry, mate');
     send_error(ME);
 end;
 
 %#########
 function params = get_params(handles)
-types = {'threshold', 'ranges'};
+temp = fel(get(handles.edit_ranges, 'String'));
+s = sprintf('%s', temp');
+s_ranges = mat2str(eval(s));
 
 params = {...
 'idx_fea', int2str(eval(get(handles.edit_idx_fea, 'String'))), ...
 'no_bins', int2str(eval(get(handles.edit_no_bins, 'String'))), ...
-'ranges', mat2str(eval(fel(get(handles.edit_ranges, 'String')))), ...
+'ranges', s_ranges, ...
 'flag_mark_only', int2str(get(handles.checkbox_flag_mark_only, 'Value')) ...
 };
 
