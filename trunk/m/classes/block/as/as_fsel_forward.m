@@ -12,6 +12,7 @@ classdef as_fsel_forward < as_fsel
     methods
         function o = as_fsel_forward()
             o.classtitle = 'Forward';
+            o.flag_multiin = 1;
         end;
     end;
     

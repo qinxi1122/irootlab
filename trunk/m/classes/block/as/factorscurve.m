@@ -50,13 +50,12 @@ classdef factorscurve < as
 
             u.postpr_test = o.postpr_test;
             u.postpr_est = o.postpr_est;
-            u.data = data;
         end;
     end;
     
     methods(Access=protected)
         %> @return irdata object
-        function [o, out] = go(o, data)
+        function [o, out] = do_use(o, data)
             if isempty(o.no_factors_max)
                 neff = data.nf;
             else
@@ -78,7 +77,7 @@ classdef factorscurve < as
             
             u = o.create_cube(data);
             u.block_mold = bb;
-            log = u.go();
+            log = u.use(data);
             
             sov = sovalues();
             sov = sov.read_log_cube(log);

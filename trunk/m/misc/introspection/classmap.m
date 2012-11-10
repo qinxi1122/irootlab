@@ -85,12 +85,11 @@ classdef classmap < handle
 
             cnt = 0;
             for i = 1:length(files)
-%                 try
+                try
                     ss = textread(files{i}, '%s');
-%                 catch ME
-%                     disp('wtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtf');
-%                     keyboard;
-%                 end;
+                catch ME
+                    disp('wtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtf');
+                end;
                 if ismember('classdef', ss)
                     disp([files{i} '...']);
                     try

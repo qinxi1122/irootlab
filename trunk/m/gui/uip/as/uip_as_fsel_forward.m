@@ -45,7 +45,7 @@ refresh(handles);
 
 
 % --- Outputs from this function are returned to the command clae.
-function varargout = uip_as_fsel_forward_OutputFcn(hObject, eventdata, handles) 
+function varargout = uip_as_fsel_forward_OutputFcn(hObject, eventdata, handles)  %#ok<*INUSL>
 try
     uiwait(handles.figure1);
     handles = guidata(hObject);
@@ -70,26 +70,21 @@ listbox_load_from_workspace('fsg', handles.popupmenuFsg);
 %############################################
 
 % --- Executes on button press in pushbuttonOk.
-function pushbuttonOk_Callback(hObject, eventdata, handles)
+function pushbuttonOk_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 sfsg = listbox_get_selected_1stname(handles.popupmenuFsg);
 if isempty(sfsg)
     irerrordlg('Please specify FSG object!', 'Cannot continue');
 else
-    types = {'nf', 'threshold'};
-
-    other = uip_as_fsel();
-    if other.flag_ok
-        handles.output.params = [other.params, {...
-        'nf_select', int2str(eval(get(handles.editNf, 'String'))), ...
-        'fsg', sfsg ...
-        }];
-        handles.output.flag_ok = 1;
-        guidata(hObject, handles);
-        uiresume();
-    end;
+    handles.output.params = {...
+    'nf_select', int2str(eval(get(handles.editNf, 'String'))), ...
+    'fsg', sfsg ...
+    };
+    handles.output.flag_ok = 1;
+    guidata(hObject, handles);
+    uiresume();
 end;
 
-function editVariables_Callback(hObject, eventdata, handles)
+function editVariables_Callback(hObject, eventdata, handles) %#ok<*INUSD>
 
 % --- Executes during object creation, after setting all properties.
 function editVariables_CreateFcn(hObject, eventdata, handles)

@@ -204,6 +204,6 @@ else
     y0 = y1-yspan*.025;
 end;
 if yspan > 0
-    format_yaxis([y0, y2+yspan*0.025]);
+    ylim([y0, y2+yspan*0.025]);
 end;
 

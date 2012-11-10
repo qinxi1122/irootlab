@@ -5,7 +5,7 @@
 
 %> @param classname='irdata'
 function varargout = objtool(varargin)
-% Last Modified by GUIDE v2.5 09-Nov-2012 10:32:15
+% Last Modified by GUIDE v2.5 10-Nov-2012 12:22:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -552,54 +552,8 @@ refresh_modebuttons();
 refresh_right();
 
 
-%#########################################
-%#########################################
+function do_new()
 
-%#####
-function listbox_classes_Callback(hObject, eventdata, handles) 
-set_class(get(handles.listbox_classes, 'Value'));
-refresh_class();
-refresh_middle();
-
-%#####
-function listboxObjects_Callback(hObject, eventdata, handles)
-refresh_right();
-
-%#####
-function pushbuttonRefreshMS_Callback(hObject, eventdata, handles)
-refresh();
-
-%#####
-function pushbuttonRename_Callback(hObject, eventdata, handles)
-objtool_status();
-s = get_selected_1stname();
-if ~isempty(s)
-    try
-        rename_object(s);
-        refresh_middle();
-    catch ME
-        refresh_middle();
-        send_error(ME);
-    end;
-end;
-
-%#####
-function pushbuttonClear_Callback(hObject, eventdata, handles)
-objtool_status();
-names = get_selected_names();
-if ~isempty(names)
-    try
-        code = sprintf('clear %s;', sprintf('%s ', names{:}));
-        ircode_eval(code, 'Clearing objects');
-        refresh();
-    catch ME
-        refresh();
-        send_error(ME);
-    end;
-end;    
-
-%#####
-function pushbuttonNew_Callback(hObject, eventdata, handles)
 objtool_status();
 handles = find_handles();
 idx = find(strcmp(handles.classes, handles.rootclassname));
@@ -675,10 +629,62 @@ else
         objtool_status(ME.message);
         send_error(ME);
     end;
-
-    
 end;
 
+
+%#########################################
+%#########################################
+
+%#####
+function listbox_classes_Callback(hObject, eventdata, handles) 
+if strcmp(get(handles.figure1, 'SelectionType'), 'open') % This is how you detect a double-click in MATLAB
+    do_new();
+else
+    set_class(get(handles.listbox_classes, 'Value'));
+    refresh_class();
+    refresh_middle();
+end;
+
+%#####
+function listboxObjects_Callback(hObject, eventdata, handles)
+refresh_right();
+
+%#####
+function pushbuttonRefreshMS_Callback(hObject, eventdata, handles)
+refresh();
+
+%#####
+function pushbuttonRename_Callback(hObject, eventdata, handles)
+objtool_status();
+s = get_selected_1stname();
+if ~isempty(s)
+    try
+        rename_object(s);
+        refresh_middle();
+    catch ME
+        refresh_middle();
+        send_error(ME);
+    end;
+end;
+
+%#####
+function pushbuttonClear_Callback(hObject, eventdata, handles)
+objtool_status();
+names = get_selected_names();
+if ~isempty(names)
+    try
+        code = sprintf('clear %s;', sprintf('%s ', names{:}));
+        ircode_eval(code, 'Clearing objects');
+        refresh();
+    catch ME
+        refresh();
+        send_error(ME);
+    end;
+end;    
+
+%#####
+function pushbuttonNew_Callback(hObject, eventdata, handles)
+do_new();
 
 %#####
 function togglebutton_actions_Callback(hObject, eventdata, handles)
@@ -868,3 +874,10 @@ catch ME
 end;
 
 %> @endcond
+
+
+% --- Executes on button press in pushbutton_clear_block.
+function pushbutton_clear_block_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_clear_block (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)

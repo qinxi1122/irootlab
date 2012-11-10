@@ -80,6 +80,8 @@ if ~isempty(ds)
     catch ME
         irerrordlg(ME.message, 'Error');
     end;
+else
+    msgbox('Cannot draw, input not specified!');
 end;
 
 %#########
@@ -112,12 +114,10 @@ guidata(handles.figure1, handles);
 
 %#########
 function params = get_params(handles)
-
 % 'm' and 'a'(maximum and area) types require two elements in the location/range vector
 idx2 = [2, 3]; % Radio button indexes that require 2 elements in the vector
 
 types = 'fma'; % fixed; maximum; area
-
     
 idx_term = get(get(handles.uipanel_term, 'SelectedObject'), 'UserData');
 type = types(idx_term);
@@ -129,7 +129,6 @@ if any(idx_term == idx2)
         irerror('Coordinate vector requires two elements!');
     end;
 end;
-   
 
 params = {...
 'v', mat2str(v), ...

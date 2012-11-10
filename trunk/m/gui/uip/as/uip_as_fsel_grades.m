@@ -38,6 +38,12 @@ end
 
 % --- Executes just before uip_as_fsel_grades is made visible.
 function uip_as_fsel_grades_OpeningFcn(hObject, eventdata, handles, varargin)
+if nargin >= 5
+    handles.inputobj = varargin{2};
+else
+    handles.inputobj = [];
+end;
+
 if numel(varargin) < 3
     handles.input.flag_needs_fsg = 0;
 else
@@ -55,7 +61,7 @@ try
     handles = guidata(hObject);
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
     output.params = {};
     varargout{1} = output;
@@ -65,7 +71,6 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace('log_grades', handles.popupmenu_input, 0);
 listbox_load_from_workspace('peakdetector', handles.popupmenuPeakdetector, 1);
 
 
@@ -75,24 +80,16 @@ cla(handles.axes1, 'reset');
 axes(handles.axes1); %#ok<MAXES>
 hold off;
 
-sinput = listbox_get_selected_1stname(handles.popupmenu_input);
+input = handles.inputobj;
 
-if isempty(sinput)
+if isempty(input)
     msgbox('Cannot draw, input not specified!', 'Information');
 else
-    try
-%         obj = evalin('base', [sinput, ';']); %#ok<NASGU>
-%         eval([sinput, ' = obj;']); % Creates variable with same name as in base workspace, so that the next line is executed.
-%         o = as_fsel_grades();
-        evalin('base', ['global TEMP; TEMP = as_fsel_grades(); TEMP = TEMP.setbatch(', params2str(get_params(handles)), ');']);
-        global TEMP; %#ok<*TLEV>
-        log = TEMP.go();
-        log.draw([], 1);
-        clear TEMP;
-    catch ME
-%         irerrordlg(ME.message, 'Error');
-rethrow(ME);
-    end;
+    evalin('base', ['global TEMP; TEMP = as_fsel_grades(); TEMP = TEMP.setbatch(', params2str(get_params(handles)), ');']);
+    global TEMP; %#ok<*TLEV>
+    log = TEMP.use(input);
+    log.draw([], 1);
+    clear TEMP;
 end;
 
 
@@ -102,19 +99,12 @@ function params = get_params(handles)
 types = {'none', 'nf', 'threshold'};
 sortmodes = {'grade', 'index'};
 
-
-sinput = listbox_get_selected_1stname(handles.popupmenu_input);
-if isempty(sinput)
-    irerror('Input not specified!');
-end;
-
 spd = listbox_get_selected_1stname(handles.popupmenuPeakdetector);
 if isempty(spd)
     spd = '[]';
 end;
     
 params = {...
-'input', sinput, ...
 'type', ['''' types{get(handles.popupmenuType, 'Value')} ''''], ...
 'nf_select', int2str(eval(get(handles.editNf, 'String'))), ...
 'threshold', get(handles.editThreshold, 'String'), ...
