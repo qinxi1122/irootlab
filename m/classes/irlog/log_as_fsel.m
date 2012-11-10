@@ -115,7 +115,6 @@ classdef log_as_fsel < irlog
             draw_loadings(o.fea_x, o.grades, xhint, yhint, [], 0, [], 0, 0, 0, flag_histogram);
             format_xaxis(o);
             format_yaxis(o);
-            make_box();
         end;
         
         function o = draw_markers(o)
@@ -123,6 +122,11 @@ classdef log_as_fsel < irlog
         end;
 
         function o = draw_finish(o)
+            g = o.grades;
+            g(g == Inf) = [];
+            ymax = max(g)*1.05;
+            set(gca, 'ylim', [0, ymax]);
+            make_box();
         end;
     end;
 end

@@ -32,7 +32,7 @@ end
 
 
 % --- Executes just before uip_fselrepeater is made visible.
-function uip_fselrepeater_OpeningFcn(hObject, eventdata, handles, varargin)
+function uip_fselrepeater_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 handles.output.flag_ok = 0;
 guidata(hObject, handles);
 gui_set_position(hObject);
@@ -57,7 +57,6 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace({'irdata'}, handles.popupmenu_data, 0);
 listbox_load_from_workspace({'as_fsel'}, handles.popupmenu_as_fsel, 0);
 listbox_load_from_workspace({'fext', 'block_cascade_base'}, handles.popupmenu_fext, 1);
 listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 0);
@@ -66,12 +65,8 @@ listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 0);
 %############################################
 
 % --- Executes on button press in pushbuttonOK.
-function pushbuttonOK_Callback(hObject, eventdata, handles)
+function pushbuttonOK_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 try
-    sdata = listbox_get_selected_1stname(handles.popupmenu_data);
-    if isempty(sdata)
-        irerror('Input dataset not specified!');
-    end;
     sas_fsel = listbox_get_selected_1stname(handles.popupmenu_as_fsel);
     if isempty(sas_fsel)
         irerror('Feature Selection AS not specified!');
@@ -88,7 +83,6 @@ try
 %     other = uip_as_fsel_grades();
 %     if other.flag_ok
         handles.output.params = {...
-        'data', sdata, ...
         'as_fsel', sas_fsel, ...
         'fext', sfext, ...
         'sgs', ssgs, ...

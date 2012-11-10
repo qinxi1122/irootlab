@@ -46,8 +46,7 @@ classdef fselrepeater < as
                     % #SAMECODE begin
                     datanow = data.split_map(obsidxs(i_rep, :), [], ff);
                     fsel_ = o.as_fsel;
-                    fsel_.data = datanow;
-                    log = fsel_.go(); % GO!
+                    log = fsel_.use(datanow); % GO!
                     logs(i_rep) = log;
                     % #SAMECODE end
 

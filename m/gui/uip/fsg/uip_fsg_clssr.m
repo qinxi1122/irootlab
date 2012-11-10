@@ -65,9 +65,9 @@ end;
 %#########
 function refresh(handles)
 listbox_load_from_workspace({'clssr', 'block_cascade_base'}, handles.popupmenu_clssr, 0);
-listbox_load_from_workspace('estlog', handles.popupmenu_estlog, 1);
-listbox_load_from_workspace({'decider', 'block_cascade_base'}, handles.popupmenu_postpr_est, 1);
-listbox_load_from_workspace('block', handles.popupmenu_postpr_test, 1);
+listbox_load_from_workspace('estlog', handles.popupmenu_estlog, 1, 'Use default');
+listbox_load_from_workspace({'decider', 'block_cascade_base'}, handles.popupmenu_postpr_est, 1, 'Use default');
+listbox_load_from_workspace('block', handles.popupmenu_postpr_test, 1, 'Use default');
 listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 1);
 
 
@@ -75,7 +75,7 @@ listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 1);
 %############################################
 
 % --- Executes on button press in pushbuttonOK.
-function pushbuttonOK_Callback(hObject, eventdata, handles)
+function pushbuttonOK_Callback(hObject, eventdata, handles) %#ok<*INUSL,*DEFNU>
 try
     sclssr = listbox_get_selected_1stname(handles.popupmenu_clssr);
     if isempty(sclssr)

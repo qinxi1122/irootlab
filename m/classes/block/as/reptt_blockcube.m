@@ -23,6 +23,7 @@ classdef reptt_blockcube < reptt
     methods
         function o = reptt_blockcube()
             o.classtitle = 'Block Cube';
+            o.flag_ui = 0;
         end;
     end;
     

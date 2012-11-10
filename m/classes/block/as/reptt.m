@@ -31,14 +31,12 @@ classdef reptt < as
     
 
     methods
-        function o = reptt(o)
+        function o = reptt()
             o.classtitle = 'Repeated Train-Test';
             o.moreactions = {'go'};
+            o.flag_ui = 0;
         end;
-        
-        %> (Abstract) Merges with another @c reptt object.
-        function o = merge_with(o, o2)
-        end;
+
     end;
 
     

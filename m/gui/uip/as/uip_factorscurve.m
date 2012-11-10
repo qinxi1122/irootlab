@@ -65,10 +65,9 @@ end;
 
 %#########
 function refresh(handles)
-listbox_load_from_workspace('irdata', handles.popupmenu_data, 0);
-listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 1);
+listbox_load_from_workspace('sgs', handles.popupmenu_sgs, 1, 'Use default');
 listbox_load_from_workspace({'fcon_linear', 'block_cascade_base'}, handles.popupmenu_fcon_mold, 0);
-listbox_load_from_workspace({'clssr', 'block_cascade_base'}, handles.popupmenu_clssr, 1);
+listbox_load_from_workspace({'clssr', 'block_cascade_base'}, handles.popupmenu_clssr, 1, 'Use default');
 
 
 %############################################
@@ -89,17 +88,12 @@ try
     if isempty(ssgs)
          ssgs = '[]';
     end;
-    sdata = listbox_get_selected_1stname(handles.popupmenu_data);
-    if isempty(sdata)
-        irerror('Dataset not specified!');
-    end;
     
     handles.output.params = {...
     'clssr', sclssr, ...
     'fcon_mold', sfcon_mold, ...
     'sgs', ssgs, ...
-    'data', sdata, ...
-    'no_factors_max', int2str(eval(get(handles.edit_no_factors_max, 'String'))), ...
+    'no_factors_max', mat2str(round((eval(get(handles.edit_no_factors_max, 'String'))))), ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
