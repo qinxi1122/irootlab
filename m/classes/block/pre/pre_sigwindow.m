@@ -20,6 +20,7 @@ classdef pre_sigwindow < pre
     methods
         function o = pre_sigwindow(o)
             o.classtitle = 'Sigmoid Window';
+            o.flag_ui = 0;
         end;
     end;
     

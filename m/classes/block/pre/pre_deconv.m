@@ -9,8 +9,9 @@ classdef pre_deconv < pre
 
     
     methods
-        function o = pre_deconv(o)
+        function o = pre_deconv()
             o.classtitle = 'Deconvolution';
+            o.flag_ui = 0;
         end;
     end;
     

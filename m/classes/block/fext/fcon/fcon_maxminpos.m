@@ -1,5 +1,6 @@
-%> Peak detection
+%> Maxima/minima detection
 %>
+%> Finds several maxima/minima within several ranges specified by the @c map property. The new variables will contain the values of the x-axis positions (wavenumbers) of each minimum/maximum detected.
 %>
 %> <h3>@c map example</h3>
 %> @verbatim
@@ -14,15 +15,15 @@
 %
 %> Uses peak_landmarks.m to convert multiple peak locations into features
 %> @sa peak_landmarks.m
-classdef fcon_peaks < fcon
+classdef fcon_maxminpos < fcon
     properties
         %> [wn11, wn12, flag_min1; wn21, wn22, flag_min2; ...]
         map = [];
     end;
 
     methods
-        function o = fcon_peaks(o)
-            o.classtitle = 'Peak Detection';
+        function o = fcon_maxminpos(o)
+            o.classtitle = 'Maxima/minima Detection';
         end;
     end;
     

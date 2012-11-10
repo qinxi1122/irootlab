@@ -1,16 +1,16 @@
 %>@file
 %>@ingroup guigroup
-%>@brief Properties Window for @ref fcon_peaks
+%>@brief Properties Window for @ref fcon_maxminpos
 %>
-%>@image html Screenshot-uip_fcon_peaks.png
+%>@image html Screenshot-uip_fcon_maxminpos.png
 %>
-%> <b>Map</b> - see fcon_peaks::map
+%> <b>Map</b> - see fcon_maxminpos::map
 %>
 %>
-%> @sa fcon_peaks, peak_landmarks.m
+%> @sa fcon_maxminpos, peak_landmarks.m
 
 %>@cond
-function varargout = blockuip_fsel_rmiesc(varargin)
+function varargout = uip_fcon_maxminpos(varargin)
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
@@ -32,7 +32,7 @@ end
 
 
 % --- Executes just before blockuip_fsel_rmiesc is made visible.
-function blockuip_fsel_rmiesc_OpeningFcn(hObject, eventdata, handles, varargin)
+function blockuip_fsel_rmiesc_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 handles.output.flag_ok = 0;
 guidata(hObject, handles);
 gui_set_position(hObject);
@@ -45,12 +45,12 @@ try
     handles = guidata(hObject);
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
     varargout{1} = output;
 end;
 
-function pushbuttonOk_Callback(hObject, eventdata, handles)
+function pushbuttonOk_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 
 temp = get(handles.edit_options, 'String');
 s = sprintf('%s\n', temp{:});
@@ -63,7 +63,7 @@ guidata(hObject, handles);
 uiresume();
 
 
-function edit_options_Callback(hObject, eventdata, handles)
+function edit_options_Callback(hObject, eventdata, handles) %#ok<*INUSD>
 
 function edit_options_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))

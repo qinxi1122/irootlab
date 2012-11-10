@@ -30,7 +30,7 @@ classdef sostage_pp_rubbernorm < sostage_pp
             
             if o.ndec > 0
                 for i = 1:o.ndec
-                    out.blocks{end+1} = fcon_decimate();
+                    out.blocks{end+1} = fcon_feaavg();
                 end;
             end;
 

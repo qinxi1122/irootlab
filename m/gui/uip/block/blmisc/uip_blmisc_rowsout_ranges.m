@@ -75,10 +75,15 @@ data = handles.input.data;
 if isempty(data)
     irerrordlg('Dataset not specified!', 'Cannot preview');
 end;
-blk = handles.input.block;
-eval(['blk = blk.setbatch(', params2str(get_params(handles)), ');']);
-blk = blk.train(data);
-orhistgui_show(blk);
+try
+    blk = handles.input.block;
+    eval(['blk = blk.setbatch(', params2str(get_params(handles)), ');']);
+    blk = blk.train(data);
+    orhistgui_show(blk);
+catch ME
+    
+    send_error(ME);
+end;
 
 %#########
 function params = get_params(handles)

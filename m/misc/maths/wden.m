@@ -21,7 +21,7 @@ function X = wden(X, no_levels, thresholds, waveletname)
 nfnew = ceil(nf/2^no_levels)*2^no_levels;
 no_extend = ceil((nfnew-nf)/2);
 
-ii = 0;
+ipro = progress2_open('Wavelet de-noising', [], 0, no);
 for i = 1:no
     Xext = wextend(1, 'sym', X(i, :), no_extend, 'b');
     Xext = Xext(:, 1:nfnew); % In case nf was odd, Xext will have one column more
@@ -40,10 +40,6 @@ for i = 1:no
     X(i, :) = Xafter(no_extend+1:no_extend+nf);
 
     
-    if ii == 10
-        fprintf('\n***\n***\n*** %5.1f%% <<-------------------------\n***\n***\n***\n', i/no*100);
-        ii = 0;
-    end;
-    ii = ii+1;
+    ipro = progress2_change(ipro, [], [], i);
 end;
-
+progress2_close(ipro);
