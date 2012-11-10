@@ -1,7 +1,7 @@
-%> Creates a fcon_peaks object
-function o = get_fcon_peaks()
+%> Creates a fcon_maxminpos object
+function o = get_fcon_maxminpos()
 
-o = fcon_peaks();
+o = fcon_maxminpos();
 
 
 

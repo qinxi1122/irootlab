@@ -61,7 +61,7 @@ fcon_lda01 = fcon_lda();
 % different blocks have different grade_x
 fcon_pls01 = fcon_pls();
 cascade_pls = block_cascade_base();
-cascade_pls.blocks = {fcon_decimate(), fcon_pls01};
+cascade_pls.blocks = {fcon_feaavg(), fcon_pls01};
 % fcon_pls01.flag_autostd = 1;
 
 

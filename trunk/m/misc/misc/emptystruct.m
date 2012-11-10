@@ -7,7 +7,7 @@ function out = emptystruct(st)
 
 
 if iscell(st)
-    ff = st
+    ff = st;
 else
     ff = fields(st);
 end;

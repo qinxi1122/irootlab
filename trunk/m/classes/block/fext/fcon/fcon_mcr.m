@@ -15,7 +15,7 @@ classdef fcon_mcr < fcon_linear
     
     methods
         function o = fcon_mcr(o)
-            o.classtitle = 'MCR';
+            o.classtitle = 'MCR - Multivariate Curve Resolution';
             o.flag_trainable = 0;
         end;
     end;

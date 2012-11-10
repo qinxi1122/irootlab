@@ -3,7 +3,7 @@ classdef diacomp_peaklocationsfe < diacomp
     methods
         %> Gives an opportunity to change somethin inside the item
         function item = process_item(o, item)
-            fe = get_fcon_peaks();
+            fe = get_fcon_maxminpos();
             
             ni = numel(item.diaa);
             for i = 1:ni

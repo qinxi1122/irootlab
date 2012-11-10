@@ -1,5 +1,7 @@
 %> @ingroup as tentative
-%> @brief Extracts loadings vector as grades
+%> @brief Loadings vector becomes the grades vector
+%>
+%> Trains a @ref fcon_linear block (or a @ref block_cascade) to extract one of its loadings vector.
 %>
 classdef as_grades_loadings < as_grades
     properties
@@ -12,6 +14,7 @@ classdef as_grades_loadings < as_grades
     methods
         function o = as_grades_loadings()
             o.classtitle = 'Loadings';
+            o.flag_ui = 0;
         end;
     end;
     
