@@ -11,4 +11,4 @@ if isempty(H)
 else
 %     uicontrol(H); % Tries to bring to focus
 end;
-orhistgui_set_remover(blk);
+% orhistgui_set_remover(blk);

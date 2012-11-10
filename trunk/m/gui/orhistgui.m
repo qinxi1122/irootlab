@@ -74,10 +74,10 @@ orhistgui_refresh();
 
 function orhistgui_OutputFcn(hObject, eventdata, handles)  %#ok<*INUSL>
 if handles.flag_modal
-    set(hObject, 'WindowState', 'modal');
+    set(hObject, 'WindowStyle', 'modal');
     uiwait(handles.figure1);
 else
-    set(hObject, 'WindowState', 'normal');
+    set(hObject, 'WindowStyle', 'normal');
 end;
 
 function popupmenu_data_Callback(hObject, eventdata, handles)
