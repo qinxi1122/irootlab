@@ -5,7 +5,7 @@
 
 %> @param classname='irdata'
 function varargout = objtool(varargin)
-% Last Modified by GUIDE v2.5 10-Nov-2012 22:53:17
+% Last Modified by GUIDE v2.5 11-Nov-2012 11:16:48
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -114,14 +114,19 @@ handles = guidata(H);
 %#####
 function a = get_selected_names()
 handles = find_handles();
-a = listbox_get_selected_names(handles.listboxObjects);
+a = listbox_get_selected_names(handles.listbox_objects);
 
+%#####
+function a = get_selected_names2()
+handles = find_handles();
+a = listbox_get_selected_names(handles.listbox_blocks);
 
 %#####
 function s = get_selected_1stname()
 handles = find_handles();
-s = listbox_get_selected_1stname(handles.listboxObjects);
+s = listbox_get_selected_1stname(handles.listbox_objects);
 
+%#####
 function s = get_selected_1stname2()
 handles = find_handles();
 s = listbox_get_selected_1stname(handles.listbox_blocks);
@@ -152,7 +157,7 @@ refresh_middle();
 %#####
 function refresh_middle()
 handles = find_handles();
-listbox_load_from_workspace(handles.rootclassname, handles.listboxObjects);
+listbox_load_from_workspace(handles.rootclassname, handles.listbox_objects);
 refresh_right();
 
 %#####
@@ -179,29 +184,29 @@ s = handles.rootclassname;
 o = eval([s ';']);
 set(handles.figure1, 'Color', o.color);
 idx = find(strcmp(handles.classes, handles.rootclassname));
-% set(handles.pushbuttonNew, 'Enable', onoff{handles.flag_new(idx)+1});
+% set(handles.pushbutton_obj_new, 'Enable', onoff{handles.flag_new(idx)+1});
 
 
 if handles.flag_new(idx) %#ok<FNDSB>
     % New...
-    set(handles.pushbuttonNew, 'String', 'New...');
-    set(handles.pushbuttonSave, 'Visible', 'off');
-    p = get(handles.pushbuttonRename, 'position');
+    set(handles.pushbutton_obj_new, 'String', 'New...');
+    set(handles.pushbutton_obj_save, 'Visible', 'off');
+    p = get(handles.pushbutton_obj_rename, 'position');
     p(1) = 0.209375;
-    set(handles.pushbuttonRename, 'position', p);
-    p = get(handles.pushbuttonClear, 'position');
+    set(handles.pushbutton_obj_rename, 'position', p);
+    p = get(handles.pushbutton_obj_clear, 'position');
     p(1) = .45;
-    set(handles.pushbuttonClear, 'position', p);
+    set(handles.pushbutton_obj_clear, 'position', p);
 else
     % Load...; Save...    
-    set(handles.pushbuttonNew, 'String', 'Load...');
-    set(handles.pushbuttonSave, 'Visible', 'on');
-    p = get(handles.pushbuttonRename, 'position');
+    set(handles.pushbutton_obj_new, 'String', 'Load...');
+    set(handles.pushbutton_obj_save, 'Visible', 'on');
+    p = get(handles.pushbutton_obj_rename, 'position');
     p(1) = 0.434375;
-    set(handles.pushbuttonRename, 'position', p);
-    p = get(handles.pushbuttonClear, 'position');
+    set(handles.pushbutton_obj_rename, 'position', p);
+    p = get(handles.pushbutton_obj_clear, 'position');
     p(1) = 0.671875;
-    set(handles.pushbuttonClear, 'position', p);
+    set(handles.pushbutton_obj_clear, 'position', p);
 end;
 set(handles.uipanel_middle, 'Title', sprintf('Existing objects of class "%s"', s));
 
@@ -248,7 +253,7 @@ set(handles.listbox_blocks, 'string', a);
 % Refreshes properties panel
 function refresh_propertiespanel()
 handles = find_handles();
-show_description(handles.listboxObjects, handles.editHistory);
+show_description(handles.listbox_objects, handles.edit_properties);
 
 %#####
 % Adjusts
@@ -488,13 +493,14 @@ if ~isempty(handles.moreactions_methods)
             refresh();
         catch ME
             refresh();
+            objtool_status(ME.message);
             send_error(ME);
         end;
     end;
 end;
 
 %#####
-function do_actions()
+function do_actions(what)
 handles = find_handles();
 if ~isempty(handles.idxs_in)
     v = get(handles.listbox_actions, 'Value');
@@ -525,9 +531,13 @@ if ~isempty(handles.idxs_in)
                         og = og.start();
                         og = og.m_create();
                         og = og.m_boot();
-                        og = og.m_train();
-                        og = og.m_use();
-                        og = og.finish(); %#ok<NASGU>
+                        if any(what == 't')
+                            og = og.m_train();
+                        end;
+                        if any(what == 'u')
+                            og = og.m_use();
+                        end;
+                        og.finish();
                         % There is no need to refresh, because we don't expect the workspace to change out of visualization 
                     catch ME
                         % refresh();
@@ -537,6 +547,7 @@ if ~isempty(handles.idxs_in)
                 refresh();
             catch ME
                 refresh();
+                objtool_status(ME.message);
                 send_error(ME);
             end;
         end;
@@ -584,7 +595,6 @@ filter_actions();
 populate_actions();
 refresh_databuttons();
 
-
 %#####
 function set_modebutton(s)
 handles = find_handles();
@@ -594,8 +604,8 @@ refresh_modebuttons();
 refresh_right();
 
 
+%#####
 function do_new()
-
 objtool_status();
 handles = find_handles();
 idx = find(strcmp(handles.classes, handles.rootclassname));
@@ -610,6 +620,7 @@ if handles.flag_new(idx) %#ok<FNDSB>
             refresh();
         catch ME
             refresh();
+            objtool_status(ME.message);
             send_error(ME);
         end;
     end;
@@ -674,6 +685,8 @@ else
 end;
 
 
+
+
 %#########################################
 %#########################################
 
@@ -688,7 +701,7 @@ else
 end;
 
 %#####
-function listboxObjects_Callback(hObject, eventdata, handles)
+function listbox_objects_Callback(hObject, eventdata, handles)
 refresh_right();
 
 %#####
@@ -696,7 +709,7 @@ function pushbuttonRefreshMS_Callback(hObject, eventdata, handles)
 refresh();
 
 %#####
-function pushbuttonRename_Callback(hObject, eventdata, handles)
+function pushbutton_obj_rename_Callback(hObject, eventdata, handles)
 objtool_status();
 s = get_selected_1stname();
 if ~isempty(s)
@@ -705,12 +718,13 @@ if ~isempty(s)
         refresh_middle();
     catch ME
         refresh_middle();
+        objtool_status(ME.message);
         send_error(ME);
     end;
 end;
 
 %#####
-function pushbuttonClear_Callback(hObject, eventdata, handles)
+function pushbutton_obj_clear_Callback(hObject, eventdata, handles)
 objtool_status();
 names = get_selected_names();
 if ~isempty(names)
@@ -720,12 +734,13 @@ if ~isempty(names)
         refresh();
     catch ME
         refresh();
+        objtool_status(ME.message);
         send_error(ME);
     end;
 end;    
 
 %#####
-function pushbuttonNew_Callback(hObject, eventdata, handles)
+function pushbutton_obj_new_Callback(hObject, eventdata, handles)
 do_new();
 
 %#####
@@ -739,7 +754,7 @@ set_modebutton('properties');
 %#####
 function listbox_actions_Callback(hObject, eventdata, handles)
 if strcmp(get(handles.figure1, 'SelectionType'), 'open') % This is how you detect a double-click in MATLAB
-    do_actions();
+    do_actions('ctu');
 end;
 
 %#####
@@ -747,14 +762,6 @@ function listbox_moreactions_Callback(hObject, eventdata, handles)
 if strcmp(get(handles.figure1, 'SelectionType'), 'open') % This is how you detect a double-click in MATLAB
     do_moreactions();
 end;
-
-%#####
-function pushbutton_go_train_use_Callback(hObject, eventdata, handles)
-do_actions();
-
-%#####
-function pushbutton_go_moreactions_Callback(hObject, eventdata, handles)
-do_moreactions();
 
 %#####
 function pushbutton_create_defaults_Callback(hObject, eventdata, handles)
@@ -811,77 +818,15 @@ function togglebutton_blocks_Callback(hObject, eventdata, handles)
 set_modebutton('blocks');
 
 %#####
-function pushbutton_boot_Callback(hObject, eventdata, handles)
-objtool_status('');
-s = get_selected_1stname2();
-if ~isempty(s)
-    o = evalin('base', [s, ';']); % gets object to see if it is bootable
-    if o.flag_bootable < 1
-        objtool_status('Cannot boot: block not bootable!');
-    else
-        do_block('boot');
-    end;
-else
-    objtool_status('Cannot boot: no block selected!');
-end;
-
-%#####
-function pushbutton_train_Callback(hObject, eventdata, handles)
-objtool_status('');
-s = get_selected_1stname2();
-if ~isempty(s)
-    o = evalin('base', [s, ';']); % gets object to see if it is trainable
-    if o.flag_trainable < 1
-        objtool_status('Cannot train: block not trainable!');
-    else
-        do_block('train');
-    end;
-else
-    objtool_status('Cannot train: no block selected!');
-end;
-
-%#####
-function pushbutton_use_Callback(hObject, eventdata, handles)
-do_block('use');
-
-%#####
 function listbox_blocks_Callback(hObject, eventdata, handles)
 objtool_status();
 
 %#####
-%#####
-function listboxObjects_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function editHistory_Callback(hObject, eventdata, handles)
-function editHistory_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function listbox_classes_CreateFcn(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function listbox_actions_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function listbox_moreactions_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function edit_filter_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function edit_filter_KeyPressFcn(hObject, eventdata, handles)
+function edit_properties_Callback(hObject, eventdata, handles)
+objtool_status();
 
-function listbox_blocks_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-function pushbuttonSave_Callback(hObject, eventdata, handles)
+%#####
+function pushbutton_obj_save_Callback(hObject, eventdata, handles)
 objtool_status();
 path_assert();
 global PATH;
@@ -915,58 +860,140 @@ catch ME
     send_error(ME);
 end;
 
-%> @endcond
+%#####
+function pushbutton_filter_enter_Callback(hObject, eventdata, handles)
+filter_actions();
+populate_actions();
+
+%#####
+function pushbutton_filter_clear_Callback(hObject, eventdata, handles)
+set(handles.edit_filter, 'string', '');
+filter_actions();
+populate_actions();
+
+%#####
+function pushbutton_block_clear_Callback(hObject, eventdata, handles)
+objtool_status();
+names = get_selected_names2();
+if ~isempty(names)
+    try
+        code = sprintf('clear %s;', sprintf('%s ', names{:}));
+        ircode_eval(code, 'Clearing objects');
+        refresh();
+    catch ME
+        refresh();
+        objtool_status(ME.message);
+        send_error(ME);
+    end;
+end;    
+
+%#####
+function pushbutton_block_use_Callback(hObject, eventdata, handles)
+do_block('use');
+
+%#####
+function pushbutton_block_train_Callback(hObject, eventdata, handles)
+objtool_status('');
+s = get_selected_1stname2();
+if ~isempty(s)
+    o = evalin('base', [s, ';']); % gets object to see if it is trainable
+    if o.flag_trainable < 1
+        objtool_status('Cannot train: block not trainable!');
+    else
+        do_block('train');
+    end;
+else
+    objtool_status('Cannot train: no block selected!');
+end;
+
+%#####
+function pushbutton_block_boot_Callback(hObject, eventdata, handles)
+objtool_status('');
+s = get_selected_1stname2();
+if ~isempty(s)
+    o = evalin('base', [s, ';']); % gets object to see if it is bootable
+    if o.flag_bootable < 1
+        objtool_status('Cannot boot: block not bootable!');
+    else
+        do_block('boot');
+    end;
+else
+    objtool_status('Cannot boot: no block selected!');
+end;
 
 
-% --- Executes on button press in pushbutton_clear_block.
-function pushbutton_clear_block_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton_clear_block (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%#####
+function pushbutton_block_rename_Callback(hObject, eventdata, handles)
+objtool_status();
+s = get_selected_1stname2();
+if ~isempty(s)
+    try
+        rename_object(s);
+        refresh_right();
+    catch ME
+        refresh_right();
+        objtool_status(ME.message);
+        send_error(ME);
+    end;
+end;
 
+%#####
+function pushbutton_actions_ct_Callback(hObject, eventdata, handles)
+do_actions('ct');
 
-% --- Executes on button press in pushbutton63.
-function pushbutton63_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton63 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%#####
+function pushbutton_actions_c_Callback(hObject, eventdata, handles)
+do_actions('c');
 
+%#####
+function pushbutton_actions_ctu_Callback(hObject, eventdata, handles)
+do_actions('ctu');
 
-% --- Executes on button press in pushbutton64.
-function pushbutton64_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton64 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+%#####
+function pushbutton_moreactions_execute_Callback(hObject, eventdata, handles)
+do_moreactions();
 
-
-% --- Executes on slider movement.
+%#####
+%#####
+function listbox_objects_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function listbox_classes_CreateFcn(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function listbox_actions_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function listbox_moreactions_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function edit_filter_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function edit_filter_KeyPressFcn(hObject, eventdata, handles)
+function listbox_blocks_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 function slider1_Callback(hObject, eventdata, handles)
 refresh_sliders();
-
-
-% --- Executes during object creation, after setting all properties.
 function slider1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
-
-% --- Executes on slider movement.
 function slider2_Callback(hObject, eventdata, handles)
 refresh_sliders();
-
-% --- Executes during object creation, after setting all properties.
 function slider2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+function edit_properties_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+%> @endcond

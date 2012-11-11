@@ -5,13 +5,13 @@ ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2); % Classes: N/T
 
 % The classifier
-o = clssr_cla();
+o = clssr_d();
 o.type = 'linear';
-clssr_cla01 = o;
+clssr_d01 = o;
 
 % The FSG
 o = fsg_clssr();
-o.clssr = clssr_cla01;
+o.clssr = clssr_d01;
 o.estlog = [];
 o.postpr_est = [];
 o.postpr_test = [];
@@ -20,7 +20,6 @@ fsg_clssr01 = o;
 
 % The object that will do the feature selection
 ofs = as_fsel_forward();
-ofs.data = ds;
 ofs.nf_select = 10; % <-------- Number of features to be selected
 ofs.fsg = fsg_clssr01;
 
@@ -35,9 +34,10 @@ osgs.no_reps = 50; % <-------- Number of repetitions for the histogram
 orep = fselrepeater();
 orep.sgs = osgs;
 orep.as_fsel = ofs;
-orep.data = ds;
 
-log_rep = orep.go(); % This is the time-consuming line
+%%
+
+log_rep = orep.use(ds); % This is the time-consuming line
 
 %%
 
@@ -59,6 +59,9 @@ legend off;
 maximize_window(gcf(), 4);
 %%
 
+ov = vis_stackedhists();
+ov.data_hint = ds;
+
 ssp = subsetsprocessor();
 
 % Plots histogram in 3 different styles
@@ -68,24 +71,24 @@ for i = 1:3
         %> All features are informative
         ssp.nf4grades = [];
         ssp.nf4gradesmode = 'fixed';
-        colors = {'jet', [.7, .7, .7]};
+        ov.colors = []; % Uses default color scheme from colors2map(), which accesses COLOR_STACKEDHISTS
     elseif i == 2
-        %> Number of informative features calculated by stability threshold
+        %> 4 features are informative
         ssp.nf4grades = 4;
         ssp.nf4gradesmode = 'fixed';
         ssp.stabilitythreshold = 0.05;
-        colors = {'jet', [.7, .7, .7]};
+        ov.colors = [];
     elseif i == 3
         %> Same as previous but with different color scheme
         ssp.nf4grades = 4;
         ssp.nf4gradesmode = 'fixed';
         ssp.stabilitythreshold = 0.05;
-        colors = {[.6, 0, 0], [1, 0, 0], [.7, .7, .7], [.9, .9, .9]};
+        ov.colors = {[.6, 0, 0], [1, 0, 0], [.7, .7, .7], [.9, .9, .9]};
     end;
     log_ssp = ssp.use(log_rep);
     
     subplot(3, 1, i);
-    log_ssp.draw_stackedhists(ds, colors, []);
+    ov.use(log_ssp); % .draw_stackedhists(ds, colors, []);
     freezeColors();
 end;
 maximize_window(gcf(), 1.5);

@@ -7,6 +7,9 @@
 %>
 %> @image html demo_clssr_d_result01.png
 
+setup_load();
+
+
 dslila = load_data_userdata_nc2nf2;
 
 clssr = clssr_d();
@@ -26,24 +29,28 @@ pars.flag_last_point = 1;
 pars.flag_link_points = 0;
 pars.flag_regions = 1;
 
-%%
-if 0
-    clssr.type = 'linear';
-    clssr = clssr.boot();
-    clssr = clssr.train(dslila);
+figure;
 
-    figure;
-    colors_markers;
-    clssr.draw_domain(pars);
-    title('Linear case');
-end;
-%%
+% Linear vs. ...
+subplot(1, 2, 1);
+
+clssr.type = 'linear';
+clssr = clssr.boot();
+clssr = clssr.train(dslila);
+
+clssr.draw_domain(pars);
+title('Linear case');
+
+
+% ... Quadratic
+subplot(1, 2, 2);
 
 clssr.type = 'quadratic';
 clssr = clssr.boot();
 clssr = clssr.train(dslila);
 
-figure;
-colors_markers;
 clssr.draw_domain(pars);
 title('Quadratic case');
+
+
+maximize_window([], 2.2);

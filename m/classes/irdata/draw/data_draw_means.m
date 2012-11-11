@@ -3,7 +3,6 @@
 %>@brief Draws class means
 
 function data = data_draw_means(data)
-global SCALE;
 
 cm = classes2colormap(data.classes, 1);
 
@@ -17,7 +16,7 @@ for i = 1:numel(ucl)
     ytemp = mean(data.X(data.classes == ucl(i), :), 1);
     ymin = min([ymin, ytemp]);
     ymax = max([ymax, ytemp]);
-    htemp = plot_curve_pieces(data.fea_x, ytemp, 'Color', cm(i, :), 'LineWidth', 2*SCALE);
+    htemp = plot_curve_pieces(data.fea_x, ytemp, 'Color', cm(i, :), 'LineWidth', scaled(3));
     hs(end+1) = htemp{1};
     hold on;
 end;

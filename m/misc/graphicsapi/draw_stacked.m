@@ -24,7 +24,8 @@ if ~exist('hint', 'var') || isempty(hint)
     hint = [];
 end;
 if ~exist('colors', 'var') || isempty(colors)
-    colors = {[.8, 0, 0], [.9, .2, .2], .7*[1, 1, 1], .85*[1, 1, 1]};
+%     colors = {[.8, 0, 0], [.9, .2, .2], .7*[1, 1, 1], .85*[1, 1, 1]};
+    colors = {[], .85*[1, 1, 1]};
 end;
 % checks colors a bit
 no_colors = numel(colors);

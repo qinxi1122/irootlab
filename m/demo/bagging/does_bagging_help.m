@@ -55,9 +55,9 @@ de.decisionthreshold = 0.750000001;
 % The classifier
 %--------
 
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'linear'});
-clssr_cla01 = o;
+clssr_d01 = o;
 
 o = clssr_svm();
 o.title = 'SVM - weighted';
@@ -66,7 +66,7 @@ o.gamma = 1.25; % these values were found through grid search
 o.flag_weighted = 1;
 clssr_svm01 = o;
 
-clssr_mold = clssr_cla01;
+clssr_mold = clssr_d01;
 
 
 % SGS for the bagging classifier below

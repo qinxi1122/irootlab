@@ -2,6 +2,7 @@
 %>@file
 %>@brief Simple eClass demonstration
 %>
+%> @attention Needs the frbm (Fuzzy) classifier, which is not available in the standard distribution of IRootLab
 %> Uses userdata_nc2nf2 dataset.
 %>
 %> Simple train-test (no cross-validation).

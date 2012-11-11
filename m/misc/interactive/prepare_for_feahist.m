@@ -7,11 +7,11 @@ NF_SELECT = input('Enter number of variables for Forward Feature Selection: ');
 DSNAME = input('Dataset name: ', 's');
 
 % -- @ 28-Sep-2011 21:40:29
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'linear'});
 % -- Finished  at 28-Sep-2011 21:40:29
 
-clssr_cla01 = o;
+clssr_d01 = o;
 % -- Finished  at 28-Sep-2011 21:40:29
 
 
@@ -32,7 +32,7 @@ sgs_randsub01 = o;
 
 % -- @ 28-Sep-2011 21:44:16
 o = fsg_clssr();
-o = o.setbatch({'clssr', clssr_cla01, ...
+o = o.setbatch({'clssr', clssr_d01, ...
 'estlog', [], ...
 'postpr_est', [], ...
 'postpr_test', [], ...
