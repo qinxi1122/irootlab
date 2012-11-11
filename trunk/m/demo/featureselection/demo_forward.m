@@ -29,17 +29,16 @@ fsg_clssr01 = o;
 
 % The object that will do the feature selection
 o = as_fsel_forward();
-o.data = ds;
-o.nf_select = 25; % Number of features to be selected
+o.nf_select = 9; % Number of features to be selected
 o.fsg = fsg_clssr01;
 as_fsel_forward01 = o;
 
-log = as_fsel_forward01.go();
+log = as_fsel_forward01.use(ds);
 
 
 % ^^^^^^ Calculations finished ^^^^^^
 
-
+%%
 % Extracts feature selection block...
 out = log.extract_fsel();
 fsel_forward01 = out;
@@ -48,19 +47,25 @@ fsel_forward01 = out;
 [fsel_forward01, out] = fsel_forward01.use(ds);
 ds_fsel01 = out;
 disp([10, '-<= Features selected =>-']);
-fprintf('    -> %4.1f cm^-1 <-\n', ds_fsel01.fea_x);
+fprintf('    -> %5.1f cm^-1 <-\n', ds_fsel01.fea_x);
 disp(' ');
 
 
 % Visualizations
-o = vis_log_as_fsel();
-o.data_hint = ds;
-o.flag_mark = 1;
-figure;o.use(log);
 
+% Classification rate progression ((nf) x (rate) curve)
 out = log.extract_dataset();
 irdata_forward01 = out;
 o = vis_alldata();
 figure;
 o.use(irdata_forward01);
 legend off;
+
+% Selected features
+o = vis_log_as_fsel();
+o.data_hint = ds;
+o.flag_mark = 1;
+figure;
+o.use(log);
+maximize_window([], 9);
+

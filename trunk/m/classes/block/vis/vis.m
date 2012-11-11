@@ -1,4 +1,6 @@
 %> @brief Visualization base class
+%>
+%> Vis sets figures titles
 classdef vis < block
     properties
         %> =1. Whether the visualization is a graphic one (otherwise will be text). This is to help automatic GUI
