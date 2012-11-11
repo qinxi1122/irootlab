@@ -13,140 +13,94 @@
 %>
 %> @sa as_crossc
 
-colors_markers();
-
 dataset = load_data_she5trays();
 o = blmisc_classlabels_hierarchy();
 o = o.setbatch({'hierarchy', 1});
 blmisc_classlabels_hierarchy01 = o;
 [blmisc_classlabels_hierarchy01, out] = blmisc_classlabels_hierarchy01.use(dataset);
-dataset = out;
+dataset = out; % Dataset has only 5 classes now
 
-o = pre_meanc();
-pre_meanc01 = o;
+o = pre_norm_std();
+pre_norm_std01 = o;
+[pre_norm_std01, out] = pre_norm_std01.use(dataset);
+dataset_std01 = out; % Dataset variables are standardized
+
 
 o = fcon_lda();
 o = o.setbatch({'penalty', 0});
-% -- Finished  at 25-Sep-2011 20:26:35
+fcon_lda01 = o; % LDA block to perform the cross-calculation
 
-fcon_lda01 = o;
-% -- Finished  at 25-Sep-2011 20:26:35
+o = sgs_crossval();
+o.flag_group = 1;
+o.flag_perclass = 0;
+o.randomseed = 0;
+o.flag_loo = 1;
+sgs_crossval01 = o; % Leave-one-out cross-validation SGS
 
-
-% -- @ 25-Sep-2011 20:26:50
-o = block_cascade();
-o = o.setbatch({'blocks', {pre_meanc01, fcon_lda01}});
-% -- Finished  at 25-Sep-2011 20:26:50
-
-block_cascade01 = o;
-% -- Finished  at 25-Sep-2011 20:26:50
-
-
-% -- @ 25-Sep-2011 20:27:16
 o = as_crossc();
-o = o.setbatch({'mold', block_cascade01, ...
-'sgs', [], ...
-'data', dataset});
-% -- Finished  at 25-Sep-2011 20:27:16
-
-as_crossc01 = o;
-% -- Finished  at 25-Sep-2011 20:27:16
+o.mold = fcon_lda01;
+o.sgs = sgs_crossval01;
+as_crossc01 = o; % Cross-calculation block
 
 
+%%
 
-% -- @ 25-Sep-2011 20:32:28
-o = vis_scatter2d();
-o = o.setbatch({'idx_fea', [1,2], ...
-'confidences', [], ...
-'flag_text', 0});
-% -- Finished  at 25-Sep-2011 20:32:28
+log = as_crossc01.use(dataset_std01); % Cross-calculation
 
-vis_scatter2d01 = o;
-% -- Finished  at 25-Sep-2011 20:32:28
+%%
 
-
-% -- @ 25-Sep-2011 21:33:31
-out = as_crossc01.go();
-% -- Finished  at 25-Sep-2011 21:33:34
-
-as_crossc_crossc01 = out;
-% -- Finished  at 25-Sep-2011 21:33:34
-
-
-
-% -- @ 25-Sep-2011 22:38:17
+%%%
+%%% Visualization of fold-wise loadings vectors
+%%%
 o = vis_crossloadings();
 o = o.setbatch({'flag_abs', 0, ...
 'flag_trace_minalt', 0, ...
 'data_hint', [dataset], ...
 'peakdetector', [], ...
 'idx_fea', 1});
-% -- Finished  at 25-Sep-2011 22:38:17
+vis_crossloadings01 = o; % LD1
+
+vis_crossloadings02 = vis_crossloadings01;
+vis_crossloadings02.idx_fea = 2; % LD2
 
 figure;
-o.use(as_crossc_crossc01);
+subplot(2, 1, 1);
+vis_crossloadings01.use(log);
+title('Loadings 1 (LD1)');
+subplot(2, 1, 2);
+vis_crossloadings02.use(log);
+title('Loadings 2 (LD2)');
+maximize_window();
 
-% -- @ 25-Sep-2011 22:38:17
-o = vis_crossloadings();
-o = o.setbatch({'flag_abs', 0, ...
-'flag_trace_minalt', 0, ...
-'data_hint', [dataset], ...
-'peakdetector', [], ...
-'idx_fea', 2});
-% -- Finished  at 25-Sep-2011 22:38:17
-
-figure;
-o.use(as_crossc_crossc01);
-
-
-% -- @ 25-Sep-2011 23:11:10
-out = as_crossc_crossc01.extract_dataset();
-% -- Finished  at 25-Sep-2011 23:11:11
-
+%%%
+%%% Visualization direct LDA and cross-calculated LDA scatter plots
+%%%
+out = log.extract_dataset();
 irdata_crossc01 = out;
-% -- Finished  at 25-Sep-2011 23:11:11
 
-
-% -- @ 25-Sep-2011 23:11:27
 o = vis_scatter2d();
 o = o.setbatch({'idx_fea', [1,2], ...
 'confidences', [], ...
-'flag_text', 0});
-% -- Finished  at 25-Sep-2011 23:11:27
+});
+vis_scatter2d01 = o; % 2D scatterplot block
 
 figure;
-o.use(irdata_crossc01);
-% -- Finished  at 25-Sep-2011 23:11:29
+subplot(1, 2, 1);
+vis_scatter2d01.use(irdata_crossc01);
+title('Cross-calculated LDA scores');
+xlabel('LD1'); ylabel('LD2');
+v_xlim = xlim();
+v_ylim = ylim();
 
+fcon_lda01 = fcon_lda01.train(dataset_std01);
+[fcon_lda01, out] = fcon_lda01.use(dataset_std01);
+dataset_std01_lda01 = out;
 
-% -- @ 25-Sep-2011 23:19:57
-pre_meanc01 = pre_meanc01.train(dataset);
-% -- Finished  at 25-Sep-2011 23:19:57
-
-
-% -- @ 25-Sep-2011 23:19:57
-[pre_meanc01, out] = pre_meanc01.use(dataset);
-% -- Finished  at 25-Sep-2011 23:19:57
-
-lindo_meanc01 = out;
-% -- Finished  at 25-Sep-2011 23:19:57
-
-
-% -- @ 25-Sep-2011 23:20:01
-fcon_lda01 = fcon_lda01.train(lindo_meanc01);
-% -- Finished  at 25-Sep-2011 23:20:01
-
-
-% -- @ 25-Sep-2011 23:20:02
-[fcon_lda01, out] = fcon_lda01.use(lindo_meanc01);
-% -- Finished  at 25-Sep-2011 23:20:02
-
-lindo_meanc01_lda01 = out;
-% -- Finished  at 25-Sep-2011 23:20:02
-
-
-% -- @ 25-Sep-2011 23:20:04
-figure;
-vis_scatter2d01.use(lindo_meanc01_lda01);
-% -- Finished  at 25-Sep-2011 23:20:05
-
+subplot(1, 2, 2);
+vis_scatter2d01.use(dataset_std01_lda01);
+title('Direct LDA scores');
+xlabel('LD1'); ylabel('LD2');
+xlim(v_xlim);
+ylim(v_ylim); % Same scale to show difference in the scattering of points
+make_box();
+maximize_window();

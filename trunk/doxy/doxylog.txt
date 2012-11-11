@@ -129,13 +129,15 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_classxclass.m:1: warning: image file Screenshot-uip_estlog_classxclass.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_groupxclass.m:1: warning: image file Screenshot-uip_estlog_groupxclass.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_factorscurve.m:1: warning: image file Screenshot-uip_factorscurve.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fcon/uip_fcon_peaks.m:1: warning: image file Screenshot-uip_fcon_peaks.png is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fcon/uip_fcon_feaavg.m:1: warning: image file Screenshot-uip_fcon_feaavg.png is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fcon/uip_fcon_maxminpos.m:1: warning: image file Screenshot-uip_fcon_maxminpos.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_frbm.m:3: warning: unable to resolve reference to `frbm' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fsel/uip_fsel.m:1: warning: image file Screenshot-uip_fsel.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_fselrepeater.m:3: warning: unable to resolve reference to `as_fsel_hist' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_fselrepeater.m:1: warning: image file Screenshot-uip_fselrepeater.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/fsg/uip_fsg_clssr.m:1: warning: image file Screenshot-uip_fsg_clssr.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/fsg/uip_fsg_test_t.m:1: warning: image file Screenshot-uip_fsg_test_t.png is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/uip_logrecorder.m:1: warning: image file Screenshot-uip_logrecorder.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_bc_rubber.m:3: warning: image file Screenshot-uip_pre_bc_rubber.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_flip_refmean.m:1: warning: image file Screenshot-uip_pre_flip_refmean.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_grades.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
@@ -233,8 +235,6 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/as.m:4: warning: Unsupported xml/html tag </endcode> found
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/as.m:14: warning: end of comment block while expecting command </code>
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -242,20 +242,15 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/as_crossc.m:49: warning: unable to resolve reference to `log_crossc' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/as_crossc.m:49: warning: unable to resolve reference to `data_out' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/as_crossc.m:55: warning: unable to resolve reference to `log_crossc' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/as_dsperc_x_rate.m:40: warning: unable to resolve reference to `logs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/as_dsperc_x_rate.m:35: warning: unable to resolve reference to `logs' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
@@ -274,18 +269,6 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_forward.m:3: warning: unable to resolve reference to `as_fsel_fb' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -565,25 +548,19 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/bmtable.m:8: warning: Unsupported xml/html tag <bold> found
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/bmtable.m:8: warning: Unsupported xml/html tag </bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/bmtable.m:8: warning: Unsupported xml/html tag <bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/bmtable.m:8: warning: Unsupported xml/html tag </bold> found
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/bmtable.m:429: warning: argument 'flag_rowwise' of command @param is not found in the argument list of bmtable::merge_with(in o, in o2, in flag_row)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/bmtable.m:429: warning: argument '1' of command @param is not found in the argument list of bmtable::merge_with(in o, in o2, in flag_row)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/bmtable.m:429: warning: The following parameters of bmtable::merge_with(in o, in o2, in flag_row) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/bmtable.m:429: warning: argument 'flag_rowwise' of command @param is not found in the argument list of bmtable::merge_with(in o, in o2, in flag_row)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/bmtable.m:429: warning: argument '1' of command @param is not found in the argument list of bmtable::merge_with(in o, in o2, in flag_row)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/bmtable.m:429: warning: The following parameters of bmtable::merge_with(in o, in o2, in flag_row) are not documented:
   parameter 'o'
   parameter 'o2'
   parameter 'flag_row'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -932,103 +909,19 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/estlog.m:109: warning: The following parameters of estlog::record(in o, in pars) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/factorscurve.m:7: warning: unable to resolve reference to `extract_reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/factorscurve.m:28: warning: unable to resolve reference to `cube' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/factorscurve.m:31: warning: Found unknown command `\reptt'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:7: warning: unable to resolve reference to `extract_reptt_sgs' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `data' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `cube' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:28: warning: Found unknown command `\reptt'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/factorscurve.m:31: warning: Found unknown command `\reptt'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/factorscurve.m:28: warning: unable to resolve reference to `cube' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:28: warning: Found unknown command `\reptt'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `data' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `cube' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1054,6 +947,92 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: Found unknown command `\irdata'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fcon/fcon_linear.m:6: warning: explicit link request to 'transform_linear()' could not be resolved
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -1106,11 +1085,11 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/fselrepeater.m:37: warning: unable to resolve reference to `as_fselrep::as_fsel' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/fselrepeater.m:40: warning: unable to resolve reference to `as_fselrep::as_fsel' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
@@ -1302,21 +1281,21 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:199: warning: argument 'last' of command @param is not found in the argument list of gridsearch::draw_1d(in o, in iter)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:199: warning: The following parameters of gridsearch::draw_1d(in o, in iter) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:197: warning: argument 'last' of command @param is not found in the argument list of gridsearch::draw_1d(in o, in iter)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:197: warning: The following parameters of gridsearch::draw_1d(in o, in iter) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:351: warning: The following parameters of gridsearch::draw_image(in o, in iter, in dim, in idx, in flag_normalize, in clim) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:349: warning: The following parameters of gridsearch::draw_image(in o, in iter, in dim, in idx, in flag_normalize, in clim) are not documented:
   parameter 'o'
   parameter 'iter'
   parameter 'dim'
   parameter 'idx'
   parameter 'clim'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:238: warning: unable to resolve reference to `paramspec' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:237: warning: The following parameters of gridsearch::drawx_get_aaba(in o, in iter, in dim, in idx) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:236: warning: unable to resolve reference to `paramspec' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:235: warning: The following parameters of gridsearch::drawx_get_aaba(in o, in iter, in dim, in idx) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:177: warning: argument 'last' of command @param is not found in the argument list of gridsearch::get_best(in o, in iter)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/gridsearch.m:177: warning: The following parameters of gridsearch::get_best(in o, in iter) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:175: warning: argument 'last' of command @param is not found in the argument list of gridsearch::get_best(in o, in iter)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:175: warning: The following parameters of gridsearch::get_best(in o, in iter) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
@@ -1437,7 +1416,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/log_as_fsel_forward.m:30: warning: unable to resolve reference to `nfxgrades' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_as_fsel_forward.m:30: warning: unable to resolve reference to `nfxgrades' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
@@ -1531,7 +1510,6 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_iterativefsel.m:1: warning: unable to resolve reference to `as_fsel_fb' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1695,7 +1673,6 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/rater.m:28: warning: unable to resolve reference to `reptt_sgs' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1846,39 +1823,37 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt_bag.m:164: warning: unable to resolve reference to `no_blocks' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt_bag.m:164: warning: unable to resolve reference to `no_blocks' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt_hiesplit.m:6: warning: unable to resolve reference to `aggr_free' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt_hiesplit.m:2: warning: unable to resolve reference to `aggr_free' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt_incr.m:159: warning: unable to resolve reference to `train' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt_incr.m:159: warning: unable to resolve reference to `train' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:26: warning: Found unknown command `\block_cascade_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:55: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:155: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:98: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)

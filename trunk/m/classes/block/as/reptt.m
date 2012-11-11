@@ -7,8 +7,6 @@
 %> @sa uip_reptt.m
 classdef reptt < as
     properties
-        %> Dataset to draw sub-datasets from
-        data;
         %> Cell array. Blocks to be trained-tested.
         block_mold;
         %> Cell array. Molds for the recording.

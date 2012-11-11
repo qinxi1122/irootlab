@@ -18,9 +18,10 @@
 %> [2] Kuncheva, "Combining Pattern Classifiers", 2004, page 109.
 classdef as_crossc < as
     properties
+        %> SGS, preferrably a cross-validation (@ref sgs_crossval).
         sgs;
+        %> Mold block
         mold;
-        data;
     end;
     
     properties (SetAccess=protected)

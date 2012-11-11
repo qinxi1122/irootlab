@@ -20,9 +20,7 @@ end;
 [nr, nc] = size(CC);
 flag_rejected = any(CC(:, 1) > 0);
 
-if flag_rejected
-    collabels = ['rejected', collabels];
-end;
+collabels = ['rejected', collabels];
 
 sperc = '';
 
@@ -31,9 +29,10 @@ if flag_perc
     CC = round(CC*10000)/100; % To make 2 decimal places only
 end;
 
-wids = zeros(1, nc);
+W = 7; % the "7" could be more accurately resolved
+% wids = W*ones(1, nc);
 for i = 1:nc
-    wids(i) = max(length(collabels{i}), 7); % the "7" could be more accurately resolved
+    wids(i) = max(length(collabels{i}), W);
 end;
 
 wid1 = 0;
@@ -43,7 +42,6 @@ end;
 
 spaces = char(32)*ones(1, max([wids, wid1]));
 
-s = '';
 
 % % % % % % % % % % % % % % % % % % % % % % % col_width = (widcols+1)*no_classes+maxlen+1; % +1 for vert spaces; +1 for '\n'
 % % % % % % % % % % % % % % % % % % % % % % % nr = no_classes+1;
@@ -53,7 +51,7 @@ s = '';
 
 s = [32*ones(1, wid1), ' '];
 
-for i = 1:nc
+for i = iif(flag_rejected, 1, 2):nc
     s_ = [spaces collabels{i}];
     s = [s ' ' s_(end-wids(i)+1:end)];
 end;
@@ -62,7 +60,7 @@ s = [s char(10)];
 for i = 1:nr
     s_ = [rowlabels{i} spaces];
     s =  [s s_(1:wid1)];
-    for j = 1:nc
+    for j = iif(flag_rejected, 1, 2):nc
         s_ = [spaces sprintf('%6.2f', CC(i, j)) sperc];
         s =  [s ' ' s_(end-wids(j)+1:end)];
     end;

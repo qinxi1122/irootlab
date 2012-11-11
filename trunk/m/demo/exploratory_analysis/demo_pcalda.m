@@ -40,7 +40,7 @@ ds01_hierarchy01_pcalda01 = out;
 o = vis_scatter2d();
 o = o.setbatch({'idx_fea', [1,2,3], ...
 'confidences', 0.9, ...
-'flag_text', 0});
+});
 
 vis_scatter2d01 = o;
 

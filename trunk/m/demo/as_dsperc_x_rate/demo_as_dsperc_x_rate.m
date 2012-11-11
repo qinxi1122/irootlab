@@ -23,15 +23,15 @@ ddemo = fcon_pca01.use(ddemo);
 
 % Classifiers to be used
 
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'linear'});
 o.title = 'LDC';
-clssr_cla01 = o;
+clssr_d01 = o;
 
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'quadratic'});
 o.title = 'QDC';
-clssr_cla02 = o;
+clssr_d02 = o;
 
 
 o = estlog_classxclass();
@@ -58,7 +58,7 @@ o = o.setbatch({'data', ddemo, ...
 'postpr_test', [], ...
 'postpr_est', decider01, ...
 'log_mold', {estlog_classxclass01}, ...
-'block_mold', {clssr_cla01, clssr_cla02}, ...
+'block_mold', {clssr_d01, clssr_d02}, ...
 'sgs', sgs01});
 cube = o;
 

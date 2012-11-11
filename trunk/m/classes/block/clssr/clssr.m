@@ -54,6 +54,7 @@ classdef clssr < block
             end;
 
             o.do_draw_domain(parameters);
+            make_box();
         end;
 
     end;

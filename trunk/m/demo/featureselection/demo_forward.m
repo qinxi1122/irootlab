@@ -5,9 +5,9 @@ ds = data_select_hierarchy(ds, 2); % Classes will be N/T
 
 
 % The classifier
-o = clssr_cla();
+o = clssr_d();
 o.type = 'quadratic';
-clssr_cla01 = o;
+clssr_d01 = o;
 
 % The SGS
 o = sgs_crossval();
@@ -20,7 +20,7 @@ sgs_crossval01 = o;
 
 % The FSG
 o = fsg_clssr();
-o.clssr = clssr_cla01;
+o.clssr = clssr_d01;
 o.estlog = [];
 o.postpr_est = [];
 o.postpr_test = [];

@@ -11,13 +11,13 @@ ddemo = data_select_hierarchy(ddemo, 1);
 
 % Classifiers to be used
 
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'linear'});
-clssr_cla01 = o;
+clssr_d01 = o;
 
-o = clssr_cla();
+o = clssr_d();
 o = o.setbatch({'type', 'quadratic'});
-clssr_cla02 = o;
+clssr_d02 = o;
 
 o = clssr_dist();
 o = o.setbatch({'normtype', 'euclidean', ...
@@ -52,7 +52,7 @@ o = o.setbatch({'data', ddemo, ...
 'postpr_test', [], ...
 'postpr_est', decider01, ...
 'log_mold', {estlog_classxclass01}, ...
-'block_mold', {clssr_cla01, clssr_cla02, clssr_dist01}, ...
+'block_mold', {clssr_d01, clssr_d02, clssr_dist01}, ...
 'sgs', sgs_crossval01, ...
 'vectorcomp', vectorcomp_ttest01});
 reptt_sgs01 = o;
