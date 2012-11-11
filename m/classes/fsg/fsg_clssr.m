@@ -17,6 +17,15 @@ classdef fsg_clssr < fsg
         postpr_est;
     end;
     
+    methods
+        function s = get_yname(o)
+            s = o.estlog.get_legend();
+        end;
+        function s = get_yunit(o)
+            s = o.estlog.get_unit();
+        end;
+    end;
+    
     methods(Access=protected)
         %> Cross-validation is performed here.
         %> return a (no_pairs)x(no_idxs)x(no_test_sets) grades vector
@@ -61,17 +70,6 @@ classdef fsg_clssr < fsg
                 for ipair = 1:npair % Pairwise LOOP
                     dd = o.subddd{ipair};
 
-%                     for irep = nreps:-1:1
-%                         for itt = 2:-1:1 % Backwards to pre-allocate
-%                             % (feature case, whether train/test, sgs repetition)
-%                             train_test(:, itt, irep) = dd(irep, itt).select_features(idxs)';
-%                         end;
-%                     end;
-
-
-
-%                     t = [];
-
                     for k = ntt:-1:1
                         for irep = nreps:-1:1
                             dnows(irep, k, :) = dd(irep, k).select_features(idxs);
@@ -79,18 +77,12 @@ classdef fsg_clssr < fsg
                     end;
 
                     for iidx = 1:nidx % Feature Subset LOOP
-%                         irverbose(sprintf('$*$*$*$ fsg_clssr session %d/%d. $*$*$*$\n', iidx, nidx), 0); % WHATEVER
-                        
                         % Allocates one log per test set
                         for k = ntt:-1:2
                             lo(k-1) = o.estlog.allocate(nreps);
                         end;
 
                         for irep = 1:nreps % Cross-validation loop
-%                             for k = ntt:-1:1
-%                                 dnow(k) = dd(irep, k).select_features(idxs{iidx});
-%                             end;
-                            
                             cl = o.clssr.boot();
                             cl = cl.train(dnows(irep, 1, iidx));
                             
@@ -112,12 +104,6 @@ classdef fsg_clssr < fsg
                         for k = 2:ntt
                             z(ipair, iidx, k-1) = lo(k-1).get_rate();
                         end;
-
-%                         if ~isempty(t)
-%                             t = toc(t);
-%                             irverbose(sprintf('---o() %g seconds', t), 0);
-%                         end;
-%                         t = tic();
                     end;
                 end;
             end;

@@ -22,10 +22,13 @@ classdef fsel < fext
         xname = '';
         xunit = '';
         %> All objects with the @c grades property must have the @c grades_x property as well, to equalize for @ref bmtable
+        %> @todo get rid of this
         grades_x;
 
         %> Name of y-axis (grades)
         yname = 'Hit';
+        %> Unit of y-axis (grades)
+        yunit = '';
     end;
     
     methods
@@ -38,6 +41,7 @@ classdef fsel < fext
         end;
 
         %> bmtable integration
+        %> @todo get rid
         function z = get_grades_x(o, params)
             z = o.grades_x;
         end;
@@ -45,6 +49,7 @@ classdef fsel < fext
         %> @c params is ignored
         %>
         %> Uses the @ref grades property if not empty, otherwise builds a "hits" vector
+        %> @todo check where this is called
         function z = get_grades(o, varargin)
             if ~isempty(o.grades)
                 z = o.grades;

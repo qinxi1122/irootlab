@@ -10,10 +10,9 @@ fe.title = 'PCA';
 fc = factorscurve();
 fc.clssr = cl;
 fc.fcon_mold = fe;
-fc.flag_parallel = 1; % Set to 1 to make it faster
-fc.data = ds;
+fc.flag_parallel = 1; % <------------------------Note that it will try to use the MATLAB Parallel Computing Toolbox
 fc.no_factors_max = ds.nf;
-out = fc.go(); % Output is a dataset
+out = fc.use(ds); % Output is a dataset
 
 vi = vis_hachures();
 figure;

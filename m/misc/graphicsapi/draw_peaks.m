@@ -6,15 +6,27 @@
 %> @param y
 %> @param indexes
 %> @param flag_text
-function draw_peaks(x, y, indexes, flag_text)
-global SCALE FONTSIZE FONT;
+%> @param color =black
+%> @param marker =x
+%< @param markersize =scaled(10)
+function draw_peaks(x, y, indexes, flag_text, color, marker, markersize)
+global FONTSIZE FONT;
 
 if ~exist('flag_text', 'var')
     flag_text = 1;
 end;
+if nargin < 5 || isempty(color)
+    color = [0, 0, 0];
+end;
+if nargin < 6 || isempty(marker)
+    marker = 'x';
+end;
+if nargin < 7 || isempty(markersize)
+    markersize = scaled(10);
+end;
 
 scale = max(abs(y));
-offset = 0.025*scale;
+% offset = 0.025*scale;
 
 y(y == Inf) = max(y(y ~= Inf));
 
@@ -23,7 +35,7 @@ y_peaks = y(indexes);
 
 
 for i = 1:length(x_peaks)
-    plot(x_peaks(i), y_peaks(i), 'kx', 'MarkerSize', 10*SCALE, 'LineWidth', 3*SCALE);
+    plot(x_peaks(i), y_peaks(i), 'Color', color, 'Marker', marker, 'MarkerSize', markersize, 'LineWidth', scaled(3));
     hold on;
     offset = 0.025*scale;
     if y_peaks(i) < 0

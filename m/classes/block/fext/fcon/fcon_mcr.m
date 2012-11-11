@@ -2,9 +2,15 @@
 %>
 %> Uses the Toolbox from the University of Barcelona (http://www.mcrals.info)
 %>
-%> Not completely developed, I couldn't find out how to find a good guess of initial loadings.
-%> It has been used in one Imran's publication nonetheless. There is a document file that shows how to answer the
-%> iterative questions (case when Number of Factors is 10): <a href="mcr.pdf">mcr.pdf</a>
+%> The use() method calls an <b>interative</b> function from that toolbox. This <a href="mcr.pdf">configuration</a> was used to obtain the results published in [2].
+%>
+%> <h3>References</h3>
+%>
+%> ﻿[1] J. Jaumot, R. Gargallo, a Dejuan, and R. Tauler, “A graphical user-friendly interface for MCR-ALS: a new tool for multivariate curve 
+%>resolution in MATLAB,” Chemometr. Intell. Lab., vol. 76, no. 1, pp. 101-110, Mar. 2005.
+%>
+%> [2] I. I. Patel et al., “High contrast images of uterine tissue derived using Raman microspectroscopy with the empty modelling approach of 
+%> multivariate curve resolution-alternating least squares,” Analyst, no. 23, pp. 4950-4959, Dec. 2011.
 %>
 %> @sa uip_fcon_mcr.m
 classdef fcon_mcr < fcon_linear

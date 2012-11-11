@@ -23,7 +23,8 @@ classdef log_as_fsel < irlog
             o.moreactions = [o.moreactions, {'extract_fsel'}];
             o.flag_ui = 0;
         end;
-        
+
+        %> @return an @ref fsel block with the selection in @ref fsel::v
         function blk = extract_fsel(o)
             blk = fsel();
             blk.v = o.v;
@@ -31,7 +32,7 @@ classdef log_as_fsel < irlog
             blk.xname = o.xname;
             blk.yname = o.yname;
             blk.xunit = o.xunit;
-%             blk.yunit = o.yunit;
+            blk.yunit = o.yunit;
             blk.grades = o.grades;
         end;
     end;
@@ -104,28 +105,47 @@ classdef log_as_fsel < irlog
 
 
         function o = draw_grades(o, data_hint, flag_histogram)
-            if ~isempty(data_hint)
-                xhint = data_hint.fea_x;
-                yhint = mean(data_hint.X);
-            else
-                xhint = [];
-                yhint = [];
+            if any(o.grades ~= 0)
+                if ~isempty(data_hint)
+                    xhint = data_hint.fea_x;
+                    yhint = mean(data_hint.X);
+                else
+                    xhint = [];
+                    yhint = [];
+                end;
+
+                draw_loadings(o.fea_x, o.grades, xhint, yhint, [], 0, [], 0, 0, 0, flag_histogram);
             end;
-            
-            draw_loadings(o.fea_x, o.grades, xhint, yhint, [], 0, [], 0, 0, 0, flag_histogram);
-            format_xaxis(o);
-            format_yaxis(o);
         end;
         
         function o = draw_markers(o)
-            draw_peaks(o.fea_x, o.grades, o.v, 0);
+            if all(o.grades == 0)
+                plot(o.fea_x([1, end]), [0, 0], 'LineWidth', scaled(3), 'Color', [0, 0, 0]);
+                hold on;
+                draw_peaks(o.fea_x, o.grades, o.v, 0, find_color(1), 'p', scaled(20));
+            else
+                draw_peaks(o.fea_x, o.grades, o.v, 0);
+            end;
         end;
 
+        %> Takes care of axes, Frank, box
         function o = draw_finish(o)
             g = o.grades;
             g(g == Inf) = [];
+            ymin = 0;
             ymax = max(g)*1.05;
-            set(gca, 'ylim', [0, ymax]);
+            if ymax == 0
+                ymax = 1;
+                ymin = -1;
+                ylabel('');
+                set(gca, 'ytick', []);
+            else
+                format_yaxis(o);
+            end;
+            set(gca, 'ylim', [ymin, ymax]);
+            format_frank();
+            format_xaxis(o);
+            
             make_box();
         end;
     end;
