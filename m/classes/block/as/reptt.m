@@ -32,9 +32,7 @@ classdef reptt < as
         function o = reptt()
             o.classtitle = 'Repeated Train-Test';
             o.moreactions = {'go'};
-            o.flag_ui = 0;
         end;
-
     end;
 
     

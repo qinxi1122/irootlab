@@ -1,18 +1,17 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref vis_sovalues_drawplot
-%>
 
 %>@cond
-function varargout = uip_vis_sovalues_drawsubplot(varargin)
-% Last Modified by GUIDE v2.5 12-Nov-2012 17:03:41
+function varargout = uip_report_sovalues_comparison(varargin)
+% Last Modified by GUIDE v2.5 12-Nov-2012 18:27:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @uip_vis_sovalues_drawsubplot_OpeningFcn, ...
-                   'gui_OutputFcn',  @uip_vis_sovalues_drawsubplot_OutputFcn, ...
+                   'gui_OpeningFcn', @uip_report_sovalues_comparison_OpeningFcn, ...
+                   'gui_OutputFcn',  @uip_report_sovalues_comparison_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -27,8 +26,8 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before uip_vis_sovalues_drawsubplot is made visible.
-function uip_vis_sovalues_drawsubplot_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
+% --- Executes just before uip_report_sovalues_comparison is made visible.
+function uip_report_sovalues_comparison_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 if nargin > 4
     handles.input.sovalues = varargin{2};
 else
@@ -47,8 +46,13 @@ else
     set(handles.popupmenu_valuesfieldname, 'string', {'?'});
 end;
 
+listbox_load_from_workspace('vectorcomp', handles.popupmenu_vectorcomp, 1, 'Use default');
+
+
+
+
 % --- Outputs from this function are returned to the command clae.
-function varargout = uip_vis_sovalues_drawsubplot_OutputFcn(hObject, eventdata, handles) 
+function varargout = uip_report_sovalues_comparison_OutputFcn(hObject, eventdata, handles) 
 try
     uiwait(handles.figure1);
     handles = guidata(hObject);
@@ -79,13 +83,17 @@ try
         end;
     end;
     
+    svectorcomp = listbox_get_selected_1stname(handles.popupmenu_vectorcomp);
+    if isempty(svectorcomp)
+        svectorcomp = '[]';
+    end;
+
     handles.output.params = {...
     'dimspec', aaa, ...
-    'valuesfieldname', ['''', svfn, ''''], ...
-    'ylimits', mat2str(eval(get(handles.edit_ylimits, 'String'))), ...
-    'xticks', mat2str(eval(get(handles.edit_xticks, 'String'))), ...
-    'flag_star', num2str(get(handles.checkbox_flag_star, 'Value')), ...
-    'xticklabels', cell2str(eval(get(handles.edit_xticklabels, 'String'))) ...
+    'names', ['{''', svfn, '''}'], ...
+    'maxrows', int2str(eval(get(handles.edit_maxrows, 'String'))), ...
+    'flag_ptable' , int2str(get(handles.checkbox_flag_ptable, 'Value')), ...
+    'vectorcomp', svectorcomp, ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -95,29 +103,14 @@ catch ME
     
 end;
 
-function edit_conc_Callback(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
 
-% --- Executes during object creation, after setting all properties.
-function edit_conc_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-function edit_dimspec_Callback(hObject, eventdata, handles)
+function edit_dimspec_Callback(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
 
 % --- Executes during object creation, after setting all properties.
 function edit_dimspec_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-% --- Executes on button press in checkbox_flag_legend.
-function checkbox_flag_legend_Callback(hObject, eventdata, handles)
-
-% --- Executes on button press in checkbox_flag_ud.
-function checkbox_flag_ud_Callback(hObject, eventdata, handles)
 
 
 
@@ -128,29 +121,15 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function edit_ylimits_Callback(hObject, eventdata, handles)
+function edit_maxrows_Callback(hObject, eventdata, handles)
 
-function edit_ylimits_CreateFcn(hObject, eventdata, handles)
+function edit_maxrows_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-function edit_xticks_Callback(hObject, eventdata, handles)
-
-function edit_xticks_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-function edit_xticklabels_Callback(hObject, eventdata, handles)
-
-function edit_xticklabels_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-function checkbox_flag_star_Callback(hObject, eventdata, handles)
+function checkbox_flag_ptable_Callback(hObject, eventdata, handles)
 
 
 %#####
@@ -165,4 +144,30 @@ function popupmenu_valuesfieldname_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+
 %> @endcond
+
+
+% --- Executes on selection change in popupmenu_vectorcomp.
+function popupmenu_vectorcomp_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu_vectorcomp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu_vectorcomp contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu_vectorcomp
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu_vectorcomp_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu_vectorcomp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

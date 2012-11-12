@@ -60,6 +60,7 @@ o = vis_alldata();
 figure;
 o.use(irdata_forward01);
 legend off;
+title('Classification rate progression');
 
 % Selected features
 o = vis_log_as_fsel();
@@ -67,5 +68,6 @@ o.data_hint = ds;
 o.flag_mark = 1;
 figure;
 o.use(log);
-maximize_window([], 9);
+title('Features selected');
+maximize_window([], 7);
 

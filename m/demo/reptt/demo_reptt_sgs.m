@@ -1,3 +1,5 @@
+I have to base my new demo_reptt_blockcube on this
+
 %>@ingroup demo
 %>@file
 %>@brief OBSOLETE Demonstrates use of the @ref reptt_sgs class

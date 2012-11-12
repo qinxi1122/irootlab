@@ -71,7 +71,7 @@ o = o.setbatch({'decisionthreshold', 0});
 decider01 = o;
 
 o = reptt_bag();
-o = o.setbatch({'data', ddemo, ...
+o = o.setbatch({ ...
 'postpr_test', [], ...
 'postpr_est', decider01, ...
 'log_mold', {estlog_classxclass01}, ...
@@ -82,11 +82,10 @@ o = o.setbatch({'data', ddemo, ...
 reptt_bag01 = o;
 
 
-out = reptt_bag01.go();
-reptt_bag01_bag01 = out;
+log = reptt_bag01.use(ddemo);
 
 
-
+%%
 
 % Visualizes results
 

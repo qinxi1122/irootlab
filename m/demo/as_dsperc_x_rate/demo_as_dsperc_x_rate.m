@@ -54,8 +54,7 @@ o = o.setbatch({'decisionthreshold', 0});
 decider01 = o;
 
 o = reptt_blockcube();
-o = o.setbatch({'data', ddemo, ...
-'postpr_test', [], ...
+o = o.setbatch({'postpr_test', [], ...
 'postpr_est', decider01, ...
 'log_mold', {estlog_classxclass01}, ...
 'block_mold', {clssr_d01, clssr_d02}, ...
@@ -72,7 +71,7 @@ lc = o;
 
 %%
 
-lo = lc.go();
+lo = lc.use(ddemo);
 
 %%
 
@@ -80,5 +79,5 @@ o = vis_log_celldata();
 o.idx = [1, 2];
 figure;
 o.use(lo);
-
+title(sprintf('Number of spectra in dataset: %d', ddemo.no));
 

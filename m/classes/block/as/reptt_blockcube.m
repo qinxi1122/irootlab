@@ -23,7 +23,8 @@ classdef reptt_blockcube < reptt
     methods
         function o = reptt_blockcube()
             o.classtitle = 'Block Cube';
-            o.flag_ui = 0;
+            o.flag_ui = 1;
+            o.flag_multiin = 1;
         end;
     end;
     
@@ -43,6 +44,9 @@ classdef reptt_blockcube < reptt
             else
                 nds = 1;
                 flag_obsidxs = 0;
+                if numel(data) < 2
+                    irerror('If sgs and obsidxs are both empty, reptt_blockcube needs two input datasets (one for training and another for using)!');
+                end;
             end;
 %             o.no_datasets = nds;
 

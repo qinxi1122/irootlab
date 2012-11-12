@@ -33,19 +33,6 @@ classdef sovalues < irlog
     
 
     
-    % Reporting
-    methods (Access=protected)
-        %> Gives a table with some information caught from the properties
-        function s = do_get_html(o)
-            ot = sovaluestablereport();
-            
-            s = [do_get_html@irlog(o), '<hr/>', o.get_html_specs(), '<hr/>', ot.get_html(o)];
-        end;
-        
-        
-    end;    
-    
-
     methods(Static)
         %> Returns a singleton structure with fields rates, times1 etc
         function vv = read_logs(ll)
@@ -70,7 +57,8 @@ classdef sovalues < irlog
             vv.oc = lo.extract_confusion();
         end;
         
-        %> returns a cube of structures
+        %> @param ll a 4D cell of logs
+        %> @return A cube of structures
         function vv = read_logss(ll)
             [nj, nk, nl, lo_logs] = size(ll); %#ok<NASGU>
             
@@ -238,6 +226,20 @@ classdef sovalues < irlog
             s = cat(2, s, '</table>', 10);
         end;
 
+        
+        %> @return The names of the fields that are numeric within values
+        function ff = get_numericfieldnames(o)
+            if numel(o.values) <= 0
+                irerror('Values is empty, cannot get numeric field names!');
+            end;
+            ff = fields(o.values);
+            v = o.values(1);
+            for i = numel(ff):-1:1
+                if ~isnumeric(v.(ff{i}))
+                    ff(i) = [];
+                end;
+            end;
+        end;
     end;
     
     

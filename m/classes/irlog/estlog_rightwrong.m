@@ -11,6 +11,7 @@ classdef estlog_rightwrong < estlog
     methods
         function o = estlog_rightwrong()
             o.classtitle = 'Right/Wrong';
+            o.flag_params = 1;
         end;
         
         %> Returns average sensitivity. Calculated as normalized sum.

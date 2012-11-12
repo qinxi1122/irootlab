@@ -43,6 +43,7 @@ switch mode
             case 'no_svs'
                 s = 1;
             otherwise
-                irerror(sprintf('Don''t know flag_lower_is_better for "%s"', name));
+                s = 0; % Default is higher is better
+%                 irerror(sprintf('Don''t know flag_lower_is_better for "%s"', name));
         end;
 end;
