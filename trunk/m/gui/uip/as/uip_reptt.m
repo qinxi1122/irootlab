@@ -6,8 +6,6 @@
 %>
 %> @image html Screenshot-uip_reptt.png
 %>
-%> <b>Dataset</b> - see reptt::data
-%>
 %> <b>Test post-processor</b> (optional) - see reptt::postpr_test
 %>
 %> <b>Estimation post-processor</b> - see reptt::postpr_est
@@ -55,7 +53,7 @@ try
     handles = guidata(hObject); % Handles is not a handle(!), so gotta retrieve it again to see changes in .output
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
     output.params = {};
     varargout{1} = output;
@@ -87,7 +85,6 @@ set(handles.edit_block_mold, 'String', handles.names_block_mold);
 % others
 listbox_load_from_workspace('block', handles.popupmenu_postpr_est, 0);
 listbox_load_from_workspace('block', handles.popupmenu_postpr_test, 1);
-listbox_load_from_workspace('irdata', handles.popupmenu_data, 0);
 
 
 local_show_description(handles, []);
@@ -106,11 +103,6 @@ show_description(listbox, handles.edit_description);
 % --- Executes on button press in pushbuttonOk.
 function pushbuttonOk_Callback(hObject, eventdata, handles)
 try
-    sdata = listbox_get_selected_1stname(handles.popupmenu_data);
-    if isempty(sdata)
-        irerror('Dataset not specified!');
-    end;
-    
     spostpr_test = listbox_get_selected_1stname(handles.popupmenu_postpr_test);
     if isempty(spostpr_test)
         spostpr_test = '[]';
@@ -130,22 +122,20 @@ try
 
 
     handles.output.params = {...
-    'data', sdata, ...
     'postpr_test', spostpr_test, ...
     'postpr_est', spostpr_est, ...
     'log_mold', params2str2(handles.names_log_mold) ...
-    'block_mold', params2str2(handles.names_block_mold) ...
+    'block_mold', [params2str2(handles.names_block_mold), ''''], ... % Transposes the list of blocks to have a column instead of a row
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
     uiresume();
 catch ME
     irerrordlg(ME.message, 'Cannot continue');
-    
 end;
 
 % --- Executes on selection change in listbox_block_mold.
-function listbox_block_mold_Callback(hObject, eventdata, handles)
+function listbox_block_mold_Callback(hObject, eventdata, handles) %#ok<*INUSL,*DEFNU>
 local_show_description(handles, handles.listbox_block_mold);
 
 % --- Executes on selection change in listbox_log_mold.
@@ -185,7 +175,7 @@ handles.names_log_mold = [];
 guidata(hObject, handles);
 refresh(handles);
 
-function edit_description_Callback(hObject, eventdata, handles)
+function edit_description_Callback(hObject, eventdata, handles) %#ok<*INUSD>
 
 % --- Executes during object creation, after setting all properties.
 function edit_description_CreateFcn(hObject, eventdata, handles)

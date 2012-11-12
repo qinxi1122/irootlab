@@ -17,12 +17,51 @@ classdef log_cube < irlog
     end;
     
     methods
+        function o = log_cube()
+            o.classtitle = 'Cube log';
+            o.flag_ui = 0;
+            o.moreactions{end+1} = 'extract_sovalues';
+        end;
+        
+        %> Creates a sovalues object
+        %>
+        %> Only works if the @ref log_cube::logs property has dimension [n, 1, 1, *]
+        %>
+        %> @return a @ref sovalues object
+        function sov = extract_sovalues(o)
+            [a, b, c, d] = size(o.logs); %#ok<*NASGU>
+            if b > 1 || c > 1
+                irerror('Extraction of sovalues only works if the cube was a single column!');
+            end;
+            
+            sov = sovalues();
+            sov.ax(2) = raxisdata_singleton('Singleton');
+            sov.ax(1) = raxisdata();
+            sov.ax(1).label = 'Case';
+            sov.ax(1).values = 1:size(o.logs, 1);
+            sov.values = sovalues.read_logss(o.logs);
+            specs = cellfun(@(x) x.get_description(), o.blocks(:, :, :, 1), 'UniformOutput', 0);
+            sov = sov.set_field('spec', specs);
+            
+        end;
+        
         %> Pre-allocates the @ref log property; prepares to record.
         %>
         %> @param log_mold a cell of @ref irlog objects
         %> @param block_mold a cell of @ref block objects. Only used to get allocation dimensions
         %> @param no_reps Number of repetitions, such as "k" from a k-fold cross-validation
         function o = allocate_logs(o, log_mold, block_mold, no_reps)
+            
+            % Makes sure that all log_mold elements have a title that can be used as a field name
+            for i = 1:numel(log_mold)
+                log = log_mold{i};
+                try
+                    a.(log.title) = 10;
+                catch ME
+                    irerror(sprintf('log title "%s" cannot be used as a field name!', log.title));
+                end;
+            end;
+            
             [ni, nj, nk] = size(block_mold);
             nl = numel(log_mold);
             
@@ -39,13 +78,6 @@ classdef log_cube < irlog
                     end;
                 end;
             end;
-        end;
-    end;
-    
-    methods
-        function o = log_cube()
-            o.classtitle = 'Log Cube';
-            o.flag_ui = 0;
         end;
     end;
 end

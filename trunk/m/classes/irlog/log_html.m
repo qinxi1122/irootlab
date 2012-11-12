@@ -9,6 +9,7 @@ classdef log_html < irlog
     methods
         function o = log_html()
             o.flag_ui = 0;
+            o.moreactions{end+1} = 'open_in_browser';
         end;
         
         function s = get_embodied(o)

@@ -1,7 +1,7 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref estlog_classxclass
-%> @image html Screenshot-uip_estlog_groupxclass.png
+%> @image html Screenshot-uip_estlog_rightwrong.png
 %>
 %> <b>Test Dataset class labels</b> - see estlog_classxclass::testlabels
 %>
@@ -14,13 +14,13 @@
 %> @sa estlog_classxclass
 
 %> @cond
-function varargout = uip_estlog_groupxclass(varargin)
+function varargout = uip_estlog_rightwrong(varargin)
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 0;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @uip_estlog_groupxclass_OpeningFcn, ...
-                   'gui_OutputFcn',  @uip_estlog_groupxclass_OutputFcn, ...
+                   'gui_OpeningFcn', @uip_estlog_rightwrong_OpeningFcn, ...
+                   'gui_OutputFcn',  @uip_estlog_rightwrong_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -34,21 +34,22 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-% --- Executes just before uip_estlog_groupxclass is made visible.
-function uip_estlog_groupxclass_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before uip_estlog_rightwrong is made visible.
+function uip_estlog_rightwrong_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output.flag_ok = 0;
 guidata(hObject, handles);
 gui_set_position(hObject);
+set(handles.edit_title, 'string', sprintf('rightwrong%03d', randi([1, 999])));
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = uip_estlog_groupxclass_OutputFcn(hObject, eventdata, handles) 
+function varargout = uip_estlog_rightwrong_OutputFcn(hObject, eventdata, handles)  %#ok<*INUSL>
 try
     uiwait(handles.figure1);
     handles = guidata(hObject); % Handles is not a handle(!), so gotta retrieve it again to see changes in .output
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
     output.params = {};
     varargout{1} = output;
@@ -60,9 +61,9 @@ end;
 function pushbuttonOk_Callback(hObject, eventdata, handles)
 try
     handles.output.params = {...
-    'groupcodes', get(handles.edit_groupcodes, 'String'), ...
+    'title', ['''', get(handles.edit_title, 'String'), ''''], ...
+    'flag_support', int2str(get(handles.checkbox_flag_support, 'Value')), ...
     'estlabels', get(handles.edit_estlabels, 'String'), ...
-    'flag_support', int2str(get(handles.checkbox_flag_support, 'Value')) ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -72,58 +73,23 @@ catch ME
     
 end;
 
-% --- Executes on selection change in popupmenu_ratemode.
-function popupmenu_ratemode_Callback(hObject, eventdata, handles)
-local_show_description(handles, handles.popupmenu_ratemode);
-
-% --- Executes during object creation, after setting all properties.
-function popupmenu_ratemode_CreateFcn(hObject, eventdata, handles)
+function checkbox_flag_support_Callback(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
+function edit_title_Callback(hObject, eventdata, handles)
+function edit_title_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-function edit_idx_rate_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
-function edit_idx_rate_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit_groupcodes_Callback(hObject, eventdata, handles)
-
-
-% --- Executes during object creation, after setting all properties.
-function edit_groupcodes_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
 
 function edit_estlabels_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function edit_estlabels_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in pushbutton_pick_test.
-function pushbutton_pick_test_Callback(hObject, eventdata, handles)
-ouch = ask_dataset([], 'Dataset to pick class labels from', 0);
-if ouch.flag_ok
-    set(handles.edit_groupcodes, 'String', ['unique(', ouch.params{2}, '.groupcodes)']);
-end;
-
-
-% --- Executes on button press in pushbutton_pick_est.
-function pushbutton_pick_est_Callback(hObject, eventdata, handles)
+%#####
+function pushbutton_pick_Callback(hObject, eventdata, handles)
 ouch = ask_dataset([], 'Dataset to pick class labels from', 0);
 if ouch.flag_ok
     set(handles.edit_estlabels, 'String', [ouch.params{2}, '.classlabels']);
 end;
-function checkbox_flag_support_Callback(hObject, eventdata, handles)
 %> @endcond

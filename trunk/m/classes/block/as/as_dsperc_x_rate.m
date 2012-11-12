@@ -49,7 +49,7 @@ classdef as_dsperc_x_rate < as
             
             for iperc = 1:npercs
                 o.evaluator.sgs.bites = [o.percs_train(iperc), o.perc_test];
-                log_cube = o.evaluator.go();
+                log_cube = o.evaluator.use(data);
                 log.celldata(:, iperc) = cellfun(@(x) (x.get_rates()), log_cube.logs, 'UniformOutput', 0);
             end;
             

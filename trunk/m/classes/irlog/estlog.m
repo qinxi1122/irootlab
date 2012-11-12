@@ -382,7 +382,7 @@ classdef estlog < ttlog
                 d.X = C(:, :, i);
                 d.title = ['Row ', int2str(i), ' - ', rl{i}];
                 d.fea_x = 1:nf;
-                d.fea_names = ['Rejected', o.get_collabels()];
+                d.fea_names = strcat('Column "', ['Rejected', o.get_collabels()], '"');
                 d = d.assert_fix();
                 dd(i) = d;
             end;
