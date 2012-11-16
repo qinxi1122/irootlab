@@ -11,7 +11,14 @@ if nargin < 2
 end;
 flag_add = 1;
 
-evalin('base', s);
+try
+    evalin('base', s);
+catch ME
+    disp('Generated code behaved badly');
+    disp('----------------------------');
+    disp(s);
+    rethrow(ME);
+end;
 
 if flag_add
     ircode_add(s, title);

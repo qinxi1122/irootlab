@@ -10,7 +10,7 @@ classdef report_default < irreport
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html;
             out.html = obj.get_html();
             out.title = obj.get_description();

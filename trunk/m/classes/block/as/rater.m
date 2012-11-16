@@ -36,7 +36,7 @@ classdef rater < as
     
     methods(Access=protected)
         %> Returns the object with its ttlog ready to have its get_rate() called.
-        function [o, log] = do_use(o, data)
+        function log = do_use(o, data)
             o = o.check(data);
             
             if o.flag_sgs

@@ -248,6 +248,7 @@ classdef frbm < clssr_incr
     methods
         function o = frbm(o)
             o.classtitle = 'Fuzzy Rule-Based Model';
+            o.short = 'FRBM';
         end;
         
 
@@ -782,7 +783,7 @@ classdef frbm < clssr_incr
         %   %-%-%-%-%-%-% USE
         %  %-%-%-%-%-%-%
         %-%-%-%-%-%-%-%
-        function [o, est] = do_use(o, data)        
+        function est = do_use(o, data)        
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

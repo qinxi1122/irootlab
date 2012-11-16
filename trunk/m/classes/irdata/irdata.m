@@ -93,12 +93,12 @@ classdef irdata < irobj
     methods(Access=protected)
         %> HTML inner body
         function s = do_get_html(o)
-            
-            nl = o.get_no_levels();
-
             s = '';
+
+            s = cat(2, s, '<h1>Data classes</h1>');
+            nl = o.get_no_levels();
             for i = 1:nl
-                s = cat(2, s, '<h1>Level ', int2str(i), '</h1>', 10);
+                s = cat(2, s, '<h2>Level ', int2str(i), '</h2>', 10);
 
                 da = data_select_hierarchy(o, i);
                 pie = data_split_classes(da);
@@ -109,6 +109,20 @@ classdef irdata < irobj
                     cc(j+1, 1:3) = {pie(j).classlabels{1}, pie(j).no, pie(j).no_groups};
                 end;
                 cc(end, 1:3) = {'Total', da.no, da.no_groups};
+                s = cat(2, s, cell2html(cc));
+            end;
+            
+            if any(o.classes < 0)
+                s = cat(2, s, '<h2>Negative classes</h2>', 10);
+                neg = unique(o.classes(o.classes < 0));
+                nneg = numel(neg);
+                
+                cc = cell(nneg+1, 3);
+                cc(1, 1:3) = {'Class', 'Meaning', 'Number of rows'};
+                
+                for i = 1:nneg
+                    cc(i+1, :) = {neg(i), get_negative_meaning(neg(i)), sum(o.classes == neg(i))};
+                end;
                 s = cat(2, s, cell2html(cc));
             end;
         

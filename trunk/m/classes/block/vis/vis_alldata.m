@@ -9,7 +9,7 @@ classdef vis_alldata < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj);
+        function out = do_use(o, obj);
             out = [];
             data_draw(obj);
             make_box();

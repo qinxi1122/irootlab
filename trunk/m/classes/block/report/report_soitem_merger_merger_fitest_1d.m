@@ -16,7 +16,7 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, item)
+        function out = do_use(o, item)
             out = log_html();
             
             s = o.get_standardheader(item);

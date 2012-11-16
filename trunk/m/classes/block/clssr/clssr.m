@@ -89,7 +89,7 @@ classdef clssr < block
                 ds.X = X_map;
 
 
-                [o, est] = o.use(ds);
+                est = o.use(ds);
                 est = de.use(est);
 
                 classes_map_block = zeros(params.y_no, params.x_no);

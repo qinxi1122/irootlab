@@ -24,7 +24,7 @@ classdef logrecorder < block
     
     methods(Access=protected)
         %> Returns the object with its ttlog ready to have its get_rate() called.
-        function [o, out] = do_use(o, est)
+        function out = do_use(o, est)
             if isempty(o.ttlog)
                 if isempty(o.clssr)
                     irerror('Cannot create default ttlog, needs classlabels from clssr!');

@@ -13,7 +13,7 @@ classdef blmisc_classlabels_hierarchy < blmisc_classlabels
     end;
     
     methods(Access=protected)
-        function [o, data2] = do_use(o, data)
+        function data2 = do_use(o, data)
             data2 = data_select_hierarchy(data, o.hierarchy);
         end;
     end;  

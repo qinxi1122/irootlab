@@ -15,7 +15,7 @@ classdef report_testtable < irreport
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             out = log_html();
             out.html = o.get_html_table(data);
             out.title = ['Test table', data.get_description()];

@@ -7,6 +7,8 @@ classdef log_as_fsel < irlog
         grades;
         %> x-values to which @ref grades are the y-values
         fea_x;
+        %> Feature names
+        fea_names;
         %> x-axis label
         xname = '';
         %> Unit of x-axis
@@ -27,12 +29,8 @@ classdef log_as_fsel < irlog
         %> @return an @ref fsel block with the selection in @ref fsel::v
         function blk = extract_fsel(o)
             blk = fsel();
+            blk = blk.copy_axes_from(o);
             blk.v = o.v;
-            blk.fea_x = o.fea_x;
-            blk.xname = o.xname;
-            blk.yname = o.yname;
-            blk.xunit = o.xunit;
-            blk.yunit = o.yunit;
             blk.grades = o.grades;
         end;
     end;

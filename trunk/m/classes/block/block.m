@@ -93,12 +93,12 @@ classdef block < irobj
     methods(Access=protected)
         % "do" method is for pure implementation of the related functionality, opposed to its public counterpart 
         % which deals with bureaucracy
-        function o = do_train(o, data)
+        function o = do_train(o, data) %#ok<INUSD>
         end;
         
         % "do" method is for pure implementation of the related functionality, opposed to its public counterpart 
         % which deals with bureaucracy
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
         end;
         
         
@@ -113,7 +113,7 @@ classdef block < irobj
     
     
     methods
-        function o = block(o)
+        function o = block()
             o.classtitle = 'Block';
         end;
     end;
@@ -144,7 +144,7 @@ classdef block < irobj
 
             t = tic();
             o.time_use = 0;
-            [o, out] = o.do_use(data);
+            out = o.do_use(data);
             if o.time_use == 0
                 % Default time recording
                 o.time_use = toc(t);

@@ -16,13 +16,14 @@ classdef pre_bc_rubber < pre_bc
     methods
         function o = pre_bc_rubber(o)
             o.classtitle = 'Rubberband-like';
+            o.short = 'BCRubber';
             o.flag_params = 1;
         end;
     end;
     
     methods(Access=protected)
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.X = bc_rubber(data.X);
             
             if o.flag_trim

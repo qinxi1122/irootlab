@@ -22,7 +22,7 @@ classdef pre_norm_base < pre
     methods(Access=protected)
 
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.X = normaliz(data.X, data.fea_x, o.types, o.idxs_fea);
         end;
     end;

@@ -13,7 +13,7 @@ classdef fcon_resample < fcon
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = linspace(data.fea_x(1), data.fea_x(end), o.no_fea);
             data.X = resample(data.X', o.no_fea, data.nf)';
         end;

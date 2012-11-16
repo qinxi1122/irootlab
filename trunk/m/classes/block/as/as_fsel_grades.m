@@ -48,7 +48,7 @@ classdef as_fsel_grades < as_fsel
     
     methods(Access=protected)
         
-        function [o, log] = do_use(o, input)
+        function log = do_use(o, input)
             log = log_as_fsel_grades();
             log.flag_peaks = ~isempty(o.peakdetector);
             log.type = o.type;

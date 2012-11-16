@@ -15,7 +15,7 @@ classdef fcon_mea_pick < fcon_mea
     
     methods
         function o = fcon_mea_pick(o)
-            o.classtitle = 'Pick';
+            o.classtitle = 'Various';
             o.flag_params = 1;
         end;
 
@@ -43,7 +43,7 @@ classdef fcon_mea_pick < fcon_mea
             
             y = data.X(obsidx(1, 1), :);
             x = data.fea_x;
-            plot_curve_pieces(x, y, 'Color', [0, 0, 0], 'LineWidth', 2*SCALE);
+            plot_curve_pieces(x, y, 'Color', [0, 0, 0], 'LineWidth', scaled(2));
             hold on;
             
 
@@ -52,13 +52,13 @@ classdef fcon_mea_pick < fcon_mea
             
             switch o.type
                 case 'f'
-                    plot(x(vidx(1, 1))*[1, 1], [0, y(vidx(1, 1))], 'r', 'LineWidth', 2*SCALE);
+                    plot(x(vidx(1, 1))*[1, 1], [0, y(vidx(1, 1))], 'r', 'LineWidth', scaled(2));
                     draw_peaks(x, y, vidx(1, 1), 1);
                     
                 case 'm'
                     vidx2 = vidx(1):vidx(2);
-                    plot(x(vidx(1, 1))*[1, 1], [0, max(y)], 'r--', 'LineWidth', 2*SCALE);
-                    plot(x(vidx(1, end))*[1, 1], [0, max(y)], 'r--', 'LineWidth', 2*SCALE);
+                    plot(x(vidx(1, 1))*[1, 1], [0, max(y)], 'r--', 'LineWidth', scaled(2));
+                    plot(x(vidx(1, end))*[1, 1], [0, max(y)], 'r--', 'LineWidth', scaled(2));
                     [vv, ii] = max(y(vidx2));
                     draw_peaks(x, y, vidx2(ii), 1);
                     
@@ -66,7 +66,7 @@ classdef fcon_mea_pick < fcon_mea
                     vidx2 = vidx(1):vidx(2);
                     x_ = x(vidx2);
                     y_ = y(vidx2);
-                    fill([x_, x_(end), x_(1)], [y_, 0, 0], [1, .5, .5], 'LineWidth', 2*SCALE, 'EdgeColor', [1, 0, 0]);
+                    fill([x_, x_(end), x_(1)], [y_, 0, 0], [1, .5, .5], 'LineWidth', scaled(2), 'EdgeColor', [1, 0, 0]);
             end;
             
             format_xaxis(data);
@@ -76,7 +76,7 @@ classdef fcon_mea_pick < fcon_mea
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             
             vidx = v_x2ind(o.v, data.fea_x);
             

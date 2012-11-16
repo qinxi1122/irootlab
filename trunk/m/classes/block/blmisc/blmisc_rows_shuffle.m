@@ -13,7 +13,7 @@ classdef blmisc_rows_shuffle < blmisc_rows
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             if ~o.flag_group
                 p = randperm(data.no);
                 data = data.map_rows(p);

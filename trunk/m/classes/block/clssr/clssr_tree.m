@@ -29,6 +29,7 @@ classdef clssr_tree < clssr
     methods
         function o = clssr_tree(o)
             o.classtitle = 'Binary Decision Tree';
+            o.short = 'BTree';
         end;
         
         function s = get_description(o)
@@ -178,7 +179,7 @@ classdef clssr_tree < clssr
         
         
         %> Number of occurences per class are registered at each node
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

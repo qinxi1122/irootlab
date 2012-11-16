@@ -55,6 +55,7 @@ classdef clssr_svm < clssr
     methods
         function o = clssr_svm(o)
             o.classtitle = 'Support Vector Machine';
+            o.short = 'SVM';
         end;
     end;
     
@@ -96,7 +97,7 @@ classdef clssr_svm < clssr
         
         
         
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

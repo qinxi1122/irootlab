@@ -68,7 +68,7 @@ if flag_threshold
         end;
         
         % Vertical line
-        plot([1, 1]*threshold, [0.5, 3], 'LineWidth', 3*SCALE, 'LineStyle', '--', 'Color', [0, 0, 0]);
+        plot([1, 1]*threshold, [0.5, 3], 'LineWidth', scaled(3), 'LineStyle', '--', 'Color', [0, 0, 0]);
         hold on;
     end;
 end;
@@ -105,39 +105,45 @@ for i = 1:no_classes
     y_offset = no_classes+1-i;
     x = pieces(i).X(:, idx_fea(1));
     no_x = size(x, 1);
+    if no_x <= 0
+        % Just for the legend
+        hh(end+1) = plot(1e-10, 0, 'Color', find_color(i), 'Marker', find_marker(i), 'LineStyle', 'none', 'MarkerSize', 10*SCALE, 'LineWidth', scaled(2));
+        hold on;
+        continue;
+    end;
 
     no_quants = ceil(sqrt(no_x))+1;
     quants = linspace(0, 1, no_quants);
     quants = quants(2:end);
-    
-    
+
+
     y = y_offset*ones(no_x, 1); % zero 1-column vector
 
-    
+
     % Histogram
     switch type_distr
         case 1
             [xdistr, ydistr] = distribution(x, 200);
             ydistr = distrmult(i)*ydistr/max(ydistr)*.75;
-            plot(xdistr, ydistr+y_offset+.05, 'Color', [1, 1, 1]*.4, 'LineWidth', 2*SCALE);
+            plot(xdistr, ydistr+y_offset+.05, 'Color', [1, 1, 1]*.4, 'LineWidth', scaled(2));
             hold on;
         case 2
             xsorted = sort(x);
             I = (1:length(xsorted))/length(xsorted);
-            
+
             % attempt 2 (good but uses the spline toolbox)
             w = ones(1, length(I)); w([1, end]) = 300;
             sp = spaps(I, xsorted, 1e-15, w, 1);  % perfect!!!
             t = fnval(sp, quants);
             t = [xsorted(1) t];
 
-            
-%             t = quantile_landmarks(integrate(x), no_quants, [min(x), max(x)]);
+
+    %             t = quantile_landmarks(integrate(x), no_quants, [min(x), max(x)]);
             tdiff = diff(t);
             [hmult, idx] = min(tdiff);
 
             for j = 1:no_quants
-                
+
                 % This logic here finds bar widths at both sides of the current point
                 for k = 1:2
                     if j == 1
@@ -156,8 +162,8 @@ for i = 1:no_classes
                         end;
                     end;
                 end;
-                
-                
+
+
                 t1 = t(j)-wleft/2;
                 t2 = t(j)+wright/2;
                 v1 = [t1, t2, t2, t1, t1];
@@ -168,16 +174,16 @@ for i = 1:no_classes
                 end;
                 h = h*.75;
                 v2 = [0, 0, h, h, 0]+y_offset+.05;
-                
-                plot(v1, v2, 'Color', [1, 1, 1]*.4, 'LineWidth', 2*SCALE);
+
+                plot(v1, v2, 'Color', [1, 1, 1]*.4, 'LineWidth', scaled(2));
                 hold on;
             end;
     end;
 
-    
-    hh(end+1) = plot(x, y, 'Color', find_color(i), 'Marker', find_marker(i), 'LineStyle', 'none', 'MarkerSize', 10*SCALE, 'LineWidth', 2*SCALE);
+
+    hh(end+1) = plot(x, y, 'Color', find_color(i), 'Marker', find_marker(i), 'LineStyle', 'none', 'MarkerSize', 10*SCALE, 'LineWidth', scaled(2));
     hold on;
-    plot(mean(x(:)), y(1), 'Color', find_color(i), 'Marker', find_marker(i), 'LineWidth', 3*SCALE, 'MarkerSize', 15*SCALE);
+    plot(mean(x(:)), y(1), 'Color', find_color(i), 'Marker', find_marker(i), 'LineWidth', scaled(3), 'MarkerSize', 15*SCALE);
 end
 
 

@@ -37,7 +37,7 @@ classdef vis_as_fsel_hist_entropy < vis
     
 
     methods(Access=protected)
-        function [o, out] = do_use(o, a)
+        function out = do_use(o, a)
             out = [];
                             
             % Plots entropies both individual and accumulated hitss

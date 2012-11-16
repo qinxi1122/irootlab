@@ -35,6 +35,7 @@ classdef clssr_dist < clssr
     methods
         function o = clssr_dist(o)
             o.classtitle = 'Least-Distance-to-Class-Mean';
+            o.short = 'Dist';
         end;
     end;
     
@@ -119,7 +120,7 @@ classdef clssr_dist < clssr
         %> Calculates @c est.X using the "softmax" transform, which is
         %> X(i, j) = (1/dist_of_point_i_to_class_j^2)/sum(all numerators in j)
         %>
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
 
             est = estimato();
             est.classlabels = o.classlabels;

@@ -25,7 +25,7 @@ classdef report_soitem_sovalues < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             
             r = report_sovalues_comparison();

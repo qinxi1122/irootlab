@@ -29,7 +29,7 @@ classdef grag < rowaggr
         function o = dim_outdata(o, ng)
         end;
         
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             if isempty(data.groupcodes)
                 irerror('Dataset groupcodes is empty!');
             end;

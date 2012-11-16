@@ -44,6 +44,8 @@ classdef irobj
     properties (SetAccess=protected)
         %> Class Title. Should have a descriptive name, as short as possible.
         classtitle = 'Base Object';
+        %> Short for the method name
+        short = '';
         %> =1. (GUI setting) Whether to call a GUI when the block is selected in @ref blockmenu.m . If true, a routine
         %> called "uip_"&lt;class name&gt; will be called.
         flag_params = 1;
@@ -78,6 +80,17 @@ classdef irobj
             end;
         end;
         
+        function s = get_short(o)
+            if isempty(o.short)
+                s = o.classtitle;
+            else
+                s = o.short;
+            end;
+        end;
+        
+        function s = get_methodname(o)
+            s = o.get_short();
+        end;
         
         %> Object reports are plain text. HTML would be cool but c'mon, we don't need that sophistication
         function s = get_report(o)
@@ -100,10 +113,45 @@ classdef irobj
 %            s = [s, '</body></html>', 10];
         end;
 
+        %> @brief Calls Parameters GUI
+        %>
+        %> If @c flag_params, tries uip_<class>.m. If fails, tries uip_<ancestor>.m and so on
         function result = get_params(o, data)
             if o.flag_params
-                func = eval(['@(o, data) uip_' class(o) '(o, data);']); %> Builds function pointer based on the block class
-                result = func(o, data);
+                if nargin < 2
+                    data = [];
+                end;
+                mc = metaclass(o);
+                sclass = class(o);
+                flag_func = 0;
+                while 1
+                    try
+                        func = eval(['@(o, data) uip_' sclass '(o, data);']); %> Builds function pointer based on the block class
+                        result = func(o, data);
+                        flag_func = 1;
+                    catch ME %#ok<NASGU>
+                        irverbose(['irobj::get_params() Caught exception ', ME.message]);
+                    end;
+                    if flag_func
+                        break;
+                    end;
+                    
+                    if isempty(mc.SuperClasses)
+                        break;
+                    end;
+                    mc = mc.SuperClasses{1};
+                    sclass = mc.Name;
+                end;
+                
+                if ~flag_func
+                    irerror(sprintf('Couldn''t find a parameters GUI for class "%s"!', class(o)));
+                end;
+                if ~isstruct(result)
+                    irerror(sprintf('Result from %s properties GUI not a structure', sclass));
+                end;
+                if ~isfield(result, 'flag_ok')
+                    irerror(sprintf('Result from %s properties GUI does not have a flag_ok', sclass));
+                end;
             else
                 result.flag_ok = 1;
                 result.params = {};

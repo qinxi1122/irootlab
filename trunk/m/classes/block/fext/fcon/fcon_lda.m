@@ -12,8 +12,9 @@ classdef fcon_lda < fcon_linear
     methods
         function o = fcon_lda(o)
             o.classtitle = 'LDA - Linear Discriminant Analysis';
+            o.short = 'LDA';
             o.flag_trainable = 1;
-            o.fea_prefix = 'LDA';
+            o.t_fea_prefix = 'LD';
         end;
 
     end;

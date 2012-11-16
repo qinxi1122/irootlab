@@ -43,14 +43,14 @@ if ~isempty(y)
     k = 100; % scaling for reference spectrum
     z = .1*ones(1, length(x));
     colour = 'k'; %[.5, .5, .5];
-    width = 3*SCALE;
+    width = scaled(3);
     plot3(x, x2-y*k, z, 'Color', colour, 'LineWidth', width);
     plot3(x2-y*k, x, z, 'Color', colour, 'LineWidth', width);
 else
     k = 0;
 end;
 
-% plot3([x2, x2, x1, x1, x2], [x1, x2, x2, x1, x1], [.1, .1, .1, .1, .1], 'k', 'LineWidth', 2*SCALE);
+% plot3([x2, x2, x1, x1, x2], [x1, x2, x2, x1, x1], [.1, .1, .1, .1, .1], 'k', 'LineWidth', scaled(2));
 
 
 set(gca, 'XLim', [xmin-xrange*.02-k, xmax+xrange*.02]);

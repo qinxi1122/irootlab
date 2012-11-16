@@ -9,7 +9,7 @@ classdef vis_means < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             data_draw_means(obj);
             make_box();

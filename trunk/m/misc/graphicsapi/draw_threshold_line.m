@@ -9,7 +9,7 @@
 function draw_threshold_line(x, y, width, color)
 global SCALE;
 if ~exist('width', 'var') || isempty(width)
-    width = 2*SCALE;
+    width = scaled(2);
 end;
 if ~exist('color', 'var') || isempty(color)
     color = [.7, 0, 0];

@@ -11,9 +11,10 @@ classdef fcon_pca < fcon_linear
     
     methods
         function o = fcon_pca(o)
-            o.classtitle = 'PCA - Principal Component Analysis';
+            o.classtitle = 'Principal Component Analysis';
+            o.short = 'PCA';
             o.flag_trainable = 1;
-            o.fea_prefix = 'PCA';
+            o.t_fea_prefix = 'PC';
         end;
     end;
     
@@ -45,8 +46,8 @@ classdef fcon_pca < fcon_linear
         end;
         
         
-%         function [o, data] = do_use(o, data)
-%             data = data.transform_linear(o.L, o.fea_prefix);
+%         function data = do_use(o, data)
+%             data = data.transform_linear(o.L, o.t_fea_prefix);
 %         end;
     end;
 end

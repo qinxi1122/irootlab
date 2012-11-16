@@ -13,9 +13,10 @@ classdef fcon_pls < fcon_linear
 
     methods
         function o = fcon_pls(o)
-            o.classtitle = 'PLS - Partial Least Squares';
+            o.classtitle = 'Partial Least Squares';
+            o.short = 'PLS';
             o.flag_trainable = 1;
-            o.fea_prefix = 'PLS';
+            o.t_fea_prefix = 'PLS';
         end;
     end;
     

@@ -6,7 +6,6 @@
 %>
 %> This class is used by @ref datatool.m and @ref objtool.m to perform their tasks.
 %>
-%> @todo this "started" and "finished" are kind of annoying.
 %> @todo This class needs a bit of attention, the code generated works, but could be cleaner!
 classdef gencode < handle
     properties
@@ -127,7 +126,7 @@ classdef gencode < handle
             o.flag_o = 0;
             
             o.add_code('');
-            o.add_code(['% -- @ ', datestr(now), 10]);
+%             o.add_code(['% -- @ ', datestr(now), 10]);
         end;
         
 
@@ -135,7 +134,7 @@ classdef gencode < handle
         function o = m_create(o)
             o.assert_started();
             
-            o.add_code(sprintf('o = %s();\n', o.classname)); % C O D E - creates o.refblock
+            o.add_code(sprintf('u = %s();\n', o.classname)); % C O D E - creates o.refblock
             o.flag_o = 1;
             if ~isempty(o.params)
                 o.add_code(params2str(o.params, 1)); % C O D E - sets parameters
@@ -145,7 +144,7 @@ classdef gencode < handle
 
             if o.flag_leave_block && o.flag_o
                 o.blockname = find_varname([o.classname]); % Name for the block
-                o = o.add_code(sprintf('%s = o;\n', o.blockname));
+                o = o.add_code(sprintf('%s = u;\n', o.blockname));
                 o.flag_o = 0;
                 o = o.execute();
             end;
@@ -189,7 +188,7 @@ classdef gencode < handle
 
 
             if o.refblock.flag_out
-                o = o.add_code(sprintf('[%s, out] = %s.use(%s);\n', o.varname, o.varname, sds));
+                o = o.add_code(sprintf('out = %s.use(%s);\n', o.varname, sds));
                 o = extract_output(o);
                 
                 if isa(o.refblock, 'irreport')

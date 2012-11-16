@@ -26,7 +26,7 @@ classdef esag < rowaggr
         
         
         %> Abstract
-        function [o, out] = do_use(o, dd)
+        function out = do_use(o, dd)
         end;
     end;
 end

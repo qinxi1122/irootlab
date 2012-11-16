@@ -21,6 +21,6 @@ else
     s = '';
     for i = 1:length(params)/2
 %         if i > 1; s = [s ', ...' char(10)]; end;
-        s = cat(2, s, 'o.', params{i*2-1}, ' = ', params{i*2}, ';', 10);
+        s = cat(2, s, 'u.', params{i*2-1}, ' = ', params{i*2}, ';', 10);
     end;
 end;

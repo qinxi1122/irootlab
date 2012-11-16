@@ -11,4 +11,4 @@ set(hl, 'Position', [0, 0, psavel(3), psavel(4)]); % Moves legend maintaining po
 set(hl, 'Units', 'pixels'); % Changes unit of legend handle in order to transfer position information from the legend to the figure
 p = get(hl, 'Position');
 set(hl, 'Position', [p(1)+SCALE+1, p(2)+SCALE+1, p(3), p(4)]); % Shifts a bit so that the whole border is visible
-set(gcf, 'Position', [0, 0, p(3)+SCALE*3, p(4)+SCALE*3]);
+set(gcf, 'Position', [0, 0, p(3)+scaled(3), p(4)+scaled(3)]);

@@ -16,7 +16,7 @@ classdef vis_featuregrades < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             fsg_ = o.fsg;
             fsg_.data = data;
             fsg_ = fsg_.boot();

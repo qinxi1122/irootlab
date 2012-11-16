@@ -11,7 +11,7 @@ classdef ropr_merge_folds < block
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, in)
+        function out = do_use(o, in)
     
             n = numel(in);
             for i = 1:n

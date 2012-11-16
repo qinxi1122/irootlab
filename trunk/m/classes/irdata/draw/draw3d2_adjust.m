@@ -43,7 +43,7 @@ for i = 1:3
     yy = data2(map(perms(i, 2), :), 2);
     zz = data2(map(perms(i, 3), :), 3);
     
-    plot3(xx, yy, zz, 'k', 'LineWidth', 2*SCALE);
+    plot3(xx, yy, zz, 'k', 'LineWidth', scaled(2));
 end;
 
 

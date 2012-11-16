@@ -27,7 +27,7 @@ classdef as_fsel_eclass < as_fsel
     end;
     
 %     methods
-%         function [o, log] = do_use(o, data)
+%         function log = do_use(o, data)
 %             idxsobs = sgs_get_obs_idxs(o.sgs, data);
 %             no_reps = length(idxsobs.reps);
 % 

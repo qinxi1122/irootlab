@@ -19,7 +19,7 @@ classdef vis_image < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             if obj.height < 1
                 irerror('Dataset has no defined image dimensions!');

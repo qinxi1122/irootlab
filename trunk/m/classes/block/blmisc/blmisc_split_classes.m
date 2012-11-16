@@ -13,7 +13,7 @@ classdef blmisc_split_classes < blmisc_split
     end;
     
     methods(Access=protected)
-        function [o, datasets] = do_use(o, data)
+        function datasets = do_use(o, data)
             datasets = data_split_classes(data, o.hierarchy);
         end;
     end;  

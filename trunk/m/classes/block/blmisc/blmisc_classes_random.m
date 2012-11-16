@@ -15,7 +15,7 @@ classdef blmisc_classes_random < blmisc_classes
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.classes = floor(rand(data.no, 1)*data.nc-.00000000001);
         end;
     end;  

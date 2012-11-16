@@ -63,7 +63,7 @@ classdef aggr < clssr
         %> Uses blocks and aggregates @c est 's using @c o.esag
         %>
         %> @retval [o, est]
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
 
             nb = numel(o.blocks);
             for i = 1:nb

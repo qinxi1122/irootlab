@@ -17,24 +17,29 @@ classdef vis_sovalues_drawsubplot < vis
         %> =[]
         xticklabels;
 
+        %>
         flag_star = 1;
+        
+        %>
+        flag_hachure = 0;
     end;
     
     
     methods
         %> Constructor
         function o = vis_sovalues_drawsubplot()
-            o.classtitle = 'Subplots with confidence intervals';
+            o.classtitle = 'Subplots';
             o.inputclass = 'sovalues';
         end;
     end;
     
 
     methods(Access=protected)
-        function [o, out] = do_use(o, r)
+        function out = do_use(o, r)
             out = [];
 
-            p = plotter_1d();
+            p = plotter12();
+            p.flag_hachure = o.flag_hachure;
             [p.values, p.ax] = sovalues.get_vv_aa(r.values, r.ax, o.dimspec);
 
             star_ii = [];

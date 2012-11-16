@@ -44,8 +44,8 @@ for i = 1:length(handles)
 %     set(o, 'FontName', 'Times New Roman');
     set(o, 'FontName', font);
     set(o, 'FontSize', fontsize*SCALE);
-    set(o, 'LineWidth', 2*SCALE);
+    set(o, 'LineWidth', scaled(2));
 end;
 
 set(a, 'Box', 'on');
-set(a, 'LineWidth', 2*SCALE);
+set(a, 'LineWidth', scaled(2));

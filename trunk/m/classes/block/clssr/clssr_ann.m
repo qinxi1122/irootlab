@@ -45,7 +45,8 @@ classdef clssr_ann < clssr
 
     methods
         function o = clssr_ann(o)
-            o.classtitle = 'Neural Network';
+            o.classtitle = 'Artificial Neural Network';
+            o.short = 'ANN';
         end;
     end;
     
@@ -154,7 +155,7 @@ classdef clssr_ann < clssr
         
         
         
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

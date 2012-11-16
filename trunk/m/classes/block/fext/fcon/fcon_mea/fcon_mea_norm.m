@@ -14,7 +14,7 @@ classdef fcon_mea_norm < fcon_mea
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = 1;
             X = zeros(data.no, 1);
             for i = 1:data.no

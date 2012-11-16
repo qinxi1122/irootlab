@@ -19,7 +19,7 @@ classdef dataio_mat < dataio
                 irverbose('dataio_mat is creating default ''irdata'' object ...');
                 data = irdata();
             else
-                irverbose(sprintf('Creating object of class ''%s'' ...', dataclass), 0);
+                irverbose(sprintf('new ''%s'' from file ''%s''...', dataclass, o.filename), 0);
                 data = eval(dataclass);
             end;
 

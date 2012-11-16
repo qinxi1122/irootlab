@@ -77,11 +77,12 @@ classdef estlog_classxclass < estlog
 
     methods
         
+        
         %> Returns average sensitivity. Calculated as normalized sum.
         function z = get_meansens(o)
-            C = o.get_C([], 0, 2);  % Gets normalized sum
-            div = (1-C(:, 1))+realmin; % Note that if element in first column is 1, others will be 0.
-            senss = diag(C(:, 2:end))./div; % Discounts rejected items
+            C = o.get_C([], 0, 2);  % Gets row-wise-normalized sum
+            div = (100-C(:, 1))+realmin; % Note that if element in first column is 100, others will be 0.
+            senss = 100*diag(C(:, 2:end))./div; % Discounts rejected items
             z = mean(senss);
         end;
         
@@ -91,26 +92,27 @@ classdef estlog_classxclass < estlog
                 z = o.get_meansens();
             else
                 C = o.get_C([], 0, 2);  % Gets normalized sum
-                div = (1-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 1, others will be 0.
-                z = C(o.idx_rate, o.idx_rate+1)/div;
+                div = (100-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 100, others will be 0.
+                z = 100*C(o.idx_rate, o.idx_rate+1)/div;
             end;
         end;
         
         %> Returns average sensitivity vector calculated time-wise.
         function z = get_rates(o)
             CC = o.get_C([], 1, 0); % gets 3D time-wise normalized 
+            W = o.get_weights([], 1); % (no_rows)x(no_t) matrix of weights
             n = size(CC, 3);
             z = zeros(1, n);
             for i = 1:n
                 C = CC(:, :, i);  % Gets normalized sum
                 
                 if o.ratemode == 0
-                    div = (1-C(:, 1))+realmin; % Note that if element in first column is 1, others will be 0.
-                    senss = diag(C(:, 2:end))./div; % Discounts rejected items
-                    z(i) = mean(senss);
+                    div = (100-C(:, 1))+realmin; % Note that if element in first column is 100, others will be 0.
+                    senss = 100*diag(C(:, 2:end))./div; % Discounts rejected items
+                    z(i) = senss'*W(:, i); % dot product
                 else
-                    div = (1-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 1, others will be 0.
-                    z(i) = C(o.idx_rate, o.idx_rate+1)/div;
+                    div = (100-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 100, others will be 0.
+                    z(i) = 100*C(o.idx_rate, o.idx_rate+1)/div;
                 end;
             end;
         end;

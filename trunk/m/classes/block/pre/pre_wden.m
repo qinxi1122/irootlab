@@ -34,13 +34,14 @@ classdef pre_wden < pre
     methods
         function o = pre_wden(o)
             o.classtitle = 'Wavelet De-noising';
+            o.short = 'WDen';
         end;
     end;
     
     methods(Access=protected)
 
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.X = wden(data.X, o.no_levels, o.thresholds, o.waveletname);
         end;
     end;

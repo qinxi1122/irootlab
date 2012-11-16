@@ -9,7 +9,8 @@
 %> train() and use() don't need to be called with the same dataset, but
 %> the datasets do need to have the same number of rows.
 %>
-%> @todo What about just marking classes with a -2???
+%> block_cascade will skip blmisc_rowsout blocks at <code>use()</code>
+%>
 classdef blmisc_rowsout < blmisc
     properties(SetAccess=protected)
         map = [];
@@ -25,7 +26,7 @@ classdef blmisc_rowsout < blmisc
             o = o.calculate_map(data);
         end;
 
-        function [o, datasets] = do_use(o, data)
+        function datasets = do_use(o, data)
             map_out = 1:data.no;
             map_out(o.map) = [];
             if o.flag_mark_only

@@ -19,7 +19,7 @@ classdef pre_flip_refmean < pre
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             me = mean(data.X(data.classes == (o.idx_refclass-1), :));
             
             data.X = data.X-repmat(me, data.no, 1);

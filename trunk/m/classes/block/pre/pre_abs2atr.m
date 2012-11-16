@@ -14,7 +14,7 @@ classdef pre_abs2atr < pre
     
     methods(Access=protected)
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.X = data.X.*repmat(data.fea_x, data.no, 1)/1000;
         end;
     end;

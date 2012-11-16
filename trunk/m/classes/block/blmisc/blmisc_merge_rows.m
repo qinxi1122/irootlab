@@ -13,7 +13,7 @@ classdef blmisc_merge_rows < blmisc_merge
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, datasets)
+        function data = do_use(o, datasets)
             data = data_merge_rows(datasets);
         end;
     end;  

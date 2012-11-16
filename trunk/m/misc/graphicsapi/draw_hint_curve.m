@@ -2,7 +2,7 @@
 %>@file
 %>@brief Draws hint curve
 %>
-%> Default color is black and default line style is dashed. Default line width is <code>1*SCALE</code>.
+%> Default color is black and default line style is dashed. Default line width is <code>scaled(1)</code>.
 %
 %> @param x
 %> @param y
@@ -15,5 +15,5 @@ global SCALE;
 if ~exist('color', 'var')
     color = 'k--';
 end;
-o = plot(x, y, color, 'LineWidth', 1*SCALE);
+o = plot(x, y, color, 'LineWidth', scaled(1));
 

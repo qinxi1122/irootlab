@@ -124,10 +124,10 @@ for i = 1:nl
         color1 = color1*0.3+max(color1)*0.7;
         width1 = SCALE;
         color2 = colors_eff{i};
-        width2 = 3*SCALE;
+        width2 = scaled(3);
     else
         color1 = colors_eff{i};
-        width1 = 2*SCALE;
+        width1 = scaled(2);
     end;
 
     

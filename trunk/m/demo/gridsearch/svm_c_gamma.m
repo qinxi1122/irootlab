@@ -1,66 +1,75 @@
-Rewrite this using reptt_blockcube to show the concept
-
 %>@ingroup demo
 %>@file
 %>@brief Grid search to SVM's best c and gamma
-%>
-%> Uses userdata_nc2nf2 dataset
 %>
 %> @image html svm_c_gamma_result01.png
 %> @image html svm_c_gamma_result02.png
 
 
-%IRootLab started @ 03-Jun-2010 21:15:26
-
-
 %Dataset load
-ds01 = load_data_userdata_nc2nf2;
+% ds01 = load_data_she5trays();
+% u = cascade_stdhie();
+% u.blocks{2}.hierarchy = 2;
+% cascade_stdhie01 = u;
+% cascade_stdhie01 = cascade_stdhie01.boot();
+% [cascade_stdhie01, out] = cascade_stdhie01.use(ds01);
+% ds01_stdhie01 = out;
+ds01 = load_data_uci_wine();
+
+pre_std01 = pre_norm_std();
+
+ds01 = pre_std01.use(ds01);
 
 %Creates classifier
 clssr_svm01 = clssr_svm();
+clssr_svm01.c = 1e-1;
+clssr_svm01.gamma = 1e-3;
 
-%SGS creation
-o = sgs_crossval();
-o.no_reps = 2;
-o.randomseed = 0;
-o.flag_perclass = 1;
-sgs03 = o;
+u = sgs_crossval();
+u.flag_group = 1;
+u.flag_perclass = 0;
+u.randomseed = 0;
+u.flag_loo = 0;
+u.no_reps = 10;
+sgs_crossval01 = u;
 
-ra = rater();
-ra.data = ds01;
-ra.sgs = sgs03;
-
-gs01 = gridsearch();
-gs01.no_iterations = 2;
-gs01.obj = clssr_svm01;
-gs01 = gs01.add_param('c', 1e-2, 1e2, 15, 0); % (ParameterName, InitialValue, FinalValue, NumberOfPoints, flag_linear)
-gs01 = gs01.add_param('gamma', 1e-2, 1e2, 15, 0);
-gs01.f_get_rate = @(cl) ra.get_rate_with_clssr(cl);
-
-%%
-
-gs01 = gs01.go();
-
-out = gs01.result;
+u = gridsearch();
+u.sgs = sgs_crossval01;
+u.clssr = clssr_svm01;
+u.chooser = [];
+u.postpr_test = [];
+u.postpr_est = [];
+u.log_mold = {};
+u.no_iterations = 3;
+u.maxtries = 3;
+u.paramspecs = {'c', 10.^(-9:2:2), 1; 'gamma', 10.^(-7:1), 1};
+gridsearch01 = u;
 
 %%
 
-for i = 1:gs01.no_iterations
+% Calculation
 
-    [xx, yy] = meshgrid(out(i).tickss{1}, out(i).tickss{2});
+log_gridsearch01 = gridsearch01.use(ds01);
 
-    figure;
-    mesh(xx, yy, out(i).rates');
-    set(gca, 'xscale', 'log', 'yscale', 'log', 'Xlim', out(i).tickss{1}([1, end]), 'Ylim', out(i).tickss{2}([1, end]));
-    xlabel('C');
-    ylabel('gamma');
-    zlabel('Classification rate');
-    hold on;
-    
-    bests = [out(i).tickss{1}(out(i).idx_best(1)), out(i).tickss{2}(out(i).idx_best(2))]
-    plot3(bests(1), bests(2), out(i).rate_best, 'pk', 'LineWidth', 3, 'MarkerSize', 15);
-    title(sprintf('2D grid search demo using SVM - iteration %d', i));
-%     format_frank();
+%%
+
+% Visualization
+
+u = vis_sovalues_drawimage();
+u.dimspec = {[0 0], [1 2]};
+u.valuesfieldname = 'rates';
+u.clim = [];
+u.flag_logtake = 0;
+vis_sovalues_drawimage01 = u;
+
+out = log_gridsearch01.extract_sovaluess();
+
+figure;
+no = numel(out);
+for i = 1:no
+    subplot(1, no, i);
+    vis_sovalues_drawimage01.use(out{i});
+    title(out{i}.title);
 end;
-
-
+maximize_window([], no);
+save_as_png([], 'svm_c_gamma');

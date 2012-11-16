@@ -19,7 +19,7 @@ classdef blmisc_classes_from_clus < blmisc_classes
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             C = renumber_vector_idooo(o.data_clus.X(:, o.idx_fea));
             cc = unique(C);
             cc2 = cc(cc >= 0); % Only valid Clusters

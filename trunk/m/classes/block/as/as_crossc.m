@@ -42,7 +42,7 @@ classdef as_crossc < as
         %> Populates the @ref log_crossc and @ref data_out properties
         %>
         %> @todo does not check whether there are differences in the number of variables
-        function [o, log] = do_use(o, data)
+        function log = do_use(o, data)
             log = log_as_crossc();
             if isempty(o.sgs)
                 log.sgs = get_default_sgs_crossc();

@@ -14,7 +14,7 @@ classdef report_ttlog < irreport
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             pars.flag_individual = o.flag_individual;
             out.html = obj.get_insane_html(pars); 

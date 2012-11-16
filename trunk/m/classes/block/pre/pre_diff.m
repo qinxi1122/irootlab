@@ -10,11 +10,12 @@ classdef pre_diff < pre
     methods
         function o = pre_diff(o)
             o.classtitle = 'Differentiation';
+            o.short = 'Diff';
         end;
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = data.fea_x(o.order+1:end);
             data.X = diff(data.X, o.order, 2);
         end;

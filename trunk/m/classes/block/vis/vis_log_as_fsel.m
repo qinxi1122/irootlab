@@ -13,7 +13,7 @@ classdef vis_log_as_fsel < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             obj.draw(o.data_hint, o.flag_mark);
         end;

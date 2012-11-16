@@ -14,12 +14,13 @@ classdef factorscurve < as
         fcon_mold;
         %> The classifier
         clssr;
-        %> Maximum number of factors. Defaults to the number of features in the dataset
-        no_factors_max = [];
+        %> =(1:nf in dataset). Vector with a list of numbers of factors to try. 
+        no_factorss = [];
         
         %> SGS object. It is optional if @ref data has more than 1 element. If @ref cube is passed, this property is ignored altogether.
         sgs;
         %> =[]. See @reptt
+        %> @todo this uses these postprocessors but is not a reptt. Why?
         postpr_test;
         %> =decider(). See @ref reptt
         postpr_est = decider();
@@ -55,18 +56,24 @@ classdef factorscurve < as
     
     methods(Access=protected)
         %> @return irdata object
-        function [o, out] = do_use(o, data)
-            if isempty(o.no_factors_max)
-                neff = data.nf;
+        function out = do_use(o, data)
+            
+            if isempty(o.no_factorss)
+                nff = 1:data.nf;
             else
-                neff = min(o.no_factors_max, data.nf);
+                nff = o.no_factorss;
+                if any(nff > data.nf)
+                    irverbose('INFO: trimmed verctor of numbers of factors because there were values above the number of features in the input dataset');
+                end;
+                nff(nff > data.nf) = [];
             end;
+            neff = numel(nff);
             ss = pre_std(); % Standardization block
             bb = cell(1, neff); % Cell array of blocks
             cl = def_clssr(o.clssr);
             for i = 1:neff
                 btemp = o.fcon_mold;
-                btemp.no_factors = i;
+                btemp.no_factors = nff(i);
                 
                 blk = block_cascade();
                 blk.title = sprintf('%d factor%s', i, iif(i == 1, '', 's'));
@@ -83,10 +90,12 @@ classdef factorscurve < as
             sov = sov.read_log_cube(log);
             
             out = irdata();
+            out.title = ['(#factors)x(%rate) curve - ', o.fcon_mold.classtitle, '->', o.clssr.classtitle];
             out.xname = 'Number of factors';
             out.xunit = '';
             out.yname = 'Classification rate';
             out.yunit = '%';
+            out.fea_x = nff;
             out.X = permute(sov.get_Y('rates'), [3, 2, 1]);
             out.classes = zeros(size(out.X, 1), 1);
             out.classlabels = {o.fcon_mold.get_description()};

@@ -13,7 +13,7 @@ classdef fcon_feaavg < fcon
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = decim(data.fea_x, o.factor);
             data.X = decim(data.X, o.factor);
         end;

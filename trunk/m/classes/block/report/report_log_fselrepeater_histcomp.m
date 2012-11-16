@@ -27,7 +27,7 @@ classdef report_log_fselrepeater_histcomp < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, log)
+        function out = do_use(o, log)
             out = log_html();
             
             s = '<h1>Histogram comparison</h1>';

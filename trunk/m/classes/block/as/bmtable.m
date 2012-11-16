@@ -1,36 +1,42 @@
-%> @brief OBSOLETE BioMarker Table
+%> @ingroup graphicsapi
 %>
-%> @todo Not published in GUI at the moment. UIP too complicated.
+%> @brief BioMarker Table
 %>
-%> This is a very flexible class to facilitate biomarker comparison between different datasets/methods. It can draw the
+%> This is old code that is still in use for its ability to draw the "Peak Location" plots
+%>
+%> It was originally a class to facilitate biomarker comparison between different datasets/methods. It can draw the
 %> "grades" curves (e.g. loadings, p-values, feature frequency histograms) and Peak Location Plots thereof.
 %>
-%> Here are the steps to make it work:
+%> It needs a lot of setup to work, so it is probably better to use @ref draw_loadings_pl.m instead. The classes @ref vis_loadings and
+%> have an option to visualize loadings/grades vectors as "Peak Location" plots @ref vis_log_grades
+%>
+%> If want to use this class directly, use @ref demo_bmtable.m as a template to perform the following settings:
 %> <ol>
-%>   <li><bold>Required objects</bold>: datasets; 1 @ref block for each biomarker identification method; at least one
-%> @c peakdetector</li>; arts; units</li>
 %>   <li>Assign @c blocks, @c datasets, @c peakdetectors, @c arts, @c units, and @c data_hint (optional)</li>
 %>   <li>Setup the @c grid property</li>
-%>   <li>Call the train() and mount_grid() methods</li>
-%>   <li>Call the draw_pl() or draw_lines() method</li>
+%>   <li>Call draw_pl() or draw_lines()</li>
 %> </ol>
 %>
-%> This class is currently not published in the high level
-%>
-%> @sa demo_bmtable.m, demo_bmtable_quick.m
+%> @sa draw_loadings_pl.m, demo_bmtable.m
 %>
 %> @todo Peak Location Plot significance hachures not drawn. I didn't re-implement it because it needs a sig_ij scalar for this and at the moment it has only a sig_j vector
-classdef bmtable < as
+classdef bmtable
     properties
+        %> 2D struct
+        %>
         %> @c i_block, @c i_dataset, @c i_peakdetector, @c i_art, @c i_unit point to elements in respective properties;
         %> @c flag_sig indicated whether to draw significance threshold line; @c params if passed to get_gradeslegend() and
-        %> get_grades() (please note: post-training!); @c peakidxs, @c peak_y, @c y are calculated with mount_grid().
+        %> get_grades() (please note: post-training!); @c peakidxs, @c peak_y, @c y are calculated with shake_grid().
         grid = struct('i_block', {}, 'i_dataset', {}, 'i_peakdetector', {}, 'i_art', {}, 'i_unit', {}, 'params', {}, 'flag_sig', {}, ...
                       'peakidxs', {}, 'peak_y', {}, 'y', {});
+        %> array of irdata.
+        %>
+        %> datasets are used only if @ref rowname_type is 'dataset'. They are used to get row names (will be dataset.title)
+        %>
+        %> If not used, <code>grid.i_dataset</code> will be irrelevant.
+        datasets;
         %> Cell of @ref block objects
         blocks;
-        %> Cell.of @ref irdata objects
-        datasets;
         %> Cell of @ref peakdetector objects
         peakdetectors;
         %> Cell of @ref bmart objects
@@ -56,8 +62,8 @@ classdef bmtable < as
     end;
     
     properties(SetAccess=protected)
-        %> Dimensions (number of datasets) X (number of blocks)
-        trainedblocks;
+%         %> Dimensions (number of datasets) X (number of blocks)
+%         trainedblocks;
         %> Row-wise information.
         rowdata;
         %> Column-wise information.
@@ -67,54 +73,30 @@ classdef bmtable < as
     end;
     
 
+    properties(SetAccess=protected)
+        flag_booted = 0;
+        flag_data = 0;
+    end;
     
     methods
         function o = bmtable()
-            o.classtitle = 'BMTable';
-            o.flag_ui = 0; % Not published in GUI
+%             o.classtitle = 'BMTable';
+%             o.flag_ui = 0; % Not published in GUI
         end;
         
-        %> Trains blocks. Will make a cell of blocks of dimensions [no_datasets]x[no_blocks]
-        function o = train(o)
-            o = o.go();
+        function o = check_booted(o)
+            if ~o.flag_booted
+                o = o.boot();
+            end;
         end;
         
-        function o = go(o)
-            nj = numel(o.blocks);
-            if nj < 1
-                irerror('blocks{} property is empty!');
-            end;
-            
-            if o.flag_train
-                ni = numel(o.datasets);
-                if nj < 1
-                    irerror('datasets{} property is empty!');
-                end;
-                
-                o.trainedblocks = cell(ni, nj);
-                for i = 1:ni
-                    for j = 1:nj
-                        block = o.blocks{j}.boot();
-                        block = block.train(o.datasets{i});
-                        o.trainedblocks{i, j} = block;
-                    end;
-                end;
-            else
-                ni = max(1, numel(o.datasets));
-                o.trainedblocks = cell(ni, nj);
-                for i = 1:ni
-                    for j = 1:nj
-                        o.trainedblocks{i, j} = o.blocks{j};
-                    end;
-                end;
-            end;
-            
-            o = o.mount_grid();
+        function o = boot(o)
+            o.flag_data = ~isempty(o.datasets);
+            o = o.shake_grid();
             o = o.calc_cols();
         end;
         
-        
-        
+        %-------------------------------------------------------------------------------------------------------------------------------
         
         %> Draws all the grades curves from one row of the grid
         %>
@@ -122,7 +104,8 @@ classdef bmtable < as
         %> a multi-panel figure; however, it does not use sub-plots; instead, it draws the whole figure from scratch in one single box-less
         %> plot area.
         function o = draw_lines(o, i_row)
-            global SCALE;
+            o = o.check_booted();
+            
             nj = size(o.grid, 2);
             flag_sig = ~isempty(o.sig_j) && length(o.sig_j) >= i_row && o.sig_j(i_row) > 0;
 
@@ -164,7 +147,7 @@ classdef bmtable < as
 
                 box;
                 %Per-curve box
-                plot([wn1, wn2, wn2, wn1, wn1], [y1, y1, y2, y2, y1], '-', 'Color', [1, 1 1]*0, 'LineWidth', 2*SCALE);
+                plot([wn1, wn2, wn2, wn1, wn1], [y1, y1, y2, y2, y1], '-', 'Color', [1, 1 1]*0, 'LineWidth', scaled(2));
                 hold on;
                 % ???????????????????
 %                 plot([wn1, wn2], [1, 1]*y2, '-', 'Color', [1, 1 .1]*0, 'Linewidth', 2);
@@ -191,15 +174,15 @@ classdef bmtable < as
                     ymin = cy(dl.miny, dl);
                     ymax = cy(dl.maxy, dl);
                     EHEH_NEGO = .015;
-                    plot([1, 1]*xtick(i), ymin+[0, EHEH_NEGO], 'k', 'LineWidth', 2*SCALE);
-                    plot([1, 1]*xtick(i), ymax+[0, -EHEH_NEGO], 'k', 'LineWidth', 2*SCALE);
+                    plot([1, 1]*xtick(i), ymin+[0, EHEH_NEGO], 'k', 'LineWidth', scaled(2));
+                    plot([1, 1]*xtick(i), ymax+[0, -EHEH_NEGO], 'k', 'LineWidth', scaled(2));
                 end;
             end;
 
 
             
             % Now fabricates the y ticks
-            xtext = iif(o.flag_reverse, wn2+3*SCALE, wn1-3*SCALE);
+            xtext = iif(o.flag_reverse, wn2+scaled(3), wn1-scaled(3));
             for i = 1:length(stuff.ytick)
                 hhfrank(end+1) = text(xtext, stuff.ytick(i), stuff.yticklabel{i}, 'HorizontalAlignment', 'right');
             end;
@@ -213,22 +196,21 @@ classdef bmtable < as
                 set(gca, 'XDir', 'reverse');
             end;
             legend(stuff.hh, stuff.legends);
-            format_frank(gcf, 1*SCALE, hhfrank);
+            format_frank(gcf, scaled(1), hhfrank);
             axis off;
             set(gcf, 'Color', [1, 1, 1]);
         end;
         
         
        
+
         
-        
-        
-        
-        
-        
+        %-------------------------------------------------------------------------------------------------------------------------------
         
         %> Draws the Peak Locations (PL) plot
         function o = draw_pl(o, flag_wntext, flag_sig)
+            o = o.check_booted();
+
             global SCALE;
             if ~exist('flag_wntext', 'var')
                 flag_wntext = 0;
@@ -238,7 +220,7 @@ classdef bmtable < as
                 flag_sig = 0;
             end;
 
-            MARKER_MAXSIZE = 27*SCALE;
+            MARKER_MAXSIZE = 17*SCALE;
             MARKER_MINSIZE = 8;
 
             [ni, nj] = size(o.grid);
@@ -307,7 +289,7 @@ classdef bmtable < as
             end;
 
             
-            FLAG_ONEMARKERSCALE = 1;
+            FLAG_ONEMARKERSCALE = 0;
             
             if FLAG_ONEMARKERSCALE
                 miny = Inf;
@@ -327,11 +309,38 @@ classdef bmtable < as
 
             for i = 1:ni
                 height = i;
-
-                plot(xlim, height*[1, 1], 'k', 'LineWidth', 3*SCALE); % Horizontal line
+                
+                % Significance hachure for current line
+                flag_sig = ~isempty(o.sig_j) && length(o.sig_j) >= i && o.sig_j(i) > 0;
+                if flag_sig
+                    o.draw_significance(o.grid{i, o.sig_j(i)}, [height+.45, height-.45]);
+                end;
+                
+                plot(xlim, height*[1, 1], 'k', 'LineWidth', scaled(3)); % Horizontal line
                 hold on;
                 hh(end+1) = text(xtext, height, o.get_rowname(i), 'HorizontalAlignment', 'right'); % Descriptive text
+            end;
 
+            
+            % Makes box before the markers so that the markers appear on top
+            set(gca, 'XTick', ceil(wn1/100)*100:200:ceil(wn2/100)*100);
+            set(gca, 'XLim', [min(wn1, wn2)-1, max(wn1, wn2)+1]);
+            % set(gca, 'XGrid', 'on');
+            % set(gca, 'XMinorGrid', 'on');
+            % set(gca, 'XMinorTick', 'on');
+            set(gca, 'YTick', []); %1:ni);
+            % set(gca, 'YTickLabel', []);
+            set(gca, 'YLim', [0, ni+1]);
+            if o.flag_reverse
+                set(gca, 'XDir', 'reverse');
+            end;
+            set(gca, 'YDir', 'reverse');
+            make_box();
+
+            
+            for i = 1:ni
+                height = i;
+                
                 for j = 1:nj
                     ll = o.add_legend(i, j, ll);
                     cel = o.grid{i, j};
@@ -367,26 +376,9 @@ classdef bmtable < as
                 end;        
             end;
 
-            set(gca, 'XTick', ceil(wn1/100)*100:200:ceil(wn2/100)*100);
-            set(gca, 'XLim', [min(wn1, wn2)-1, max(wn1, wn2)+1]);
-
-            % set(gca, 'XGrid', 'on');
-            % set(gca, 'XMinorGrid', 'on');
-            % set(gca, 'XMinorTick', 'on');
-
-
-            set(gca, 'YTick', []); %1:ni);
-            % set(gca, 'YTickLabel', []);
-            set(gca, 'YLim', [0, ni+1]);
-            if o.flag_reverse
-                set(gca, 'XDir', 'reverse');
-            end;
-            set(gca, 'YDir', 'reverse');
-
-
             o.make_legend(ll);
-            format_frank(gcf, 1*SCALE, hh);
-            resize_legend_markers(15);           
+            format_frank(gcf, scaled(1), hh);
+            resize_legend_markers(15);
         end;
     end;            
     
@@ -397,53 +389,8 @@ classdef bmtable < as
     
     
     
-    
-    
-    % Lower level
-    methods
-        %> Merges with another @c bmtable object. It is expected that the datasets are the same. NOT TESTED!!!
-        %> @todo this function has not been tested
-        %>
-        %> @arg merges @c grid row-wise or column-wise
-        %> @arg merges @c trainedblocks column-wise
-        %> @arg merges other arrays: @c blocks, @c peakdetectors, @c arts, @c units
-        %> 
-        %> @param flag_rowwise=1 Whether to merge row-wise (i.e., ";") or column-wise (i.e., ",")
-        function o = merge_with(o, o2, flag_row)
-            % Shitfs up the pointers within grid{}
-            a = {'block', 'peakdetector', 'art', 'unit'};
-            [ni, nj] = size(o2.grid);
-            for ia = 1:numel(a)
-                name = a{ia};
-                n = numel(o.([name 's']));
-                for i = 1:ni
-                    for j = 1:nj
-                        o2.grid{i, j}.(['i_', name]) = o2.grid{i, j}.(['i_', name])+n; % Shifts up cell pointers (i_block, i_art etc)
-                    end;
-                end;
-                o.([name, 's']) = [o.([name, 's']), o2.([name, 's'])];
-            end;
-            
-            % Merges the grids
-            if flag_row
-                o.grid = [o.grid; o2.grid];
-            else
-                o.grid = [o.grid, o2.grid];
-            end;
-            
-            % Merges the other properties
-            o.trainedblocks = [o.trainedblocks, o2.trainedblocks];
-            o.blocks = [o.blocks, o2.blocks];
-            o.peakdetectors = [o.peakdetectors, o2.peakdetectors];
-            o.arts = [o.arts, o2.arts];
-            o.units = [o.units, o2.units];
-        end;
 
-    end;
-    
-    
-
-    % Still lower-level stuff
+    % Lower-level stuff
     methods(Access=protected)
         %> Draws a line an updates 'stuff' structure. This structure contains yticks, yticklabels,
         %> handles for legends and legend texts
@@ -485,11 +432,10 @@ classdef bmtable < as
                 if isempty(o.datasets)
                     irerror('Wants to take legend from dataset, but datasets property is empty!');
                 end;
-                stuff.legends{end+1} = o.datasets{cel.i_dataset}.title;
+                stuff.legends{end+1} = o.datasets(cel.i_dataset).title;
             elseif strcmp(o.colname_type, 'block')
-                stuff.legends{end+1} = o.blocks{cel.i_block}.get_gradeslegend(cel.params);
+                stuff.legends{end+1} = o.get_gradeslegend(cel);
             end;
-
         end;
         
 
@@ -518,17 +464,36 @@ classdef bmtable < as
         end;
 
         
-        %> Transfers curves and detects peaks.
+        %> Empowers grid with calculated fields
         %>
-        %> Called inside @ref bmtable::go()
-        function o = mount_grid(o)
+        %> <h3>grid.params</h3>
+        %> Grid cell parameters have defaults "idx_fea"=1 and "flag_abs"=1
+        function o = shake_grid(o)
             
             [ni, nj] = size(o.grid);
             for i = 1:ni
                 for j = 1:nj
                     cel = o.grid{i, j};
-                    cel.y = o.trainedblocks{cel.i_dataset, cel.i_block}.get_grades(cel.params);
-                    cel.x = o.trainedblocks{cel.i_dataset, cel.i_block}.get_grades_x(cel.params);
+
+                    if ~isempty(cel.params)
+                        cel.params = setbatch(struct(), cel.params); % Converts {name, value, ...} into proper fields
+                        
+                        if ~isfield(cel.params, 'idx_fea')
+                            cel.params.idx_fea = 1;
+                        end;
+                        if ~isfield(cel.params, 'flag_abs')
+                            cel.params.flag_abs = 1;
+                        end;
+                    end;
+                    
+                    cel.block = o.get_initialblock(cel);
+                    if o.flag_data
+                        cel.block = cel.block.boot();
+                        cel.block = cel.block.train(o.datasets(cel.i_dataset));
+                    end;
+                    
+                    cel.y = o.get_grades(cel);
+                    cel.x = o.get_grades_x(cel);
                     if cel.i_peakdetector > 0 && numel(o.peakdetectors) > 0
                         pd = o.peakdetectors{cel.i_peakdetector};
                         pd = pd.boot(cel.x, cel.y);
@@ -622,9 +587,9 @@ classdef bmtable < as
                 
 
                 if strcmp(o.colname_type, 'dataset')
-                    ss{i} = o.datasets{cel.i_dataset}.title;
+                    ss{i} = o.datasets(cel.i_dataset).title;
                 elseif strcmp(o.colname_type, 'block')
-                    ss{i} = o.blocks{cel.i_block}.get_gradeslegend(cel.params);
+                    ss{i} = o.get_gradeslegend(cel);
                 end;
             end;
             legend(hh, ss);
@@ -661,26 +626,68 @@ classdef bmtable < as
             end;
             cel = o.grid{i, j};
             z = 'Undefined';
-            if strcmp(o.rowname_type, 'dataset')
-                z = o.datasets{cel.i_dataset}.title;
-            elseif strcmp(o.rowname_type, 'block')
-                z = o.blocks{cel.i_block}.get_gradeslegend(cel.params);
+            switch o.rowname_type
+                case 'dataset'
+                    z = o.datasets(cel.i_dataset).title;
+                case 'block'
+                    z = o.get_gradeslegend(cel);
             end;
         end;
         
-        %> Intersects peaks.
-        %>
-        %> To be called after @c mount_grid()
-        function o = calc_rows(o)
-            % Later, this is very complicated and long and not priority.
-            % Also, who cares really
+        function blk = get_initialblock(o, cel)
+            blk = o.blocks{cel.i_block};
         end;
         
-        
+        %> 
+        %>
+        %> <h3>fcon_linear</h3>
+        %> Sensitive to "idx_fea"=1 and "flag_abs"=1 in @c params
+        function g = get_grades(o, cel)
+            blk = cel.block;
+            params = cel.params;
+            
+            if isa(blk, 'fcon_linear') || isa(blk, 'block_cascade_base')
+                g = blk.L(:, params.idx_fea)';
+                if params.flag_abs
+                    g = abs(g);
+                end;
+            elseif isa(blk, 'fsel')
+                if ~isempty(blk.grades)
+                    g = blk.grades;
+                else
+                    g = zeros(1, numel(blk.grades_x));
+                    g(blk.v) = 1;
+                end;
+            end;
+        end;
 
+
+        function x = get_grades_x(o, cel)
+            blk = cel.block;
+%             params = cel.params;
+            
+            if isa(blk, 'fcon_linear') || isa(blk, 'block_cascade_base')
+                x = blk.L_fea_x;
+            elseif isa(blk, 'fsel')
+                x = blk.fea_x;
+            else
+                irerror(sprintf('Cannot get grades x for object of class "%s"', class(blk)));
+            end;
+        end;
+        
+        %> @brief Grades legend for cell
+        %>
+        %> Backwards, calls of get_t_fea_name(), then sequence of get_short calls
+        %>
+        %> others: makes default with idx_fea and flag_abs
+        function s = get_gradeslegend(o, cel)
+            blk = cel.block;
+            params = cel.params;
+
+            s = blk.get_methodname();
+            if isa(blk, 'block_cascade_base') || isa(blk, 'fcon_linear')
+                s = cat(2, s, ' ', blk.get_t_fea_name(params.idx_fea));
+            end;
+        end;
     end;
 end
-
-
-
-

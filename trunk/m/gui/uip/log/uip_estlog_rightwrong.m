@@ -64,6 +64,7 @@ try
     'title', ['''', get(handles.edit_title, 'String'), ''''], ...
     'flag_support', int2str(get(handles.checkbox_flag_support, 'Value')), ...
     'estlabels', get(handles.edit_estlabels, 'String'), ...
+    'idx_rate', int2str(get(handles.popupmenu_idx_rate, 'Value')), ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
@@ -92,4 +93,12 @@ ouch = ask_dataset([], 'Dataset to pick class labels from', 0);
 if ouch.flag_ok
     set(handles.edit_estlabels, 'String', [ouch.params{2}, '.classlabels']);
 end;
+
+%-----------------------------------------------------------------------------------------------------
+
+function popupmenu_idx_rate_Callback(hObject, eventdata, handles)
+function popupmenu_idx_rate_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 %> @endcond

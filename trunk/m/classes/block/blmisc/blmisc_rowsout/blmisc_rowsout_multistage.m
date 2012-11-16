@@ -9,7 +9,7 @@ classdef blmisc_rowsout_multistage < blmisc_rowsout
         processors = {};
         %> ={}. @c blmisc_rowsout blocks
         removers = {};
-        %> =0. Possibilities:
+        %> =0 (cascade). Possibilities:
         %> @arg 0 - "cascade". Runs step on output of previous step.
         %> @arg 1 - "intersection". Removes only the outliers yielded by all the stages.
         %> @arg 2 - "union". Removes the outliers yielded by any of the stages.
@@ -19,9 +19,8 @@ classdef blmisc_rowsout_multistage < blmisc_rowsout
     end;
     
     methods
-        function o = blmisc_rowsout_multistage(o)
+        function o = blmisc_rowsout_multistage()
             o.classtitle = 'Multi-Stage';
-            o.flag_ui = 0;
         end;
     end;
 

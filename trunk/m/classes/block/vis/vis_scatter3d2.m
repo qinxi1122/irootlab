@@ -23,7 +23,7 @@ classdef vis_scatter3d2 < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             data_draw_scatter_3d2(obj, o.idx_fea, o.confidences, o.flags_min, o.ks, o.flag_wallpoints);
         end;

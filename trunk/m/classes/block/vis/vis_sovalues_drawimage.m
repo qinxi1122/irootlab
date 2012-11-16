@@ -31,10 +31,10 @@ classdef vis_sovalues_drawimage < vis
     
 
     methods(Access=protected)
-        function [o, out] = do_use(o, r)
+        function out = do_use(o, r)
             out = [];
 
-            p = plotter_1d();
+            p = plotter12();
             [p.values, p.ax, axnot] = sovalues.get_vv_aa(r.values, r.ax, o.dimspec);
 
             

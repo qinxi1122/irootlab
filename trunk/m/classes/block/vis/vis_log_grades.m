@@ -19,7 +19,7 @@ classdef vis_log_grades < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             
             flag_p = ~isempty(o.peakdetector);
