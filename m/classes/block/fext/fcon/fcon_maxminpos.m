@@ -28,7 +28,7 @@ classdef fcon_maxminpos < fcon
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
 
             % Converts ranges of o.map (given in wavenumbers) to indexes
             map_idx = o.map;

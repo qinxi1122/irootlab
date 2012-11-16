@@ -16,7 +16,7 @@ classdef blmisc_fearange < blmisc
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = linspace(o.range(1), o.range(2), data.nf);
         end;
     end;  

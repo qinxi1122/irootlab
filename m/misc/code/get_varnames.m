@@ -26,7 +26,7 @@ end;
 
 vars = {};
 for i = 1:n
-    if ~ismember({'o', 'ans', 'out', 'TEMP'}, vars0{i}) %> operational names such as 'o' are excluded from list
+    if ~ismember(get_excludevarnames(), vars0{i}) %> operational names such as 'o' are excluded from list
         var = evalin('base', [vars0{i}, ';']);
         if sum(arrayfun(@(cn) isa(var, cn{1}), classname)) > 0
             if ~flag_input

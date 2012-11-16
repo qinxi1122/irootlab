@@ -15,7 +15,7 @@ classdef vis_scatter1d < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             data_draw_scatter_1d(obj, o.idx_fea, o.type_distr);
             make_box();

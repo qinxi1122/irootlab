@@ -36,7 +36,7 @@ classdef report_soitem_merger_merger_fhg < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, item)
+        function out = do_use(o, item)
             out = log_html();
             if o. flag_biocomp_per_clssr || o.flag_biocomp_per_stab || o.flag_biocomp_all || o.flag_nf4grades
                 item = item.calculate_stabilities(def_subsetsprocessor(o.subsetsprocessor));

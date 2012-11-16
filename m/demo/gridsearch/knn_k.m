@@ -1,64 +1,66 @@
-Rewrite this using reptt_blockcube to show the concept
-
 %>@ingroup demo
 %>@file
 %>@brief Grid search to obtain best k-NN's k
 %>
-%> Uses UCI's Wine dataset.
-%>
 %> @image html knn_k_result.png
 
-
 %Dataset load
-ds01 = load_data_uci_wine;
+ds01 = load_data_she5trays();
+u = cascade_stdhie();
+u.blocks{2}.hierarchy = 2;
+cascade_stdhie01 = u;
+cascade_stdhie01 = cascade_stdhie01.boot();
+out = cascade_stdhie01.use(ds01);
+ds01_stdhie01 = out;
 
 %Creates classifier
 clssr_knn01 = clssr_knn();
-clssr_knn01 = clssr_knn01.setbatch({'k', 1});
+clssr_knn01.k = 1;
 
+u = sgs_crossval();
+u.flag_group = 1;
+u.flag_perclass = 0;
+u.randomseed = 0;
+u.flag_loo = 0;
+u.no_reps = 10;
+sgs_crossval01 = u;
 
-% -- @ 29-Aug-2011 23:53:39
-o = sgs_crossval();
-o = o.setbatch({'flag_group', 0, ...
-'flag_perclass', 0, ...
-'randomseed', 0, ...
-'flag_loo', 0, ...
-'no_reps', 50});
-sgs_crossval02 = o;
-
-
-ra = rater();
-ra.data = ds01;
-ra.sgs = sgs_crossval02;
-
-
-
-gs01 = gridsearch();
-gs01.no_iterations = 1;
-gs01.obj = clssr_knn01;
-gs01 = gs01.add_param('k', 1, 5, 5, 1); % (ParameterName, InitialValue, FinalValue, NumberOfPoints, flag_linear)
-gs01.f_get_rate = @(cl) ra.get_rate_with_clssr(cl);
-
-
-
+u = gridsearch();
+u.sgs = sgs_crossval01;
+u.clssr = clssr_knn01;
+u.chooser = [];
+u.postpr_test = [];
+u.postpr_est = [];
+u.log_mold = {};
+u.no_iterations = 1;
+u.maxtries = 1;
+u.paramspecs = {'k', 1:2:79, 0};
+gridsearch01 = u;
 
 %%
 
-gs01 = gs01.go();
+% Calculation
 
-out = gs01.result;
-
+log_gridsearch01 = gridsearch01.use(ds01_stdhie01);
 
 %%
 
+% Visualization
 
+out = log_gridsearch01.extract_sovaluess();
+sovalues_gridsearch01 = out{1, 1};
+
+u = vis_sovalues_drawsubplot();
+u.dimspec = {[0 0], [1 2]};
+u.valuesfieldname = 'rates';
+u.ylimits = [];
+u.xticks = [];
+u.flag_star = 1;
+u.xticklabels = {};
+vis_sovalues_drawsubplot01 = u;
 
 figure;
-plot(out.tickss{1}, out.rates);
-hold on;
-plot(out.tickss{1}(out.idx_best), out.rates(out.idx_best), 'ro');
-xlabel('k-NN''s ''k''');
-ylabel('Classification rate');
-legend({'Rates', 'Best'});
-title('1D grid search demo using k-NN');
-format_frank();
+vis_sovalues_drawsubplot01.use(sovalues_gridsearch01);
+title(sovalues_gridsearch01.title);
+maximize_window([], 2.5);
+save_as_png([], 'knn_k');

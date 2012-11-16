@@ -7,6 +7,7 @@ classdef pre_meanc < pre
     methods
         function o = pre_meanc(o)
             o.classtitle = 'Trained Mean-centering';
+            o.short = 'MeanC';
             o.flag_trainable = 1;
             o.flag_params = 0;
         end;
@@ -21,7 +22,7 @@ classdef pre_meanc < pre
         end;
         
         % Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             X = data.X;
             data.X = X-repmat(o.means, size(X, 1), 1);
         end;

@@ -18,13 +18,11 @@ classdef fsel < fext
         grades = []; 
         %> x-axis values corresponding to the @c grades y-axis values
         fea_x;
+        %> Feature names.
+        fea_names = [];
         %> Name corresponding to fea_x
         xname = '';
         xunit = '';
-        %> All objects with the @c grades property must have the @c grades_x property as well, to equalize for @ref bmtable
-        %> @todo get rid of this
-        grades_x;
-
         %> Name of y-axis (grades)
         yname = 'Hit';
         %> Unit of y-axis (grades)
@@ -34,32 +32,21 @@ classdef fsel < fext
     methods
         function o = fsel()
             o.classtitle = 'Feature Selection';
+            o.short = 'FSel';
         end;
         
-        function z = get.grades_x(o)
-            z = o.fea_x;
+        %> Copies properties from object with the following properties:
+        %> <code>
+        %> obj.
+        function o = copy_axes_from(o, obj)
+            o.fea_names = obj.fea_names;
+            o.fea_x = obj.fea_x;
+            o.xname = obj.xname;
+            o.yname = obj.yname;
+            o.xunit = obj.xunit;
+            o.yunit = obj.yunit;
         end;
-
-        %> bmtable integration
-        %> @todo get rid
-        function z = get_grades_x(o, params)
-            z = o.grades_x;
-        end;
-
-        %> @c params is ignored
-        %>
-        %> Uses the @ref grades property if not empty, otherwise builds a "hits" vector
-        %> @todo check where this is called
-        function z = get_grades(o, varargin)
-            if ~isempty(o.grades)
-                z = o.grades;
-            else
-                z = zeros(1, numel(o.grades_x));
-                z(o.v) = 1;
-            end;
-        end;
-
-
+        
         %> Draws selected features
         %>
         %> Only works if @c type is 'i' and flag_complement is false, otherwise gives an error.
@@ -103,7 +90,7 @@ classdef fsel < fext
 
     methods(Access=protected)
         % This functionality is likely to be kept by descendants, which will probably concentrate on training
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             if ~(strcmp(o.v_type, 'i') && ~o.flag_complement)
                 idxs = get_feaidxs(data.fea_x, o.v, o.v_type, o.flag_complement);
                 data = data.select_features(idxs);

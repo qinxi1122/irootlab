@@ -5,7 +5,7 @@
 
 %>@cond
 function varargout = uip_vis_sovalues_drawplot(varargin)
-% Last Modified by GUIDE v2.5 12-Nov-2012 15:58:28
+% Last Modified by GUIDE v2.5 15-Nov-2012 20:26:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -85,6 +85,7 @@ try
     'valuesfieldname', ['''', svfn, ''''], ...
     'flag_legend', num2str(get(handles.checkbox_flag_legend, 'Value')), ...
     'flag_star', num2str(get(handles.checkbox_flag_star, 'Value')), ...
+    'flag_hachure', num2str(get(handles.checkbox_flag_hachure, 'Value')), ...
     'ylimits', mat2str(eval(get(handles.edit_ylimits, 'String'))), ...
     'xticks', mat2str(eval(get(handles.edit_xticks, 'String'))), ...
     'xticklabels', cell2str(eval(get(handles.edit_xticklabels, 'String'))) ...
@@ -107,24 +108,13 @@ end
 
 
 function edit_dimspec_Callback(hObject, eventdata, handles)
-
-% --- Executes during object creation, after setting all properties.
 function edit_dimspec_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-% --- Executes on button press in checkbox_flag_legend.
 function checkbox_flag_legend_Callback(hObject, eventdata, handles)
-
-% --- Executes on button press in checkbox_flag_ud.
 function checkbox_flag_ud_Callback(hObject, eventdata, handles)
-
-
-
 function edit_valuesfieldname_Callback(hObject, eventdata, handles)
-
 function edit_valuesfieldname_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -168,4 +158,5 @@ function popupmenu_valuesfieldname_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+function checkbox_flag_hachure_Callback(hObject, eventdata, handles)
 %> @endcond

@@ -55,7 +55,7 @@ try
     delete(gcf);
 catch
     output.flag_ok = 0;
-    output.params = {}
+    output.params = {};
     varargout{1} = output;
 end;
 

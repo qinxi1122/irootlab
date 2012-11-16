@@ -123,15 +123,15 @@ if r==3 & c==3
 
   [x,y,z] = getpoints(Cxy,prop.clip);
   z = 0*z+prop.xyz(3);
-  h1=plot3(x0+k*x,y0+k*y, z, 'Color', prop.style, 'LineWidth', 2*SCALE);hold on
+  h1=plot3(x0+k*x,y0+k*y, z, 'Color', prop.style, 'LineWidth', scaled(2));hold on
 
   [y,z,x] = getpoints(Cyz,prop.clip);
   x = 0*x+prop.xyz(1);
-  h2=plot3(x, y0+k*y,z0+k*z, 'Color', prop.style, 'LineWidth', 2*SCALE);hold on
+  h2=plot3(x, y0+k*y,z0+k*z, 'Color', prop.style, 'LineWidth', scaled(2));hold on
   
   [z,x,y] = getpoints(Czx,prop.clip);
   y = 0*y+prop.xyz(2);
-  h3=plot3(x0+k*x, y, z0+k*z, 'Color', prop.style, 'LineWidth', 2*SCALE);hold on
+  h3=plot3(x0+k*x, y, z0+k*z, 'Color', prop.style, 'LineWidth', scaled(2));hold on
   
 
 

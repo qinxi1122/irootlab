@@ -44,7 +44,7 @@ classdef aggr_ova < aggr
         %> Uses blocks and aggregates @c est 's using @c o.esag
         %>
         %> @retval [o, est]
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             
             nb = numel(o.blocks);
             for i = nb:-1:1 % for allocation of ests_

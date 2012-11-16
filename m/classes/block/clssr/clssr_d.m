@@ -40,6 +40,19 @@ classdef clssr_d < clssr
     methods
         function o = clssr_d(o)
             o.classtitle = 'Gaussian fit';
+            o.short = 'DC';
+        end;
+
+        function s = get_short(o)
+            switch o.type
+                case 'linear'
+                    s = 'L';
+                case 'quadratic'
+                    s = 'Q';
+                otherwise
+                    s = '?';
+            end;
+            s = [s, get_short@irobj(o)];
         end;
 
         %> If title is not empty, will not mess with description too much
@@ -120,7 +133,7 @@ classdef clssr_d < clssr
         
         
         %> With bits from MATLAB classify()
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

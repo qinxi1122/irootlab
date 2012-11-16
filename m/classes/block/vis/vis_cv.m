@@ -21,7 +21,7 @@ classdef vis_cv < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             CV = data_get_cv(o.data_input, obj.L, o.idx_class_origin);
             flag_p = ~isempty(o.peakdetector);

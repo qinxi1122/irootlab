@@ -8,6 +8,7 @@ classdef pre_std < pre
     methods
         function o = pre_std(o)
             o.classtitle = 'Trained Standardization';
+            o.short = 'Std';
             o.flag_trainable = 1;
             o.flag_params = 0;
         end;
@@ -22,7 +23,7 @@ classdef pre_std < pre
         
         
         % Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.X = bsxfun(@rdivide, bsxfun(@minus, data.X, o.means), o.stds+realmin);
         end;
     end;

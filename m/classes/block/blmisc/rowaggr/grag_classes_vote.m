@@ -14,23 +14,29 @@ classdef grag_classes_vote < grag_classes
     methods(Access=protected)
         function o = process_group(o, idxs)
             classes = o.indata.classes(idxs);
-            poll = zeros(1, max(classes)+1);
-            if isempty(poll)
+            maxclass = max(classes);
+            if maxclass < 0
                 o.outdata.X(o.no_out, 1) = 0;
                 o.outdata.classes(o.no_out) = -1;
             else
-                for i = 1:numel(classes)
-                    if classes(i) > -1
-                        poll(classes(i)+1) = poll(classes(i)+1)+1;
-                    end;
-                end;
-                [val, idx] = max(poll);
-                support = val/numel(classes);
-                o.outdata.X(o.no_out, 1) = support;
-                if support >= o.decisionthreshold
-                    o.outdata.classes(o.no_out) = idx-1;
-                else
+                poll = zeros(1, maxclass+1);
+                if isempty(poll)
+                    o.outdata.X(o.no_out, 1) = 0;
                     o.outdata.classes(o.no_out) = -1;
+                else
+                    for i = 1:numel(classes)
+                        if classes(i) > -1
+                            poll(classes(i)+1) = poll(classes(i)+1)+1;
+                        end;
+                    end;
+                    [val, idx] = max(poll);
+                    support = val/numel(classes);
+                    o.outdata.X(o.no_out, 1) = support;
+                    if support >= o.decisionthreshold
+                        o.outdata.classes(o.no_out) = idx-1;
+                    else
+                        o.outdata.classes(o.no_out) = -1;
+                    end;
                 end;
             end;
         end;

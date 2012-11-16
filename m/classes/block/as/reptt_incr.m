@@ -128,7 +128,7 @@ classdef reptt_incr < reptt
         
 
         %> Output is an array of datasets
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             o.assert_clssr_incr();
             
             flag_sgs = ~isempty(o.sgs);

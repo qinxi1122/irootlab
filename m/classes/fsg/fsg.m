@@ -91,9 +91,9 @@ classdef fsg < irobj
                 else
                     % pairwise is slow, who cares
                     if numel(data) > 1
-                        irwarning('Pairwise FSG needs all datasets with same classes');
+                        irwarning('One-versus-one FSG needs all datasets with exactly same classlabels');
                     end;
-                    bl = blmisc_split_pairwise();
+                    bl = blmisc_split_ovo();
                     % pairwise split is applied dataset-wise. Each dataset originates a column in o.datasets
                     o.datasets = irdata.empty;
                     for i = 1:numel(data);

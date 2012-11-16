@@ -19,7 +19,7 @@ classdef report_soitem_fhg_hist < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, item)
+        function out = do_use(o, item)
             
             r = report_log_fselrepeater_hist();
             r.subsetsprocessor = o.subsetsprocessor();

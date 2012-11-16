@@ -8,8 +8,9 @@ classdef fcon_slda < fcon_linear
     methods
         function o = fcon_slda()
             o.classtitle = 'Sparse LDA';
+            o.short = 'SLDA';
             o.flag_trainable = 1;
-            o.fea_prefix = 'SLDA';
+            o.t_fea_prefix = 'SLDA';
             o.flag_params = 0;
         end;
 

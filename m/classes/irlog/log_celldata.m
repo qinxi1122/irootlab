@@ -79,7 +79,7 @@ classdef log_celldata < irlog
 %                 % Polynomial fit
 %                 p = polyfit(MX*o.fea_x, MY*curve, 9);
 %                 pv = polyval(p, MX*o.fea_x);
-%                 plot(MX*o.fea_x, pv, 'k--', 'LineWidth', 2*SCALE);
+%                 plot(MX*o.fea_x, pv, 'k--', 'LineWidth', scaled(2));
             end;
             
             if ~isempty(hh)

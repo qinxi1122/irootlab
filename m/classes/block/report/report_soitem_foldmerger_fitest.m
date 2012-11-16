@@ -12,7 +12,7 @@ classdef report_soitem_foldmerger_fitest < report_soitem
     
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             
             or = report_estlog();

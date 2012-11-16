@@ -21,14 +21,15 @@ classdef fcon_mcr < fcon_linear
     
     methods
         function o = fcon_mcr(o)
-            o.classtitle = 'MCR - Multivariate Curve Resolution';
+            o.classtitle = 'Multivariate Curve Resolution';
+            o.short = 'MCR';
             o.flag_trainable = 0;
         end;
     end;
     
     methods(Access=protected)
                
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
 
             % Uses PCA for guess of initial "spectra", but not recommended.
             opca = fcon_pca();

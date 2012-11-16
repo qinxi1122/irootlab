@@ -17,7 +17,7 @@ classdef report_soitem_fhg < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             
             s = o.get_standardheader(obj);

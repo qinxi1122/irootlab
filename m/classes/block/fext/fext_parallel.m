@@ -31,7 +31,7 @@ classdef fext_parallel < fext
         end;
         
         %> output of (k-1)-th block is inputted into k-th block. Final output is the output of the end-th block.
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             for i = length(o.blocks):-1:1
                 du(i) = o.blocks{i}.use(data);
             end;

@@ -23,7 +23,7 @@ classdef pre_bc_poly < pre_bc
     methods(Access=protected)
         
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             if ~isempty(o.contaminant_data)
                 X = o.contaminang_data.X(o.idxs, :);
             else

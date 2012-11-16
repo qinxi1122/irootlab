@@ -68,7 +68,7 @@ classdef subsetsprocessor < blbl
 % %         end;
         
         %> Input is a 
-        function [o, log] = do_use(o, input)
+        function log = do_use(o, input)
             log = log_hist();
             log.hitss = o.get_hitss(input);
             

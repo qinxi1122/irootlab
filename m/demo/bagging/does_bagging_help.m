@@ -1,6 +1,6 @@
 %>@file
 %>@ingroup demo
-%> Tries bagging with an increasing number of classifiers, just to see if we are getting somewhere with this.
+%> Tries bagging with an increasing number of classifiers, to see if classification improves.
 %>
 %> @image html does_bagging_help_result.png
 %> <center>Image obtained showing the number of classifiers \em versus classification rate.</center>
@@ -10,7 +10,6 @@
 %>Single classifier: specificity: 92.6267%; sensitivity: 90.4306%
 %>@endverbatim
 %> @sa aggr_bag
-
 
 
 ddemo = load_data_she5trays;
@@ -27,10 +26,6 @@ dstrain = pie(1);
 dstest = pie(2); % Separates an independent set for testing
 
 
-
-
-
-
 %--------
 % Other stuff
 %--------
@@ -43,12 +38,6 @@ lob.testlabels = {'N', 'T'};
 de = decider();
 % de.decisionthreshold = 0;
 de.decisionthreshold = 0.750000001;
-
-
-
-
-
-
 
 
 %--------
@@ -117,7 +106,7 @@ ii = 1;
 for i = 1:n
     clssr = clssr.train(dstrain);
     
-    [clssr, est] = clssr.use(dstest);
+    est = clssr.use(dstest);
     est = de.use(est);
     
     ss = struct();
@@ -138,7 +127,7 @@ end;
 clssr = clssr_mold.boot();
 clssr = clssr.train(dstrain);
     
-[clssr, est] = clssr.use(dstest);
+est = clssr.use(dstest);
 est = de.use(est);
 
 ss = struct();
@@ -150,15 +139,13 @@ lob = lob.record(ss);
 
 C = lob.get_C([], 0, 2, 1);
 
-fprintf('Single classifier: specificity: %g%%; sensitivity: %g%%\n', C(1, 2)*100, C(2, 3)*100);
-
+fprintf('Single classifier: specificity: %g%%; sensitivity: %g%%\n', C(1, 2), C(2, 3));
+fprintf('Bagging top: specificity: %g%%; sensitivity: %g%%\n', max(specs)*100, max(senss)*100);
 
 
 
 %%
-colors_markers;
-global FONTSIZE;
-FONTSIZE = 30;
+fig_assert();
 nn = 1:n;
 figure;
 subplot(2, 1, 1);
@@ -170,4 +157,5 @@ subplot(2, 1, 2);
 plot(nn, senss*100, 'k', 'LineWidth', 4);
 ylabel('%');
 title('Sensitivity (correct classification of Transformed colonies)');
+xlabel('Number of component classifiers');
 format_frank;

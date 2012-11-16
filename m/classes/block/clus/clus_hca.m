@@ -19,12 +19,13 @@ classdef clus_hca < clus
     
     methods
         function o = clus_hca(o)
-            o.classtitle = 'HCA';
+            o.classtitle = 'Hierarchical Cluster Analysis';
+            o.short = 'HCA';
         end;
     end;
     
     methods(Access=protected)
-        function [o, dout] = do_use(o, data)
+        function dout = do_use(o, data)
             
             
             % 1) Distance matrix

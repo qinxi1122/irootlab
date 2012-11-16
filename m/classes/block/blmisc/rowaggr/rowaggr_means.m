@@ -11,7 +11,7 @@ classdef rowaggr_means < rowaggr
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             
             ucl = unique(data.classes);
             ncl = numel(ucl);

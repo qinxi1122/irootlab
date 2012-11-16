@@ -38,7 +38,7 @@ classdef pre_bc_rmiesc < pre_bc
     methods(Access=protected)
         
         % Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             % pre_bc_rmiesc_use(): returns a transformed dataset
 
             % Ok, let's leave the Matrigel do the job

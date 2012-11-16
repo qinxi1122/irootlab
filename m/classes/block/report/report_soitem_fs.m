@@ -10,7 +10,7 @@ classdef report_soitem_fs < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             out.html = [o.get_standardheader(obj), o.images_1d(obj.sovalues)];
             out.title = obj.get_description();

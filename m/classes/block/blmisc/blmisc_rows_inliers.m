@@ -12,7 +12,7 @@ classdef blmisc_rows_inliers < blmisc_rows
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data = data_select_inliers(data);
         end;
     end;  

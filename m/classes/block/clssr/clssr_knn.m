@@ -21,6 +21,7 @@ classdef clssr_knn < clssr
     methods
         function o = clssr_knn(o)
             o.classtitle = 'k-Nearest Neighbours';
+            o.short = 'k-NN';
         end;
     end;
     
@@ -43,7 +44,7 @@ classdef clssr_knn < clssr
         %> Uses Laplace estimator for the posterior probabilities
         %>
         %> Reference: Kuncheva, Combining Pattern Classifiers, page 154, 2004.
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             flag_verbose = 1;
             no_obs_test = data.no;
             no_obs_train = size(o.X, 1);

@@ -22,7 +22,7 @@ classdef as_fsel_forward < as_fsel
     end;
     
     methods(Access=protected)
-        function [o, log] = do_use(o, data)
+        function log = do_use(o, data)
             o.fsg.data = data;
             o.fsg = o.fsg.boot();
             nf = data(1).nf;

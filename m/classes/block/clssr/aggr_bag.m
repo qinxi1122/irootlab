@@ -5,6 +5,8 @@
 %>
 %> Allows multi-training.
 %>
+%> Can be used for undersampling. Use an sgs_randsub with balanced properties.
+%>
 %> @sa uip_aggr_bag.m, demo_reptt_bag.m, test_bagging.m
 classdef aggr_bag < aggr
     properties
@@ -15,13 +17,14 @@ classdef aggr_bag < aggr
     end;
 
     methods
-        function o = aggr_bag(o)
+        function o = aggr_bag()
             o.classtitle = 'Bagging';
         end;
     end;
     
     methods(Access=protected)
         function o = do_boot(o)
+            o = do_boot@aggr(o);
         end;
 
         % Adds classifiers when new classes are presented

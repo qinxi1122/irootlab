@@ -30,7 +30,7 @@ classdef reptt_blockcube < reptt
     
     methods(Access=protected)
         %> Goes somewhere
-        function [o, log] = do_use(o, data)
+        function log = do_use(o, data)
             log = log_cube();
             o = o.boot_postpr(); % from reptt
 
@@ -45,7 +45,7 @@ classdef reptt_blockcube < reptt
                 nds = 1;
                 flag_obsidxs = 0;
                 if numel(data) < 2
-                    irerror('If sgs and obsidxs are both empty, reptt_blockcube needs two input datasets (one for training and another for using)!');
+                    irerror('reptt_blockcube needs 2 input datasets (train, use) when sgs and obsidxs are both empty!');
                 end;
             end;
 %             o.no_datasets = nds;
@@ -89,7 +89,7 @@ classdef reptt_blockcube < reptt
 
                         bl = o.block_mold{ii, ij, ik}.boot();
                         bl = bl.train(datasets(1));
-                        [bl, est] = bl.use(datasets(2));
+                        est = bl.use(datasets(2));
 
                         if ~isempty(o.postpr_est)
                             est = o.postpr_est.use(est);
@@ -146,7 +146,7 @@ classdef reptt_blockcube < reptt
                         
                             bl = o.block_mold{ii, ij, ik}.boot();
                             bl = bl.train(datasets(1));
-                            [bl, est] = bl.use(datasets(2));
+                            est = bl.use(datasets(2));
 
                             if ~isempty(o.postpr_est)
                                 est = o.postpr_est.use(est);

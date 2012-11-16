@@ -97,7 +97,7 @@ classdef clssr_lasso < clssr
         
         
         
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

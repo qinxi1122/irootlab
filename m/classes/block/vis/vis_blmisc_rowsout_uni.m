@@ -10,7 +10,7 @@ classdef vis_blmisc_rowsout_uni < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             orhistgui(obj);
         end;

@@ -6,6 +6,10 @@ classdef estlog_rightwrong < estlog
     properties
         %> All possible class labels in estimation datasets
         estlabels = {};
+        %> =0. What to give as a "rate". 0-percentage of "right" guesses; 1-arbitrary element addressed by idx_rate
+        ratemode = 0;
+        %> =1. Index of element: 1-rejected; 2-right; 3-wrong
+        idx_rate;
     end;
     
     methods
@@ -17,17 +21,23 @@ classdef estlog_rightwrong < estlog
         %> Returns average sensitivity. Calculated as normalized sum.
         function z = get_rate(o)
             C = o.get_C([], 0, 2);  % Gets normalized sum
-            div = 1-C(1, 1); % Note that if element in first column is 1, others will be 0.
-            div(div == 0) = 1; % prevents 0/0 which becomes 0/1.
-            z = C(1, 2)/div; % Discounts rejected items
+            if o.idx_rate == 1
+                z = C(1);
+            else
+                div = 100-C(1, 1)+realmin; % Note that if element in first column is 1, others will be 0.
+                z = 100*C(1, o.idx_rate)/div; % Discounts rejected items
+            end;
         end;
         
-        %> Returns average sensitivity vector calculated time-wise.
+        %> Returns vector of time-wise averages.
         function z = get_rates(o)
             CC = o.get_C([], 1, 0); % gets 3D time-wise normalized 
-            div = (1-CC(:, 1, :)); % Note that if element in first column is 1, others will be 0.
-            div(div == 0) = 1; % prevents 0/0 which becomes 0/1.
-            z = CC(1, 2, :)./div; % Discounts rejected items
+            if o.idx_rate == 1
+                z = permute(CC(1, 1, :), [1, 3, 2]);
+            else
+                div = (100-CC(:, 1, :))+realmin; % Note that if element in first column is 1, others will be 0.
+                z = 100*CC(1, o.idx_rate, :)./div; % Discounts rejected items
+            end;
         end;
     end;
     

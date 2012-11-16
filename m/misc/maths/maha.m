@@ -7,7 +7,7 @@
 function distances = maha(X)
 
 if rank(cov(X)) < size(X, 2)
-    error('Covariance matrix is singular, try removing low-variance feature');
+    irerror('Covariance matrix is singular, try removing low-variance feature');
 end;
 
 no = size(X, 1);

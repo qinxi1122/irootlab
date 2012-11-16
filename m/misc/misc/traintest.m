@@ -14,7 +14,7 @@ end;
 
 blk = blk.boot();
 blk = blk.train(ds_train);
-[blk, est] = blk.use(ds_test);
+est = blk.use(ds_test);
 
 if ~isempty(postpr_est)
     postpr_est = postpr_est.boot();

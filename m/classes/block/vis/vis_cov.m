@@ -19,7 +19,7 @@ classdef vis_cov < vis
     end;
         
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             
             if isempty(o.data_hint)

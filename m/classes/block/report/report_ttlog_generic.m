@@ -11,7 +11,7 @@ classdef report_ttlog_generic < irreport
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = log_html();
             pars = struct();
             out.html = obj.get_insane_html(pars);

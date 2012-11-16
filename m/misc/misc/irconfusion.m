@@ -174,7 +174,7 @@ classdef irconfusion < irlog
                 
                 ypos = (i-1)*yspacing+1;
 
-                plot(xlim, ypos*[1, 1], 'k', 'LineWidth', 3*SCALE); % Horizontal line
+                plot(xlim, ypos*[1, 1], 'k', 'LineWidth', scaled(3)); % Horizontal line
                 hold on;
                 hh(end+1) = text(xlim(1)-0.1, ypos, o.rowlabels{i}, 'HorizontalAlignment', 'right'); % Descriptive text
                 
@@ -184,7 +184,7 @@ classdef irconfusion < irlog
                     
                     if i == 1
                         hh(end+1) = text(k, -0.1, c{j}, 'HorizontalAlignment', 'right', 'Rotation', 270);
-%                         plot(k*[1, 1], ylim, 'k', 'LineWidth', 3*SCALE); % Horizontal line
+%                         plot(k*[1, 1], ylim, 'k', 'LineWidth', scaled(3)); % Horizontal line
                     end;
 
                     if Ccalc(i, j) > MINPERC_BALL
@@ -201,7 +201,7 @@ classdef irconfusion < irlog
                         else
                             color_ = find_color(j-1);
                         end;
-                        rectangle('Position', pos, 'LineStyle', '-', 'LineWidth', SCALE*2, 'FaceColor', color_, 'Curvature', [1, 1]);%, 'LineColor', 'k');
+                        rectangle('Position', pos, 'LineStyle', '-', 'LineWidth', scaled(2), 'FaceColor', color_, 'Curvature', [1, 1]);%, 'LineColor', 'k');
 
                         if Ccalc(i, j) >= MINPERC_TEXT
                             hh2(end+1) = text(k, ypos-diam/2, [sprintf('%g', Cshow(i, j)), sperc], 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom');
@@ -219,6 +219,5 @@ classdef irconfusion < irlog
                 set(hh2, 'FontSize', FONTSIZE*scaled(.75));
             end;
         end;
-
     end;
 end

@@ -8,7 +8,7 @@ classdef fcon_mea_mean < fcon_mea
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = 1;
             data.X = mean(data.X, 2);
         end;

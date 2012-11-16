@@ -12,7 +12,7 @@ classdef blmisc_classlabels_sort < blmisc_classlabels
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data = data_sort_classlabels(data);
         end;
     end;  

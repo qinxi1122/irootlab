@@ -19,7 +19,7 @@ classdef vis_curvefit < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             out = [];
 
             if length(o.conc) ~= data.nc

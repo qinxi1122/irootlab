@@ -21,6 +21,7 @@ classdef pre_bc_asls < pre_bc
     methods
         function o = pre_bc_asls(o)
             o.classtitle = 'Asymmetric Least-Squares Smoothing';
+            o.short = 'BCALSM';
         end;
     end;
     

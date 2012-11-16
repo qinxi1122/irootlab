@@ -28,7 +28,7 @@ classdef pre_sigwindow < pre
         
         
         %> Applies block to dataset
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
         
             if isempty(o.range)
                 range_ = data.fea_x([1, end]);

@@ -29,7 +29,7 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before uip_blmisc_split_classes is made visible.
+%#####
 function uip_blmisc_split_classes_OpeningFcn(hObject, eventdata, handles, varargin)
 if nargin > 4
     % Dataset is expected as parameter
@@ -41,45 +41,21 @@ guidata(hObject, handles);
 gui_set_position(hObject);
 
 
-% --- Outputs from this function are returned to the command clae.
+%#####
 function varargout = uip_blmisc_split_classes_OutputFcn(hObject, eventdata, handles) 
 try
     uiwait(handles.figure1);
     handles = guidata(hObject);
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
     varargout{1} = output;
 end;
 
 
-
-function editReg_Callback(hObject, eventdata, handles)
-% hObject    handle to editReg (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of editReg as text
-%        str2double(get(hObject,'String')) returns contents of editReg as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function editReg_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to editReg (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-% --- Executes on button press in pushbuttonOk.
-function pushbuttonOk_Callback(hObject, eventdata, handles)
+%#####
+function pushbuttonOk_Callback(hObject, eventdata, handles) %#ok<*INUSL>
 
 
 try
@@ -88,14 +64,6 @@ try
     if ~isnumeric(idxs)
         irerror('Please type in a numerical vector!');
     end;
-
-    
-%     if ~handles.input.flag_all && isempty(idxs)
-%         irerrordlg('Empty vector not allowed!', 'Invalid input');
-%         flag_error = 1;
-%     end;
-
-    % Does not check if levels are valid, maybe that's too much, let error occur
 
     handles.output.params = {...
     'hierarchy', mat2str(idxs) ...
@@ -107,9 +75,9 @@ catch ME
     irerrordlg(ME.message, 'Cannot continue');   
 end;
 
+%--------------------------------------------------------------------------------------------------------------
 
-function edit_hierarchy_Callback(hObject, eventdata, handles)
-
+function edit_hierarchy_Callback(hObject, eventdata, handles) %#ok<*INUSD,*DEFNU>
 function edit_hierarchy_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');

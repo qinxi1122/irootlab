@@ -11,7 +11,7 @@ classdef fcon_mea_maha < fcon_mea
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             data.fea_x = 1;
             data.X = maha(data.X);
         end;

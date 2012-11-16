@@ -67,9 +67,15 @@ else
         elseif sum(types == '1') > 0
             %>***Attention: needs p1 as DATA
             %> amide I peak
+            if all(x < 1610) || all (x > 1680)
+                irerror('Cannot normalize to Amide I peak; x axis out of Amide I limits!');
+            end;
             idxs_fea = v_x2ind(1680, x):v_x2ind(1610, x);
         elseif sum(types == '2') > 0
             %> amide II peak
+            if all(x < 1570) || all (x > 1470)
+                irerror('Cannot normalize to Amide II peak; x axis out of Amide II limits!');
+            end;
             idxs_fea = v_x2ind(1570, x):v_x2ind(1470, x);
         end;
         for i = 1:no

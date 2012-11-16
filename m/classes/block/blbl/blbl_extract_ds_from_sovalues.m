@@ -17,7 +17,7 @@ classdef blbl_extract_ds_from_sovalues < blbl
     end;
     
     methods(Access=protected)
-        function [o, ds] = do_use(o, sov)
+        function ds = do_use(o, sov)
             [values, ax] = sovalues.get_vv_aa(sov.values, sov.ax, o.dimspec);
             
             ds = irdata();

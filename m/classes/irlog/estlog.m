@@ -107,6 +107,42 @@ classdef estlog < ttlog
 
             o = o.do_record(pars);
         end;
+        
+        %> @brief Calculates 0/w weights for (row)x(time)
+        %> 
+        %> 0 < w < 1
+        %>
+        %> @param t =(1:o.t) Time vector to select only a few time instants
+        %> @param normtype = 0
+        %>    @arg @c 0 Non-zero weights are all ones
+        %>    @arg @c 1 Weights are normalized so the rows add to 1
+        %>    @arg @c 2 Weights are normalized so that the columns add to 1
+        %>
+        %> @return A (no_rows)x(o.t) matrix of 0/w to be used as weights.
+        function W = get_weights(o, t, normtype)
+            % Pre-selection
+            if ~exist('t', 'var') || isempty(t) || any(t < 1)
+                C = o.hits;
+            else
+                C = o.hits(:, :, t);
+            end;
+            if nargin < 3 || isempty(normtype)
+                normtype = 0;
+            end;
+            
+            S = permute(sum(C, 2), [1, 3, 2]);
+            B = S > 0;
+            if normtype == 0
+                W = B;
+            elseif normtype == 2
+                CB = sum(B, 2)+realmin; % How many time instants at any row actually have something in that row
+                W = B./repmat(CB, 1, size(B, 2));
+            elseif normtype == 1
+                CB = sum(B, 1)+realmin;
+                W = B./repmat(CB, size(B, 1), 1);
+            end;
+        end;
+            
 
         %> @brief Returns a calculation over the "hits" matrix
         %>
@@ -116,7 +152,7 @@ classdef estlog < ttlog
         %>   <li>Aggregation:<ul>
         %>      <li>@c 0 - none</li>
         %>      <li>@c 1 - Sum</li>
-        %>      <li>@c 2 - Sum->Normalization</li>
+        %>      <li>@c 2 - time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)</li>
         %>      <li>@c 3 - Mean</li>
         %>      <li>@c 4 - Standard Deviation</li></ul></li>
         %>      <li>@c 5 - Minimum</li></ul></li>
@@ -133,7 +169,7 @@ classdef estlog < ttlog
             end;
             
             % Pre-selection
-            if ~exist('t', 'var') || isempty(t) || sum(t < 1)
+            if ~exist('t', 'var') || isempty(t) || any(t < 1)
                 C = o.hits;
             else
                 C = o.hits(:, :, t);
@@ -155,15 +191,15 @@ classdef estlog < ttlog
                         % Does nothing
                     case 1
                         C = sum(C, 3);
-                    case 2
+                    case 2 % time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)
                         C = sum(C, 3);
                         S = sum(C, 2);
                         S(S == 0) = 1; % makes 0/0 divisions into 0/1 ones
                         C = C./repmat(S, 1, ncol);
-                    case 3
+                    case 3 % Mean
                         S = sum(sum(C, 2) ~= 0, 3); % counts non-zero t-wise rows for each row
                         C = sum(C, 3)./repmat(S, 1, ncol);
-                    case 4
+                    case 4 % Standard deviation
                         T = zeros(nrow, ncol);
                         for i = 1:nrow
                             temp = C(i, :, :);

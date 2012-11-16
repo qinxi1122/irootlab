@@ -19,7 +19,7 @@ classdef vis_hists < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
 
             obj.draw_hists(o.idx_hist, o.data_hint, o.flag_group);

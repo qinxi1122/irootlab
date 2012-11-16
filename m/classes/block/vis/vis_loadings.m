@@ -20,7 +20,7 @@ classdef vis_loadings < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             if ~isempty(obj.fea_names)
                 legends = obj.fea_names(o.idx_fea);

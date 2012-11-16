@@ -17,7 +17,7 @@ classdef blbl_extract_cv < blbl
     end;
     
     methods(Access=protected)
-        function [o, oo] = do_use(o, block)
+        function oo = do_use(o, block)
             if block.flag_trainable > 0 && ~block.flag_trained
                 irerror('Input block to blbl_extract_cv needs to be trained!');
             end;

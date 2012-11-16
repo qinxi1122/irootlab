@@ -47,9 +47,12 @@ classdef reptt < as
         %> These is a tool to be used by descendant classes, as required.
         function o = boot_postpr(o)
             % Checks if postpr_est is ok; boots the post-processors
+            
+            % Just testing if I still need to worry about booting
+            
             if ~isempty(o.postpr_est)
                 o.postpr_est = o.postpr_est.boot();
-                assert_decider(o.postpr_est);
+%                 assert_decider(o.postpr_est);
             end;
             if ~isempty(o.postpr_test)
                 o.postpr_test = o.postpr_test.boot();

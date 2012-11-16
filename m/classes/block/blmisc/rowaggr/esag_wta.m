@@ -11,7 +11,7 @@ classdef esag_wta < esag
     
     methods(Access=protected)
         %> Abstract
-        function [o, out] = do_use(o, dd)
+        function out = do_use(o, dd)
             dd = o.apply_threshold(dd);
             
             out = dd(1).copy_emptyrows();

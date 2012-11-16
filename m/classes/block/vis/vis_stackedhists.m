@@ -17,7 +17,7 @@ classdef vis_stackedhists < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
 
             obj.draw_stackedhists(o.data_hint, o.colors, o.peakdetector);

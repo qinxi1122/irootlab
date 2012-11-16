@@ -12,7 +12,7 @@ classdef as_grades_fsg < as_grades
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             da1 = data(1);
             idxs = num2cell(1:da1.nf);
             o.fsg.data = da1;

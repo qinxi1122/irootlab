@@ -25,6 +25,7 @@ classdef fcon_spline < fcon_linear
     methods
         function o = fcon_spline()
             o.classtitle = 'B-Splines Decomposition';
+            o.short = 'B-Splines';
             o.flag_trainable = 1;
         end;
     end;
@@ -61,8 +62,8 @@ classdef fcon_spline < fcon_linear
             o.xunit = data.xunit;
         end;
          
-        function [o, data] = do_use(o, data)
-            data = data.transform_linear(o.L, o.fea_prefix);
+        function data = do_use(o, data)
+            data = data.transform_linear(o.L, o.t_fea_prefix);
             data.fea_x = o.fea_x_new;
         end;
     end;

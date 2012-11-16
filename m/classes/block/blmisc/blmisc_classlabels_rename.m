@@ -15,7 +15,7 @@ classdef blmisc_classlabels_rename < blmisc_classlabels
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             if length(o.classlabels_new) ~= length(data.classlabels)
                 irerror('New class label must have same number of elements!');
             end;

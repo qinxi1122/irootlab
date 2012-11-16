@@ -19,7 +19,7 @@ classdef as_grades_loadings < as_grades
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, data)
+        function out = do_use(o, data)
             da1 = data(1);
 
             blk = o.fcon_linear.boot();

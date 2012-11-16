@@ -20,7 +20,7 @@ classdef vis_crossloadings < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             global SCALE;
             out = [];
             nb = length(obj.blocks);
@@ -41,7 +41,7 @@ classdef vis_crossloadings < vis
                     ymin = min([temp', ymin]);
                 end;
                 ymax = max([temp', ymax]);
-                plot(block.L_fea_x, temp', 'Color', color1, 'LineWidth', 1*SCALE); % yeah it is 1
+                plot(block.L_fea_x, temp', 'Color', color1, 'LineWidth', scaled(1)); % yeah it is 1
                 hold on;
                 l = l+temp;
             end;

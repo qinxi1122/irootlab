@@ -31,7 +31,7 @@ classdef report_sovalues_comparison < irreport
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, sov)
+        function out = do_use(o, sov)
             out = log_html();
             out.html = ['<h1>', sov.title, '</h1>', 10, o.get_html_tables(sov)];
             out.title = sov.get_description();

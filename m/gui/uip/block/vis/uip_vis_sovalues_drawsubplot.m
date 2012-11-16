@@ -5,7 +5,7 @@
 
 %>@cond
 function varargout = uip_vis_sovalues_drawsubplot(varargin)
-% Last Modified by GUIDE v2.5 12-Nov-2012 17:03:41
+% Last Modified by GUIDE v2.5 15-Nov-2012 20:30:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -85,6 +85,7 @@ try
     'ylimits', mat2str(eval(get(handles.edit_ylimits, 'String'))), ...
     'xticks', mat2str(eval(get(handles.edit_xticks, 'String'))), ...
     'flag_star', num2str(get(handles.checkbox_flag_star, 'Value')), ...
+    'flag_hachure', num2str(get(handles.checkbox_flag_hachure, 'Value')), ...
     'xticklabels', cell2str(eval(get(handles.edit_xticklabels, 'String'))) ...
     };
     handles.output.flag_ok = 1;
@@ -165,4 +166,5 @@ function popupmenu_valuesfieldname_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+function checkbox_flag_hachure_Callback(hObject, eventdata, handles)
 %> @endcond

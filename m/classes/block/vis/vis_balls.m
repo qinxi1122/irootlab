@@ -9,7 +9,7 @@ classdef vis_balls < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             obj.draw_balls();
             out = [];
         end;

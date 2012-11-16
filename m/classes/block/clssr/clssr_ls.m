@@ -28,6 +28,7 @@ classdef clssr_ls < clssr
     methods
         function o = clssr_ls()
             o.classtitle = 'Least-Squares';
+            o.short = 'LS';
             o.flag_ui = 0;
         end;
 
@@ -296,7 +297,7 @@ pars.y_range = [3, 8];= X(data.clasblock_mold.ses == i-1, :)*w(i);
 
 %{
         %> With bits from MATLAB classify()
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);
@@ -316,7 +317,7 @@ pars.y_range = [3, 8];= X(data.clasblock_mold.ses == i-1, :)*w(i);
 %}
 
         
-        function [o, est] = do_use(o, data)
+        function est = do_use(o, data)
             est = estimato();
             est.classlabels = o.classlabels;
             est = est.copy_from_data(data);

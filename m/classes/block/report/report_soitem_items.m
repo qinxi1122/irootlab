@@ -12,7 +12,7 @@ classdef report_soitem_items < report_soitem
     
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             s = '';
 
             if numel(obj.items) > 0 && ~isempty(obj.items{1}.sovalues) % Avoids error when items is empty

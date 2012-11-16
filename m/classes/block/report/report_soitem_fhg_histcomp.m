@@ -19,7 +19,7 @@ classdef report_soitem_fhg_histcomp < report_soitem
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             
             r = report_log_fselrepeater_histcomp();
             r.peakdetector = o.peakdetector;

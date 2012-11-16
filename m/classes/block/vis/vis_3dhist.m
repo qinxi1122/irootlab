@@ -9,7 +9,7 @@ classdef vis_3dhist < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             data_draw_3dhist(obj);
         end;

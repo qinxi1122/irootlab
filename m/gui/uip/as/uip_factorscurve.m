@@ -18,7 +18,7 @@
 
 %> @cond
 function varargout = uip_factorscurve(varargin)
-% Last Modified by GUIDE v2.5 22-Aug-2012 00:36:08
+% Last Modified by GUIDE v2.5 13-Nov-2012 11:19:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -93,14 +93,13 @@ try
     'clssr', sclssr, ...
     'fcon_mold', sfcon_mold, ...
     'sgs', ssgs, ...
-    'no_factors_max', mat2str(round((eval(get(handles.edit_no_factors_max, 'String'))))), ...
+    'no_factorss', mat2str(round((eval(get(handles.edit_no_factorss, 'String'))))), ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);
     uiresume();
 catch ME
     irerrordlg(ME.message, 'Cannot continue');
-    
 end;
 
 %################################################
@@ -126,8 +125,8 @@ function popupmenu_fcon_mold_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-function edit_no_factors_max_Callback(hObject, eventdata, handles)
-function edit_no_factors_max_CreateFcn(hObject, eventdata, handles)
+function edit_no_factorss_Callback(hObject, eventdata, handles)
+function edit_no_factorss_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end

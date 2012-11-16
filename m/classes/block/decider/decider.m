@@ -16,7 +16,7 @@ classdef decider < block
     end;
     
     methods(Access=protected)    
-        function [o, est] = do_use(o, est)
+        function est = do_use(o, est)
             [val, idx] = max(est.X, [], 2);
             no = est.no;
             est.classes = -1*ones(no, 1);

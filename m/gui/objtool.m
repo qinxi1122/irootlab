@@ -668,7 +668,7 @@ else
                 if flag_ok
 
                     name_new = find_varname('ds');
-                    code = sprintf('o = %s();\no.filename = ''%s'';\n%s = o.load(%s);', classname, name_full, name_new, s_range);
+                    code = sprintf('o = %s();\no.filename = ''%s'';\n%s = o.load(%s);\n', classname, name_full, name_new, s_range);
 
                     ircode_eval(code, 'Dataset load');
                     refresh();
@@ -729,7 +729,7 @@ objtool_status();
 names = get_selected_names();
 if ~isempty(names)
     try
-        code = sprintf('clear %s;', sprintf('%s ', names{:}));
+        code = sprintf('clear %s;\n', sprintf('%s ', names{:}));
         ircode_eval(code, 'Clearing objects');
         refresh();
     catch ME
@@ -820,6 +820,10 @@ set_modebutton('blocks');
 %#####
 function listbox_blocks_Callback(hObject, eventdata, handles)
 objtool_status();
+if strcmp(get(handles.figure1, 'SelectionType'), 'open') % This is how you detect a double-click in MATLAB
+    do_block('use');
+end;
+
 
 %#####
 function edit_properties_Callback(hObject, eventdata, handles)
@@ -877,7 +881,7 @@ objtool_status();
 names = get_selected_names2();
 if ~isempty(names)
     try
-        code = sprintf('clear %s;', sprintf('%s ', names{:}));
+        code = sprintf('clear %s;\n', sprintf('%s ', names{:}));
         ircode_eval(code, 'Clearing objects');
         refresh();
     catch ME

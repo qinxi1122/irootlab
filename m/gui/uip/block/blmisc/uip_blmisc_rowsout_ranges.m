@@ -61,9 +61,9 @@ try
     handles = guidata(hObject);
     varargout{1} = handles.output;
     delete(gcf);
-catch
+catch %#ok<*CTCH>
     output.flag_ok = 0;
-    output.params = {}
+    output.params = {};
     varargout{1} = output;
 end;
 

@@ -14,12 +14,13 @@ classdef pre_diff_sg < pre
     
     methods
         function o = pre_diff_sg(o)
-            o.classtitle = 'Differentiation S-G';
+            o.classtitle = 'Differentiation SG';
+            o.short = 'DiffSG';
         end;
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, data)
+        function data = do_use(o, data)
             [data.X, data.fea_x] = diff_sg(data.X, data.fea_x, o.order, o.porder, o.ncoeff);
         end;
     end;

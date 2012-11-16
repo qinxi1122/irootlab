@@ -16,7 +16,7 @@ classdef vis_log_celldata < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             obj.draw(o.idx, o.flag_std);
         end;

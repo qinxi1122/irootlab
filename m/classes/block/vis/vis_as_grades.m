@@ -12,7 +12,7 @@ classdef vis_as_grades < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             obj.draw(o.data_hint);
         end;

@@ -9,7 +9,7 @@ classdef fcon_mea_ratio < fcon_mea
     end;
     
     methods(Access=protected)
-        function [o, data] = do_use(o, dataa)
+        function data = do_use(o, dataa)
             if numel(dataa) < 2
                 irerror('I need two datasets to take ratios!');
             end

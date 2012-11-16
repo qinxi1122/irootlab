@@ -8,7 +8,7 @@ classdef vis_clssr2d < vis
     end;
     
     methods(Access=protected)
-        function [o, out] = do_use(o, obj)
+        function out = do_use(o, obj)
             out = [];
             %> @todo still TODO
         end;
