@@ -1,4 +1,5 @@
 %> @brief Unit - Arbitrary
+%> @ingroup graphicsapi
 classdef bmunit_au < bmunit
     methods
         function o = bmunit_au(o)

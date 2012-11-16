@@ -1,4 +1,5 @@
 %> @brief Representation of a Unit
+%> @ingroup graphicsapi
 classdef bmunit < irobj
     properties
         peakdetector;

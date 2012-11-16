@@ -1,4 +1,5 @@
 %> @brief Unit - Integer
+%> @ingroup graphicsapi
 classdef bmunit_int < bmunit
     methods
         function o = bmunit_int(o)

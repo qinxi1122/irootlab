@@ -1,4 +1,5 @@
 %> @brief Art stuff
+%> @ingroup graphicsapi
 classdef bmart_circle < bmart
     methods
         function o = bmart_circle(o)

@@ -1,4 +1,5 @@
 %> @brief Art stuff
+%> @ingroup graphicsapi
 classdef bmart_pentagram < bmart
     methods
         function o = bmart_pentagram(o)

@@ -1,23 +1,23 @@
-%> @brief Splits dataset - pairwise recombination
+%> @brief One-Versus-Reference dataset split class combination
 %>
 %> Will result in n-1 datasets. Each dataset will have two classes: the one corresponding to idx_ref and one of the other classes
 %>
 %> Not published in GUI.
-classdef blmisc_split_pairwise < blmisc_split
+classdef blmisc_split_ovr < blmisc_split
     properties
         hierarchy = [];
         idx_ref = 1;
     end;
     
     methods
-        function o = blmisc_split_pairwise(o)
-            o.classtitle = 'Pairwise';
-            o.flag_ui = 0;
+        function o = blmisc_split_ovr()
+            o.classtitle = 'One-Versus-Reference';
+            o.flag_ui = 1;
         end;
     end;
     
     methods(Access=protected)
-        function [o, datasets] = do_use(o, data)
+        function datasets = do_use(o, data)
 
             temp = data_split_classes(data, o.hierarchy);
             classmap = classlabels2cell(data.classlabels, o.hierarchy);

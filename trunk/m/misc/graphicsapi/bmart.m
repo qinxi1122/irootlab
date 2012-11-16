@@ -1,4 +1,5 @@
 %> @brief Art stuff for BioMarker Tables
+%> @ingroup graphicsapi
 %>
 %> @sa bmtable
 classdef bmart < irobj
