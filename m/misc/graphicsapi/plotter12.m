@@ -1,7 +1,9 @@
-%> @brief Functions to plot lines
+%> @ingroup graphicsapi
+%> @file
+%> @brief Generates a colormap from an integer vector of classes.
 %>
-%>
-classdef plotter_1d
+%> @brief Functions to draw plots and images based on values and axis data from a @ref sovalues object
+classdef plotter12
     properties
         %> 2D Structure array with fields varying
         values;
@@ -11,7 +13,6 @@ classdef plotter_1d
         
         flag_hachure = 0;
     end;
-    
     
     methods
         %> Draws single plot with many lines
@@ -69,12 +70,7 @@ classdef plotter_1d
                 end;
 
                 if o.flag_hachure
-                    try
-                        draw_hachure2(nfs, ci, find_color(j));
-                    catch ME
-                        disp('o the tah pegando');
-                        rethrow(ME);
-                    end;
+                    draw_hachure2(nfs, ci, find_color(j));
                     hold on;
                 end;
 
@@ -201,14 +197,10 @@ classdef plotter_1d
                         me(m) = mean(X(m, :));
                     end;
                     
-                    
-                    try
+                    if o.flag_hachure
                         draw_hachure2(nfs, ci, find_color(k));
-                    catch ME
-                        disp('outro erro ocorrendo no computador do FRANK');
-                        rethrow(ME);
+                        hold on;
                     end;
-                    hold on;
                     
                     plot(nfs, me, 'Color', find_color(k), 'LineStyle', find_linestyle(k), 'Linewidth', scaled(3), 'Marker', find_marker(k), 'MarkerSize', find_marker_size(k));
                     hold on;

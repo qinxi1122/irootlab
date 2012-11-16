@@ -1,4 +1,5 @@
 %> @brief Unit - Histogram
+%> @ingroup graphicsapi
 %>
 %> Same as Integer, but plots as histogram (stem plot). Affects @ref bmtable
 classdef bmunit_hist < bmunit
