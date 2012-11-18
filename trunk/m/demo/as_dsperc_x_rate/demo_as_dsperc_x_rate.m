@@ -1,6 +1,6 @@
+%>@brief Demonstrates use of the as_dsperc_x_rate - (dataset %) x (classification rate %) curve
 %>@ingroup demo
 %>@file
-%>@brief Demonstrates use of the @ref as_dsperc_x_rate class
 %>
 %> @image html Screenshot-demo_as_dsperc_x_rate.png
 %> <center>Image obtained through the as_dsperc_x_rate::draw_curve() method.</center>
@@ -35,6 +35,7 @@ clssr_d02 = o;
 
 
 o = estlog_classxclass();
+o.title = 'accuracy';
 o.estlabels = ddemo.classlabels;
 o.testlabels = ddemo.classlabels;
 estlog_classxclass01 = o;
@@ -80,4 +81,5 @@ o.idx = [1, 2];
 figure;
 o.use(lo);
 title(sprintf('Number of spectra in dataset: %d', ddemo.no));
-
+maximize_window([], 1.618);
+save_as_png([], 'dsperc_x_rate');

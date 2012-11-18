@@ -1,6 +1,6 @@
+%>@brief Demonstrates the use of "cross-calculation" to get scores plots
 %>@ingroup demo
 %>@file
-%>@brief Demonstrates @ref as_crossc
 %>
 %> @image html demo_as_crossc02.png
 %> <center>Cross-calculated scores plot</center>

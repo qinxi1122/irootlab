@@ -59,7 +59,7 @@ classdef irreport < vis
         %> @param res =(screen resolution) Resolution in DPI, e.g., 150, 300
         function s = save_n_close(fn, perc, res)
             if nargin < 1 || isempty(fn)
-                fn = find_filename('image', [], 'png', 0);
+                fn = find_filename('irr_image', [], 'png', 0);
             end;
             if nargin < 2 || isempty(perc)
                 perc = 100;

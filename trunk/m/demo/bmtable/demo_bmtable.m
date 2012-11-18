@@ -1,6 +1,6 @@
+%>@brief Example of bmtable usage. Peak Location plots
 %>@file
 %>@ingroup demo
-%>@brief OBSOLETE Example of @ref bmtable - quick analysis
 
 % Initialization
 fig_assert;

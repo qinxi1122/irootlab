@@ -1,4 +1,6 @@
-% Forward feature selection
+%> @brief Forward feature selection demo
+%> @ingroup demo
+%> @file
 
 ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2); % Classes will be N/T

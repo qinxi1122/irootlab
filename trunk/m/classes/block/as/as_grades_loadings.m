@@ -30,7 +30,7 @@ classdef as_grades_loadings < as_grades
             out.fea_x = da1.fea_x;
             out.xname = da1.xname;
             out.xunit = da1.xunit;
-            out.yname = blk.get_description;
+            out.yname = blk.get_methodname;
         end;
     end;   
 end

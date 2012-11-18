@@ -1,4 +1,4 @@
-%> @brief Confusion matrix is Group versus Assigned class
+%> @brief Records (test group)x([rejected, estimation class]) hits
 %>
 %> Classification rates don't make sense in this case because there is no way to determine whether the classifications are correct.
 %> Therefore, these methods are not inherited (they remain as in @ref estlog).

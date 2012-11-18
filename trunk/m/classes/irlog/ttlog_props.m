@@ -1,5 +1,4 @@
-%> @brief Records arbitrary properties from a block (likely to be a classifier)
-%>
+%> @brief Records  properties from a block
 classdef ttlog_props < ttlog
     properties
         %> Properties to record

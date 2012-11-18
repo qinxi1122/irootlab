@@ -39,7 +39,7 @@ if k > 1
     data.X = X;
     data.classes = classes_;
     data = data.assert_fix();
-    f = find_filename('userdata', '', 'txt');
+    f = find_filename('gendata', '', 'txt');
     oio = dataio_txt_basic();
     oio.filename = f;
     oio.save(data);

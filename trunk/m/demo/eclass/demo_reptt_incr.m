@@ -1,17 +1,12 @@
+%> @brief Demonstrates the reptt_incr class with classifier eClass
 %> @file
 %> @ingroup demo
-%> @brief Demonstrates the reptt_incr class with classifier eClass
 %>
 %> This example shows how an incremental classifier can vary its performance depending on the order the training data is fed into the classifier.
 %>
 %> @image html demo_reptt_incr.png
 
-if 1
-    ds01 = load_data_she5trays();
-    ds01 = data_select_hierarchy(ds01, 2); % Only N/T
-else
-    ds01 = load_data_uci_wine();
-end;
+ds01 = load_data_uci_wine();
 
 % Random 90%-10% split
 o = blmisc_split_proportion();

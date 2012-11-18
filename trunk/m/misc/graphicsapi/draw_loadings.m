@@ -180,14 +180,15 @@ for i = 1:nl
     end;
 end;
 
+if ~isempty(legends)
+    hl = legend(handles, legends);
+end;
 
 % Formatting
-format_frank();
+format_frank([], [], hl);
 format_xaxis(x);
 ylabel('Coefficient (a.u.)');
-if ~isempty(legends)
-    legend(handles, legends);
-end;
+
 
 
 y1 = min(ymin, 0);

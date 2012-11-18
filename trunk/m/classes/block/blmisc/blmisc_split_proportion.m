@@ -17,7 +17,7 @@ classdef blmisc_split_proportion < blmisc_split
     
     methods(Access=protected)
         function datasets = do_use(o, data)
-            if ~o.flag_group
+            if ~o.flag_group || isempty(data.groupcodes)
                 p = randperm(data.no);
                 cut = floor(data.no*o.proportion);
                 datasets = data.split_map({p(1:cut), p(cut+1:end)});

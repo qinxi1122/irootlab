@@ -1,6 +1,6 @@
+%>@brief Demonstrates use of clssr_tree - Decision Tree classifier
 %>@file
 %>@ingroup demo
-%>@brief Demonstrates use of @ref clssr_tree
 %>
 %>@sa clssr_tree
 %>

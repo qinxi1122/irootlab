@@ -1,6 +1,6 @@
+%>@brief Simple eClass demonstration
 %>@ingroup demo
 %>@file
-%>@brief Simple eClass demonstration
 %>
 %> @attention Needs the frbm (Fuzzy) classifier, which is not available in the standard distribution of IRootLab
 %> Uses userdata_nc2nf2 dataset.
@@ -83,5 +83,5 @@ pars2.ds_test = dstest;
 pars2.est = est2;
 lo = lo.allocate(1);
 lo = lo.record(pars2);
-cc = lo.get_confusion([], 1, 1);
+cc = lo.get_confusion([], 1, []);
 disp(confusion_str(cc.C, cc.rowlabels, cc.collabels));

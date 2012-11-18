@@ -12,7 +12,7 @@ function fn = save_legend(fn, dpi)
 fig_assert();
 
 if nargin < 1 || isempty(fn)
-    fn = find_filename('figure', [], 'png');
+    fn = find_filename('irr_legend', [], 'png');
 end;
 if nargin < 2 || isempty(dpi)
     dpi = 0;

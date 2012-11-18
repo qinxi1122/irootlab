@@ -1,4 +1,6 @@
 %> @brief Train-Test Log.
+%>
+%> Base class for objects that have the record(pars) method. Pars may contain a reference dataset; an estimation dataset; a block; ...
 classdef ttlog < irlog
     properties
         %> =1. Whether to increment time whenever something is recorded
@@ -14,11 +16,7 @@ classdef ttlog < irlog
         no_slots = 0;
     end;
 
-    methods(Access=protected)
-        %> Abstract.
-        function o = do_record(o, est, ds_test, clssr)
-        end;
-        
+    methods(Access=protected) %, Abstract)
         %> Abstract. Called to pre-allocate matrices. Must be called only when @c collabels and @c rowlabels can be resolved
         %> (reaching this varies along @c ttlog descendants).
         function o = do_allocate(o, tt)

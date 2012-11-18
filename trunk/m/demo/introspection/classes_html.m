@@ -1,5 +1,5 @@
+%> @brief Generates IRootLab classes hierarchical tree in HTML
 %> @ingroup demo introspection
-%> @brief Generates HTML with class tree
 %> @file
 
 classmap_assert;

@@ -1,4 +1,6 @@
-% Demonstrates the generation of a Feature Histogram
+%> @brief Demonstrates the generation of a Feature Histogram
+%> @ingroup demo
+%> @file
 
 % The dataset
 ds = load_data_she5trays();

@@ -73,7 +73,9 @@ classdef as_fsel_forward < as_fsel
                         flag_progress = 1;
                     end;
                 end;
-                ipro = progress2_change(ipro, [], [], i);
+                if flag_progress
+                    ipro = progress2_change(ipro, [], [], i);
+                end;
                 
                 flag_first = 0;
             end;

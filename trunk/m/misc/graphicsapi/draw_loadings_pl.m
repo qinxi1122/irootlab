@@ -70,7 +70,7 @@ bl = fcon_linear_fixed();
 bl.L = L;
 bl.L_fea_x = x;
 if ~isempty(legends)
-    bl.fea_names = legends;
+    bl.t_fea_names = legends;
     bl.title = '';
 end;
 
@@ -90,6 +90,5 @@ for i = nl:-1:1
 end;
 bm.rowname_type = 'block';
 
-bm = bm.go();
-bm = bm.draw_pl();
+bm.draw_pl();
 

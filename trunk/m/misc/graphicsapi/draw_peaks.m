@@ -10,6 +10,7 @@
 %> @param marker =x
 %< @param markersize =scaled(10)
 function draw_peaks(x, y, indexes, flag_text, color, marker, markersize)
+fig_assert();
 global FONTSIZE FONT;
 
 if ~exist('flag_text', 'var')
@@ -43,6 +44,6 @@ for i = 1:length(x_peaks)
     end;
     
     if flag_text
-        text(x_peaks(i), y_peaks(i)+offset, sprintf('%.0f', x(indexes(i))), 'FontName', FONT, 'FontSize', FONTSIZE*SCALE*.75);
+        text(x_peaks(i), y_peaks(i)+offset, sprintf('%.0f', x(indexes(i))), 'FontName', FONT, 'FontSize', FONTSIZE*scaled(0.75));
     end;
 end;

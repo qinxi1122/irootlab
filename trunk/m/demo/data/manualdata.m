@@ -1,4 +1,6 @@
-%> This file shows how to assemble a dataset from "existing" X and class matrices
+%> @brief Shows how to assemble a dataset (class irdata) from existing MATLAB matrices
+%> @ingroup demo
+%> @file
 %>
 %> This example uses random X and classes, but can serve as a basis.
 

@@ -1,4 +1,4 @@
-%> @brief Records row class versus assigned class
+%> @brief Records (test class)x([rejected, estimation class]) hits
 classdef estlog_classxclass < estlog
     properties
         %> All possible class labels in reference datasets

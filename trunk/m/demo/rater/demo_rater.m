@@ -1,6 +1,6 @@
+%>@brief Demonstrates use of the rater class
 %>@ingroup demos
 %>@file
-%>@brief Demonstrates use of the @ref rater class
 %>
 %> Note that the averages in the scatterplots are the confusion matrix diagonal values.
 %>

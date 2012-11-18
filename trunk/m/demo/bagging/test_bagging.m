@@ -1,6 +1,6 @@
+%>@brief Bagging test - 2D example
 %>@file
 %>@ingroup demo
-%>@brief Bagging test - 2D example
 %>
 %> Uses a 2D artificial data to show the classification boundaries of component classifiers and of the overall
 %> classifier.

@@ -9,7 +9,7 @@ classdef vis_log_celldata < vis
     
     methods
         function o = vis_log_celldata(o)
-            o.classtitle = 'Learning Curve';
+            o.classtitle = 'Cell data';
             o.inputclass = {'log_celldata'};
             o.flag_params = 0; % Temporarily
         end;
