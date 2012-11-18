@@ -37,39 +37,10 @@ classdef vis_scatter3dgif < vis
 
             msgbox('Please move and format the legend to your taste, then press Enter at the MATLAB command line.');
                 
-                
-
-% ll = {};
-% for i = 1:8
-%     set(hh(i), 'MarkerSize', 8);
-%     ll{i} = summer_idx2chemical_name2(i, 3);
-% end;
-% [h, shit1, shit2, shit3] = legend(hh, ll, 'Interpreter', 'Latex', 'FontSize', 28);
-% 
-% 
-% 
-% 
-% h_ = get(h, 'children');
-% for i = 1:length(h_)
-%     hh_ = get(h_(i));
-%     if hh_.Type == 'line'
-%         set(h_(i),'markersize', 12);
-%     end;
-% end;
-% 
             input('Please press Enter when ready to record animated GIF ');
 
-
-
-% ss = {'xlim', 'ylim', 'zlim'};
-% for i = 1:3
-%     lim = max(abs(dslda.X(:, i)));
-%     set(gca, ss{i}, [-lim, lim]);
-% end;
-
-
             if isempty(o.filename)
-                fn = find_filename('scatter3d', [], 'gif');
+                fn = find_filename('irr_scatter3d', [], 'gif');
             else
                 fn = o.filename;
             end;

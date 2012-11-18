@@ -1,6 +1,6 @@
+%>@brief Creates animated GIF from the Evolving Clustering process
 %>@ingroup demo
 %>@file
-%>@brief Simple eClustering video (animated GIF)
 %>
 %> Uses userdata_nc2nf2 dataset.
 %>
@@ -72,7 +72,7 @@ pars.ds_train = dstrain;
 % pars.ds_test = dstest;
 pars.flag_last_point = 1;
 pars.flag_link_points = 0;
-pars.filename = find_filename('video_evolving', '', 'gif');
+pars.filename = find_filename('irr_video_evolving', '', 'gif');
 pars.flag_regions = 1;
 
 frbm01 = frbm01.boot();

@@ -1,9 +1,6 @@
 %> @brief Estimation logs base class.
 %>
-%> This Train-Test Log descendant records hits based on correct estimations and generates @ref confusion matrices and
-%> datasets of supports (i.e., posterior probabilities) on demand.
-%>
-%> The unit of what is returned is "%"
+%> Records hits 3D matrix (:)(:)x(time)
 classdef estlog < ttlog
     properties(SetAccess=private)
         collabels;
@@ -38,21 +35,19 @@ classdef estlog < ttlog
         end;
     end;
 
-    methods(Access=protected)
+    methods(Access=protected) %, Abstract)
         %> Abstract.
-        function o = do_record(o, pars)
+        function o = do_record(o, pars) %#ok<*INUSD>
         end;
-
         %> Abstract.
-        function z = get_collabels(o)
-            z = {};
+        function z = get_collabels(o) %#ok<*STOUT>
         end;
-        
         %> Abstract.
         function z = get_rowlabels(o)
-            z = {};
         end;
-
+    end;
+    
+    methods(Access=protected)
         %>
         function o = do_allocate(o, tt)
             if ~o.flag_inc_t
@@ -71,7 +66,7 @@ classdef estlog < ttlog
     
     
     methods
-        function o = estlog(o)
+        function o = estlog()
             o.classtitle = 'Estimation';
             o.flag_params = 0;
             o.moreactions = [o.moreactions, {'extract_confusion'}];
@@ -185,38 +180,44 @@ classdef estlog < ttlog
                 end;
             end;
             
-            if exist('aggr', 'var')
-                switch (aggr)
-                    case 0
-                        % Does nothing
-                    case 1
-                        C = sum(C, 3);
-                    case 2 % time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)
-                        C = sum(C, 3);
-                        S = sum(C, 2);
-                        S(S == 0) = 1; % makes 0/0 divisions into 0/1 ones
-                        C = C./repmat(S, 1, ncol);
-                    case 3 % Mean
-                        S = sum(sum(C, 2) ~= 0, 3); % counts non-zero t-wise rows for each row
-                        C = sum(C, 3)./repmat(S, 1, ncol);
-                    case 4 % Standard deviation
-                        T = zeros(nrow, ncol);
-                        for i = 1:nrow
-                            temp = C(i, :, :);
-                            sel = sum(temp, 2) ~= 0;
-                            T(i, :) = std(temp(1, :, sel), [], 3);
-                        end;
-                        C = T;
-                    case 5
-                        C = min(C, [], 2);
-                    case 6
-                        C = max(C, [], 2);
-                    otherwise
-                        irerror(sprintf('Invalid option: %d', aggr));
-                end;
+            if nargin < 4 || isempty(aggr)
+                aggr = 0;
+            end;
+            
+            switch (aggr)
+                case 0
+                    % Does nothing
+                case 1
+                    if flag_perc1
+                        irerror('Sum of percentages does not make sense!');
+                    end;
+                    
+                    C = sum(C, 3);
+                case 2 % time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)
+                    C = sum(C, 3);
+                    S = sum(C, 2);
+                    S(S == 0) = 1; % makes 0/0 divisions into 0/1 ones
+                    C = C./repmat(S, 1, ncol);
+                case 3 % Mean
+                    S = sum(sum(C, 2) ~= 0, 3); % counts non-zero t-wise rows for each row
+                    C = sum(C, 3)./repmat(S, 1, ncol);
+                case 4 % Standard deviation
+                    T = zeros(nrow, ncol);
+                    for i = 1:nrow
+                        temp = C(i, :, :);
+                        sel = sum(temp, 2) ~= 0;
+                        T(i, :) = std(temp(1, :, sel), [], 3);
+                    end;
+                    C = T;
+                case 5
+                    C = min(C, [], 2);
+                case 6
+                    C = max(C, [], 2);
+                otherwise
+                    irerror(sprintf('Invalid option: %d', aggr));
             end;
 
-            flag_perc = aggr == 2 || (flag_perc1 && any(aggr == [0, 2, 3, 4, 5, 6]));
+            flag_perc = aggr == 2 || flag_perc1;
             
             if flag_perc
                 if flag_renorm
@@ -263,7 +264,7 @@ classdef estlog < ttlog
             end;
 
             
-            [ni, nj, nk] = size(o.supports);
+            [ni, nj, nk] = size(o.supports); %#ok<NASGU>
             C = zeros(ni, nj);
             
             for i = 1:ni
@@ -409,7 +410,7 @@ classdef estlog < ttlog
             if o.t < 10
                 irwarning('Are you sure you want to extract datasets from estlog that has less than 10 confusion matrices?');
             end;
-            [nr, nf, no] = size(o.hits);
+            [nr, nf, no] = size(o.hits); %#ok<NASGU>
             rl = o.get_rowlabels();
             C = o.get_C([], 1, 0);
             C = permute(C, [3, 2, 1]);

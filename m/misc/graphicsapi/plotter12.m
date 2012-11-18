@@ -102,6 +102,7 @@ classdef plotter12
             end;
             set(gca, 'XTick', xticks);
             set(gca, 'XTickLabel', xticklabels);
+            decimate_ticks([1, 0]);
             box off;
             format_frank();
 %             maximize_window();
@@ -225,6 +226,8 @@ classdef plotter12
                         xl = nfs([1, end]);
                         xlim(xl);
                     end;                    
+                    decimate_ticks([1, 0]);
+
                     
                     title(o.ax(2).legends{k}, 'FontWeight', 'bold');
                     format_frank();
@@ -348,11 +351,12 @@ classdef plotter12
             ylabel(o.ax(a2).label);
             
             set(gca, 'XTick', xx, 'YTick', yy, 'XTickLabel', o.ax(a1).ticks, 'YTickLabel', o.ax(a2).ticks);
+            decimate_ticks([1, 1], [13, 13]);
 
-            % THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
-% rotateticklabel(gca, 90);
 
-            
+            % Well, let's see. THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
+            rotateticklabel(gca, 90);
+
             if flag_star
                 plot3(star_ij(a1), star_ij(a2), 0.1, 'pk', 'LineWidth', scaled(2), 'MarkerSize', scaled(15));
             end;

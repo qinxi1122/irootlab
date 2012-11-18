@@ -98,7 +98,7 @@ classdef factorscurve < as
             out.fea_x = nff;
             out.X = permute(sov.get_Y('rates'), [3, 2, 1]);
             out.classes = zeros(size(out.X, 1), 1);
-            out.classlabels = {o.fcon_mold.get_description()};
+            out.classlabels = {o.fcon_mold.get_methodname()};
             out = out.assert_fix();
         end;
     end;

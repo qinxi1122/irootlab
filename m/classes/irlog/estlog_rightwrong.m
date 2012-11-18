@@ -1,4 +1,4 @@
-%> @brief Log of estimation activities that records only right/wrong/rejected.
+%> @brief Records (1)x([rejected, right, wrong]) hits
 %>
 %> For right/wrong to be detected, classlabels from estimation and test datasets need to follow same system, which is
 %> represented by the @c estlabels property.

@@ -1,6 +1,6 @@
+%>@brief Demonstrates use of clssr_d - Linear/Quadratic discriminant
 %>@file
 %>@ingroup demo
-%>@brief Demonstrates use of @ref clssr_d
 %>
 %>@sa clssr_d
 %>

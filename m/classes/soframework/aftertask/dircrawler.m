@@ -1,6 +1,8 @@
 %> Directory crawler
 classdef dircrawler
     properties
+        %> ='.'. Root directory
+        rootdir = '.';
         %> If specified, directories will have to match this pattern
         patt_match;
         %> If specified, directories will have NOT TO match this pattern
@@ -29,7 +31,7 @@ classdef dircrawler
             o = o.start();
             here = pwd();
             
-            dirs = getdirs('.', [], o.patt_match, o.patt_exclude);
+            dirs = getdirs(o.rootdir, [], o.patt_match, o.patt_exclude);
             
             for i = 1:numel(dirs)
                 d = dirs{i};

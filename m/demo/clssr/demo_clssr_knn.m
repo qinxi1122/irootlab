@@ -1,6 +1,6 @@
+%>@brief Demonstrates use of clssr_knn - k-Nearest Neighbours
 %>@file
 %>@ingroup demo
-%>@brief Demonstrates use of @ref clssr_knn
 %>
 %>@sa clssr_knn
 %>
@@ -32,6 +32,9 @@ for i = 1:no_k
 
     clssr.draw_domain(pars);
     title(sprintf('k = %d', K(i)));
+    p = get(gca, 'position');
+    p(2) = .2; p(4) = .65;
+    set(gca, 'position', p);
 end;
 maximize_window([], no_k);
 

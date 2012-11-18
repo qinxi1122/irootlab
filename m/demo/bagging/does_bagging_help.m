@@ -1,6 +1,6 @@
+%> Tries bagging with an increasing number of classifiers, to see if classification improves.
 %>@file
 %>@ingroup demo
-%> Tries bagging with an increasing number of classifiers, to see if classification improves.
 %>
 %> @image html does_bagging_help_result.png
 %> <center>Image obtained showing the number of classifiers \em versus classification rate.</center>

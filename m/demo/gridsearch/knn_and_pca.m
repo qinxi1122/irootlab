@@ -1,6 +1,6 @@
+%>@brief Combined optimization of PCA number of factors & k-NN k
 %>@ingroup demo
 %>@file
-%>@brief Combination of PCA number of factors & k-NN k
 %>
 %> @image html knn_k_result.png
 
@@ -35,7 +35,7 @@ u.sgs = sgs_crossval01;
 u.clssr = clssr_pca_knn;
 u.chooser = [];
 u.postpr_test = [];
-u.postpr_est = [];
+u.postpr_est = decider();
 u.log_mold = {};
 u.no_iterations = 1;
 u.maxtries = 1;

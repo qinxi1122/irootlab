@@ -13,7 +13,7 @@ elseif numel(flags) == 1
 end;
 
 if nargin < 2 || isempty(maxs)
-    maxs = [1, 1];
+    maxs = [16, 13];
 elseif numel(maxs) == 1
     maxs = [maxs, 0]; % when only one flag is passed, the y-axis one will be turned off by default
 end;

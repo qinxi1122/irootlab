@@ -1,6 +1,6 @@
+%>@brief Grid search to SVM's best c and gamma from SVM (Gaussian Kernel)
 %>@ingroup demo
 %>@file
-%>@brief Grid search to SVM's best c and gamma
 %>
 %> @image html svm_c_gamma_result01.png
 %> @image html svm_c_gamma_result02.png
@@ -38,7 +38,7 @@ u.sgs = sgs_crossval01;
 u.clssr = clssr_svm01;
 u.chooser = [];
 u.postpr_test = [];
-u.postpr_est = [];
+u.postpr_est = decider();
 u.log_mold = {};
 u.no_iterations = 3;
 u.maxtries = 3;
@@ -65,10 +65,14 @@ vis_sovalues_drawimage01 = u;
 out = log_gridsearch01.extract_sovaluess();
 
 figure;
+fig_assert();
+global SCALE;
 no = numel(out);
+SCALE = 1.6-no/5*0.8;
 for i = 1:no
     subplot(1, no, i);
     vis_sovalues_drawimage01.use(out{i});
+%     xlabel('');
     title(out{i}.title);
 end;
 maximize_window([], no);

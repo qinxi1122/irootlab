@@ -1,3 +1,7 @@
+%> @brief PCA-LDA demo
+%> @ingroup demo
+%> @file
+
 ds01 = load_data_she5trays();
 
 o = blmisc_classlabels_hierarchy();
@@ -20,11 +24,8 @@ o = o.setbatch({'flag_perc', 1, ...
 peakdetector01 = o;
 
 o = cascade_pcalda();
-o = o.setbatch({'no_factors', 10, ...
-'flag_rotate_factors', 0, ...
-'penalty', 0, ...
-'max_loadings', []});
-
+o.blocks{1}.no_factors = 10;
+o = o.boot();
 cascade_pcalda01 = o;
 
 cascade_pcalda01 = cascade_pcalda01.train(ds01_hierarchy01);

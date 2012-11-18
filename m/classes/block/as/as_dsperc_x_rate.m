@@ -58,7 +58,7 @@ classdef as_dsperc_x_rate < as
             log.xunit = '%';
             log.yname = 'Classification rate';
             log.yunit = '%';
-            log.rownames = cellfun(@(x) x.get_description(), o.evaluator.block_mold(:)', 'UniformOutput', 0);
+            log.rownames = cellfun(@(x) x.get_methodname(), o.evaluator.block_mold(:)', 'UniformOutput', 0);
         end;
     end;
 end

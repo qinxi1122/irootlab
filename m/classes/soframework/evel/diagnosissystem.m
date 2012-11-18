@@ -64,7 +64,7 @@ classdef diagnosissystem < irobj
         
         %> Returns the sequence description
         %>
-        %> Note that it uses get_description() from the blocks, rather than classtitles
+        %> Note that it uses get_methodname() from the blocks, rather than classtitles
         function s = get_sequencedescription(o, cc)
             
             if nargin < 2 || isempty(cc)
@@ -73,7 +73,7 @@ classdef diagnosissystem < irobj
             
             s = '';
             for i = 1:numel(cc)
-                s = cat(2, s, iif(i == 1, '', '->'), cc{i}.get_description());
+                s = cat(2, s, iif(i == 1, '', '->'), cc{i}.get_methodname());
             end;
         end;
     end;

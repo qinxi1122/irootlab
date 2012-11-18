@@ -36,7 +36,7 @@ classdef report_soitem < irreport
             if flag_many
                 % Legend is only justified if there is more than one curve
                 figure;u.use(sor);
-                fnleg = find_filename('image', [], 'png');
+                fnleg = find_filename('irr_image', [], 'png');
                 save_legend(o.gff(fnleg), 150); % High DPI because this may be the only opportunity to have the legend
                 close;
             end;

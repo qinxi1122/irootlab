@@ -1,6 +1,6 @@
+%> @brief Demonstrates the Convex Polynomial Line baseline correction
 %> @ingroup demo
 %> @file
-%> @brief Demonstrates the Convex Polynomial Line baseline correction
 
 x = load_data_uglyspectrum();
 

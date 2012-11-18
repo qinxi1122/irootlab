@@ -10,7 +10,7 @@ if nargin < 1 || isempty(h)
     h = gcf();
 end;
 if nargin < 2 || isempty(fn)
-    fn = find_filename('figure', [], 'fig');
+    fn = find_filename('irr_figure', [], 'fig');
 end;
 
 hgsave(h, fn);
