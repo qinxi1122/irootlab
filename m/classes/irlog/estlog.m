@@ -21,12 +21,15 @@ classdef estlog < ttlog
     end;
     
     properties(SetAccess=protected)
-        %> 3D matrix: (number of groups)x(number of classes in @c labels_cols + 1)x(time)
-        hits = [];
         %> Same size as hits, but it is a cell of vectors.
         supports;
         %> Whether the class is able to produce the sensitivity and specificity figures
         flag_sensspec = 0;
+    end;
+
+    properties % (SetAccess=protected)
+        %> 3D matrix: (number of groups)x(number of classes in @c labels_cols + 1)x(time)
+        hits = [];
     end;
 
     methods
@@ -117,7 +120,7 @@ classdef estlog < ttlog
         function W = get_weights(o, t, normtype)
             % Pre-selection
             if ~exist('t', 'var') || isempty(t) || any(t < 1)
-                C = o.hits;
+                C = o.hits(:, :, 1:o.t);
             else
                 C = o.hits(:, :, t);
             end;
@@ -139,69 +142,94 @@ classdef estlog < ttlog
         end;
             
 
-        %> @brief Returns a calculation over the "hits" matrix
+        %> @brief Flexible function to return a calculation over the "hits" matrix (or parts thereof)
         %>
-        %> <ul>
-        %>   <li>Pre-selection stage using @c t</li>
-        %>   <li>t-wise normalization depending on @c flag_perc1</li>
-        %>   <li>Aggregation:<ul>
-        %>      <li>@c 0 - none</li>
-        %>      <li>@c 1 - Sum</li>
-        %>      <li>@c 2 - time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)</li>
-        %>      <li>@c 3 - Mean</li>
-        %>      <li>@c 4 - Standard Deviation</li></ul></li>
-        %>      <li>@c 5 - Minimum</li></ul></li>
-        %>      <li>@c 6 - Maximum</li></ul></li>
-        %> </ul>
-        %> @param flag_renorm Renormalize (whether to discount the rejected items from percentages)?
-        %> @retval [C] or [C, flag_perc]
+        %> Example: <code>get_C([], 1, 2, 1)</code> Gets average percentage with discounted rejected items
+        %>
+        %> @param t =(all). Pre-selection of specific times
+        %> @param flag_perc1 =0. Whether to calculate percentages already at each time instant
+        %> @param aggr Time-wise Aggregation:
+        %>   @arg @c 0 - none</li>
+        %>   @arg @c 1 - Sum</li>
+        %>   @arg @c 2 - time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)</li>
+        %>   @arg @c 3 - Mean</li>
+        %>   @arg @c 4 - Standard Deviation</li></ul></li>
+        %> @param flag_discount_rejected =1. Whether to discount the rejected items from percentages. Only applicable if @c flag_perc is true
+        %> @return C
         %>
         %> @note Percentual outputs range from 0 to 100, not from 0 to 1
-        function varargout = get_C(o, t, flag_perc1, aggr, flag_renorm)
-            
-            if ~exist('flag_renorm', 'var')
-                flag_renorm = 0;
-            end;
-            
+        function C = get_C(o, t, flag_perc, aggr, flag_discount_rejected)
             % Pre-selection
-            if ~exist('t', 'var') || isempty(t) || any(t < 1)
-                C = o.hits;
+            if nargin < 2 || isempty(t) || any(t < 1)
+                C = o.hits(:, :, 1:o.t);
             else
                 C = o.hits(:, :, t);
             end;
             
-            [nrow, ncol, nt] = size(C);
-            
-            if exist('flag_perc1', 'var') && flag_perc1
-                for i = 1:nt
-                    S = sum(C(:, :, i), 2);
-                    S(S == 0) = 1; % makes 0/0 divisions into 0/1 ones
-                    C(:, :, i) = C(:, :, i)./repmat(S, 1, ncol);
-                end;
+            if nargin < 3 || isempty(flag_perc)
+                flag_perc = 0;
             end;
             
             if nargin < 4 || isempty(aggr)
                 aggr = 0;
             end;
             
+            if nargin < 5 || isempty(flag_discount_rejected)
+                flag_discount_rejected = 1;
+            end;
+            
+            [nrow, ncol, nt] = size(C);
+
+            if ~flag_perc || flag_discount_rejected
+                irverbose('INFO: estlog::get_C(): flag_discount_rejected ignored!');
+            end;
+
+            
+            if flag_perc
+                for i = 1:nt
+                    S = sum(C(:, :, i), 2);
+                    C(:, :, i) = 100*C(:, :, i)./(repmat(S, 1, ncol)+realmin);
+                end;
+                
+                if flag_discount_rejected
+                    for i = 1:nrow
+                        for j = 1:nt
+                            C(i, 2:end, j) = 100*C(i, 2:end, j)/(100-C(i, 1, j)+realmin);
+                        end;
+                    end;
+                end;
+            end;
+
             switch (aggr)
                 case 0
                     % Does nothing
                 case 1
-                    if flag_perc1
-                        irerror('Sum of percentages does not make sense!');
+                    if flag_perc
+                        irerror('EstLog: Invalid aggregation: Sum of percentages does not make sense!');
                     end;
                     
                     C = sum(C, 3);
                 case 2 % time-wise Sum -> row-wise normalization (rows sum to 1, except if total sum is zero)
+                    if flag_perc
+                        irerror('EstLog: Invalid aggregation: Per-row normalization of percentages does not make sense!');
+                    end;
+
                     C = sum(C, 3);
                     S = sum(C, 2);
                     S(S == 0) = 1; % makes 0/0 divisions into 0/1 ones
                     C = C./repmat(S, 1, ncol);
                 case 3 % Mean
+                    if ~flag_perc
+                        irerror('EstLog: Invalid aggregation: Mean of hits does not make sense!');
+                    end;
+                    
                     S = sum(sum(C, 2) ~= 0, 3); % counts non-zero t-wise rows for each row
                     C = sum(C, 3)./repmat(S, 1, ncol);
                 case 4 % Standard deviation
+                    if ~flag_perc
+                        irerror('EstLog: Invalid aggregation: Standard deviation of hits does not make sense!');
+                    end;
+                    
                     T = zeros(nrow, ncol);
                     for i = 1:nrow
                         temp = C(i, :, :);
@@ -209,33 +237,10 @@ classdef estlog < ttlog
                         T(i, :) = std(temp(1, :, sel), [], 3);
                     end;
                     C = T;
-                case 5
-                    C = min(C, [], 2);
-                case 6
-                    C = max(C, [], 2);
                 otherwise
                     irerror(sprintf('Invalid option: %d', aggr));
             end;
 
-            flag_perc = aggr == 2 || flag_perc1;
-            
-            if flag_perc
-                if flag_renorm
-                    for i = 1:size(C, 1)
-                        C(i, 2:end) = C(i, 2:end)/(1-C(i, 1)+realmin);
-                    end;
-%                 else
-%                     S = sum(C, 2)+realmin;
-%                     C = C./repmat(S, 1, size(C, 2));
-                end;
-                C = C*100;
-            end;
-            
-            if nargout == 1
-                varargout = {C};
-            else
-                varargout = {C, flag_perc};
-            end;
         end;
         
         
@@ -306,23 +311,23 @@ classdef estlog < ttlog
             oc = o.get_confusion_from_C(C);
         end;
 
-        
-        function oc = get_confusion(o, t, flag_perc1, aggr, flag_renorm)
+        %> @sa estlog::get_C()
+        function oc = get_confusion(o, t, flag_perc, aggr, flag_discount_rejected)
             if ~exist('t', 'var')
                 t = [];
             end;
-            if ~exist('flag_perc1', 'var')
-                flag_perc1 = [];
+            if ~exist('flag_perc', 'var')
+                flag_perc = [];
             end;
             if ~exist('aggr', 'var')
                 aggr = [];
             end;
 
-            if ~exist('flag_renorm', 'var')
-                flag_renorm = 0;
+            if ~exist('flag_discount_rejected', 'var')
+                flag_discount_rejected = 0;
             end;
 
-            [C, flag_perc] = o.get_C(t, flag_perc1, aggr, flag_renorm);
+            [C, flag_perc] = o.get_C(t, flag_perc, aggr, flag_discount_rejected);
             oc = o.get_confusion_from_C(C, flag_perc);
         end;
         
@@ -334,10 +339,10 @@ classdef estlog < ttlog
             else
                 flag_individual = pars.flag_individual;
             end;
-            if ~isfield(pars, 'flag_renorm')
-                flag_renorm = 0;
+            if ~isfield(pars, 'flag_discount_rejected')
+                flag_discount_rejected = 0;
             else
-                flag_renorm = pars.flag_renorm;
+                flag_discount_rejected = pars.flag_discount_rejected;
             end;
             if ~isfield(pars, 'flag_balls')
                 flag_balls = 0;
@@ -350,7 +355,7 @@ classdef estlog < ttlog
 
             if flag_balls
                 % Confusion balls
-                oc = o.get_confusion([], 1, 3, flag_renorm);
+                oc = o.get_confusion([], 1, 3, flag_discount_rejected);
 
                 vb = vis_balls();
                 figure;
@@ -364,7 +369,7 @@ classdef estlog < ttlog
             s = cat(2, s, '<h3>Overall</h3>', 10);
             s = cat(2, s, '<h4>Percentages</h4>', 10);
             s = cat(2, s, '<h5>Mean</h5>', 10);
-            oc = o.get_confusion([], 1, 3, flag_renorm); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
+            oc = o.get_confusion([], 1, 3, flag_discount_rejected); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
             s = cat(2, s, '<h5>Standard Deviation</h5>', 10);
             oc = o.get_confusion([], 1, 4);
             s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
@@ -387,7 +392,7 @@ classdef estlog < ttlog
                     for i = 1:2
                         s = cat(2, s, '<h4>', ss{i}, '</h4>', 10);
                         for j = 1:o.t
-                            oc = o.get_confusion(j, i-1, i, flag_renorm); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
+                            oc = o.get_confusion(j, i-1, i, flag_discount_rejected); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
                         end;
                         s = cat(2, s, '<hr/>', 10);
                     end;

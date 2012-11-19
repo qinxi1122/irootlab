@@ -180,6 +180,7 @@ for i = 1:nl
     end;
 end;
 
+hl = [];
 if ~isempty(legends)
     hl = legend(handles, legends);
 end;
