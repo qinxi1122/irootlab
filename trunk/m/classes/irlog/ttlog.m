@@ -8,8 +8,6 @@ classdef ttlog < irlog
     end;
     
     properties(SetAccess=protected)
-        %> "Time", incremented every time @c record() is called. Reset to zero if @c allocate() is called.
-        t = 0;
         %> Whether @c allocate() has been called.
         flag_allocated = 0;
         %> Number of allocated slots (call to allocate())
@@ -22,7 +20,12 @@ classdef ttlog < irlog
         function o = do_allocate(o, tt)
         end;
     end;
-    
+
+    properties %(SetAccess=protected)
+        %> "Time", incremented every time @c record() is called. Reset to zero if @c allocate() is called.
+        t = 0;
+    end;
+
     
     methods
         function o = ttlog(o)

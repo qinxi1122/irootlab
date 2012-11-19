@@ -8,7 +8,7 @@ classdef estlog_classxclass < estlog
         %> =0. What to give as a "rate". 0-mean sensitivity; 1-diagonal element defined by idx_rate
         ratemode = 0;
         %> =1. Diagonal element if @c ratemode is 1.
-        idx_rate;
+        idx_rate = 1;
     end;
     
     methods
@@ -76,43 +76,40 @@ classdef estlog_classxclass < estlog
     end;
 
     methods
-        
-        
-        %> Returns average sensitivity. Calculated as normalized sum.
-        function z = get_meansens(o)
-            C = o.get_C([], 0, 2);  % Gets row-wise-normalized sum
-            div = (100-C(:, 1))+realmin; % Note that if element in first column is 100, others will be 0.
-            senss = 100*diag(C(:, 2:end))./div; % Discounts rejected items
-            z = mean(senss);
+        %> Returns average of diagonal of confusion matrix.
+        %>
+        %> If one row wasn't tested, it won't enter the average calculation (will have zero weight)
+        function z = get_meandiag(o)
+            C = o.get_C([], 1, 3, 1);
+            W = o.get_weights([], 1); % (no_rows)x(no_t) matrix of weights
+            z = diag(C(:, 2:end))'*sum(W, 2)/sum(W(:)); % Re-normalizes using weights for every element of the diagonal
         end;
         
-        %> Bypass to get_meansens()
+        %> Either redirects to get_meandiag() or returns diagonal element of average confusion matrix
         function z = get_rate(o)
             if o.ratemode == 0
-                z = o.get_meansens();
+                z = o.get_meandiag();
             else
-                C = o.get_C([], 0, 2);  % Gets normalized sum
-                div = (100-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 100, others will be 0.
-                z = 100*C(o.idx_rate, o.idx_rate+1)/div;
+                C = o.get_C([], 1, 3, 1);  % Gets average percentage with discounted rejected items
+                z = C(o.idx_rate, o.idx_rate+1);
             end;
         end;
         
-        %> Returns average sensitivity vector calculated time-wise.
+        %> Returns vector with time-wise-calculated averages
+        %>
+        %> @return If @c ratemode == 0, returns the average of the diagonal calculated for each time instant, weighted by
+        %> whether each row was tested or not; if @c ratemode > 0, returns one diagonal element for each time instant. In either case, rejected
+        %> items are discounted.
         function z = get_rates(o)
-            CC = o.get_C([], 1, 0); % gets 3D time-wise normalized 
-            W = o.get_weights([], 1); % (no_rows)x(no_t) matrix of weights
-            n = size(CC, 3);
-            z = zeros(1, n);
-            for i = 1:n
-                C = CC(:, :, i);  % Gets normalized sum
-                
-                if o.ratemode == 0
-                    div = (100-C(:, 1))+realmin; % Note that if element in first column is 100, others will be 0.
-                    senss = 100*diag(C(:, 2:end))./div; % Discounts rejected items
-                    z(i) = senss'*W(:, i); % dot product
-                else
-                    div = (100-C(o.idx_rate, 1))+realmin; % Note that if element in first column is 100, others will be 0.
-                    z(i) = 100*C(o.idx_rate, o.idx_rate+1)/div;
+            CC = o.get_C([], 1, 0, 1); % gets per-time matrices of percentages
+            if o.ratemode > 0
+                z(:) = CC(o.idx_rate, o.idx_rate+1, :);
+            else
+                W = o.get_weights([], 1); % (no_rows)x(no_t) matrix of weights
+                n = size(CC, 3);
+                z = zeros(1, n);
+                for i = 1:n
+                    z(i) = diag(CC(:, 2:end, i))'*W(:, i); % dot product
                 end;
             end;
         end;

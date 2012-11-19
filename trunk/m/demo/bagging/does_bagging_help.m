@@ -93,7 +93,7 @@ clssr = clssr.boot();
 %--------
 
 % Parameters for the get_insane_html() calls
-pp.flag_renorm = 1;
+pp.flag_discount_rejected = 1;
 pp.flag_individual = 0;
 
 %%
@@ -116,9 +116,9 @@ for i = 1:n
     lob = lob.allocate(1);
     lob = lob.record(ss);
     
-    C = lob.get_C([], 1, 1);
-    specs(ii) = C(1, 2)/(1-C(1, 1)+realmin);
-    senss(ii) = C(2, 3)/(1-C(2, 1)+realmin);
+    C = lob.get_C([], 1, 2, 1);
+    specs(ii) = C(1, 2);
+    senss(ii) = C(2, 3);
     ii = ii+1;
 end;
 
@@ -137,7 +137,7 @@ ss.clssr = clssr;
 lob = lob.allocate(1);
 lob = lob.record(ss);
 
-C = lob.get_C([], 0, 2, 1);
+C = lob.get_C([], 1, 2, 1);
 
 fprintf('Single classifier: specificity: %g%%; sensitivity: %g%%\n', C(1, 2), C(2, 3));
 fprintf('Bagging top: specificity: %g%%; sensitivity: %g%%\n', max(specs)*100, max(senss)*100);
