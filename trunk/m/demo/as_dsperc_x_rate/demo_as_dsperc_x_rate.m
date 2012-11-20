@@ -6,7 +6,7 @@
 %> <center>Image obtained through the as_dsperc_x_rate::draw_curve() method.</center>
 %>
 %> @sa as_dsperc_x_rate
-colors_markers();
+fig_assert();
 
 ddemo = load_data_she5trays;
 ddemo = data_select_hierarchy(ddemo, 2);
@@ -82,4 +82,4 @@ figure;
 o.use(lo);
 title(sprintf('Number of spectra in dataset: %d', ddemo.no));
 maximize_window([], 1.618);
-save_as_png([], 'dsperc_x_rate');
+save_as_png([], 'irr_dsperc_x_rate');

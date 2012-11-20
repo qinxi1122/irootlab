@@ -20,10 +20,10 @@ for i = 1:numel(ucl)
     hs(end+1) = htemp{1};
     hold on;
 end;
-legend(hs, data_get_legend(data));
+hl = legend(hs, data_get_legend(data));
 
 set_title('Class means', data);
 ylabel([data.yname, iif(~isempty(data.yunit), sprintf(' (%s)', data.yunit), '')]);
 format_xaxis(data);
 format_ylim([ymin, ymax]);
-format_frank();
+format_frank([], [], hl);

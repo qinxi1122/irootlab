@@ -194,7 +194,7 @@ classdef gridsearch < as
                         idx = mod(r-1, nvv(j))+1;
                         r = floor((r-1)/nvv(j))+1;
                         
-                        eval(sprintf('blk.%s = p.values(idx);', p.name)); % Sets block value
+                        eval(sprintf('blk.%s = p.get_value(idx);', p.name)); % Sets block value
                         s_spec = cat(2, s_spec, iif(j > 1, ', ', ''), p.name, '=', ticklabelss{j}{idx});
                         idxs{j} = idx;
                     end;

@@ -7,11 +7,16 @@
 %> greater than 2.
 %
 %> @param h =gcf() Handle to figure.
-%> @param aspectratio (Optional). If used, will force the aspect ratio to be as specified, making the image as big as possible. Aspect ratio is 
-%> defined as the image width divided by its height.
-function maximize_window(h, aspectratio)
+%> @param aspectratio =1.618. If used, first making the image as big as possible, then reduce one of the dimensions to obbey 
+%> <code>width/height = aspectratio</code>
+%> @param normalizedsize =1. Multiplying factor for the calculated width and height
+function maximize_window(h, aspectratio, normalizedsize)
 if nargin < 1 || isempty(h)
     h = gcf();
+end;
+
+if nargin < 3 || isempty(normalizedsize)
+    normalizedsize = 1;
 end;
 
 p = get(0,'Screensize'); % p(3) is width, and p(4) is height
@@ -33,6 +38,8 @@ if nargin >= 2 && ~isempty(aspectratio)
     end;
 end;
 
+
+p(3:4) = p(3:4)*normalizedsize;
 
 figure(h);
 set(h, 'Position', p);

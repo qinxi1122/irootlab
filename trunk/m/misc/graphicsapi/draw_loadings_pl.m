@@ -74,11 +74,22 @@ if ~isempty(legends)
     bl.title = '';
 end;
 
+% Legends for the figure. bmtable will use dataset title as legend
+%
+% dss will be passed to bmtable as datasets. The only property that bmtable accesses is .title anyway.
+for i = 1:nl
+    if isempty(legends)
+        dss(i).title = sprintf('Curve %s', i);
+    else
+        dss(i).title = legends{i};
+    end;
+end;
+
 bm = bmtable();
 bm.blocks = {bl};
 bm.flag_train = 0;
 bm.peakdetectors = {peakd};
-bm.datasets = {};
+bm.datasets = dss;
 
 bm.arts = arts;
 bm.units = {bmunit_au};
@@ -86,9 +97,9 @@ bm.data_hint = dshint;
 
    
 for i = nl:-1:1
-    bm.grid{i, 1} = setbatch(struct(), {'i_block', 1, 'i_dataset', 1, 'i_peakdetector', 1, 'i_art', i, 'i_unit', 1, 'params', {'idx_fea', i}});
+    bm.grid{i, 1} = setbatch(struct(), {'i_block', 1, 'i_dataset', i, 'i_peakdetector', 1, 'i_art', i, 'i_unit', 1, 'params', {'idx_fea', i}});
 end;
-bm.rowname_type = 'block';
+bm.rowname_type = 'dataset';
 
 bm.draw_pl();
-
+legend off;

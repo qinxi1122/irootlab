@@ -57,8 +57,8 @@ classdef bmtable
         data_hint;
         %> =3.5 Width for lineas and markers. Note that this number will be actually multiplied by the global SCALE.
         linewidth = 3.5;
-        %> Whether or not to train the blocks
-        flag_train = 1;
+        %> =0. Whether or not to train the blocks
+        flag_train = 0;
     end;
     
     properties(SetAccess=protected)
@@ -305,7 +305,10 @@ classdef bmtable
             end;
             
             
-            xtext = iif(o.flag_reverse, wn2+7*SCALE, wn1-7*SCALE); % x-position of lateral text
+            % Calculates x for "rowname"
+            xspan = abs(wn2-wn1);
+            xspc = xspan*0.02;
+            xtext = iif(o.flag_reverse, wn2+xspc, wn1-xspc);
 
             for i = 1:ni
                 height = i;
@@ -318,7 +321,9 @@ classdef bmtable
                 
                 plot(xlim, height*[1, 1], 'k', 'LineWidth', scaled(3)); % Horizontal line
                 hold on;
-                hh(end+1) = text(xtext, height, o.get_rowname(i), 'HorizontalAlignment', 'right'); % Descriptive text
+                
+                % "Row name"
+                hh(end+1) = text(xtext, height, o.get_rowname(i), 'HorizontalAlignment', 'right');
             end;
 
             
@@ -487,7 +492,7 @@ classdef bmtable
                     end;
                     
                     cel.block = o.get_initialblock(cel);
-                    if o.flag_data
+                    if o.flag_data && o.flag_train
                         cel.block = cel.block.boot();
                         cel.block = cel.block.train(o.datasets(cel.i_dataset));
                     end;

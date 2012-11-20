@@ -65,4 +65,4 @@ figure;
 vis_sovalues_drawimage01.use(out{1});
 title(out{1}.title);
 maximize_window([]);
-save_as_png([], 'knn_and_pca');
+save_as_png([], 'irr_knn_and_pca');

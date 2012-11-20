@@ -70,7 +70,7 @@ ovi = o;
 figure;
 ovi.use(cascade_pcalda01);
 title('Cluster Vectors as curves');
-
+maximize_window([]);
 
 % Cluster Vectors as "Peak Location Plots"
 ovi.flag_bmtable = 1;

@@ -64,4 +64,4 @@ figure;
 vis_sovalues_drawsubplot01.use(sovalues_gridsearch01);
 title(sovalues_gridsearch01.title);
 maximize_window([], 2.5);
-save_as_png([], 'knn_k');
+save_as_png([], 'irr_knn_k');
