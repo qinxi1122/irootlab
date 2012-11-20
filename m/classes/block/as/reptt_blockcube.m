@@ -165,6 +165,7 @@ classdef reptt_blockcube < reptt
                                 end;
                                 v_logs{i}{il} = v_logs{i}{il}.record(pars);
                             end;
+                            v_blocks{i}{ids} = bl;
                         end;
                     end;
                 end;
@@ -172,17 +173,18 @@ classdef reptt_blockcube < reptt
                 parallel_close();
                                 
                 for i = 1:nijk
-                   
                     % base decomposition of i
                     ik = mod(i-1, nk)+1;
                     inext = floor((i-1)/nk)+1;
                     ij = mod(inext-1, nj)+1;
                     inext = floor((inext-1)/nj)+1;
                     ii = mod(inext-1, ni)+1;
-                    
-                
+                                    
                     for il = 1:nl
                         log.logs{ii, ij, ik, il} = v_logs{i}{il};
+                    end;
+                    for ids = 1:nds
+                        log.blocks{ii, ij, ik, ids} = v_blocks{i}{ids}; % records the trained block
                     end;
                 end;
             end;

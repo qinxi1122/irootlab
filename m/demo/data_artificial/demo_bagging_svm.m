@@ -1,4 +1,4 @@
-%>@brief Bagging test - 2D example
+%>@brief Bagging example using SVM classifier
 %>@file
 %>@ingroup demo
 %>
@@ -60,9 +60,13 @@ for i = 1:6
     pars.ds_train = subdatasets(i);
     clssr.blocks(i).block.draw_domain(pars);
 end;
+maximize_window([]);
+save_as_png([], 'irr_demo_bagging_svm_components');
 
 figure;
 pars.ds_train = ds01;
 clssr.draw_domain(pars);
-
+title('Aggregation of 6 SVM classifiers trained differently');
+maximize_window([], 1);
+save_as_png([], 'irr_demo_bagging_svm_aggr');
 % disp(clssr.get_treedescription());

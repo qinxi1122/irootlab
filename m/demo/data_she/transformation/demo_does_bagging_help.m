@@ -31,8 +31,8 @@ dstest = pie(2); % Separates an independent set for testing
 %--------
 
 lob = estlog_classxclass();
-lob.estlabels = {'N', 'T'};
-lob.testlabels = {'N', 'T'};
+lob.estlabels = ddemo.classlabels;
+lob.testlabels = ddemo.classlabels;
 
 
 de = decider();
@@ -163,3 +163,4 @@ title('Sensitivity (correct classification of Transformed colonies)');
 xlabel('Number of component classifiers');
 format_frank;
 maximize_window([], 2.2);
+save_as_png([], 'irr_does_bagging_help');

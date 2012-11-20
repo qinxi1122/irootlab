@@ -171,17 +171,21 @@ classdef irobj
         %> Default behaviour: returns class of object plus object's title
         function s = get_description(o)
             s = '';
-            a = {o.title, o.classtitle, class(o)};
-            qtd = 0;
-            for i = 1:numel(a)
-                if ~isempty(a{i})
-                    s = [s, iif(qtd > 0, ' ~ ', ''), a{i}];
-                    qtd = qtd+1;
+            if ~isempty(o.title)
+                s = o.title;
+            else
+                a = {o.get_methodname(), class(o)};
+                qtd = 0;
+                for i = 1:numel(a)
+                    if ~isempty(a{i})
+                        s = [s, iif(qtd > 0, ' ~ ', ''), a{i}];
+                        qtd = qtd+1;
+                    end;
                 end;
-            end;
-            if ~isempty(s)
-                s = ['[', s, ']'];
-                s = replace_underscores(s);
+                if ~isempty(s)
+                    s = ['[', s, ']'];
+                    s = replace_underscores(s);
+                end;
             end;
         end;
 

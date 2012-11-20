@@ -26,6 +26,8 @@ flag_match = ~isempty(patt_match);
 flag_exclude = ~isempty(patt_exclude);
 
 d = dir(direc);
+[vv, ii] = sort({d.name});
+d = d(ii);
 d = {d([d.isdir]).name};
 d = {d{~ismember(d,{'.' '..'})}};
 if flag_match

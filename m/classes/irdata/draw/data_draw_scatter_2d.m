@@ -59,7 +59,7 @@ for ix = 1:no_fea-1
                 m = mean(X);
                 C = cov(X);
                 for j = 1:length(confidences)
-                    error_ellipse(C, m, 'conf', confidences(j), 'Color', find_color(i));
+                    error_ellipse(C, m, 'conf', confidences(j), 'Color', find_color(i), 'LineWidth', scaled(2));
                 end;
             end;
         end
