@@ -26,7 +26,7 @@ if ~isempty(p) && ~isempty(p{1})
         end;
 
         if flag_ok
-            code = sprintf('%s = %s; clear %s;', name_new, s, s);
+            code = sprintf('%s = %s;\nclear %s;\n', name_new, s, s);
             try
                 ircode_eval(code, sprintf('Rename %s object', classname));
             catch ME
