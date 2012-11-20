@@ -1,4 +1,10 @@
-%>@brief Example of bmtable usage. Peak Location plots
+%>@brief Biomarkers of Non-transformed vs. Transformed, separated by Chemical
+%>
+%> Splits SHE dataset in 5 (1 per chemical) and proceeds with separate biomarkers analyses for each dataset. Each of five datasets has
+%> 2 classes: Non-transformed/Transformed
+%>
+%> Four different biomarkers identification methods are applied for comparison
+%>
 %>@file
 %>@ingroup demo
 
@@ -18,7 +24,8 @@ pieces = data_split_classes(ds01, 1); % Splits by tray. Each piece will have two
 nop = numel(pieces);
 for i = 1:nop
     pieces(i).X = normaliz(pieces(i).X, [], 's');
-    pieces(i).title = ['Chemical ', pieces(i).classlabels{1}(1)];
+    cl = pieces(i).classlabels{1};
+    pieces(i).title = cl(1:find(cl == '|')-1);
 end;
 
 
@@ -97,6 +104,7 @@ bm.data_hint = ds01;
 bm.rowname_type = 'dataset';
 bm.sig_j = [4, 4, 4, 4];
 bm.sig_threshold = -log10(0.05);
+bm.flag_train = 1;
 iunits = [1, 1, 1, 1];
 
 

@@ -1,4 +1,17 @@
+%>@brief Grid search to simultaneously optimize (PCA number of factors) x ('linear'/'quadratic')
+%>@ingroup demo
+%>@file
+
 ds01 = load_data_she5trays();
+
+u = blmisc_classlabels_hierarchy();
+u.hierarchy = 2;
+blmisc_classlabels_hierarchy01 = u;
+out = blmisc_classlabels_hierarchy01.use(ds01);
+ds01_hierarchy01 = out;
+
+%Rename irdata object
+dsx = ds01_hierarchy01; clear ds01_hierarchy01;
 
 u = pre_std();
 pre_std01 = u;
@@ -25,7 +38,8 @@ u.blocks = {pre_std01, fcon_pca01, pre_std01, clssr_d01, cascade_gragdecider01};
 block_cascade01 = u;
 
 %Rename block_cascade object
-classifier = block_cascade01; clear block_cascade01;u = sgs_crossval();
+classifier = block_cascade01; clear block_cascade01;
+u = sgs_crossval();
 u.flag_group = 1;
 u.flag_perclass = 1;
 u.randomseed = 0;
@@ -33,14 +47,6 @@ u.flag_loo = 0;
 u.no_reps = 10;
 sgs_crossval01 = u;
 
-u = blmisc_classlabels_hierarchy();
-u.hierarchy = 2;
-blmisc_classlabels_hierarchy01 = u;
-out = blmisc_classlabels_hierarchy01.use(ds01);
-ds01_hierarchy01 = out;
-
-%Rename irdata object
-dsx = ds01_hierarchy01; clear ds01_hierarchy01;
 u = gridsearch();
 u.sgs = sgs_crossval01;
 u.clssr = classifier;
