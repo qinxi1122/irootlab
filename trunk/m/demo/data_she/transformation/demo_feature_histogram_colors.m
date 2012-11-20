@@ -1,4 +1,4 @@
-%> @brief Demonstrates the generation of a Feature Histogram
+%> @brief Shows different ways to paint the same Feature Histogram
 %> @ingroup demo
 %> @file
 
@@ -94,14 +94,4 @@ for i = 1:3
     freezeColors();
 end;
 maximize_window(gcf(), 1.5);
-
-
-
-
-
-
-
-
-
-
-
+save_as_png([], 'irr_histogram_colors');

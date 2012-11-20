@@ -689,7 +689,7 @@ classdef bmtable
             blk = cel.block;
             params = cel.params;
 
-            s = blk.get_methodname();
+            s = blk.get_description();
             if isa(blk, 'block_cascade_base') || isa(blk, 'fcon_linear')
                 s = cat(2, s, ' ', blk.get_t_fea_name(params.idx_fea));
             end;

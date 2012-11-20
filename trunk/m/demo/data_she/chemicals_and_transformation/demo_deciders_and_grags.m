@@ -133,7 +133,7 @@ for i_data = 1:2
         legend off;
         
         maximize_window();
-        save_as_png([], sprintf('dataset%02d_analysis%02d', i_data, i_ana));
+        save_as_png([], sprintf('irr_dataset%02d_analysis%02d', i_data, i_ana));
     end;
 end;
 

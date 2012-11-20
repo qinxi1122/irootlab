@@ -31,7 +31,6 @@ classdef reptt < as
     methods
         function o = reptt()
             o.classtitle = 'Repeated Train-Test';
-            o.moreactions = {'go'};
         end;
     end;
 

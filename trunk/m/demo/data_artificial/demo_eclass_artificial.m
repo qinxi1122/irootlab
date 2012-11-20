@@ -51,7 +51,7 @@ pre_norm01 = o;
 o = sgs_randsub();
 o = o.setbatch({'flag_group', 0, ...
 'flag_perclass', 1, ...
-'randomseed', 0, ...
+'randomseed', 112222, ...
 'type', 'fixed', ...
 'bites', [0.9 0.1], ...
 'bites_fixed', [50, 10], ...
@@ -85,3 +85,35 @@ lo = lo.allocate(1);
 lo = lo.record(pars2);
 cc = lo.get_confusion([], 1, []);
 disp(confusion_str(cc.C, cc.rowlabels, cc.collabels));
+
+
+%%
+
+% Now the domain drawing
+
+pars.x_range = [-2, 2];
+pars.y_range = [-2, 2];
+pars.x_no = 100;
+pars.y_no = 100;
+pars.ds_train = dstrain;
+pars.ds_test = dstest;
+pars.flag_last_point = 1;
+pars.flag_link_points = 0;
+pars.flag_regions = 1;
+
+frbm01 = frbm01.boot();
+frbm01 = frbm01.train(dstrain);
+
+figure;
+frbm01.draw_domain(pars);
+title(frbm01.get_description());
+
+%%
+
+text(-0.53, -1.75, 1, 'Rule focal point', 'FontSize', 18);
+text(0.475, -0.9, 1, 'Test point', 'FontSize', 18);
+text(-0.23, -0.55, 1, 'Last point', 'FontSize', 18);
+
+%%
+maximize_window([], 1);
+save_as_png([], 'irr_demo_eclass');

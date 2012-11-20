@@ -40,7 +40,7 @@ classdef log_cube < irlog
             sov.ax(1).label = 'Case';
             sov.ax(1).values = 1:size(o.logs, 1);
             sov.values = sovalues.read_logss(o.logs);
-            specs = cellfun(@(x) x.get_methodname(), o.blocks(:, :, :, 1), 'UniformOutput', 0);
+            specs = cellfun(@(x) x.get_description(), o.blocks(:, :, :, 1), 'UniformOutput', 0);
             sov = sov.set_field('spec', specs);
             
         end;

@@ -11,8 +11,17 @@ classdef aggr_pairs < aggr
     end;
 
     methods
-        function o = aggr_pairs(o)
+        function o = aggr_pairs()
             o.classtitle = 'One-versus-one';
+            o.short = 'OVO';
+        end;
+        
+        function s = get_methodname(o)
+            if isempty(o.block_mold)
+                s = get_methodname@aggr(o);
+            else
+                s = ['OVO-', o.block_mold.get_methodname()];
+            end;
         end;
     end;
     

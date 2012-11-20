@@ -97,7 +97,7 @@ classdef reptt_incr < reptt
 
             d.classlabels = cell(1, nb);
             for i = 1:nb
-                d.classlabels{i} = bmold{i}.get_methodname();
+                d.classlabels{i} = bmold{i}.get_description();
                 d.classes((1:no_reps)+(i-1)*no_reps) = i-1;
             end;
             
@@ -105,7 +105,7 @@ classdef reptt_incr < reptt
             
             for i = 1:nl
                 o.results(i) = d;
-                o.results(i).title = ['Based on ', lmold{i}.get_methodname()];
+                o.results(i).title = ['Based on ', lmold{i}.get_description()];
                 o.results(i).yunit = iif(o.log_mold{i}.get_flag_perc(), '%', '');
             end;
         end;

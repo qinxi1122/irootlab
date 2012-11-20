@@ -13,24 +13,23 @@ classdef dircrawler_demoindexbuilder < dircrawler
         end;
 
         function o = process_dir(o, d)
-            level = sum(d == filesep) - sum(o.rootdir == filesep)+1; % Uses number of slashes to determine level
+            level = sum(d == filesep) - sum(o.rootdir == filesep); % Uses number of slashes to determine level
             
             ff = dir('*.m');
             names = {ff.name};
             no = numel(names);
             
+            r = [];
+            if exist(fullfile(d, 'README.txt'), 'file')
+                h = fopen(fullfile(d, 'README.txt'), 'r');
+                r = fgets(h);
+                fclose(h);
+            end;
+
+            [q, w] = fileparts(d);
+            o.map(end+1, :) = {[repmat('&nbsp;', 1, 6*(level-1)), '<b>', upper(w), '</b>'], r};
+            
             for i = 1:no
-                if i == 1
-                    r = [];
-                    if exist(fullfile(d, 'README.txt'), 'file')
-                        h = fopen(fullfile(d, 'README.txt'), 'r');
-                        r = fgets(h);
-                        fclose(h);
-                    end;
-                    
-                    [q, w] = fileparts(d);
-                    o.map(end+1, :) = {[repmat('  ', 1, 2*(level-1)), '<b>', upper(w), '</b>'], r};
-                end;
                 h = fopen(fullfile(d, names{i}), 'r');
                 s = fgets(h);
                 s = strrep(s, '%>', '');
@@ -38,7 +37,7 @@ classdef dircrawler_demoindexbuilder < dircrawler
                 
                 [q, w, e] = fileparts(names{i});
 
-                o.map(end+1, :) = {[repmat('&nbsp;', 1, 2*level), '<a href="matlab: open_demo(''', w, ''')">', upper(w), '</a>'], [s, '&nbsp;<a href="matlab:help2(''', names{i}, ''')">. . .</a>']};
+                o.map(end+1, :) = {[repmat('&nbsp;', 1, 6*level), '<a href="matlab: open_demo(''', w, ''')">', upper(w), '</a>'], [s, '&nbsp;<a href="matlab:help2(''', names{i}, ''')">. . .</a>']};
             end;
         end;
         

@@ -8,7 +8,7 @@ global CLASSMAP;
 s = stylesheet();
 s = cat(2, s, CLASSMAP.root.to_html());
 
-filename = 'classes.html';
+filename = 'irr_classes.html';
 h = fopen(filename, 'w');
 fwrite(h, s);
 fclose(h);
