@@ -8,6 +8,8 @@ function format_ylim(yy)
 if isa(yy, 'irdata')
     temp = yy.X(:);
     yy = [min(temp), max(temp)];
+elseif isnumeric(yy)
+    yy = [min(yy(:)), max(yy(:))];
 end;
 
 d = diff(yy);
@@ -18,6 +20,6 @@ if d == 0
     y = yy(1);
     ylim([y-1, y+1]);
 else
-    edge = d*0.01;
+    edge = d*0.02;
     ylim(yy+[-edge, edge]);
 end;

@@ -41,7 +41,7 @@ u.postpr_test = [];
 u.postpr_est = decider();
 u.log_mold = {};
 u.no_iterations = 3;
-u.maxtries = 3;
+u.maxtries = 2;
 u.paramspecs = {'c', 10.^(-9:2:2), 1; 'gamma', 10.^(-7:1), 1};
 gridsearch01 = u;
 
@@ -70,10 +70,10 @@ global SCALE;
 no = numel(out);
 SCALE = 1.6-no/5*0.8;
 for i = 1:no
-    subplot(1, no, i);
+    subplot(2, 3, i);
     vis_sovalues_drawimage01.use(out{i});
 %     xlabel('');
     title(out{i}.title);
 end;
-maximize_window([], no);
-save_as_png([], 'svm_c_gamma');
+maximize_window();
+save_as_png([], 'irr_svm_c_gamma');

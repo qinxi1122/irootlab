@@ -180,7 +180,7 @@ classdef estlog < ttlog
             
             [nrow, ncol, nt] = size(C);
 
-            if ~flag_perc || flag_discount_rejected
+            if ~flag_perc && flag_discount_rejected
                 irverbose('INFO: estlog::get_C(): flag_discount_rejected ignored!');
             end;
 
@@ -327,7 +327,7 @@ classdef estlog < ttlog
                 flag_discount_rejected = 0;
             end;
 
-            [C, flag_perc] = o.get_C(t, flag_perc, aggr, flag_discount_rejected);
+            C = o.get_C(t, flag_perc, aggr, flag_discount_rejected);
             oc = o.get_confusion_from_C(C, flag_perc);
         end;
         
@@ -392,7 +392,7 @@ classdef estlog < ttlog
                     for i = 1:2
                         s = cat(2, s, '<h4>', ss{i}, '</h4>', 10);
                         for j = 1:o.t
-                            oc = o.get_confusion(j, i-1, i, flag_discount_rejected); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
+                            oc = o.get_confusion(j, i-1, 0, flag_discount_rejected); s = cat(2, s, '<center>', oc.get_html_table(), '</center>');
                         end;
                         s = cat(2, s, '<hr/>', 10);
                     end;

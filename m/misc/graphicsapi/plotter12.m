@@ -354,8 +354,8 @@ classdef plotter12
             decimate_ticks([1, 1], [13, 13]);
 
 
-            % Well, let's see. THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
-            rotateticklabel(gca, 90);
+            % THis is disabled because one these "ticks" are put, they cannot be removed by xtick([])
+            % rotateticklabel(gca, 90);
 
             if flag_star
                 plot3(star_ij(a1), star_ij(a2), 0.1, 'pk', 'LineWidth', scaled(2), 'MarkerSize', scaled(15));

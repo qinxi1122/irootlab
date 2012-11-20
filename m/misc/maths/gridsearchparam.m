@@ -68,6 +68,14 @@ classdef gridsearchparam
             end;
         end;
         
+        function z = get_value(o, idx)
+            if o.flag_numeric
+                z = o.values(idx);
+            else
+                z = o.values{idx};
+            end;
+        end;
+        
         %> If log, takes log
         function z = get_values_numeric(o)
             if ~o.flag_numeric

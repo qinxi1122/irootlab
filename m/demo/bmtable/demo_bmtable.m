@@ -117,7 +117,7 @@ figure;
 bm.draw_pl();
 title('All chemicals');
 maximize_window();
-save_as_png([], 'peak-locations-plot');
+save_as_png([], 'irr_peak-locations-plot');
 % return;
 %-%
 for i = 1:nop
