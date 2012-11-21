@@ -1,6 +1,6 @@
 %>@ingroup ioio sheware
 %>@file
-%>@brief Connects to the SHEware database
+%>@brief Connects to database specified in the DB global
 function connect_to_cells()
 db_assert();
 global DB;

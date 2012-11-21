@@ -1,6 +1,6 @@
 %>@ingroup ioio
 %>@file
-%>@brief Wraps over mYm to recover from the "MySQL server has gone away" error
+%>@brief Wraps over mYm to retry at lost connection errors
 function r = irquery(varargin)
 try
     r = mym(varargin{:});

@@ -20,8 +20,9 @@
 %> There are rank(S_B) (at most no_classes-1) different w's.
 %>
 %> <h3>References:</h3>
-%> Fisher's Linear Discriminant according to R. O. Duda, Pattern
-%> Classification.
+%> ﻿[1] R. O. Duda, P. E. Hart, and D. G. Stork, Pattern Classification, 2nd ed. New York: John Wiley & Sons, 2001.
+%>
+%> ﻿[2] T. Hastie, J. H. Friedman, and R. Tibshirani, The Elements of Statistical Learning, 2nd ed. New York: Springer, 2007.
 %>
 %> @sa calculate_scatters.m
 %>

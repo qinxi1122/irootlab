@@ -1,6 +1,6 @@
 %>@ingroup ioio sheware
 %>@file
-%>@brief Makes sure we are connected to the database
+%>@brief Makes sure we are connected to a database
 function assert_connected_to_cells()
 db_assert();
 flag_error = 0;

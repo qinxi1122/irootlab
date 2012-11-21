@@ -33,10 +33,10 @@ classdef as_fsel_grades < as_fsel
         %> Feature Subset Grader object. Used for optimization of number of features
         fsg = [];
         
-        %> ='grade'. How to sort the selected features.
+        %> ='index'. How to sort the selected features.
         %> @arg 'grade' descending order of grade
         %> @arg 'index' ascending order ot index
-        sortmode = 'grade';
+        sortmode = 'index';
     end;
     
     methods

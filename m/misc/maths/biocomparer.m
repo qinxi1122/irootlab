@@ -1,8 +1,7 @@
 %> Biomarkers comparer class
 %>
-%> Similar to Jaccard's Index numel(intersect(A, B))/numel(union(A, B)), as without the fuzzy matching and weighting, it would read as
-%> intersect(A, B)/max(numel(A), numel(B))
-%>
+%> <h3>References</h3>
+%> Trevisan et al 2012. Submitted to AC.
 %>
 classdef biocomparer < irobj
     properties

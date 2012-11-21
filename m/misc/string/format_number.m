@@ -2,7 +2,6 @@
 %>@file
 %>brief Formats number to feature in a figure
 %> @todo Introduce setup for this function. E.g. Nature requires comma separators.
-
 function s = format_number(n)
 
 frac = n-floor(n);

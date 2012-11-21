@@ -1,4 +1,4 @@
-%>@ingroup datasettools
+%>@ingroup datasettools classlabelsgroup
 %> @file
 %> @brief searches and replaces class labels
 %>

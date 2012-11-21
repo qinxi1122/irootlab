@@ -1,7 +1,11 @@
-%>@file
-%>@ingroup string
 %>@brief Text-based menu
-
+%>@file
+%>@ingroup string usercomm
+%
+%> @param title
+%> @param options Cell of strings
+%> @param cancel_label ='Cancel'. Label to show at last "zero" option
+%> @param flag_allow_empty =0 Whether to allow empty option
 function option = menu(title, options, cancel_label, flag_allow_empty)
 
 if nargin < 3 || isempty(cancel_label)

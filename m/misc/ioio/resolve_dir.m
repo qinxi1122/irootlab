@@ -9,8 +9,6 @@ groupcodes = {};
 filenames = {};
 orderref = [];
 
-
-
 % Resolves group code
 for k = 1:n
     if ~a(k).isdir

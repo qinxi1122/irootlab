@@ -5,6 +5,7 @@
 %> @param blk instance of block to be created
 %> @param ?
 function varargout = uip_block_cascade_base(varargin)
+global blk;
 blk = varargin{1};
 input = [];
 if nargin >= 1
@@ -21,12 +22,29 @@ for i = 1:no_blocks
     if ~z.flag_ok
         break;
     end;
-    
+
+    if i < no_blocks
+        % Transforms input
+        blk.blocks{i} = blk.blocks{i}.boot();
+    end;
+        
     if isfield(z, 'params') % bit of tolerance
         for j = 1:2:numel(z.params)
             z.params{j} = ['blocks{', int2str(i), '}.', z.params{j}];
         end;
         params = [params, z.params]; % Goes collecting params
+        
+        if i < no_blocks
+            for j = 1:2:numel(z.params)-1
+                s_code = sprintf('global blk; blk.%s = %s;', z.params{j}, z.params{j+1});
+                evalin('base', s_code);
+            end;
+        end;
+    end;
+    
+    if i < no_blocks
+        blknow = blk.blocks{i}.train(input);
+        input = blknow.use(input);
     end;
     
     if i == no_blocks

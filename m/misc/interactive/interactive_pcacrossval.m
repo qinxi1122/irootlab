@@ -43,7 +43,7 @@
 %>
 varname = input('Enter dataset variable name: ', 's');
 dataset = eval([varname ';']);
-dataset = data_eliminate_var_0(dataset, 1e-10);
+dataset = data_eliminate_var0(dataset, 1e-10);
 [no, nf] = size(dataset.X);
 flag_kfold = input('0 - leave-one-out; 1 - k-fold cross-validation: ');
 if flag_kfold
@@ -56,9 +56,11 @@ pc_max = input('Enter maximum number of PCs: ');
 
 idxsmap = crossvalind('Kfold', no, k);
 idxs = 1:no;
-
-
 rsss = zeros(1, pc_max);
+
+% PCA block
+blk_pca = fcon_pca();
+
 for i = 1:pc_max
     fprintf(')))))))))))\n');
     fprintf('))))))))))) Number of PCs: %d of %d\n', i, pc_max);
@@ -71,11 +73,15 @@ for i = 1:pc_max
         idxs_train = idxs;
         idxs_train(idxs_test) = [];
         
-        ds_train = data_map_rows(dataset, idxs_train);
-        ds_test = data_map_rows(dataset, idxs_test);
+        ds_train = dataset.map_rows(idxs_train);
+        ds_test = dataset.map_rows(idxs_test);
         
-        ds_train_pca = data_transform_pca(ds_train, i, 1);
-        L = ds_train_pca.L;
+        blk_pca.no_factors = i;
+        blk_pca.boot();
+        blk_pca = blk_pca.train(ds_train);
+        
+        ds_train_pca = blk_pca.use(ds_train);
+        L = blk_pca.L;
         
         mm = repmat(mean(ds_train.X), length(idxs_test), 1);
         rss = rss+mean(sum((ds_test.X-(mm+(ds_test.X-mm)*L*L')).^2, 2));

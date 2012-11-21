@@ -1,16 +1,26 @@
+%>@brief Helps find thresholds for wavelet de-noising
 %>@ingroup interactive
 %>@file
-%>@brief Helps find thresholds for wavelet de-noising
 
-varname = input('Enter dataset variable name: ', 's');
+disp('*** Helps find thresholds for wavelet de-noising ***');
+varname = input('Enter dataset variable name [Demo Raman dataset]: ', 's');
 
-dataset = eval([varname ';']);
+if isempty(varname)
+    dataset = load_data_raman_sample();
+else
+    dataset = eval([varname ';']);
+end;
 no = size(dataset.X, 1);
 
 
-idx = input(sprintf('Enter index of spectrum to use (between 1 and %d): ', no));
 
-dataset = data_map_rows(dataset, idx);
+idx = input(sprintf('Enter index of spectrum to use (between 1 and %d) [1]: ', no));
+
+if isempty(idx) || idx <= 0
+    idx = 1;
+end;
+
+dataset = dataset.map_rows(idx);
 
 
 thresholds = [0, 0, 0, 1000, 1000, 1000];
@@ -29,17 +39,16 @@ while 1
     end;
 
 
-    dataset2 = data_wden(dataset, no_levels, thresholds, 'haar');
+    dataset2 = dataset;
+    dataset2.X = wden(dataset.X, no_levels, thresholds, 'haar');
     
-    if k == 1
-        figure;
-    end;
+    figure;
     k = k+1;
     hold off;
-    plot(dataset.x, dataset.X, 'r', 'LineWidth', 2);
+    plot(dataset.fea_x, dataset.X, 'r', 'LineWidth', 2);
     hold on;
-    plot(dataset.x, dataset2.X, 'b', 'LineWidth', 2);
-    plot(dataset.x, dataset.X-dataset2.X, 'k', 'LineWidth', 2);
+    plot(dataset.fea_x, dataset2.X, 'b', 'LineWidth', 2);
+    plot(dataset.fea_x, dataset.X-dataset2.X, 'k', 'LineWidth', 2);
     legend({'Before', 'After', 'Difference'});
     format_xaxis(dataset);
     format_frank();

@@ -1,6 +1,6 @@
 %>@ingroup graphicsapi
 %>@file
-%>@brief Format y-axis according to properties within "par"
+%>@brief Actually, only formats the y-label
 %
 %> @param par Object or structure with "yname" and "yunit" properties
 function format_yaxis(par)

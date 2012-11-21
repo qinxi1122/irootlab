@@ -1,4 +1,4 @@
-%>@ingroup datasettools
+%>@ingroup datasettools classlabelsgroup
 %> @file
 %> @brief Selects certain levels within the class labels
 %>
