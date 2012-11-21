@@ -1,10 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Visualization for @ref as_fsel objects, showing the selected features
-%>
-%> @image html Screenshot-uip_vis_as_grades.png
-%>
-%> @sa vis_as_fsel, as_fsel
+%> @brief Properties Window for @ref vis_as_grades
+%> @sa vis_as_grades
 
 %> @cond
 function varargout = uip_vis_as_grades(varargin)

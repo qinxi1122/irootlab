@@ -1,6 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_sovalues_drawplot
+%> @brief Properties Window for @ref report_sovalues_comparison
+%> @sa report_sovalues_comparison
 
 %>@cond
 function varargout = uip_report_sovalues_comparison(varargin)

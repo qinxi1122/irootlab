@@ -1,14 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Log recorder (@ref logrecorder) Properties Window
-%> @image html Screenshot-uip_logrecorder.png
-%>
-%> <b>Test dataset</b> - see logrecorder::data
-%>
-%> <b>Estimation Log</b> - see logrecorder::ttlog
-%>
-%> <b>Classifier</b> - see logrecorder::clssr
-%>
+%> @brief Log recorder Properties Window
 %> @sa @ref logrecorder
 
 

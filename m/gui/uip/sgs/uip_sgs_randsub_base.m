@@ -1,10 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for Random sub-sampling (@ref sgs_randsub)
-%>
-%> See sgs_randsub_base for usage.
-%>
-%> @image html Screenshot-uip_sgs_randsub_base.png
+%> @brief Properties Window for Random sub-sampling (@ref sgs_randsub_base)
 %>
 %> <b>Type</b> - see sgs_randsub_base::type
 %>
@@ -14,7 +10,7 @@
 %>
 %> <b>Number of repetitions</b> - see sgs_randsub_base::no_reps
 %>
-%> @sa sgs_randsub_base, sgs_randsub, uip_sgs.m
+%> @sa sgs_randsub_base, sgs_randsub, sgs
 %
 %> @cond
 function varargout = uip_sgs_randsub_base(varargin)

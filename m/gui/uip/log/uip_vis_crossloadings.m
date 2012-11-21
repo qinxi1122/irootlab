@@ -1,15 +1,11 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for Loadings Plot visualization
-%> @image html Screenshot-uip_vis_crossloadings.png
-%> <p>Options:</p>
-%> <p><b>Indexes of loadings to plog</b> - vector</p>
-%> <p><b>Dataset for x-axis and hint curve</b> - loadings coefficients are the y-axis values, so the x-axis values need
-%> to be taken from somewhere else. The hint curve is drawn first in a dashed thin line. It is calculated as the average
-%> spectrum in the dataset. This curve helps interpretation of the loadings curves.</p>
-%> <p><b>Peak detector</b> - This is a @c peakdetector object, If specified, peaks will be detected and drawn.</p>
-%> <p><b>Trace "minimum altitude" line from peak detector</b> - If checked, the minimum altitude threshold lines will be drawn.</p>
-%> <p><b>Flip negative values</b> - If checked, the absolute values of the loadings will be taken before doing the drawing.</p>
+%> @brief Properties Window for @ref vis_crossloadings - fold-wise loadings vectors resulting from cross-calculation
+%>
+%> <p><b>Indexes of loadings to plog</b> - vector - see vis_crossloadings::idx_fea</p>
+%>
+%> @sa vis_crossloadings
+
 %> @cond
 function varargout = uip_vis_crossloadings(varargin)
 % Last Modified by GUIDE v2.5 01-Mar-2011 22:47:37

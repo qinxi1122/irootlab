@@ -2,7 +2,7 @@
 %> @file
 %> @brief Properties Windows for @ref vis_log_grades
 %>
-%> Bypass to uip_vis_grades.m
+%> Redirects to uip_vis_grades.m
 %>
 %> @sa uip_vis_grades.m, vis_log_grades
 %

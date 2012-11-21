@@ -1,8 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref report_ttlog
-%> @image html Screenshot-uip_report_ttlog.png
-%>
 %> <b>Generate time snapshot confusion matrices</b> - see report_ttlog::flag_individual
 %>
 %> @sa report_ttlog

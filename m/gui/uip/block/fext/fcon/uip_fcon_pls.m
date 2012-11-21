@@ -4,7 +4,7 @@
 %>
 %>@image html Screenshot-uip_fcon_pls.png
 %>
-%> <b>Number of PCA factors</b> - see fcon_pls::no_factors
+%> <b>Number of factors</b> - see fcon_pls::no_factors
 %>
 %> @sa fcon_pls
 

@@ -1,18 +1,8 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Repeated Train-Test (@ref reptt) Properties Window
+%> @brief Grid Search Properties Window
 %>
-%> This window asks for properties common to all @ref reptt classes
-%>
-%> @image html Screenshot-uip_gridsearch.png
-%>
-%> <b>Test post-processor</b> (optional) - see reptt::postpr_test
-%>
-%> <b>Estimation post-processor</b> - see reptt::postpr_est
-%>
-%> <b>Mold Train-Test Logs</b> - see reptt::log_mold
-%>
-%> @sa reptt
+%> @sa gridsearch
 
 %> @cond
 function varargout = uip_gridsearch(varargin)
@@ -131,6 +121,7 @@ try
     'postpr_est', spostpr_est, ...
     'log_mold', params2str2(handles.names_log_mold) ...
     'no_iterations', int2str(eval(fel(get(handles.edit_no_iterations, 'String')))), ...
+    'maxtries', int2str(eval(fel(get(handles.edit_maxtries, 'String')))), ...
     'paramspecs', cell2str(eval(s)), ...
     };
     handles.output.flag_ok = 1;
@@ -185,11 +176,11 @@ local_show_description(handles, handles.popupmenu_chooser);
 
 %#####
 function pushbutton_t_knn_Callback(hObject, eventdata, handles)
-set(handles.edit_paramspecs, 'string', 'k-NN''s "k"');
+set(handles.edit_paramspecs, 'string', sprintf('{''k'', 1:50, 0}'));
 
 %#####
 function pushbutton_t_svm_Callback(hObject, eventdata, handles)
-set(handles.edit_paramspecs, 'string', 'C, gamma stuff');
+set(handles.edit_paramspecs, 'string', sprintf('{''c'', 10.^[-1:2:5], 1; ...\n''gamma'', 10.^[-7:2:1], 1}'));
 
 function popupmenu_sgs_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -242,6 +233,11 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 function listbox_block_mold_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function edit_maxtries_Callback(hObject, eventdata, handles)
+function edit_maxtries_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end

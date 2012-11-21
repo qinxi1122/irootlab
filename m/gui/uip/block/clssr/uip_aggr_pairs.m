@@ -5,7 +5,7 @@
 %>
 %> <b>Mold classifier</b> - see aggr_pairs::block_mold
 %>
-%> @sa @ref aggr_bag, aggr, uip_aggr.m
+%> @sa @ref aggr_pairs
 
 %> @cond
 function varargout = uip_aggr_pairs(varargin)

@@ -1,17 +1,7 @@
 %> @ingroup guigroup
 %> @file uip_subsetsprocessor.m
-%> @brief Properties Window for @ref fsel_grades_fsg
-%> @image html Screenshot-uip_subsetsprocessor.png
-%>
-%> <b>Selection type</b> - see fsel_grades::type
-%>
-%> <b>Number of variables</b> - see fsel_grades::nf_select
-%>
-%> <b>Threshold</b> - see fsel_grades::threshold
-%>
-%> <b>Peak Detector</b> - see fsel_grades::peakdetector
-%>
-%> @sa fsel_grades_fsg
+%> @brief Properties Window for @ref subsetsprocessor
+%> @sa subsetsprocessor
 
 %> @cond
 function varargout = uip_subsetsprocessor(varargin)

@@ -1,11 +1,6 @@
 %>@file
 %>@ingroup guigroup
 %>@brief Properties Window for @ref blmisc_fearange
-%>
-%>@image html Screenshot-uip_blmisc_fearange.png
-%>
-%> <b>...</b>...
-%>
 %> @sa blmisc_fearange
 
 %>@cond

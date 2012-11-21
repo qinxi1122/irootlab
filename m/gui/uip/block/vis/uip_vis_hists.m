@@ -1,10 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_hists (Loadings Plot visualization)
-%> @image html Screenshot-uip_vis_hists.png
-%>
-%> <b>Indexes of histograms to plot</b> - see vis_hists::idx_fea
-%>
+%> @brief Properties Window for @ref vis_hists
 %> @sa vis_hists
 
 %>@cond

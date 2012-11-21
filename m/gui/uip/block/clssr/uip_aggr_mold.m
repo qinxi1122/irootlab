@@ -1,7 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref aggr_mold
-%> @image html Screenshot-uip_aggr_mold.png
 %>
 %> <b>Mold classifier</b> - see aggr_mold::block_mold
 %>

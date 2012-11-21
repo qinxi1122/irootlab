@@ -5,6 +5,8 @@
 %> <b>FSG</b> - see vis_featuregrades::fsg
 %>
 %> @image html Screenshot-uip_vis_featuregrades.png
+%>
+%> @sa vis_featuregrades
 
 %> @cond
 function varargout = uip_vis_featuregrades(varargin)

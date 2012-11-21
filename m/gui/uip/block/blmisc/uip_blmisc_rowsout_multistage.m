@@ -1,20 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Repeated Train-Test (@ref reptt) Properties Window
-%>
-%> This window asks for properties common to all @ref reptt classes
-%>
-%> @image html Screenshot-uip_blmisc_rowsout_multistage.png
-%>
-%> <b>Test post-processor</b> (optional) - see reptt::postpr_test
-%>
-%> <b>Estimation post-processor</b> - see reptt::postpr_est
-%>
-%> <b>Mold Classifiers</b> - see reptt::block_mold
-%>
-%> <b>Mold Train-Test Logs</b> - see reptt::log_mold
-%>
-%> @sa reptt
+%> @brief Properties Window for a Multi-stage Outlier Removal block
+%> @sa blmisc_rowsout_multistage
 
 %> @cond
 function varargout = uip_blmisc_rowsout_multistage(varargin)

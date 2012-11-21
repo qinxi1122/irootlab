@@ -1,12 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for Least-Squares Classifier
-%>
-%> Currently there is no Least-Squares Classifier implemented.
-%>
-%> @image html Screenshot-uip_pre_bc_rubber.png
-%>
-%> @sa
+%> @brief Properties Window for Rubberband-like baseline correction
+%> @sa pre_bc_rubber
 
 %> @cond
 function varargout = uip_pre_bc_rubber(varargin)

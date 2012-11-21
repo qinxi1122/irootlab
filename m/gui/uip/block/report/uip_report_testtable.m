@@ -1,11 +1,11 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_html_ttesttable
-%> @image html Screenshot-uip_report_testtable.png
+%> @brief Properties Window for @ref report_testtable
 %>
-%> <b>Index of feature to test</b> - see vis_html_ttesttable::idx_fea
+%> <b>Index of feature to test</b> - see report_testtable::idx_fea
+%> <b>Feature Selection Grader (FSG) object</b> - see report_testtable::fsg
 %>
-%> @sa vis_loadings
+%> @sa report_testtable
 
 %>@cond
 function varargout = uip_report_testtable(varargin)

@@ -1,7 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for Loadings Plot visualization
-%> @image html Screenshot-uip_as_crossc.png
+%> @brief Properties Window for Cross-calculation Analysis Session
+%> @sa as_crossc
 %> @cond
 function varargout = uip_as_crossc(varargin)
 % Last Modified by GUIDE v2.5 14-Nov-2012 11:28:08

@@ -1,16 +1,7 @@
 %>@file
 %>@ingroup guigroup
-%>@brief Properties Window for @ref pre_bc_asls
-%>
-%>@image html Screenshot-uip_fcon_feaavg.png
-%>
-%> <b>p</b> - see pre_bc_asls::p
-%>
-%> <b>lambda</b> - see pre_bc_asls::lambda
-%>
-%> <b>Number of iterations</b> - see pre_bc_asls::no_iterations
-%>
-%> @sa pre_bc_asls
+%>@brief Properties Window for @ref fcon_feaavg
+%> @sa fcon_feaavg
 
 %>@cond
 function varargout = uip_fcon_feaavg(varargin)

@@ -1,10 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref clssr_d
-%> @image html Screenshot-uip_clssr_d.png
-%>
-%> <b>Classifier type</b> - see clssr_d::type
-%>
 %> @sa @ref clssr_d
 
 %> @cond

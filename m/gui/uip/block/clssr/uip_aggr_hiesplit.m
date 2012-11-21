@@ -1,6 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window to create a Cascade Block
+%> @brief Properties Window to create a Hie-Split Aggregation
 %> @image html Screenshot-uip_aggr_hiesplit.png
 %>
 %> <b>Mold classifier</b> - see aggr_hiesplit::block_mold

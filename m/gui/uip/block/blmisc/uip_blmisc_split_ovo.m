@@ -1,10 +1,6 @@
 %>@file
 %>@ingroup guigroup
-%>@brief Properties Window for @ref blmisc_split_classes
-%>
-%>@image html Screenshot-uip_blmisc_split_ovo.png
-%>
-%> <b>...</b>...
+%>@brief Properties Window for @ref blmisc_split_ovo
 %> @sa blmisc_split_ovo
 
 %>@cond

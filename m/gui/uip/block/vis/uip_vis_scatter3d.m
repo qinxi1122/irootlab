@@ -7,7 +7,7 @@
 %>
 %> <b>Confidence ellipses</b> - see vis_scatter3d::confidences
 %>
-%> <b>Annotate observation names</b> - see vis_scatter3d::flag_text
+%> <b>Text annotations</b> - see vis_scatter3d::textmode
 %>
 %> @sa vis_scatter3d
 

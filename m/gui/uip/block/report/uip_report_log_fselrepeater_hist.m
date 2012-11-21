@@ -1,17 +1,12 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_grades
-%> @image html Screenshot-uip_report_log_fselrepeater_hist.png
+%> @brief Properties Window for @ref report_log_fselrepeater_hist
 %>
-%> <b>Dataset for hint</b> - see vis_grades::data_hint
+%> <b>Dataset for hint</b> - see report_log_fselrepeater_hist::data_hint
 %>
-%> <b>Flip negative values</b> - see vis_grades::flag_abs
+%> <b>Peak Detector</b> - see report_log_fselrepeater_hist::peakdetector
 %>
-%> <b>Peak Detector</b> - see vis_grades::peakdetector
-%>
-%> <b>Trace "minimum altitude" line from peak detector</b> - see vis_grades::flag_trace_minalt
-%>
-%> @sa vis_grades
+%> @sa report_log_fselrepeater_hist
 
 %>@cond
 function varargout = uip_report_log_fselrepeater_hist(varargin)

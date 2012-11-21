@@ -10,7 +10,7 @@
 %>
 %> <b>K-Fold's "K"</b> - see sgs_crossval::no_reps
 %>
-%> @sa sgs_crossval, uip_sgs.m
+%> @sa sgs_crossval, uip_sgs.m, sgs
 %
 %> @cond
 function varargout = uip_sgs_crossval(varargin)

@@ -1,17 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_grades
-%> @image html Screenshot-uip_report_soitem_merger_merger_fhg.png
-%>
-%> <b>Dataset for hint</b> - see vis_grades::data_hint
-%>
-%> <b>Flip negative values</b> - see vis_grades::flag_abs
-%>
-%> <b>Peak Detector</b> - see vis_grades::peakdetector
-%>
-%> <b>Trace "minimum altitude" line from peak detector</b> - see vis_grades::flag_trace_minalt
-%>
-%> @sa vis_grades
+%> @brief Properties Window for @ref report_soitem_merger_merger_fhg
+%> @sa report_soitem_merger_merger_fhg
 
 %>@cond
 function varargout = uip_report_soitem_merger_merger_fhg(varargin)

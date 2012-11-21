@@ -7,7 +7,7 @@
 %>
 %> <b>Index of class to be origin</b> - see vis_cv::idx_class_origin
 %>
-%> @sa vis_cv.m, uip_vis_grades.m
+%> @sa vis_cv
 
 %>@cond
 function varargout = uip_vis_cv(varargin)

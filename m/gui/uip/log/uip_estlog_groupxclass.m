@@ -1,17 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref estlog_classxclass
-%> @image html Screenshot-uip_estlog_groupxclass.png
-%>
-%> <b>Test Dataset class labels</b> - see estlog_classxclass::testlabels
-%>
-%> <b>Estimation class labels</b> - see estlog_classxclass::estlabels
-%>
-%> <b>Classification rate obtention mode</b> - see estlog_classxclass::ratemode
-%>
-%> <b>Index of diagonal element</b> - see estlog_classxclass::idx_rate
-%>
-%> @sa estlog_classxclass
+%> @brief Properties Window for @ref estlog_groupxclass
+%> @sa estlog_groupxclass
 
 %> @cond
 function varargout = uip_estlog_groupxclass(varargin)

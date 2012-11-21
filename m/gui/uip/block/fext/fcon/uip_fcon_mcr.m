@@ -2,9 +2,7 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref fcon_mcr
 %>
-%>@image html Screenshot-uip_fcon_mcr.png
-%>
-%> The following document shows how to answer the iterative questions (case when Number of Factors is 10): <a href="mcr.pdf">mcr.pdf</a>
+%> Please check fcon_mcr for information.
 %>
 %> @sa fcon_mcr
 

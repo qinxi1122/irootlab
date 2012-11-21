@@ -1,10 +1,6 @@
 %>@file
 %>@ingroup guigroup
 %>@brief Properties Window for @ref blmisc_split_classes
-%>
-%>@image html Screenshot-uip_blmisc_split_classes.png
-%>
-%> <b>...</b>...
 %> @sa blmisc_split_classes
 
 %>@cond

@@ -1,6 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_loadings (Loadings Plot visualization)
+%> @brief Properties Window for @ref vis_loadings
 %> @image html Screenshot-uip_vis_loadings.png
 %>
 %> <b>Indexes of features to plot</b> - see vis_loadings::idx_fea

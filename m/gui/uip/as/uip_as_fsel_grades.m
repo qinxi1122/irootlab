@@ -1,16 +1,6 @@
 %> @ingroup guigroup
 %> @file uip_as_fsel_grades.m
 %> @brief Properties Window for @ref as_fsel_grades
-%> @image html Screenshot-uip_as_fsel_grades.png
-%>
-%> <b>Selection type</b> - see as_fsel_grades::type
-%>
-%> <b>Number of variables</b> - see as_fsel_grades::nf_select
-%>
-%> <b>Threshold</b> - see as_fsel_grades::threshold
-%>
-%> <b>Peak Detector</b> - see as_fsel_grades::peakdetector
-%>
 %> @sa as_fsel_grades
 
 %> @cond
