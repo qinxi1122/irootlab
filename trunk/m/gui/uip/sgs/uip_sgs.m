@@ -2,8 +2,6 @@
 %> @file
 %> @brief Properties Window common to all @ref sgs classes
 %>
-%> See @ref sgs for usage.
-%>
 %> @image html Screenshot-uip_sgs.png
 %>
 %> <b>Always keep together rows from the same group</b> - see sgs::flag_group

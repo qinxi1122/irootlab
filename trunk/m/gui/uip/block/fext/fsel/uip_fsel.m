@@ -2,8 +2,6 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref fsel
 %>
-%>@image html Screenshot-uip_fsel.png
-%>
 %> <b>Variables</b> - see fsel::v
 %>
 %> <b>Meaning of "Variables" above (1)</b> - How to interpret the vector given in the first box. See fsel::v_type

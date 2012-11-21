@@ -1,13 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for a @ref reptt_sgs
-%> @image html Screenshot-uip_reptt_blockcube.png
-%>
-%> <b>SGS</b> - see reptt_sgs::sgs
-%>
-%> <b>Vector comparer</b> (optional) - see reptt_sgs::vectorcomp
-%>
-%> @sa reptt_sgs, reptt, uip_reptt.m
+%> @brief Properties Window for a @ref reptt_blockcube
+%> @sa reptt_blockcube
 
 %> @cond
 function varargout = uip_reptt_blockcube(varargin)

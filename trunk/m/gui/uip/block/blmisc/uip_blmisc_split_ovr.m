@@ -1,11 +1,7 @@
 %>@file
 %>@ingroup guigroup
-%>@brief Properties Window for @ref blmisc_split_classes
-%>
-%>@image html Screenshot-uip_blmisc_split_ovr.png
-%>
-%> <b>...</b>...
-%> @sa blmisc_split_ovo
+%>@brief Properties Window for @ref blmisc_split_ovr
+%> @sa blmisc_split_ovr
 
 %>@cond
 function varargout = uip_blmisc_split_ovr(varargin)

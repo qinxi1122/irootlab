@@ -1,11 +1,6 @@
 %>@file
 %>@ingroup guigroup
 %>@brief Properties Window for @ref blmisc_classlabels_hierarchy
-%>
-%>@image html Screenshot-uip_blmisc_classlabels_hierarchy.png
-%>
-%> <b>...</b> - ...
-%>
 %> @sa blmisc_classlabels_hierarchy
 
 %>@cond

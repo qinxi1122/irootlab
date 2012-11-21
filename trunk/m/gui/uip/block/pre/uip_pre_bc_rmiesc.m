@@ -6,7 +6,6 @@
 %>
 %> <b>Options</b> - see pre_bc_rmiesc::options
 %>
-%>
 %> @sa pre_bc_rmiesc
 
 %>@cond

@@ -1,7 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref aggr
-%> @image html Screenshot-uip_aggr.png
 %>
 %> <b>Estimaton aggregator</b> - see aggr::esag
 %>

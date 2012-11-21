@@ -1,11 +1,8 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref report_ttlog
+%> @brief Properties Window for @ref report_soitem_merger_fhg
 %> @image html Screenshot-uip_report_soitem_merger_fhg.png
-%>
-%> <b>Generate time snapshot confusion matrices</b> - see report_ttlog::flag_individual
-%>
-%> @sa report_ttlog
+%> @sa report_soitem_merger_fhg
 
 %> @cond
 function varargout = uip_report_soitem_merger_fhg(varargin)

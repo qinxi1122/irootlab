@@ -1,11 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref as_fsel_hist
-%> @image html Screenshot-uip_fselrepeater.png
-%>
-%> <b>Another fsel object</b> - see as_fsel_hist::mold
-%>
-%> <b>SGS</b> - see as_fsel_hist::sgs
+%> @brief Properties Window for @ref fselrepeater
+%> @sa fselrepeater
 
 %> @cond
 function varargout = uip_fselrepeater(varargin)

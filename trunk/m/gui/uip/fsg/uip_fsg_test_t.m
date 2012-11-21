@@ -2,8 +2,6 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref fsg_test_t
 %>
-%>@image html Screenshot-uip_fsg_test_t.png
-%>
 %> <b>Calculate as -log10(p_value)</b> - see fsg_test_t::flag_logtake
 %>
 %> @sa fsg_test_t

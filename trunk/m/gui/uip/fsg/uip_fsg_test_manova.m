@@ -2,7 +2,7 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref fsg_test_manova
 %>
-%> Calls "ref uip_fsg_test_t.m
+%> Redirects to @ref uip_fsg_test_t.m
 %> 
 %> @sa uip_fsg_test_t.m, fsg_test_manova
 

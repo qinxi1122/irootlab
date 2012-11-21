@@ -1,6 +1,6 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window to create a Cascade Block
+%> @brief Properties Window for a reptt_hiesplit
 %> @image html Screenshot-uip_reptt_hiesplit.png
 %>
 %> <b>Test Dataset</b> - see reptt_hiesplit::data_test
@@ -11,9 +11,9 @@
 %>
 %> <b>Class levels to use for classification</b> - see reptt_hiesplit::hie_classify
 %>
-%> <b>Random seedDataset</b> - see reptt_hiesplit::randomseed
+%> <b>Random seed</b> - see reptt_hiesplit::randomseed
 %>
-%> @sa reptt_hiesplit, reptt, uip_reptt.m
+%> @sa reptt_hiesplit
 
 %> @cond
 function varargout = uip_reptt_hiesplit(varargin)

@@ -2,7 +2,7 @@
 %> @file
 %> @brief Properties Windows for @ref blmisc_rowsout_hist
 %>
-%> Bypass to uip_blmisc_rowsout_distr.m
+%> Redirects to uip_blmisc_rowsout_distr.m
 %>
 %> @sa uip_blmisc_rowsout_distr.m, blmisc_rowsout_hist
 %

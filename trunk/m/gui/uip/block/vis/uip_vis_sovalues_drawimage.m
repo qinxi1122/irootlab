@@ -1,6 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_sovalues_drawplot
+%> @brief Properties Window for @ref vis_sovalues_drawimage
+%> @sa vis_sovalues_drawimage
 
 %>@cond
 function varargout = uip_vis_sovalues_drawimage(varargin)

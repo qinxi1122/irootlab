@@ -3,6 +3,8 @@
 %> @brief Properties Windows for @ref blmisc_split_proportion
 %>
 %> Asks for a proportion (a number between 0 and 1) (see blmisc_split_proportion::proportion)
+%>
+%> @sa blmisc_split_proportion
 %
 %> @cond
 function result = uip_blmisc_split_proportion(o, data)

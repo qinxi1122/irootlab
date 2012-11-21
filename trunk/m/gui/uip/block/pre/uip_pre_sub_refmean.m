@@ -1,13 +1,7 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_cv
-%> @image html Screenshot-uip_pre_sub_refmean.png
-%>
-%> <b>Input dataset</b> - see vis_cv::data_input
-%>
-%> <b>Index of class to be origin</b> - see vis_cv::idx_class_origin
-%>
-%> @sa vis_cv.m, uip_vis_grades.m
+%> @brief Properties Window for @ref pre_sub_refmean
+%> @sa pre_sub_refmean
 
 %>@cond
 function varargout = uip_pre_sub_refmean(varargin)

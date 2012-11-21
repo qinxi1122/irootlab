@@ -2,7 +2,7 @@
 %> @file
 %> @brief Properties Windows for @ref report_soitem_fhg_hist
 %>
-%> Bypass to uip_report_log_fselrepeater_hist.m
+%> Redirects to uip_report_log_fselrepeater_hist.m
 %>
 %> @cond
 function result = uip_report_soitem_fhg_hist(varargin)

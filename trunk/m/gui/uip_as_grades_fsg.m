@@ -1,17 +1,7 @@
 %> @ingroup guigroup
-%> @file uip_as_grades_fsg.m
-%> @brief Properties Window for @ref fsel_grades_fsg
-%> @image html Screenshot-uip_as_grades_fsg.png
-%>
-%> <b>Selection type</b> - see fsel_grades::type
-%>
-%> <b>Number of variables</b> - see fsel_grades::nf_select
-%>
-%> <b>Threshold</b> - see fsel_grades::threshold
-%>
-%> <b>Peak Detector</b> - see fsel_grades::peakdetector
-%>
-%> @sa fsel_grades_fsg
+%> @file
+%> @brief Properties Window for @ref as_grades_fsg
+%> @sa as_grades_fsg
 
 %> @cond
 function varargout = uip_as_grades_fsg(varargin)

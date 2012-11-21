@@ -1,18 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Rater (@ref rater) Properties Window
-%> @image html Screenshot-uip_rater.png
-%>
-%> <b>Classifier</b> - see rater::clssr
-%>
-%> <b>Decider</b> - see rater::decider
-%>
-%> <b>SGS</b> - see rater::sgs
-%>
-%> <b>Estimation Log</b> - see rater::ttlog
-%>
-%> <b>Dataset</b> - see rater::data
-%>
 %> @sa @ref rater
 
 

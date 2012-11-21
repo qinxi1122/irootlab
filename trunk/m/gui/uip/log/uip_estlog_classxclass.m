@@ -1,7 +1,8 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref estlog_classxclass
-%> @image html Screenshot-uip_estlog_classxclass.png
+%>
+%> <b>Title</b> Title needs to be a valid MATLAB field name (if the log will be ever used to build a @ref sovalues). A default random title is automatically generated.
 %>
 %> <b>Test Dataset class labels</b> - see estlog_classxclass::testlabels
 %>

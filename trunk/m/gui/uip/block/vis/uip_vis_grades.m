@@ -1,17 +1,21 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref vis_grades
-%> @image html Screenshot-uip_vis_grades.png
+%> @brief Properties Window used by @ref uip_vis_loadings.m and @ref uip_vis_cv.m
+%> @image html Screenshot-uip_vis_loadings.png
 %>
-%> <b>Dataset for hint</b> - see vis_grades::data_hint
+%> @attention Although it does not have a corresponding block, this file is used by uip_vis_cv.m and uip_vis_loadings.m
 %>
-%> <b>Flip negative values</b> - see vis_grades::flag_abs
+%> <b>Dataset for hint</b> - see vis_loadings::data_hint
 %>
-%> <b>Peak Detector</b> - see vis_grades::peakdetector
+%> <b>Flip negative values</b> - see vis_loadings::flag_abs
 %>
-%> <b>Trace "minimum altitude" line from peak detector</b> - see vis_grades::flag_trace_minalt
+%> <b>Peak Detector</b> - see vis_loadings::peakdetector
 %>
-%> @sa vis_grades
+%> <b>Trace "minimum altitude" line from peak detector</b> - see vis_loadings::flag_trace_minalt
+%>
+%> <b>Plot as Peak Location Plots</b> - see vis_loadings::flag_trace_minalt
+%>
+%> @sa vis_loadings
 
 %>@cond
 function varargout = uip_vis_grades(varargin)

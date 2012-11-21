@@ -3,7 +3,7 @@
 %> @brief Properties Window to create a Cascade Block
 %> @image html Screenshot-uip_block_cascade.png
 %> <p><b>Usage</b><br>
-%> <ol><li>Create all blocks of the cascade sequence <b>before</b> calling this GUI (to avoid window recursivity, @c objtool cannot be launched from here)</li>
+%> <ol><li>Create all blocks of the cascade sequence <b>before</b> calling this GUI</li>
 %>     <li>The popupmenu shows all blocks present in the workspace. Select among blocks and click on `Add`.</li>
 %>     <li>Click on `OK` when done</li>
 %> </ol>

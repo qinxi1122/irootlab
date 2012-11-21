@@ -2,10 +2,7 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref fcon_maxminpos
 %>
-%>@image html Screenshot-uip_fcon_maxminpos.png
-%>
 %> <b>Map</b> - see fcon_maxminpos::map
-%>
 %>
 %> @sa fcon_maxminpos, peak_landmarks.m
 

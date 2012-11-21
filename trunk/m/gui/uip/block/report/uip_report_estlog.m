@@ -1,11 +1,10 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref report_ttlog
-%> @image html Screenshot-uip_report_estlog.png
+%> @brief Properties Window for @ref report_estlog
 %>
-%> <b>Generate time snapshot confusion matrices</b> - see report_ttlog::flag_individual
+%> <b>Generate time snapshot confusion matrices</b> - see report_estlog::flag_individual
 %>
-%> @sa report_ttlog
+%> @sa report_estlog
 
 %> @cond
 function varargout = uip_report_estlog(varargin)

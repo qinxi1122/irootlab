@@ -11,10 +11,6 @@
 %>
 %> <b>Turn figure upside down</b> - see vis_curvefit::flag_ud
 %>
-%> @param Number of variables 
-%> @param Threshold
-%> @param Grader
-%>
 %> @sa vis_curvefit
 
 %>@cond

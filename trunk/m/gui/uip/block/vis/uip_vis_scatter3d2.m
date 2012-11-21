@@ -2,13 +2,15 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref vis_scatter3d2
 %>
-%>@image html Screenshot-uip_vis_scatter3d2.png
-%>
 %> <b>Indexes of variables to plot</b> - see vis_scatter3d2::idx_fea
 %>
 %> <b>Confidence ellipses</b> - see vis_scatter3d2::confidences
 %>
 %> <b>flags_min</b> - see vis_scatter3d2::flags_min
+%>
+%> <b>K's</b> - see vis_scatter3d2::ks
+%>
+%> <b>Project points onto the walls</b> - see vis_scatter3d2::flag_wallpoints
 %>
 %> @sa vis_scatter3d2
 

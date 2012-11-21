@@ -1,7 +1,6 @@
 %> @ingroup guigroup
 %> @file
 %> @brief Properties Window for @ref fsg_clssr
-%> @image html Screenshot-uip_fsg_clssr.png
 %>
 %> <b>Classifier</b> - see fsg_clssr::clssr
 %>

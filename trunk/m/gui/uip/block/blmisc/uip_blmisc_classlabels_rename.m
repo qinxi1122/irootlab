@@ -5,8 +5,6 @@
 %> Asks for new class labels
 %>
 %> @sa blmisc_classlabels_rename
-%>
-%> @image html Screenshot-Rename.png
 %
 %> @cond
 function result = uip_blmisc_classlabels_rename(o, data)

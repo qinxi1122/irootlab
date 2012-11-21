@@ -1,17 +1,10 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref estlog_classxclass
-%> @image html Screenshot-uip_estlog_rightwrong.png
+%> @brief Properties Window for @ref estlog_rightwrong
 %>
-%> <b>Test Dataset class labels</b> - see estlog_classxclass::testlabels
+%> <b>Title</b> Title needs to be a valid MATLAB field name (if the log will be ever used to build a @ref sovalues). A default random title is automatically generated.
 %>
-%> <b>Estimation class labels</b> - see estlog_classxclass::estlabels
-%>
-%> <b>Classification rate obtention mode</b> - see estlog_classxclass::ratemode
-%>
-%> <b>Index of diagonal element</b> - see estlog_classxclass::idx_rate
-%>
-%> @sa estlog_classxclass
+%> @sa estlog_rightwrong
 
 %> @cond
 function varargout = uip_estlog_rightwrong(varargin)

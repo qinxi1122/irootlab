@@ -2,7 +2,7 @@
 %>@ingroup guigroup
 %>@brief Properties Window for @ref vectorcomp_ttest
 %>
-%> Calls "ref uip_fsg_test_t.m
+%> Redirects to @ref uip_fsg_test_t.m
 %> 
 %> @sa uip_fsg_test_t.m, vectorcomp_ttest
 

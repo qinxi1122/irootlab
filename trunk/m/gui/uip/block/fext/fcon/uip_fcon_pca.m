@@ -8,7 +8,6 @@
 %>
 %> <b>Rotate factors</b> - see fcon_pca::flag_rotate_factors
 %>
-%>
 %> @sa fcon_pca
 
 %>@cond

@@ -1,14 +1,11 @@
 %> @ingroup guigroup
 %> @file
-%> @brief Properties Window for @ref as_fsel_fb (Stepwise Feature Selection)
+%> @brief Properties Window for @ref as_fsel_forward (Forward Feature Selection)
+%> <b>Number of features</b> - see as_fsel_forward::nf_select
 %>
-%>@image html Screenshot-uip_as_fsel_forward.png
+%> <b>Feature Subset Grader</b> - see as_fsel_forward::fsg
 %>
-%> <b>Number of features</b> - see as_fsel_fb::nf_select
-%>
-%> <b>Feature Subset Grader</b> - see as_fsel_fb::fsg
-%>
-%> @sa as_fsel_fb
+%> @sa as_fsel_forward
 
 %>@cond
 function varargout = uip_as_fsel_forward(varargin)
