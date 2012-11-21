@@ -6,8 +6,6 @@
 %> Allows multi-training.
 %>
 %> Can be used for undersampling. Use an sgs_randsub with balanced properties.
-%>
-%> @sa uip_aggr_bag.m, demo_reptt_bag.m, test_bagging.m
 classdef aggr_bag < aggr
     properties
         %> must contain a block object that will be replicated as needed

@@ -22,12 +22,12 @@ classdef dircrawler_demoindexbuilder < dircrawler
             r = [];
             if exist(fullfile(d, 'README.txt'), 'file')
                 h = fopen(fullfile(d, 'README.txt'), 'r');
-                r = fgets(h);
+                r = ['<br /><b>', fread(h, Inf, '*char')', '</b>'];
                 fclose(h);
             end;
 
             [q, w] = fileparts(d);
-            o.map(end+1, :) = {[repmat('&nbsp;', 1, 6*(level-1)), '<b>', upper(w), '</b>'], r};
+            o.map(end+1, :) = {['<br />', repmat('&nbsp;', 1, 6*(level-1)), '<b>', upper(w), '</b>'], r};
             
             for i = 1:no
                 h = fopen(fullfile(d, names{i}), 'r');
@@ -37,7 +37,8 @@ classdef dircrawler_demoindexbuilder < dircrawler
                 
                 [q, w, e] = fileparts(names{i});
 
-                o.map(end+1, :) = {[repmat('&nbsp;', 1, 6*level), '<a href="matlab: open_demo(''', w, ''')">', upper(w), '</a>'], [s, '&nbsp;<a href="matlab:help2(''', names{i}, ''')">. . .</a>']};
+                o.map(end+1, :) = {[repmat('&nbsp;', 1, 6*level), '<a href="matlab: open_demo(''', w, ''')">', upper(w), '</a>'], ...
+                    [s, '&nbsp;<a href="matlab:help2(''', names{i}, ''')">\|/</a>', '&nbsp;&nbsp;<a href="matlab:edit(''', names{i}, ''')">&rarr;</a>']};
             end;
         end;
         
@@ -51,7 +52,14 @@ classdef dircrawler_demoindexbuilder < dircrawler
             
 
             s = stylesheet();
-            s = cat(2, s, '<body bgcolor=#ffe592><h1>IRootLab demos</h1><center>', 10);
+            s = cat(2, s, '<body bgcolor=#c6e8e0><h1>IRootLab demos</h1><center>', 10);
+            
+            if exist(fullfile(o.rootdir, 'README.txt'), 'file')
+                h = fopen(fullfile(o.rootdir, 'README.txt'), 'r');
+                r = fread(h, Inf, '*char')';
+                fclose(h);
+                s = cat(2, s, '<p>', r, '</p>');
+            end;
             
 %             aa = {'Dataset', 'Observation meaning', 'Portion of dataset used', 'Dataset split', 'Pre-processing spec'};
 
