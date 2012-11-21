@@ -2,12 +2,17 @@
 %>@file
 %>@brief Convex Polygonal Line baseline correction
 %>
-%> This is similar to OPUS Rubberband baseline correction
+%> This was inspired on OPUS Rubberband baseline correction (RBBC) [1].
 %>
 %> Stretches a convex polygonal line whose vertices touch troughs of x
 %> without crossing x (see below).
 %>
+%> This one is parameterless, whereas OPUS RBBC asks for a number of points.
+%>
 %> @image html rubberlike_explain.png
+%>
+%> <h3>References</h3>
+%> ﻿[1] Bruker Optik GmbH, OPUS 5 Reference Manual. Ettlingen: Bruker, 2004.
 %>
 %> @sa demo_pre_bc_rubber.m
 %

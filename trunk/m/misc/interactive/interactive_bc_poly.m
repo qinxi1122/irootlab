@@ -12,7 +12,10 @@ end;
 no = size(dataset.X, 1);
 
 
-idx = input(sprintf('Enter index of spectrum to use (between 1 and %d): ', no));
+idx = input(sprintf('Enter index of spectrum to use (between 1 and %d) [1]: ', no));
+if isempty(idx) || idx <= 0
+    idx = 1;
+end;
 
 dataset = dataset.map_rows(idx);
 

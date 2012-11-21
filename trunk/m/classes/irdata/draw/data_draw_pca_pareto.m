@@ -6,7 +6,7 @@
 %> @param no_pcs Number of "Principal Components"
 function data_draw_pca_pareto(data, no_pcs)
 
-% data = data_eliminate_var_0(data, 1e-10);
+% data = data_eliminate_var0(data, 1e-10);
 
 X = data.X;
 

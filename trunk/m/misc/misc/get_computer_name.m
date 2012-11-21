@@ -1,8 +1,8 @@
 %> @file
-%> @ingroup misc ioio
+%> @ingroup misc ioio parallelgroup
 %> @brief Returns the host name
 %>
-%> This code was taken from MATLAB Exchance Central
+%> This solution was found on MATLAB Exchance Central
 %>
 %> Original author: Manuel Marin
 function name = get_computer_name();

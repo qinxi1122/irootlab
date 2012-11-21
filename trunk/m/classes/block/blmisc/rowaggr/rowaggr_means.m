@@ -1,5 +1,5 @@
 %> @file
-%> @ingroup groupgroup
+%> @ingroup groupgroup classlabelsgroup
 %> @brief Outputs a dataset of class means
 classdef rowaggr_means < rowaggr
     methods

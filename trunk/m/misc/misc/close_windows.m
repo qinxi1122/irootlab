@@ -1,4 +1,4 @@
-%> @ingroup misc
+%> @ingroup misc graphicsapi
 %> @brief Closes windows
 %> @file
 %>

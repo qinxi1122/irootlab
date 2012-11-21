@@ -1,6 +1,6 @@
 %> @file
 %> @brief Generates unique class labels in order of appearance
-%> @ingroup maths
+%> @ingroup maths classlabelsgroup
 %
 %> @param classlabels
 %> @return ucl Unique class labels

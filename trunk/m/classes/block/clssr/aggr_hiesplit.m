@@ -8,7 +8,6 @@
 %> @todo think about the future of this class, it cannot be trained like the others! The problem is that the classes in
 %> dataset passed for training are not the classes classified by the classifier
 %>
-%> @sa uip_aggr_hiesplit.m
 classdef aggr_hiesplit < aggr
     properties
         %> must contain a block object that will be replicated as needed
