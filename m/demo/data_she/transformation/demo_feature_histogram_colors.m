@@ -1,7 +1,7 @@
 %> @brief Shows different ways to paint the same Feature Histogram
 %> @ingroup demo
 %> @file
-
+fig_assert();
 % The dataset
 ds = load_data_she5trays();
 ds = data_select_hierarchy(ds, 2); % Classes: N/T
@@ -44,6 +44,8 @@ log_rep = orep.use(ds); % This is the time-consuming line
 %%
 
 %> Stability and nf x grade
+global SCALE;
+SCALE = .8;
 
 ds_nfxgrade = log_rep.extract_dataset_nfxgrade();
 ds_stab = log_rep.extract_dataset_stabilities();
@@ -51,15 +53,16 @@ ds_stab = log_rep.extract_dataset_stabilities();
 ov = vis_alldata();
 
 figure;
-subplot(1, 2, 1);
+subplot(2, 1, 1);
 ov.use(ds_nfxgrade);
 legend off;
-subplot(1, 2, 2);
+subplot(2, 1, 2);
 ov.use(ds_stab);
 legend off;
 
-maximize_window(gcf(), 4);
+maximize_window(gcf(), .8);
 %%
+SCALE = 1;
 
 ov = vis_stackedhists();
 ov.data_hint = ds;

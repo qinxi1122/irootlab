@@ -1,4 +1,4 @@
-%>@brief Demonstrates Use of decider and grag (Group Aggregator) blocks to process classifier outputs
+%>@brief Different ways to use per-spectrum prediction aggregation (grag), and decision thresholds (decider)
 %>@ingroup demo
 %>@file
 %>

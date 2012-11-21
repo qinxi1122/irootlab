@@ -1,4 +1,4 @@
-%>@brief Bagging example using SVM classifier
+%>@brief Bagging example using SVM classifier and drawing classification regions.
 %>@file
 %>@ingroup demo
 %>

@@ -1,11 +1,9 @@
-%>@brief Demonstrates use of clssr_d - Linear/Quadratic discriminant
+%>@brief Draws classification regions for classifiers LDC/QDC
 %>@file
 %>@ingroup demo
 %>
 %>@sa clssr_d
 %>
-%>
-%> @image html demo_clssr_d_result01.png
 
 setup_load();
 

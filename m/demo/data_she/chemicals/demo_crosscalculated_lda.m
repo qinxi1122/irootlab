@@ -1,4 +1,4 @@
-%>@brief Demonstrates the use of "cross-calculation" to get scores plots
+%>@brief Cross-calculated LDA scores
 %>@ingroup demo
 %>@file
 %>

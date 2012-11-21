@@ -1,4 +1,4 @@
-%> @brief PCA-LDA demo
+%> @brief PCA-LDA demo, scores plots, cluster vectors
 %> @ingroup demo
 %> @file
 

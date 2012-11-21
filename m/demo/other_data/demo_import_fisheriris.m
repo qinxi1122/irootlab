@@ -2,7 +2,7 @@
 %> @ingroup demo
 %> @file
 %>
-%> Loads the "Fisher Iris" dataset that comes with the Statistics Toolbox
+%> Loads the "Fisher Iris" dataset that comes with MATLAB Statistics Toolbox
 
 load fisheriris; % Gives the "meas" and "species" variables
 

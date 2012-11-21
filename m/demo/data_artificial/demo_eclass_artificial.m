@@ -1,4 +1,4 @@
-%>@brief Simple eClass demonstration
+%>@brief Draws classification regions for classifier eClass
 %>@ingroup demo
 %>@file
 %>

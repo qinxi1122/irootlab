@@ -1,4 +1,4 @@
-%> @brief Generates IRootLab classes hierarchical tree in HTML
+%> @brief Generates IRootLab classes hierarchical tree in HTML, using object colors.
 %> @ingroup demo introspection
 %> @file
 

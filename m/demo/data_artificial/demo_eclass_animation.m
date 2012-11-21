@@ -1,4 +1,4 @@
-%>@brief Creates animated GIF from the Evolving Clustering process
+%>@brief Shows evolution of classifier eClass, saves animated GIF.
 %>@ingroup demo
 %>@file
 %>
@@ -66,8 +66,8 @@ dstest = ds01_norm01.map_rows(idxs{1, 2});
 pars = struct();
 pars.x_range = [-2.5, 2.5];
 pars.y_range = [-2.5, 2.5];
-pars.x_no = 50;
-pars.y_no = 50;
+pars.x_no = 30;
+pars.y_no = 30;
 pars.ds_train = dstrain;
 % pars.ds_test = dstest;
 pars.flag_last_point = 1;

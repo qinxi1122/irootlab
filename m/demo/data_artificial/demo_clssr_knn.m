@@ -1,11 +1,9 @@
-%>@brief Demonstrates use of clssr_knn - k-Nearest Neighbours
+%>@brief Draws classification regions for classifier k-NN
 %>@file
 %>@ingroup demo
 %>
 %>@sa clssr_knn
 %>
-%>
-%> @image html demo_clssr_knn_result01.png
 
 dslila = load_data_userdata_nc2nf2;
 

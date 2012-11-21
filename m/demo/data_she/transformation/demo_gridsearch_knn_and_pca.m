@@ -2,7 +2,6 @@
 %>@ingroup demo
 %>@file
 %>
-%> @image html knn_k_result.png
 
 %Dataset load
 ds01 = load_data_she5trays();
