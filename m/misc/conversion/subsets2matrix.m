@@ -3,8 +3,10 @@
 %> @brief Converts a cell of subsets into a matrix.
 %>
 %> If the subset size varies, fills in smaller subsets with NaN's
-%>
-%> subsets is e.g. log_fselrepeater::subsets
+%> @sa log_fselrepeater
+%
+%> @param subsets as in log_fselrepeater::subsets
+%> @return Matrix
 function out = subsets2matrix(subsets)
 nsub = numel(subsets);
 numelmax = max(cellfun(@numel, subsets));

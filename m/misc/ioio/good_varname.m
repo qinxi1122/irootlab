@@ -1,6 +1,8 @@
 %>@ingroup ioio string
 %>@file
 %>brief Replaces invalid characters in name with an underscore ('_')
+%
+%> @param name
 function name = good_varname(name)
 len = size(name, 2);
 for i = 1:len

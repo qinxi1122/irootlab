@@ -1,4 +1,4 @@
-%> @ingroup globals code
+%> @ingroup globals codegen
 %> @file
 %> @brief Adds string to auto-generated code buffer (without executing)
 %> @sa ircode_eval.m

@@ -5,10 +5,10 @@
 %> @sa bc_poly.m, uip_pre_bc_poly.m
 classdef pre_bc_poly < pre_bc
     properties
-        %> See bc_poly.m
-        order = 7;
-        %> See bc_poly.m
-        epsilon = 50;
+        %> =5. See bc_poly.m
+        order = 5;
+        %> =[] (auto). See bc_poly.m
+        epsilon = [];
         contaminant_data = [];
         contaminant_idxs = [];
     end;

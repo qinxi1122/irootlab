@@ -6,6 +6,7 @@
 %> @param perc=0 Percent
 %> @param i=[] Iteration number
 %> @param n=[] Number of iterations
+%> @return prgrss
 function prgrss = progress2_change(prgrss, title, perc, i, n)
 
 if ~(nargin < 2 || isempty(title))

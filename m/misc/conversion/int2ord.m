@@ -5,12 +5,13 @@
 %> @param idx Integer number
 function out = int2ord(idx)
 
-
-if idx == 1
+mo10 = mod(idx, 10);
+mo100 = mod(idx, 100);
+if mo10 == 1 && ~(mo100 == 11)
     s = 'st';
-elseif idx == 2
+elseif mo10 == 2 && ~(mo100 == 12)
     s = 'nd';
-elseif idx == 3
+elseif mo10 == 3 && ~(mo100 == 13)
     s = 'rd';
 else
     s = 'th';

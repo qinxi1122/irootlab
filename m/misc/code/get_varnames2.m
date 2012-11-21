@@ -1,4 +1,4 @@
-%>@ingroup code
+%>@ingroup codegen
 %> @file
 %> @brief Variable names in workspace matching class
 %>

@@ -2,17 +2,7 @@
 %>@file
 %>@brief Returns HTML stylesheet
 %>
-%> <h3>Available CSS classes:
-%> @arg @c
-%> @arg @c nu Number (right-aligned)
-%> @arg @c her right header
-%> @arg @c hel Left header
-%> @arg @c hec Center header
-%> @arg @c ce center alignment
-%> @arg @c ri right alignment
-%> @arg @c sma Small text
-%> @arg @c bo Border width 1
-%> @arg @c bob Border bottom width 2
+%> Check source code for available styles
 
 function s = stylesheet()
 s = [

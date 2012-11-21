@@ -2,13 +2,15 @@
 %> @file
 %> @brief Asserts the @c PATH global is present and initialized.
 %>
-%> The @c PATH global is a structuer with the following fields
-%> @arg @c data Default path to datasets (datatool will point to this directory at the file load box)
+%> Please check the source code for reference.
 function path_assert()
 global PATH;
 if isempty(PATH)
+    % Default load path in objtool and datatool
     PATH.data_load = '.';
+    % Default save path in objtool and datatool
     PATH.data_save = '.';
+    % Default load path in mergetool
     PATH.data_spectra = '.';
     
     % default documentation path

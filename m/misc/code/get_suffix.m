@@ -1,4 +1,4 @@
-%>@ingroup code
+%>@ingroup codegen string
 %> @file
 %> @brief Finds a suffix based on the class name. Isolates the bit after the last undescore
 %> @todo Could respond to IRoot setup to change the way new generated objects are named, i.e. how they appear in objtool and datatool

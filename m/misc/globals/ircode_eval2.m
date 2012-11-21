@@ -1,4 +1,4 @@
-%> @ingroup globals code
+%> @ingroup globals codegen
 %> @file
 %> @brief Same as @ref ircode_eval() but without the assestion and parameter check.
 %> @sa ircode_eval.m

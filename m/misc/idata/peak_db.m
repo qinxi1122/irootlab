@@ -1,12 +1,12 @@
 %>@ingroup idata
 %>@file
-%>@brief Chemical-wavenumber database
+%>@brief Chemical-wavenumber correspondence
 %> 
 %> Returns a table with substance names, peak centres and closest indexes in
 %> @c x, if @c x is provided.
 %
-%> @param x
-%> @param flag_table = 0
+%> @param x (optional)
+%> @param flag_table =0
 function Z = peak_db(x, flag_table)
 
 

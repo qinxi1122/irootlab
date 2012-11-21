@@ -7,7 +7,7 @@
 %> (trimdot=1)
 %>
 %> data.obsnames will contain the file names
-%> @sa irdata
+%> @sa mergetool
 
 %> @param wild
 %> @param trimdot See pirtool

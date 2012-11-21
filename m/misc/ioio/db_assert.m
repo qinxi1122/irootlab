@@ -1,6 +1,8 @@
 %>@ingroup globals ioio reinforcement setupgroup sheware
 %>@file
-%>@brief Makes sure the DB global exists
+%>@brief Initializes the DB global
+%>
+%> Please check the source code for fields and defaults.
 function db_assert()
 global DB;
 if isempty(DB)

@@ -19,7 +19,7 @@ if ~exist('epsilon', 'var') || epsilon <= 0
     % epsilon will be compared to a vector norm. If we assume the error at all elements to have the same importance, it
     % the norm of the error will be something like sqrt(nf*error_i)
     % For the tolerance to be 1 when nf = 1500 (empirically found to work) the formula below is set.
-    epsilon = sqrt(1/30*nf);
+    epsilon = sqrt(1/90*nf);
 end;
 
 flag_cont = exist('Xcont', 'var') && ~isempty(Xcont); % take contaminants into account?

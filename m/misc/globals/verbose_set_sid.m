@@ -1,6 +1,6 @@
-%> @ingroup globals usercomm
+%> @ingroup globals usercomm parallelgroup
 %> @file
-%> @brief Asserts the @c VERBOSE global is present and initialized.
+%> @brief Sets VERBOSE.sid
 function verbose_set_sid(s)
 verbose_assert();
 global VERBOSE;

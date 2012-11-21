@@ -1,9 +1,9 @@
 %>@ingroup graphicsapi
 %>@file
-%>@brief Returns a color (please expect a 3-element RGB vector)
+%>@brief Returns a color (3-element RGB vector)
 %
 %> @param i
-%> @return x
+%> @return x 3-element RGB vector
 function x = find_color(i)
 fig_assert();
 global COLORS;

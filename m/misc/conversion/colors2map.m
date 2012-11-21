@@ -7,7 +7,7 @@
 %>   @arg 3 elements: {[] | "colormap name", non-informative color start, non-informative color end}
 %>   @arg 4 elements: {informative color start, informative color end, non-informative color start, non-informative color end}
 %> @note the empty cases ("[]") mean that find_color_stackedhist() will be used; the 3-element case only accepts an empty first element
-%>
+%
 %> @param no_hists
 %> @param no_informative
 %> @return <code>[cm, leg_cm, leg_la]</code> @cm is a color map with @c no_hists rows; @c leg_cm is a color map with repeating colors grouped;

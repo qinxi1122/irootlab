@@ -1,7 +1,7 @@
 %> @file
-%> @ingroup code
+%> @ingroup codegen
 
-%> @ingroup code
+%> @ingroup codegen
 %> @brief MATLAB code generation to create, boot, train and use blocks.
 %>
 %> This class is used by @ref datatool.m and @ref objtool.m to perform their tasks.

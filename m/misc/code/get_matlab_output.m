@@ -1,4 +1,4 @@
-%>@ingroup code
+%>@ingroup codegen string
 %>@file
 %>@brief Returns a string containing the text that MATLAB shows when you type the variable name in the command prompt
 

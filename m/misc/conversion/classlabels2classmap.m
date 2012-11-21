@@ -1,7 +1,7 @@
 %> @ingroup conversion classlabelsgroup
 %> @file
 %> @brief Creates class map from a list of class labels
-%
+%>
 %> This functions searches from a list of labels within the @c classlabels complete list and returns their indexes. It can also work in complement mode (xor with complete list). It searches within one combination of class levels.
 %
 %> @param classlabels Full list of class labels

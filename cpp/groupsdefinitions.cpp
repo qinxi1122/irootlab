@@ -21,7 +21,7 @@ These functions provide the user with feedback on system activity (messages, log
 
 @defgroup setupgroup Setup routines
 
-@defgroup code Code generation routines
+@defgroup codegen Code generation routines
 These routines work with MATLAB code generation, and manipulation of variables in the workspace.
 
 @defgroup classlabelsgroup Routines to manipulate/convert data classes and class labels

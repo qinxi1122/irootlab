@@ -4,6 +4,7 @@
 %> @brief Determines number of columns and delimiter from a CSV file
 %>
 %> Delimiter is determined by maximum probability among a list of the most common CSV delimiters
+%
 %> @param filename
 %> @retval [no_cols, deli]
 function [no_cols, deli] = get_no_cols_deli(filename)

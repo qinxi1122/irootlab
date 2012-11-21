@@ -1,7 +1,6 @@
 %> @ingroup globals usercomm
 %> @file
-%> @ingroup log
-%> @brief Resets the output log filename
+%> @brief Resets the output vebose filename
 function verbose_reset()
 verbose_assert();
 global VERBOSE;

@@ -1,9 +1,9 @@
-%>@ingroup code
+%>@ingroup codegen
 %> @file
 %> @brief Finds an unused variable name in the workspace
 %
 %> @param prefix
-%> @retval name_new
+%> @return name_new
 function name_new = find_varname(prefix)
 i = 1;
 while 1
