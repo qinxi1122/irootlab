@@ -1,6 +1,7 @@
 %> @file
 %> @ingroup introspection
 %> @brief Returns an array of mapitem objects matching the informed criteria
+%> @sa objtool.m, blockmenu.m, demo_classes_txt.m
 %
 %> @param classname String containing the name of the root class
 %> @param inputclass =[] Optional filter: if informed, only classes whose "inputclass" property match this parameter will be included in the result

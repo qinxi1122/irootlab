@@ -1,6 +1,7 @@
 %> @file
 %> @ingroup introspection globals
 %> @brief Asserts the @c CLASSMAP global is present and initialized.
+%> @sa classmap_compile.m
 
 function classmap_assert()
 global CLASSMAP;

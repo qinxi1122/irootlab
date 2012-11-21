@@ -20,7 +20,7 @@ classdef fsg_test_t < fsg_test
     end;
     
     methods
-        function o = fsg_test_t(o)
+        function o = fsg_test_t()
             o.classtitle = 'T-Test';
             o.flag_pairwise = 1;
             o.flag_univariate = 1;

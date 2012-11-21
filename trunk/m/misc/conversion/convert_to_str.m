@@ -1,4 +1,4 @@
-%> @ingroup conversion string code
+%> @ingroup conversion string codegen
 %> @file
 %> @brief Makes it into something that can be eval()'ed
 %

@@ -1,13 +1,18 @@
 %>@ingroup conversion string
 %> @file
 %> @brief Creates CSV string to be saved into CSV file
+%>
 %
 %> @param results_table Cell of strings or numbers
+%> @param deli =TAB. Delimiter
 %> @return CSV-formatted string
-function s = cell2csv(results_table)
+function s = cell2csv(results_table, deli)
+if nargin < 2 || isempty(deli)
+    deli = sprintf('\t');
+end;
+
 chars_elim = '[]''';
 lce = length(chars_elim);
-% disp('INFO: CSV delimiter is a TAB character.');
 
 % Converts all elements to str
 [rows, cols] = size(results_table);
@@ -57,7 +62,7 @@ for i = 1:rows
         ilen = length(results_table{i, j});
 
         if j > 1
-            s(iptr) = sprintf('\t');
+            s(iptr) = deli;
             iptr = iptr+1;
         end;
         s(iptr:iptr+ilen-1) = results_table{i, j};

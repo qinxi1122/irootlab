@@ -1,8 +1,8 @@
 %>@ingroup graphicsapi globals idata
 %>@file
-%>@brief Clears colors, styles, fonts globals
+%>@brief Clears globals colors, styles, fonts, etc
 function fig_reset()
-global COLORS MARKERS MARKERSIZES FONT FONTSIZE LINESTYLES SCALE;
+global COLORS MARKERS MARKERSIZES FONT FONTSIZE LINESTYLES SCALE COLORS_STACKEDHIST;
 
 COLORS = [];
 MARKERS = [];
@@ -11,3 +11,4 @@ FONT = [];
 FONTSIZE = [];
 LINESTYLES = [];
 SCALE = [];
+COLORS_STACKEDHIST = [];

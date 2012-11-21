@@ -3,7 +3,7 @@
 %>@brief Returns a color
 %
 %> @param i
-%> @return x
+%> @return x 3-element RGB vector
 function x = find_color_stackedhist(i)
 fig_assert();
 global COLORS_STACKEDHIST;

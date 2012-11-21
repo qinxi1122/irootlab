@@ -1,6 +1,8 @@
-%> @ingroup globals code
+%> @ingroup globals codegen
 %> @file
-%> @brief Asserts the @c IRCODE global is present and initialized.
+%> @brief Initializes the @c IRCODE global, if not present.
+%>
+%> For reference on the IRCODE global, please check the source code of this file.
 function list = ircode_assert()
 global IRCODE;
 if isempty(IRCODE) || isempty(IRCODE.s)

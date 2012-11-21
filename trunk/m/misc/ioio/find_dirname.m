@@ -2,6 +2,8 @@
 %>@file
 %>@brief Finds a name for a new directory
 %>
+%
+%> @param prefix For directory name as "prefix<nnnn>"
 function name = find_dirname(prefix)
 
 flag_ok = 0;

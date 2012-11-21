@@ -2,7 +2,9 @@
 %> @file
 %> @brief Converts splitidxs to cell of maps
 %>
-%> @todo who uses this? classsplitter?
+%> Used by irdata
+%>
+%> @sa irdata::split_splitidxs()
 %
 %>@param splitidxs from @ref irdata
 %>@return \em maps

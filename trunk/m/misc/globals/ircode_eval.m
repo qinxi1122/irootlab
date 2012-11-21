@@ -1,4 +1,4 @@
-%> @ingroup globals code
+%> @ingroup globals codegen
 %> @file
 %> @brief Evaluates code in 'base' workspace, adds to IRCODE.s and to the IRootLab log editbox if open
 %>

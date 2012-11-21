@@ -4,9 +4,9 @@
 %>
 %> Re-numbering occurs so as to remove gaps in the original sequence.
 %>
-%> @todo who uses this? Add see also
-%>
 %> @warning Operates zero-based
+%>
+%> @sa blmisc_classes_from_clus, vis_image, vis_image_cat
 %
 %> @param y
 %> @return <code>[z]</code> or <code>[z, neworder]</code>

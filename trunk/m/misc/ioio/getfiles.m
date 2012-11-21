@@ -1,5 +1,6 @@
 %>@file
 %>@brief File list getter (not recursive)
+%> @ingroup ioio
 %>
 %> @param wild ='*'. E.g. '*.mat'
 %> @param patt_match (regular expression) If specified, directories will have to match this pattern

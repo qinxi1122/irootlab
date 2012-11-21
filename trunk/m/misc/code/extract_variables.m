@@ -1,8 +1,13 @@
-%>@ingroup code
+%>@ingroup codegen
 %>@file
 %>@brief Creates variables in the base workspace from an array or cell
 %>
-%> @params 
+%> Variable names are extracted as (prefix)_(nnnn)_(suffix)
+%>
+%
+%> @param in Array or cell
+%> @param suffix (optional) Suffix for variable names
+%> @param prefix (optional) Prefix for variable names
 function extract_variables(in, suffix, prefix)
 
 if ~iscell(in)
