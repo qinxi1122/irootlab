@@ -2,7 +2,6 @@
 %>@ingroup demo
 %>@file
 %>
-%> @image html knn_k_result.png
 
 %Dataset load
 ds01 = load_data_she5trays();
@@ -50,7 +49,7 @@ log_gridsearch01 = gridsearch01.use(ds01_stdhie01);
 out = log_gridsearch01.extract_sovaluess();
 sovalues_gridsearch01 = out{1, 1};
 
-u = vis_sovalues_drawsubplot();
+u = vis_sovalues_drawplot();
 u.dimspec = {[0 0], [1 2]};
 u.valuesfieldname = 'rates';
 u.ylimits = [];
@@ -58,10 +57,11 @@ u.xticks = [];
 u.flag_star = 1;
 u.xticklabels = {};
 u.flag_hachure = 1;
-vis_sovalues_drawsubplot01 = u;
+vis_sovalues_drawplot01 = u;
 
 figure;
-vis_sovalues_drawsubplot01.use(sovalues_gridsearch01);
+vis_sovalues_drawplot01.use(sovalues_gridsearch01);
 title(sovalues_gridsearch01.title);
+legend off;
 maximize_window([], 2.5);
 save_as_png([], 'irr_knn_k');

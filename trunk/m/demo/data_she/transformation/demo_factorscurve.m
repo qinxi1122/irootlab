@@ -1,4 +1,4 @@
-%> @brief Calculates a curve (number of factors)X(Classification rate)
+%> @brief (number of factors)X(Classification rate) curve
 %> @ingroup demo
 %> @file
 

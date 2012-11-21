@@ -1,4 +1,4 @@
-%> @brief Demonstrates the reptt_incr class with classifier eClass
+%> @brief Increase of classification rate as eClass is incrementally trained
 %> @file
 %> @ingroup demo
 %>
@@ -109,5 +109,7 @@ vis_means01.use(irdata_incr01);
 
 ylim([min(irdata_incr01.X(:))*0.975, max(irdata_incr01.X(:))*1.025]);
 make_box();
+legend off;
 title('Individual runs and average curve');
-
+maximize_window([], [], .8);
+save_as_png([], 'irr_eclass_incremental');

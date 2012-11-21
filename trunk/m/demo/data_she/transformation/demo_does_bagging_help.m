@@ -1,14 +1,7 @@
-%> Tries bagging with an increasing number of classifiers, to see if classification improves.
+%> Tracking the improvement of classification with addition of component classifiers
 %>@file
 %>@ingroup demo
 %>
-%> @image html does_bagging_help_result.png
-%> <center>Image obtained showing the number of classifiers \em versus classification rate.</center>
-%>
-%> In comparison:
-%>@verbatim
-%>Single classifier: specificity: 92.6267%; sensitivity: 90.4306%
-%>@endverbatim
 %> @sa aggr_bag
 
 

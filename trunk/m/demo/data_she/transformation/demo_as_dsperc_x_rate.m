@@ -1,9 +1,8 @@
-%>@brief Demonstrates use of the as_dsperc_x_rate - (dataset %) x (classification rate %) curve
+%>@brief (dataset %) x (classification rate %) curve to check sample size
 %>@ingroup demo
 %>@file
 %>
-%> @image html Screenshot-demo_as_dsperc_x_rate.png
-%> <center>Image obtained through the as_dsperc_x_rate::draw_curve() method.</center>
+%> Allows to verify whether the classification rate would tend to improve if there were more data; or whether apparently there is more data than needed.
 %>
 %> @sa as_dsperc_x_rate
 fig_assert();
@@ -31,7 +30,10 @@ clssr_d01 = o;
 o = clssr_d();
 o = o.setbatch({'type', 'quadratic'});
 o.title = 'QDC';
-clssr_d02 = o;
+clssr_d02 = o;%o;
+
+clssr_d03 = clssr_svm();%o;
+clssr_d03.title = 'SVM';
 
 
 o = estlog_classxclass();
@@ -58,7 +60,7 @@ o = reptt_blockcube();
 o = o.setbatch({'postpr_test', [], ...
 'postpr_est', decider01, ...
 'log_mold', {estlog_classxclass01}, ...
-'block_mold', {clssr_d01, clssr_d02}, ...
+'block_mold', {clssr_d01, clssr_d02, clssr_d03}, ...
 'sgs', sgs01});
 cube = o;
 

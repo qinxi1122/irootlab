@@ -1,10 +1,7 @@
-%>@brief Grid search to SVM's best c and gamma from SVM (Gaussian Kernel)
+%>@brief Grid search optimization of SVM (C, gamma) (Gaussian Kernel)
 %>@ingroup demo
 %>@file
 %>
-%> @image html svm_c_gamma_result01.png
-%> @image html svm_c_gamma_result02.png
-
 
 %Dataset load
 % ds01 = load_data_she5trays();
@@ -68,7 +65,7 @@ figure;
 fig_assert();
 global SCALE;
 no = numel(out);
-SCALE = 1.6-no/5*0.8;
+SCALE = 0.7;
 for i = 1:no
     subplot(2, 3, i);
     vis_sovalues_drawimage01.use(out{i});

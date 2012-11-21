@@ -1,4 +1,4 @@
-%>@brief Demonstrates use of the rater class
+%>@brief Classification of Chemicals using LDC and cross-validation
 %>@ingroup demos
 %>@file
 %>

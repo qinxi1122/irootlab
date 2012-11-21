@@ -1,4 +1,4 @@
-%>@brief Demonstrates use of clssr_tree - Decision Tree classifier
+%>@brief Draws classification regions for the Tree classifier
 %>@file
 %>@ingroup demo
 %>
