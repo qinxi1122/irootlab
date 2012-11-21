@@ -11,7 +11,8 @@ end;
 
 
 figure;
-asd = input('Please resize the figure and press <Enter> ');
+% asd = input('Please resize the figure and press <Enter> ');
+maximize_window([], 1.2, 0.7);
 
 global im map i_frame;
 clear im map;

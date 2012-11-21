@@ -2,7 +2,7 @@
 %>
 classdef fsg_test_t < fsg_test
     properties
-        %> Whether to make result as -log10(p_value)
+        %> =1. If 1, result of test is -log10(p-value); if 0, result is p-value
         flag_logtake = 1;
     end;
 

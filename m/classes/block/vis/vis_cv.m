@@ -3,13 +3,21 @@
 %> @sa uip_vis_cv.m
 classdef vis_cv < vis
     properties
+        %> Input dataset. This dataset is used to calculate the average spectrum for each class
         data_input;
+        %> See vis_loadings::data_hint
         data_hint = [];
+        %> See vis_loadings::idx_class_origin
         idx_class_origin = 0;
+        %> See vis_loadings::flag_trace_minalt
         flag_trace_minalt = 0;
+        %> See vis_loadings::flag_abs
         flag_abs = 0;
+        %> See vis_loadings::peakdetector
         peakdetector = [];
+        %> See vis_loadings::flag_envelope
         flag_envelope = 0;
+        %> See vis_loadings::flag_bmtable
         flag_bmtable = 0;
     end;
     

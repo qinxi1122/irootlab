@@ -20,7 +20,7 @@ classdef fcon_mcr < fcon_linear
     end;
     
     methods
-        function o = fcon_mcr(o)
+        function o = fcon_mcr()
             o.classtitle = 'Multivariate Curve Resolution';
             o.short = 'MCR';
             o.flag_trainable = 0;
