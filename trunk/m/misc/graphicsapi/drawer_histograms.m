@@ -16,10 +16,7 @@ classdef drawer_histograms
         function hist = draw(o, log)
             ds_hint = load_hintdataset();
 
-            
-            
-            
-            
+
             % First shows the individual individual per-selection-order histograms as lines overlapping each other
             ssp = subsetsprocessor(); %#ok<CPROP,PROP>
             hist = ssp.use(log);

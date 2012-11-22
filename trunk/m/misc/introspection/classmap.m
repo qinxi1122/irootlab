@@ -1,5 +1,7 @@
 %> @file
 %>@ingroup introspection
+%>
+%> @sa classmap_assert.m, classmap_compile.m
 
 %> @brief Scans IRootLab directories and build hierarchical class maps
 classdef classmap < handle

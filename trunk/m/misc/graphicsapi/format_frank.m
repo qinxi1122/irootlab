@@ -4,7 +4,7 @@
 %
 %> @param F =gcf()
 %> @param scale =1 Obsolete. Uses global SCALE now
-%> @param additional_handles other handles to be formatted as well (that wouldn't be automatically picked)
+%> @param handles other handles to be formatted as well (that wouldn't be automatically picked)
 function format_frank(F, scale, handles)
 fig_assert();
 global FONT FONTSIZE SCALE;

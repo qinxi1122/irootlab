@@ -5,7 +5,6 @@
 %> @param st Struct with fields to be used to create the empty struct, OR cell array of field names (as strings)
 function out = emptystruct(st)
 
-
 if iscell(st)
     ff = st;
 else

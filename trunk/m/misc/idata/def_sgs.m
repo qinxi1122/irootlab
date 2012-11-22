@@ -1,7 +1,8 @@
-%>@ingroup idata
+%>@ingroup idata globals
 %> @file
 %> @brief Returns the default SGS
-%>
+%> @sa more_assert.m
+%
 %> @param out If passed, returns it; otherwise, returns a default object
 function out = def_sgs(out)
 if nargin == 0 || isempty(out)

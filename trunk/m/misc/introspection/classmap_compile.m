@@ -1,6 +1,7 @@
 %> @file
 %> @ingroup introspection globals
 %> @brief Creates the @c CLASSMAP global and saves it into the "misc" directory
+%> @sa classmap_assert.m
 
 function classmap_compile()
 global CLASSMAP;
