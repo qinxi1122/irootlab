@@ -1,4 +1,4 @@
-%> Resampling - uses MATLAB's DSP Toolbox @c resample() function
+%> @brief Resampling - uses MATLAB's DSP Toolbox @c resample() function
 %>
 %> @sa uip_fcon_resample.m
 classdef fcon_resample < fcon

@@ -1,4 +1,4 @@
-%> Maxima/minima detection
+%> @brief Maxima/minima detection
 %>
 %> Finds several maxima/minima within several ranges specified by the @c map property. The new variables will contain the values of the x-axis positions (wavenumbers) of each minimum/maximum detected.
 %>

@@ -1,4 +1,4 @@
-%> Mutant block
+%> @brief "Mutant" block / metablock
 %>
 %> At train(), becomes the output of its block
 classdef mutant < block

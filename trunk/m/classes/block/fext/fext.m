@@ -1,4 +1,4 @@
-%> Feature Extraction (Fext) base class
+%> @brief Feature Extraction (Fext) base class
 %>
 %> Feature Extraction has its @ref flag_train_inliers_only set to true.
 classdef fext < block

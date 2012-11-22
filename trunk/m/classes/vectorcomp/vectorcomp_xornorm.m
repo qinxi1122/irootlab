@@ -1,8 +1,10 @@
 %> Vector Comparer - Normalized Xor
 %>
 %> Measure of diversity. Vectors must be of same size. 
-%> @todo I think this came from Kuncheva's book. Vectors are probably boolean. It seems that the formula lacks a sum(). Never used anyway, I
-%> didn't come to the point of refining classifier aggregation.
+%>
+%> <h3>References</h3>
+﻿%> [1] L. I. Kuncheva, Combining Pattern Classifiers: Methods and Algorithms. Hoboken, New Jersey, USA: Wiley, 2004.
+
 classdef vectorcomp_xornorm < vectorcomp
     methods(Access=protected)
         function z = do_test(o, v1, v2)

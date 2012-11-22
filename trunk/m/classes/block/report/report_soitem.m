@@ -1,4 +1,4 @@
-%> Base for all reports that operate on a @ref soitem object
+%> @brief Base for all reports that operate on a @ref soitem object
 classdef report_soitem < irreport
     methods
         function o = report_soitem()

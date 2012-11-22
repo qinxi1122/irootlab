@@ -1,4 +1,8 @@
-%> Fisher's Linear Discriminant Analysis
+%> @brief Sparse LDA
+%>
+%> <h3>References</h3>
+%> Hastie et al, Elements of Statistical Learning, 2nd ed. Springer.
+%>
 %> @sa fisher_ld.m, uip_fcon_lda.m
 classdef fcon_slda < fcon_linear
     properties

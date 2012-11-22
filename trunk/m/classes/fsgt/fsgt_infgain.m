@@ -1,4 +1,6 @@
 %> Information Gain split criterion for tree classifiers
+%>
+%> @sa clssr_tree, fsgt
 classdef fsgt_infgain < fsgt
     methods
         %> Credit:

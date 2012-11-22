@@ -1,4 +1,4 @@
-%> Hachures showing intervals
+%> @brief Hachures showing intervals
 classdef vis_hachures < vis
     methods
         function o = vis_hachures()

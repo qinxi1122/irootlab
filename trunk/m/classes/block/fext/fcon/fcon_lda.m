@@ -1,4 +1,4 @@
-%> Fisher's Linear Discriminant Analysis
+%> @brief Fisher's Linear Discriminant Analysis
 %> @sa fisher_ld.m, uip_fcon_lda.m
 classdef fcon_lda < fcon_linear
     properties

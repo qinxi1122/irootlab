@@ -1,4 +1,4 @@
-%> Trim Negatives
+%> @brief Trim Negatives to zero
 %>
 %> Forces any negative value to zero
 classdef pre_trimneg < pre

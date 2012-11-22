@@ -1,4 +1,4 @@
-%> Dataset loader for OPUS "0" files
+%> @brief Dataset loader for OPUS "0" files
 %>
 %> Uses routine written by Michael Nasse during his time at Synchrotron Radiation Centre in Wisconsin, USA
 %>

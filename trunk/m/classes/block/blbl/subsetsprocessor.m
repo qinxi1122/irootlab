@@ -1,5 +1,6 @@
 %>@ingroup maths
 %>@file
+%
 %>@brief Processor of a set of subsets of features
 %>
 %> @arg Histogram generation

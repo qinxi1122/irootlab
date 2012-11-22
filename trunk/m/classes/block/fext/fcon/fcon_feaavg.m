@@ -1,4 +1,4 @@
-%> Decimation - makes averages of adjacent features
+%> @brief Decimation - makes averages of adjacent features
 classdef fcon_feaavg < fcon
     properties
         %> = 2. Average every (factor) features. Curves will have floor(original_size*1/factor) number of point after averaging

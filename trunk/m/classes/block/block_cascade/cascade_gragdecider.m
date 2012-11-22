@@ -1,4 +1,4 @@
-%> Cascade block: grag_mean -> decider
+%> @brief Cascade block: grag_mean -> decider
 classdef cascade_gragdecider < block_cascade_base
     methods
         function o = cascade_gragdecider()

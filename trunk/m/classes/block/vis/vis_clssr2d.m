@@ -1,4 +1,4 @@
-%> Classification Domain
+%> @brief Classification Domain - classification regions etc
 classdef vis_clssr2d < vis
     methods
         function o = vis_clssr2d(o)

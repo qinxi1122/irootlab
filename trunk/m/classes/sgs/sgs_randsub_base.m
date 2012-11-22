@@ -1,5 +1,7 @@
 %> @brief Random Sub-sampling base class
 %>
+%> http://en.wikipedia.org/wiki/Cross-validation_%28statistics%29#Repeated_random_sub-sampling_validation
+%>
 %> @sa uip_sgs_randsub_base.m
 classdef sgs_randsub_base < sgs
     properties(Access=protected)

@@ -1,4 +1,4 @@
-%> ?
+%> @brief 
 classdef report_soitem_merger_merger_fitest < report_soitem
     properties
         %> =(auto). Minimum value for the colour scaling of the HTML cells

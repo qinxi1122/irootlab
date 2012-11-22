@@ -1,4 +1,4 @@
-%> Feature Construction - Linear Transformations base class
+%> @brief Feature Construction - Linear Transformations base class
 classdef fcon_linear < fcon
     properties
         %> Prefix for the factos space variables, e.g., "PC", "LD"

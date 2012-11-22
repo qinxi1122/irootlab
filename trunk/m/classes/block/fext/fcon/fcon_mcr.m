@@ -1,4 +1,4 @@
-%> Multivariate Curve Resolution
+%> @brief Multivariate Curve Resolution
 %>
 %> Uses the Toolbox from the University of Barcelona (http://www.mcrals.info)
 %>

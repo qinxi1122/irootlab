@@ -1,4 +1,4 @@
-%> Covariance matrix
+%> @brief Covariance matrix
 %>
 %> @sa data_draw_covariance.m, uip_vis_cov.m
 classdef vis_cov < vis

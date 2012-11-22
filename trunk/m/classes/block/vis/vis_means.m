@@ -1,4 +1,4 @@
-%> Class means
+%> @brief Visualization - Class means
 classdef vis_means < vis
     methods
         function o = vis_means(o)

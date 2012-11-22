@@ -1,4 +1,3 @@
-%> @ingroup fsg
 %> @brief Feature subset grader that uses a statistical test
 classdef fsg_test < fsg
     methods(Access=protected)

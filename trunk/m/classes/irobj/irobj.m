@@ -1,6 +1,6 @@
 %> @brief Base class
 %>
-%> <h2>Inheriting the "irobj" class
+%> <h3>Inheriting the "irobj" class
 %>
 %> @arg Check for descendants, as there may be a more suitable class to be inherited
 %> @arg Create a GUI to edit properties from @ref objtool or @ref datatool. This step is optional, but make sure you set @ref flag_ui or @ref flag_params to 0 at the constructor
@@ -22,10 +22,10 @@
 %> <code>uip_<corresponding class name>.fig</code>. The latter is the FIG created using GUIDE.
 %> 
 %> @arg set <code>flag_ui=1</code> and <code>flag_params=1</code> at the constructor
-%> @arg Open an existing properties GUI in GUIDE, e.g <code>guide uip_fcon_pca</code>, and save it with the appropriate name.
+%> @arg Use an existing GUI as template. Open an existing properties GUI in GUIDE, e.g <code>guide uip_fcon_pca</code>, and save it with the appropriate name.
 %> @arg Make the necessary changes to the GUI and its source code.
 %>
-%> <h3>Update the class map</h3>
+%> <h3>To make it appear in objtool, type</h3>
 %> @code
 %> classmap_compile
 %> @endcode

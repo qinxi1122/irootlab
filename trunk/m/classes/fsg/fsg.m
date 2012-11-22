@@ -1,5 +1,4 @@
-%> @ingroup fsg
-%> FSG - Feature Subset Grader
+%> @brief FSG - Feature Subset Grader
 %>
 %> FSG is always equipped with cross-validation capability. Descendant classes must always implement the
 %> cross-validation and no cross-validation cases. Whether there is cross-validation is determining by the @ref sgs

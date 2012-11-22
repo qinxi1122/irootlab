@@ -1,9 +1,9 @@
-%> @brief Blocks that operate something else than datasets
+%> @brief Other blocks
 %>
 classdef blbl < block;
     methods
         function o = blbl(o)
-            o.classtitle = 'Block Operator';
+            o.classtitle = 'Other blocks';
         end;
     end;
 end

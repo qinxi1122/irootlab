@@ -1,4 +1,6 @@
 %> @brief Peak Detector
+%>
+% @sa detect_peaks
 classdef peakdetector < irobj
     properties
         %> =0. Minimum vertical distance between peak and zero

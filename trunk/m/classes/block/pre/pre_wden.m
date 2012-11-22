@@ -1,4 +1,4 @@
-%> Wavelet De-noising block
+%> @brief Wavelet De-noising block
 %>
 %> Wavelet de-noising uses the following techniques:
 %> @arg Symmetric signal extension

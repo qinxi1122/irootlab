@@ -1,4 +1,4 @@
-%> Passes on to report_estlog, to show confusion matrices
+%> @brief Passes on to report_estlog, to show confusion matrices
 %>
 classdef report_soitem_items < report_soitem
     methods

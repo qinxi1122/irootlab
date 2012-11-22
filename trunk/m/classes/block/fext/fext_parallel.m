@@ -1,4 +1,4 @@
-%> @brief Combines two or more blocks in parallel
+%> @brief Combines features extracted from two or more blocks in parallel
 classdef fext_parallel < fext
     properties
         blocks;

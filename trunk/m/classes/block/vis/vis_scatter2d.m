@@ -1,4 +1,4 @@
-%> 2D Scatterplot
+%> @brief 2D Scatterplot
 %> @sa data_draw_scatter_2d.m, uip_vis_scatter2d.m
 classdef vis_scatter2d < vis
     properties

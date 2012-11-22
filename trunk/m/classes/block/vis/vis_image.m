@@ -1,4 +1,4 @@
-%> Image map
+%> @brief Image map
 %>
 %> @sa uip_vis_image.m
 classdef vis_image < vis

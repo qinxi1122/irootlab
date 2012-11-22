@@ -1,4 +1,4 @@
-%> Pre-processing block base class
+%> @brief Pre-processing block base class
 classdef pre < block
     methods
         function o = pre(o)

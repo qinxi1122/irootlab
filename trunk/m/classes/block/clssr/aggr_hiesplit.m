@@ -1,4 +1,4 @@
-%> Class-Hierarchical Training Data Split
+%> @brief Class-Hierarchical Training Data Split
 %>
 %> Creates one classifier per class when taking the @c hie_split class hierarchical levels into account for splitting
 %> the training dataset.

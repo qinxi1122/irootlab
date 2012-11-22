@@ -1,4 +1,8 @@
-%> Dataset class - cluster data
+%> @brief Dataset class - cluster data
+%>
+%> These datasets are outputted by a @ref clus block
+%>
+%> @sa clus
 classdef irdata_clus < irdata
     methods
         %> Constructor

@@ -1,4 +1,4 @@
-%> All curves in dataset
+%> @brief Visualization - All curves in dataset
 classdef vis_alldata < vis
     methods
         function o = vis_alldata(o)
