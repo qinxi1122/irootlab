@@ -54,7 +54,7 @@ if isempty(idx)
 end;
 handles.input.rootclassname = varargin{1};
 handles.input.flag_modal = 0;
-handles.databuttonclass = 'pre'; % default data button to be down
+handles.databuttonclass = 'vis'; % default data button to be down
 handles.modebutton = 'properties'; % default mode button to be down
 guidata(hObject, handles);
 

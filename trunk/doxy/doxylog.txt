@@ -1,16 +1,22 @@
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/cpp/groupsdefinitions.cpp:56: group assert: ignoring title "Assertions" that does not match old title "Reinforcement routines"
+
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/report/report_soitem.m:1: warning: unable to resolve reference to `soitem' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/vis/vis_hists.m:1: warning: unable to resolve reference to `as_fsel_hist' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/bc_rubber.m:14: warning: unable to resolve reference to `no' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/bc_rubber.m:14: warning: unable to resolve reference to `nf' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/colors2map.m:13: warning: Found unknown command `\cm'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/bc_rubber.m:19: warning: unable to resolve reference to `no' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/bc_rubber.m:19: warning: unable to resolve reference to `nf' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/colors2map.m:17: warning: Found unknown command `\cm'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/confusion_str.m:6: warning: argument 'auto' of command @param is not found in the argument list of confusion_str(in CC, in rowlabels, in collabels, in flag_perc)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/confusion_str.m:6: warning: argument 'detect' of command @param is not found in the argument list of confusion_str(in CC, in rowlabels, in collabels, in flag_perc)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/create_default_objects.m:1: warning: Found unknown command `\params'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/draw/data_draw_scatter_2d.m:5: warning: argument '0' of command @param is not found in the argument list of data_draw_scatter_2d(in data, in idx_fea, in confidences, in textmode)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/draw/data_draw_scatter_3d.m:5: warning: argument '0' of command @param is not found in the argument list of data_draw_scatter_3d(in data, in idx_fea, in confidences, in textmode)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/tools/data_get_cv.m:18: warning: unable to resolve reference to `nf' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/tools/data_get_cv.m:18: warning: unable to resolve reference to `nc' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/data_eliminate_var0.m:9: warning: argument 'data' of command @param is not found in the argument list of data_eliminate_var0(in ds, in threshold)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/data_eliminate_var0.m:9: warning: The following parameters of data_eliminate_var0(in ds, in threshold) are not documented:
+  parameter 'ds'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/tools/data_get_cv.m:21: warning: unable to resolve reference to `nf' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/tools/data_get_cv.m:21: warning: unable to resolve reference to `nc' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/def_subsetsprocessors.m:9: warning: argument 'Returns' of command @param is not found in the argument list of def_subsetsprocessors()
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/detect_peaks.m:13: warning: argument '0' of command @param is not found in the argument list of detect_peaks(in y, in minalt, in minhei, in mindist)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/detect_peaks.m:13: warning: argument '0' of command @param is not found in the argument list of detect_peaks(in y, in minalt, in minhei, in mindist)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/detect_peaks.m:13: warning: argument '1' of command @param is not found in the argument list of detect_peaks(in y, in minalt, in minhei, in mindist)
@@ -32,26 +38,25 @@
   parameter 'markersize'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/enlighten_colors.m:5: warning: argument '1.' of command @param is not found in the argument list of enlighten_colors(in factor)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/enlighten_colors.m:5: warning: argument '5' of command @param is not found in the argument list of enlighten_colors(in factor)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/extract_variables.m:1: warning: Found unknown command `\params'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:30: warning: argument '0.' of command @param is not found in the argument list of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:30: warning: The following parameters of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:31: warning: argument '0.' of command @param is not found in the argument list of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:31: warning: The following parameters of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max) are not documented:
   parameter 'P'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/format_frank.m:5: warning: argument 'additional_handles' of command @param is not found in the argument list of format_frank(in F, in scale, in handles)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/format_frank.m:5: warning: The following parameters of format_frank(in F, in scale, in handles) are not documented:
-  parameter 'handles'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/get_varnames2.m:1: warning: unable to resolve reference to `classnames' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:5: warning: argument '0' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:5: warning: argument 'auto' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:5: warning: argument 'detect' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:5: warning: argument '1' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_table_std_colors.m:64: warning: argument 'ma' of command @param is not found in the argument list of cellcolor2(in n, in min, in max, in pow)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_table_std_colors.m:64: warning: The following parameters of cellcolor2(in n, in min, in max, in pow) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument '0' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument 'auto' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument 'detect' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument '1' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_table_std_colors.m:68: warning: argument 'ma' of command @param is not found in the argument list of cellcolor2(in n, in min, in max, in pow)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_table_std_colors.m:68: warning: The following parameters of cellcolor2(in n, in min, in max, in pow) are not documented:
   parameter 'min'
   parameter 'max'
   parameter 'pow'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/irootlabgui.m:2: warning: image file Screenshot-openspecgui.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/usercomm/irverbose.m:7: warning: unable to resolve reference to `verboselevels' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/listbox_load_from_workspace.m:7: warning: argument '0' of command @param is not found in the argument list of listbox_load_from_workspace(in classname, in h_list, in flag_blank, in string_empty, in input)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/normaliz.m:13: warning: Unexpected html tag </g3> found within <h3> context
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/normaliz.m:19: warning: Unexpected end of comment while inside <h3> tag
+
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/objtool.m:6: warning: argument 'classname' of command @param is not found in the argument list of objtool(in varargin)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/objtool.m:6: warning: argument 'irdata' of command @param is not found in the argument list of objtool(in varargin)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/objtool.m:6: warning: The following parameters of objtool(in varargin) are not documented:
@@ -64,13 +69,12 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui_view2.m:5: warning: argument '1' of command @param is not found in the argument list of orhistgui_view2(in flag_msg)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/parse_classmaps.m:4: warning: Found unknown command `\hie_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/parse_classmaps.m:5: warning: Found unknown command `\hie_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/ioio/pir2data.m:7: warning: Found unknown command `\se'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/plotter12.m:1: warning: unable to resolve reference to `sovalues' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:7: warning: unable to resolve reference to `nf' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:10: warning: unable to resolve reference to `no' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:11: warning: unable to resolve reference to `nf' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:20: warning: unable to resolve reference to `no' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:20: warning: unable to resolve reference to `nf' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:23: warning: unable to resolve reference to `no' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/princomp2.m:23: warning: unable to resolve reference to `nf' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/globals/progress2_change.m:5: warning: argument '0' of command @param is not found in the argument list of progress2_change(in prgrss, in title, in perc, in i, in n)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/globals/progress2_change.m:5: warning: The following parameters of progress2_change(in prgrss, in title, in perc, in i, in n) are not documented:
   parameter 'title'
@@ -88,18 +92,6 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/resize_legend_markers.m:5: warning: argument '0' of command @param is not found in the argument list of resize_legend_markers(in size, in flag_line)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/misc/setbatch.m:5: warning: The following parameters of setbatch(in o, in params) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:2: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:3: warning: Illegal command \arg as the argument of a \c command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:4: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:5: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:6: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:7: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:8: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:9: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:10: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:11: warning: Illegal command arg as part of a <h3> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/stylesheet.m:12: warning: Unexpected end of comment while inside <h3> tag
-
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:5: warning: unable to resolve reference to `subsets' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:5: warning: unable to resolve reference to `nf' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `nf4gradesmode' for \ref command
@@ -110,83 +102,24 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:8: warning: unable to resolve reference to `grades' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `gradethreshold' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `grades' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/misc/traintest.m:6: warning: Found unknown command `\re'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_aggr.m:16: warning: end of comment block while expecting command </b>
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_aggr.m:16: warning: end of comment block while expecting command </b>
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_aggr_mold.m:1: warning: image file Screenshot-uip_aggr_mold.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_forward.m:3: warning: unable to resolve reference to `as_fsel_fb' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_forward.m:1: warning: image file Screenshot-uip_as_fsel_forward.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_grades.m:1: warning: image file Screenshot-uip_as_fsel_grades.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip_as_grades_fsg.m:3: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip_as_grades_fsg.m:1: warning: image file Screenshot-uip_as_grades_fsg.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_classlabels_hierarchy.m:1: warning: image file Screenshot-uip_blmisc_classlabels_hierarchy.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_fearange.m:1: warning: image file Screenshot-uip_blmisc_fearange.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_rowsout_multistage.m:3: warning: image file Screenshot-uip_blmisc_rowsout_multistage.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_split_classes.m:1: warning: image file Screenshot-uip_blmisc_split_classes.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_split_ovo.m:1: warning: image file Screenshot-uip_blmisc_split_ovo.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/blmisc/uip_blmisc_split_ovr.m:1: warning: image file Screenshot-uip_blmisc_split_ovr.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/uip_block_cascade_base.m:5: warning: argument 'blk' of command @param is not found in the argument list of uip_block_cascade_base(in varargin)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/uip_block_cascade_base.m:5: warning: The following parameters of uip_block_cascade_base(in varargin) are not documented:
   parameter 'varargin'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_clssr_d.m:1: warning: image file Screenshot-uip_clssr_d.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_clssr_lin.m:3: warning: image file Screenshot-uip_clssr_lin.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/decider/uip_decider.m:6: warning: end of comment block while expecting command </b>
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/decider/uip_decider.m:6: warning: end of comment block while expecting command </b>
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_classxclass.m:1: warning: image file Screenshot-uip_estlog_classxclass.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_groupxclass.m:1: warning: image file Screenshot-uip_estlog_groupxclass.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_rightwrong.m:1: warning: image file Screenshot-uip_estlog_rightwrong.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_factorscurve.m:1: warning: image file Screenshot-uip_factorscurve.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fcon/uip_fcon_feaavg.m:1: warning: image file Screenshot-uip_fcon_feaavg.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fcon/uip_fcon_maxminpos.m:1: warning: image file Screenshot-uip_fcon_maxminpos.png is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_classxclass.m:1: warning: unable to resolve reference to `sovalues' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/log/uip_estlog_rightwrong.m:1: warning: unable to resolve reference to `sovalues' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_factorscurve.m:1: warning: unable to resolve reference to `factoscurve' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_frbm.m:3: warning: unable to resolve reference to `frbm' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/fext/fsel/uip_fsel.m:1: warning: image file Screenshot-uip_fsel.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_fselrepeater.m:3: warning: unable to resolve reference to `as_fsel_hist' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_fselrepeater.m:1: warning: image file Screenshot-uip_fselrepeater.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/fsg/uip_fsg_clssr.m:1: warning: image file Screenshot-uip_fsg_clssr.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/fsg/uip_fsg_test_t.m:1: warning: image file Screenshot-uip_fsg_test_t.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_gridsearch.m:3: warning: image file Screenshot-uip_gridsearch.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/uip_logrecorder.m:1: warning: image file Screenshot-uip_logrecorder.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_bc_rubber.m:3: warning: image file Screenshot-uip_pre_bc_rubber.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_flip_refmean.m:1: warning: image file Screenshot-uip_pre_flip_refmean.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_grades.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_norm.m:16: warning: end of comment block while expecting command </b>
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/pre/uip_pre_sub_refmean.m:1: warning: image file Screenshot-uip_pre_sub_refmean.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_estlog.m:1: warning: image file Screenshot-uip_report_estlog.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_log_fselrepeater_hist.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_log_fselrepeater_hist.m:1: warning: image file Screenshot-uip_report_log_fselrepeater_hist.png is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_fhg.m:1: warning: image file Screenshot-uip_report_soitem_merger_fhg.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fhg.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fhg.m:1: warning: image file Screenshot-uip_report_soitem_merger_merger_fhg.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fitest.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fitest.m:1: warning: image file Screenshot-uip_report_soitem_merger_merger_fitest.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_testtable.m:3: warning: unable to resolve reference to `vis_html_ttesttable' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_testtable.m:1: warning: image file Screenshot-uip_report_testtable.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_ttlog.m:1: warning: image file Screenshot-uip_report_ttlog.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_reptt_blockcube.m:3: warning: unable to resolve reference to `reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_reptt_blockcube.m:1: warning: image file Screenshot-uip_reptt_blockcube.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_reptt_sgs.m:3: warning: unable to resolve reference to `reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/sgs/uip_sgs_randsub_base.m:3: warning: image file Screenshot-uip_sgs_randsub_base.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_subsetsprocessor.m:3: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_subsetsprocessor.m:1: warning: image file Screenshot-uip_subsetsprocessor.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_as_fsel.m:1: warning: image file Screenshot-uip_vis_as_fsel.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_as_grades.m:1: warning: image file Screenshot-uip_vis_as_grades.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_fsel_trained.m:3: warning: image file Screenshot-uip_vis_fsel_trained.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_grades.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_hists.m:1: warning: image file Screenshot-uip_vis_hists.png is not found in IMAGE_PATH: assuming external image.
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_log_as_fsel.m:1: warning: image file Screenshot-uip_vis_log_as_fsel.png is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_as_fsel.m:3: warning: unable to resolve reference to `vis_as_fsel' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/vis/vis_hists.m:1: warning: unable to resolve reference to `as_fsel_hist' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/ioio/wire2data.m:7: warning: Found unknown command `\se'
-<guigroup>:1: warning: unable to resolve reference to `as_fsel_fb' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `as_fsel_hist' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `reptt_sgs' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `reptt_sgs' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
 <guigroup>:1: warning: unable to resolve reference to `frbm' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `vis_grades' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `vis_grades' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `vis_grades' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `vis_html_ttesttable' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `vis_grades' for \ref command
-<guigroup>:1: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
+<guigroup>:1: warning: unable to resolve reference to `vis_as_fsel' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/report/report_soitem.m:1: warning: unable to resolve reference to `soitem' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/report/report_ttlog_generic.m:1: warning: unable to resolve reference to `ttlog_generic' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/vis/vis_hists.m:1: warning: unable to resolve reference to `as_fsel_hist' for \ref command
@@ -291,7 +224,6 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_forward.m:3: warning: unable to resolve reference to `as_fsel_fb' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -729,13 +661,6 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/clssr/clssr_incr.m:47: warning: unable to resolve reference to `every' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -863,7 +788,7 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/drawer_histograms.m:18: warning: The following parameters of drawer_histograms::draw(in o, in log) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/drawer_histograms.m:61: warning: The following parameters of drawer_histograms::draw_for_legend(in o, in log) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/drawer_histograms.m:58: warning: The following parameters of drawer_histograms::draw_for_legend(in o, in log) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -1217,8 +1142,6 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/misc/filenameprovider.m:16: warning: The following parameters of filenameprovider::get_filename(in o, in token, in ext) are not documented:
-  parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/fext/fsel/fsel.m:54: warning: end of comment block while expecting command </code>
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -1399,7 +1322,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/gencode.m:116: warning: The following parameters of gencode::execute(in o, in flag_finish) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/gencode.m:115: warning: The following parameters of gencode::execute(in o, in flag_finish) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -1602,11 +1525,11 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:7: warning: unable to resolve reference to `reptt_sgs' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:53: warning: argument 'all' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:53: warning: argument '1' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:53: warning: argument 'flag_perc_x' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:53: warning: argument 'flag_perc_y' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:53: warning: The following parameters of log_celldata::draw(in o, in idx, in flag_std) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:52: warning: argument 'all' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:52: warning: argument '1' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:52: warning: argument 'flag_perc_x' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:52: warning: argument 'flag_perc_y' of command @param is not found in the argument list of log_celldata::draw(in o, in idx, in flag_std)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_celldata.m:52: warning: The following parameters of log_celldata::draw(in o, in idx, in flag_std) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1658,13 +1581,13 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/log_hist.m:26: warning: argument 'all' of command @param is not found in the argument list of log_hist::draw_hists(in o, in idxs, in data_hint, in flag_group)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/log_hist.m:26: warning: The following parameters of log_hist::draw_hists(in o, in idxs, in data_hint, in flag_group) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_hist.m:26: warning: argument 'all' of command @param is not found in the argument list of log_hist::draw_hists(in o, in idxs, in data_hint, in flag_group)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_hist.m:26: warning: The following parameters of log_hist::draw_hists(in o, in idxs, in data_hint, in flag_group) are not documented:
   parameter 'o'
   parameter 'data_hint'
   parameter 'flag_group'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/log_hist.m:84: warning: argument 'no_inside' of command @param is not found in the argument list of log_hist::draw_stackedhists(in o, in data_hint, in colors, in peakdetector)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/log_hist.m:84: warning: The following parameters of log_hist::draw_stackedhists(in o, in data_hint, in colors, in peakdetector) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_hist.m:84: warning: argument 'no_inside' of command @param is not found in the argument list of log_hist::draw_stackedhists(in o, in data_hint, in colors, in peakdetector)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irlog/log_hist.m:84: warning: The following parameters of log_hist::draw_stackedhists(in o, in data_hint, in colors, in peakdetector) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1686,7 +1609,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/introspection/mapitem.m:132: warning: The following parameters of mapitem::to_html(in o, in inputclass) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/introspection/mapitem.m:130: warning: The following parameters of mapitem::to_html(in o, in inputclass) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -2382,6 +2305,7 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/vis/vis_loadings.m:16: warning: Found unknown command `\pc'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -2474,15 +2398,5 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_as_fsel_forward.m:3: warning: unable to resolve reference to `as_fsel_fb' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip_as_grades_fsg.m:3: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_frbm.m:3: warning: unable to resolve reference to `frbm' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_fselrepeater.m:3: warning: unable to resolve reference to `as_fsel_hist' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_log_fselrepeater_hist.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fhg.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_soitem_merger_merger_fitest.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/report/uip_report_testtable.m:3: warning: unable to resolve reference to `vis_html_ttesttable' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_reptt_blockcube.m:3: warning: unable to resolve reference to `reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_reptt_sgs.m:3: warning: unable to resolve reference to `reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/as/uip_subsetsprocessor.m:3: warning: unable to resolve reference to `fsel_grades_fsg' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_grades.m:3: warning: unable to resolve reference to `vis_grades' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/vis/uip_vis_as_fsel.m:3: warning: unable to resolve reference to `vis_as_fsel' for \ref command
