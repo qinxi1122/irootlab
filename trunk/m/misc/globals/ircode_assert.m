@@ -1,4 +1,4 @@
-%> @ingroup globals codegen
+%> @ingroup globals codegen assert
 %> @file
 %> @brief Initializes the @c IRCODE global, if not present.
 %>

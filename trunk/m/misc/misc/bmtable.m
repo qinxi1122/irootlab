@@ -19,7 +19,6 @@
 %>
 %> @sa draw_loadings_pl.m, demo_bmtable.m
 %>
-%> @todo Peak Location Plot significance hachures not drawn. I didn't re-implement it because it needs a sig_ij scalar for this and at the moment it has only a sig_j vector
 classdef bmtable
     properties
         %> 2D struct

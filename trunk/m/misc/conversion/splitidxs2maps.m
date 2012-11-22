@@ -2,8 +2,6 @@
 %> @file
 %> @brief Converts splitidxs to cell of maps
 %>
-%> Used by irdata
-%>
 %> @sa irdata::split_splitidxs()
 %
 %>@param splitidxs from @ref irdata

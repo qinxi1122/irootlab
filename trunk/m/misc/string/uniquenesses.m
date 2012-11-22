@@ -1,4 +1,4 @@
-%>@ingroup string
+%>@ingroup string conversion
 %> @file
 %> @brief Extract unique part of each string within a cell
 %>

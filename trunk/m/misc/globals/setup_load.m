@@ -1,12 +1,8 @@
 %> @file
 %> @ingroup globals setupgroup
-%> @brief Loads file irootlab_setup.m if exists.
+%> @brief Executes file irootlab_setup.m, if exists.
 function setup_load()
-verbose_assert();
-db_assert();
-fig_assert();
-path_assert();
-more_assert();
+assert_all();
 
 if exist('irootlab_setup.m', 'file')
     irootlab_setup;

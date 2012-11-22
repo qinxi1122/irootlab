@@ -1,4 +1,4 @@
-%>@ingroup conversion
+%>@ingroup conversion maths
 %>@file
 %>@brief Determines the indexes in x corresponding to v by proximity measure
 %

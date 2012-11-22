@@ -1,5 +1,6 @@
 %> @brief Art stuff
 %> @ingroup graphicsapi
+%> @sa bmtable
 classdef bmart_diamond < bmart
     methods
         function o = bmart_diamond(o)

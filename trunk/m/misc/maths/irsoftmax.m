@@ -6,6 +6,8 @@
 %>
 %> <h3>Reference</h3>
 %> Kuncheva, Combining Pattern Classifiers, 2004, section 5.1, page 152
+%>
+%> @sa clssr_ls
 function Y = irsoftmax(X)
 
 Xe = exp(X);

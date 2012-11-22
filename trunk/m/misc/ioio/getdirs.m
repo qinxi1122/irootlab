@@ -1,6 +1,7 @@
 %>@file
 %>@brief Recursive directory structure getter
-%>
+%> @ingroup ioio
+%
 %> @param direc A directory to query all subdirectories from
 %> @param list (optional) An existing list to which new elements will be appended
 %> @param patt_match If specified, directories will have to match this pattern

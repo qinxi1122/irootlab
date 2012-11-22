@@ -1,4 +1,4 @@
-%>@ingroup misc reinforcement
+%>@ingroup misc assert
 %> @file
 %> @brief Checks whether the columns of X have mean zero up to a certain tolerance.
 %>

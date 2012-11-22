@@ -1,5 +1,5 @@
 %> @file
-%> @ingroup introspection globals
+%> @ingroup introspection globals assert
 %> @brief Asserts the @c CLASSMAP global is present and initialized.
 %> @sa classmap_compile.m
 

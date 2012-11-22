@@ -1,4 +1,4 @@
-%>@ingroup graphicsapi
+%>@ingroup graphicsapi maths
 %>@file
 %>@brief Draws projections of each row of DATA.X onto the column vector v
 %>

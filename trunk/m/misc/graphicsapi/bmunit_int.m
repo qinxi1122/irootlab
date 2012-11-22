@@ -1,5 +1,7 @@
 %> @brief Unit - Integer
 %> @ingroup graphicsapi
+%>
+%> @sa bmtable
 classdef bmunit_int < bmunit
     methods
         function o = bmunit_int(o)

@@ -3,6 +3,7 @@
 %> @brief Returns the default FSG to be used in a testtable
 %>
 %> The default FSG is a t-test that returns p-values (flag_logtake is set to false)
+%> @sa more_assert.m, setup_write.m
 %
 %> @param out If passed, returns it; otherwise, returns a default object
 function out = def_fsg_testtable(out)

@@ -1,4 +1,4 @@
-%>@ingroup graphicsapi globals idata
+%>@ingroup graphicsapi globals idata assert
 %>@file
 %>@brief Initializes globals COLORS, FONT, MARKERS, etc, if not present.
 %>

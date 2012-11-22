@@ -1,6 +1,10 @@
-%>@ingroup ioio sheware
+%>@ingroup ioio sheware assert
 %>@file
-%>@brief Makes sure we are connected to a database
+%>@brief Checks connection, tries to connect to MySQL database usign if not connected
+%>
+%> Database specification in the DB global
+%>
+%> @sa db_assert.m, connect_to_cells.m, irquery.m
 function assert_connected_to_cells()
 db_assert();
 flag_error = 0;

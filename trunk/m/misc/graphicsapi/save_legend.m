@@ -1,13 +1,16 @@
+%>@brief Saves current legend as PNG
 %>@file
 %>@ingroup graphicsapi ioio
-%>@brief Saves current legend as PNG
 %>
 %> This function will save a PNG with the legend, but will mess with the positioning on the screen
 %>
-%> May not work well if the window is maximized
+%> @attention May not work well if the window is maximized
+%>
+%> @sa show_legend_only.m
 %
 %> @param fn =(new) File name
 %> @param dpi =0 Dots Per Inch = resolution. 0 = screen resolution
+%> @return File name
 function fn = save_legend(fn, dpi)
 fig_assert();
 

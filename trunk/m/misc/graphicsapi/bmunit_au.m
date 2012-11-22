@@ -1,6 +1,8 @@
 %> @brief Unit - Arbitrary
 %> @ingroup graphicsapi
-classdef bmunit_au < bmunit
+c%>
+%> @sa bmtable
+lassdef bmunit_au < bmunit
     methods
         function o = bmunit_au(o)
             o.classtitle = 'Arbitrary Units';

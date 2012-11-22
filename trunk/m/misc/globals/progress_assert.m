@@ -1,4 +1,4 @@
-%> @ingroup globals usercomm
+%> @ingroup globals usercomm assert
 %> @file
 %> @brief PROGRESS globals management
 function progress_assert()

@@ -1,9 +1,10 @@
 %>@ingroup idata globals
 %> @file
-%> @brief Returns the default "fixed" subsetsprocessor
+%> @brief Returns the default subsetsprocessor
 %>
-%> Returns a subsetsprocessor that uses Kuncheva's stability measure to determine the number of features to compose the grades vector; other setup options
-%> defined in the MORE global
+%> Returns a subsetsprocessor
+%>
+%> Dependant on the MORE global. Please check source code for definition.
 %>
 %> @sa more_assert.m, setup_write.m
 %

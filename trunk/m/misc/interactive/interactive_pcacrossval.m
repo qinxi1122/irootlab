@@ -39,8 +39,12 @@
 %>   <li> 500-fold means 500 different training and testing datasets of 499 and 1 spectrum respectively, i.e., 500-fold, in this case, is equivalent to leave-one-out.</li>
 %> </ul>
 %>
-%> @sa For further information, consult Pirouette help file on "PCA cross-validation"
+%> <h3>References</h3>
+%> Pirouette (Infometrix Inc.) Help Documentation, PCA cross-validation Section.
 %>
+%> @sa fcon_pca
+%>
+
 varname = input('Enter dataset variable name: ', 's');
 dataset = eval([varname ';']);
 dataset = data_eliminate_var0(dataset, 1e-10);

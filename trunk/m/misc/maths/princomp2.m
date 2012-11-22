@@ -16,6 +16,9 @@
 %> @arg @c lambdas: <code>[r]x[1]</code> contains the eigenvalues of the scatter matrix.
 %>
 %> Note: the loadings vectors sometimes happen to point at the opposite directions of those obtaines by MATLAB's princomp() (not really a problem).
+%>
+%> <h3>References</h3>
+%> ﻿[1] R. O. Duda, P. E. Hart, and D. G. Stork, Pattern Classification, 2nd ed. New York: John Wiley & Sons, 2001.
 %
 %> @param X [@ref no]x[@ref nf] matrix
 %> @return <code>[loadings]</code> or <code>[loadings, scores]</code> or <code>[loadings, scores, lambdas]</code>

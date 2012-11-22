@@ -1,5 +1,5 @@
 %> @file
-%>@ingroup misc
+%>@ingroup misc maths
 %> @brief Shallow structure or cell comparison
 %
 %> @param o1

@@ -1,6 +1,8 @@
 %>@ingroup maths
 %>@file
 %>@brief Point-by-point multiplications of the rows of X by a sigmoid
+%>
+%> @sa pre_sigwindow
 %
 %> @param X matrix with curves as rows
 %> @param idxcentre index where sigmoid will be 0.5

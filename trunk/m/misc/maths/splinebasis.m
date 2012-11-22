@@ -6,6 +6,9 @@
 %>
 %> <h3>References:</h3>
 %> [1] Jim Ramsay, B. W. Silverman. Functional Data Analysis. 2nd Ed. Springer. 2005.
+%> ﻿[2] J. Ramsay, G. Hooker, and S. Graves, Functional Data Analysis with R and MATLAB. New York: Springer, 2009.
+%> Function @c create_bspline_basis
+
 %
 %> @param nf Number of features
 %> @param no_basis Number of basis vectors

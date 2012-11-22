@@ -7,6 +7,11 @@
 %> [X_after, x_after, Basis] =
 %> splinedecomp(X, x = [], no_basis, breaks, order = 6)
 %>@endcode
+%>
+%> <h3>References</h3>
+%> ﻿[1] J. Ramsay, G. Hooker, and S. Graves, Functional Data Analysis with R and MATLAB. New York: Springer, 2009.
+%> Function @c create_bspline_basis
+%> [2] Jim Ramsay, B. W. Silverman. Functional Data Analysis. 2nd Ed. Springer. 2005.
 %
 %> @param X
 %> @param x

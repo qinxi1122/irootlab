@@ -1,4 +1,4 @@
-%> @ingroup conversion
+%> @ingroup conversion maths
 %>@file
 %>@brief Converts percents to number of units with extra care
 %>

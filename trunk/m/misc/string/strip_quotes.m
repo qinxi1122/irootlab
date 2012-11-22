@@ -1,4 +1,4 @@
-%>@ingroup string
+%>@ingroup string conversion
 %>@file
 %>@brief Removes double quotes from both ends of the string.
 

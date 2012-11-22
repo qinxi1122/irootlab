@@ -5,6 +5,8 @@
 %> Used to normalize a hits confusion matrix into a percentage confusion matrix.
 %>
 %> Please note that it does not work well with negative numbers.
+%>
+%> @sa clssr_d, irconfusion, clssr_ls
 %
 %> @param cc
 %> @return matrix of same size as input

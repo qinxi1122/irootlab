@@ -4,9 +4,8 @@
 %> @ingroup codegen
 %> @brief MATLAB code generation to create, boot, train and use blocks.
 %>
-%> This class is used by @ref datatool.m and @ref objtool.m to perform their tasks.
+%> @sa objtool.m, datatool.m, do_blockmenu.m
 %>
-%> @todo This class needs a bit of attention, the code generated works, but could be cleaner!
 classdef gencode < handle
     properties
         refblock;

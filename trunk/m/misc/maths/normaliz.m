@@ -14,6 +14,12 @@
 %>   <tr><td>col-wise</td><td>Standardization</td><td>@c s</td><td>centers and forces all variable variances to 1 (so-called "standardization")</td></tr>
 %>   <tr><td>col-wise</td><td>0-1 range</td><td>@c r</td><td>forces each variable range to [0, 1]</td></tr>
 %> </table>
+%> <h3>References</g3>
+%> [1] Pirouette (Infometrix Inc.) Help Documentation.
+%>
+%> ﻿[2] Bruker Optik GmbH, OPUS 5 Reference Manual. Ettlingen: Bruker, 2004.
+%>
+%> ﻿[3] J. G. Kelly et al., “Biospectroscopy to metabolically profile biomolecular structure: a multistage approach linking computational analysis with biomarkers,” J. Proteome Res., vol. 10, no. 4, pp. 1437-1448, Apr. 2011.
 %
 %> @param X data matrix containing rows as observations, columns as features.
 %> @param x x-axis values of the columns of X. unused in most cases, essential for '1' or '2' normalization.

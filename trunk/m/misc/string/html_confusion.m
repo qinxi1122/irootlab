@@ -1,6 +1,8 @@
 %>@ingroup string htmlgen
 %>@file
 %>@brief Transforms matrix into HTML
+%>
+%> @sa html_comparison_std.m, html_comparison.m, html_table_std_colors.m, html_table_std.m
 
 %> @param CC confusion matrix (first column always represents "rejected" items)
 %> @param rowlabels row labels
@@ -10,6 +12,7 @@
 %> @param flag_color=1 Whether to use colors for cell background. If true, will paint the background with a red gradient which is
 %> @param SS Standard deviations (optional)
 %> proportional to the square root of the number inside divided by the square root of the corresponding row sum.
+%> @return s A string
 function s = html_confusion(CC, rowlabels, collabels, flag_perc, flag_rejected, flag_color, SS)
 
 if ~exist('collabels', 'var') || isempty(collabels)

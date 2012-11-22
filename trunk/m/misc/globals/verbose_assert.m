@@ -1,4 +1,4 @@
-%> @ingroup globals usercomm
+%> @ingroup globals usercomm assert
 %> @file
 %> @brief Initializes the @c VERBOSE global, if not present.
 %>

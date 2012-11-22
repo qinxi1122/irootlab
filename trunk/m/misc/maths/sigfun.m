@@ -1,6 +1,8 @@
 %>@ingroup maths
 %>@file
 %>@brief Sigmoid function
+%>
+%> @sa biocomparer
 %
 %> @param x argument (works with vectors and matrices as well
 %> @param hh =45. "half-height". Defaults to 45 cm^{-1}
