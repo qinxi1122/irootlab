@@ -1,4 +1,4 @@
-%> Feature subset grader - variance
+%> @brief Feature subset grader - variance
 classdef fsg_test_var < fsg_test
     methods(Access=protected)
         function z = test(o, dd, idxs)

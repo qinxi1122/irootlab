@@ -4,6 +4,8 @@
 %>
 %> L. Breiman, J.H. Friedman, R.A. Olshen, and C.J. Stone, 
 %> Classification and regression trees, Wadsworth, California, 1984. 
+%>
+%> @sa clssr_tree, fsgt
 classdef fsgt_maxentr < fsgt
     methods
         %> Credits:

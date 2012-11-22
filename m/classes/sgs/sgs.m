@@ -1,4 +1,8 @@
-%> @brief Base class for Sub-dataset Generation Specification.
+%> @brief Base Sub-dataset Generation Specification (SGS) class
+%>
+%> This class generates index maps to sub-datasets, formulating these maps according to various
+%> criteria, including cross-validation, random sub-sampling, and weighted sub-sampling.
+%>
 classdef sgs < irobj
     properties
         %> =0. Whether items from the same group (group) are to always remain together.

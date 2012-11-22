@@ -1,4 +1,6 @@
-%> Dataset representing estimation
+%> @brief Dataset representing estimation
+%>
+%> These datasets are outputted by a classifier, clssr::use() method
 classdef estimato < irdata
     methods
         function o = estimato(o)

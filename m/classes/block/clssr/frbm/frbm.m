@@ -1,6 +1,5 @@
-%> Fuzzy Rule-Based Model base class
+%> @brief Fuzzy Rule-Based Model base class
 %>
-%> @sa uip_frbm.m, eclass_artificial.m, video_evolving.m
 %>
 %> <h3>References:</h3>
 %>

@@ -1,4 +1,4 @@
-%> Base class for Incremental Classifiers
+%> @brief Base class for Incremental Classifiers
 %>
 %> These classifiers have a learning process that uses one data row at a time.
 %>

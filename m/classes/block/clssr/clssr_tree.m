@@ -1,4 +1,4 @@
-%> Binary Decision Tree Classifier
+%> @brief Binary Decision Tree Classifier
 %>
 %> @sa uip_clssr_tree.m, demo_clssr_tree.m
 classdef clssr_tree < clssr

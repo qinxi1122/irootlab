@@ -1,4 +1,4 @@
-%> Per-Feature Histogram 3D
+%> @brief Visualization - Per-Feature Histogram 3D
 classdef vis_3dhist < vis
     methods
         function o = vis_3dhist(o)

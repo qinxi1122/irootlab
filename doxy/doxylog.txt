@@ -41,6 +41,7 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:31: warning: argument '0.' of command @param is not found in the argument list of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/maths/fisher_ld.m:31: warning: The following parameters of fisher_ld(in data, in flag_sphere, in flag_modified_s_b, in P, in n_max) are not documented:
   parameter 'P'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/idata/get_negative_meaning.m:3: warning: unexpected end of comment while looking for a <tr> or <caption> tag
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/code/get_varnames2.m:1: warning: unable to resolve reference to `classnames' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument '0' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/string/html_confusion.m:7: warning: argument 'auto' of command @param is not found in the argument list of html_confusion(in CC, in rowlabels, in collabels, in flag_perc, in flag_rejected, in flag_color, in SS)
@@ -61,12 +62,12 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/objtool.m:6: warning: argument 'irdata' of command @param is not found in the argument list of objtool(in varargin)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/objtool.m:6: warning: The following parameters of objtool(in varargin) are not documented:
   parameter 'varargin'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui.m:6: warning: argument 'block' of command @param is not found in the argument list of orhistgui(in varargin)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui.m:6: warning: argument 'flag_modal' of command @param is not found in the argument list of orhistgui(in varargin)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui.m:6: warning: argument '0' of command @param is not found in the argument list of orhistgui(in varargin)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui.m:6: warning: The following parameters of orhistgui(in varargin) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/orhistgui.m:6: warning: argument 'block' of command @param is not found in the argument list of orhistgui(in varargin)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/orhistgui.m:6: warning: argument 'flag_modal' of command @param is not found in the argument list of orhistgui(in varargin)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/orhistgui.m:6: warning: argument '0' of command @param is not found in the argument list of orhistgui(in varargin)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/orhistgui.m:6: warning: The following parameters of orhistgui(in varargin) are not documented:
   parameter 'varargin'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/orhistgui_view2.m:5: warning: argument '1' of command @param is not found in the argument list of orhistgui_view2(in flag_msg)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/auxi/orhistgui_view2.m:5: warning: argument '1' of command @param is not found in the argument list of orhistgui_view2(in flag_msg)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/parse_classmaps.m:4: warning: Found unknown command `\hie_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/conversion/parse_classmaps.m:5: warning: Found unknown command `\hie_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/plotter12.m:1: warning: unable to resolve reference to `sovalues' for \ref command
@@ -813,22 +814,22 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:576: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:570: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:689: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:683: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:397: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:391: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
   parameter 'data'
   parameter 'fext'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
@@ -1384,71 +1385,48 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:28: warning: unable to resolve reference to `nc-1' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:33: warning: expected <tr> or <caption> tag but found </table> instead!
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:35: warning: Unsupported xml/html tag <bold> found
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:35: warning: Unsupported xml/html tag </bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:9: warning: unable to resolve reference to `nc-1' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:14: warning: Unsupported xml/html tag <bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:14: warning: Unsupported xml/html tag </bold> found
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:576: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:570: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:689: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:683: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:397: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:391: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
   parameter 'data'
   parameter 'fext'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:576: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:570: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:689: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:683: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:397: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
-  parameter 'data'
-  parameter 'fext'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
-  parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
-  parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata_rates.m:1: warning: unable to resolve reference to `reptt_sgs' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:576: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
-  parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
-  parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:689: warning: The following parameters of irdata::get_weights(in data, in exponent) are not documented:
-  parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:397: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:391: warning: The following parameters of irdata::split_map(in data, in map, in feamap, in fext) are not documented:
   parameter 'data'
   parameter 'fext'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:474: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: argument 'map' of command @param is not found in the argument list of irdata::split_splitidxs(in data)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:468: warning: The following parameters of irdata::split_splitidxs(in data) are not documented:
   parameter 'data'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:547: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'nf' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: argument 'any' of command @param is not found in the argument list of irdata::transform_linear(in data, in L, in fea_prefix)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:541: warning: The following parameters of irdata::transform_linear(in data, in L, in fea_prefix) are not documented:
   parameter 'data'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
@@ -1462,15 +1440,14 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:3: warning: Illegal command arg as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command arg as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:6: warning: Illegal command warning as part of a <h2> tag
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:9: warning: Unexpected html tag <h3> found within <h2> context
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:9: warning: <h2> ended with </h3>
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:3: warning: Illegal command arg as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command arg as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:4: warning: Illegal command ref as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:6: warning: Illegal command warning as part of a <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:9: warning: Unexpected html tag <h3> found within <h3> context
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1630,7 +1607,7 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/peakdetector/peakdetector.m:50: warning: The following parameters of peakdetector::use(in o, in x, in y) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/peakdetector/peakdetector.m:52: warning: The following parameters of peakdetector::use(in o, in x, in y) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command

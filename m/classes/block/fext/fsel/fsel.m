@@ -1,4 +1,4 @@
-%> Feature Selection (FSel) base class
+%> @brief Feature Selection (FSel) class
 %>
 %> @sa get_feaidxs.m
 classdef fsel < fext

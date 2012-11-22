@@ -1,4 +1,4 @@
-%> Cascade block: decider -> grag_classes_vote
+%> @brief Cascade block: decider -> grag_classes_vote
 classdef cascade_decidergrag < block_cascade_base
     methods
         function o = cascade_decidergrag()

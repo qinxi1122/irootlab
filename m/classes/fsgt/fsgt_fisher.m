@@ -1,4 +1,6 @@
 %> Feature subset grader - Fisher's Criterion
+%>
+%> @sa clssr_tree, fsgt
 classdef fsgt_fisher < fsgt
     methods
         %> Original code for the Fisher's Criterion:

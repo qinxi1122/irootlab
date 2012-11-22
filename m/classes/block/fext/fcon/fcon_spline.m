@@ -1,6 +1,6 @@
 %> @brief B-Splines Decomposition
 %
-%> Reference: 
+%> <h3>References</h3>
 %>   Ramsay JO. MATLAB, R and S-PLUS Functions for Functional Data Analysis. 2005:1-66.
 %>   ftp://ego.psych.mcgill.ca/pub/ramsay/FDAfuns/R/inst/Matlab/fdaM/FDAfuns.pdf
 %>   (Accessed on 10/Dec/2010)

@@ -1,4 +1,4 @@
-%> Dataset class
+%> @brief Dataset class
 %>
 %> <h3>The @c X property</h3>
 %> The @c X property has dimensions [@ref no]x[@ref nf]. Each row represents one physical spectrum. Each column represents a
@@ -9,15 +9,8 @@
 %> In IRootLab, dataset @c classes are 0-based, so valid classes will range from @c 0 to @c (\ref nc-1). @c Classes correspond to elements in the
 %> @c classlabels property.
 %>
-%> There are class code lower than zero with special meaning:
+%> Negative classes have special meanings. See @ref get_negative_meaning.m
 %>
-%> <table>
-%    <tr><td><code>>=0</code></td><td>Existing class; refers to element within @ref classlabels property</td>
-%    <tr><td><code>-1</code></td><td>"Refuse-to-decide": a classifier wasn't confident enough to assign a class. See @ref decider</td>
-%    <tr><td><code>-2</code></td><td>Outlier</td>
-%    <tr><td><code>-3</code></td><td>"Refuse-to-cluster". See @ref clus_hca</td>
-%    <tr><td><code>-10</code></td><td>not found / error in conversion</td>
-%> </table>
 %>
 %> The class labels may define a <bold>multi-level labelling system</bold>, with different
 %> levels separated by a vertical slash ("|"). See the example:
@@ -35,6 +28,7 @@
 %> If a spectrum was taken from an individual who is from Ireland and has Low-grade cancer, its class wil be 4 (remember
 %> that the classes are zero-based!).
 %>
+%> @sa get_negative_meaning.m
 classdef irdata < irobj
     properties
         %> number of observations

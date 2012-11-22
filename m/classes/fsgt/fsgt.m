@@ -1,8 +1,7 @@
 %> @ingroup fsgt
-%> FSGT - Feature Subset Grader dedicated to decision Trees
+%> FSGT - Feature Subset Grader, used by clssr_tree, Decision Tree classifier
 %>
-%> One may ask why not use (or adapt) @ref fsg? The main reason is that @ref fsgt returns the chosen feature and
-%> cut-point also.
+%> @sa clssr_tree
 classdef fsgt < irobj
 
     properties(SetAccess=protected)

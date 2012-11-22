@@ -1,7 +1,5 @@
 %> @brief 1D Scatterplot with x-axis values associated to classes and curve fit
 %>
-%> Visualization initially used in a number of Valon's publications.
-%>
 %> @sa uip_vis_curvefit.m
 classdef vis_curvefit < vis
     properties

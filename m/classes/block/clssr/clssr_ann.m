@@ -1,4 +1,4 @@
-%> Neural Network Classifier. This is a wrapper to MATLAB's Neural Networks Toolbox
+%> @brief Neural Network Classifier. This is a wrapper to MATLAB's Neural Networks Toolbox
 %>
 %> Check MATLAB's NN toolbox documentation on net.trainParam
 %>

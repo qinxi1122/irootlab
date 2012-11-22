@@ -1,4 +1,4 @@
-%> Block that resolves @ref estimato posterior probabilities into classes.
+%> @brief Block that resolves @ref estimato posterior probabilities into classes.
 %>
 %> @sa uip_decider.m
 classdef decider < block

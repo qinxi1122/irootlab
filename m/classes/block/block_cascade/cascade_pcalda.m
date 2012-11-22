@@ -1,4 +1,4 @@
-%> Cascade block: fcon_pca -> fcon_lda
+%> @brief Cascade block: fcon_pca -> fcon_lda
 classdef cascade_pcalda < block_cascade_base
     methods
         function o = cascade_pcalda()

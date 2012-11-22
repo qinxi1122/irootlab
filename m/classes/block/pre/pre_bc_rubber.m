@@ -1,4 +1,4 @@
-%> Convex Polygonal Line (Rubberband-like) Baseline Correction
+%> @brief Convex Polygonal Line (Rubberband-like) Baseline Correction
 %>
 %> The algorithm is in bc_rubber.m
 %>

@@ -1,4 +1,4 @@
-%> Takes absolute value of data X
+%> @brief Takes absolute value of data X
 classdef pre_abs < pre
     methods
         function o = pre_abs()

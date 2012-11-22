@@ -1,4 +1,4 @@
-%> Converts AB -> ATR
+%> @brief Converts AB -> ATR
 %>
 %> Assumes that the x-axis represents wavenumbers in cm^-1
 %>

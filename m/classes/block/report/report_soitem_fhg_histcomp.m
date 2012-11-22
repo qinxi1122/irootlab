@@ -1,4 +1,4 @@
-%> Passes on to  to report_log_fselrepeater_histcomp
+%> @brief Passes on to report_log_fselrepeater_histcomp
 %>
 %> @sa report_log_fselrepeater_histcomp
 classdef report_soitem_fhg_histcomp < report_soitem

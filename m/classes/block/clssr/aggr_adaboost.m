@@ -1,4 +1,4 @@
-%> Adaboost
+%> @brief Adaboost
 %>
 %> @todo is there a way to make this testable as classifiers are added?
 %>

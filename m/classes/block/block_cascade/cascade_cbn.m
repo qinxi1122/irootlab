@@ -1,4 +1,4 @@
-%> Cascade: fsel -> pre_bc_rubber -> pre_norm_amide1
+%> @brief Cascade: fsel -> pre_bc_rubber -> pre_norm_amide1
 classdef cascade_cbn < block_cascade_base
     methods
         function o = cascade_cbn()

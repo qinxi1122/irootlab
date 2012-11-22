@@ -1,4 +1,4 @@
-%> @brief Visualization - Loadings plots and Peak Location plots for loadings vectors
+%> @brief Visualization - Loadings plots or Peak Location plots for loadings vectors
 %>
 %> @sa uip_vis_loadings.m
 classdef vis_loadings < vis

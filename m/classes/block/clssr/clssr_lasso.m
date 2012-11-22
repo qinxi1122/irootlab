@@ -1,4 +1,4 @@
-%> Lasso Classifier
+%> @brief Lasso Classifier
 %>
 %> This is a 2-class classifier, won't work if dataset has more than two classes.
 %>

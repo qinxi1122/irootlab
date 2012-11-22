@@ -1,4 +1,4 @@
-%> 1D Scatterplot
+%> @brief 1D Scatterplot
 %>
 %> @sa data_draw_scatter_1d.m, uip_vis_scatter1d.m
 classdef vis_scatter1d < vis

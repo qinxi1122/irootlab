@@ -1,4 +1,4 @@
-%> Cascade block: pre_diff_sg -> pre_norm_vector
+%> @brief Cascade block: pre_diff_sg -> pre_norm_vector
 classdef cascade_diffvn < block_cascade_base
     methods
         function o = cascade_diffvn()

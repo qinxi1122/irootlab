@@ -1,4 +1,4 @@
-%> ?
+%> @brief Draws a few histograms
 %>
 %> @todo implement the params GUI
 classdef report_soitem_fhg < report_soitem

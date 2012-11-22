@@ -1,4 +1,4 @@
-%> Dataset loader/saver for mat files
+%> @brief Dataset loader/saver for mat files
 %>
 %> mat files are a bit tricky because the structure has evolved since the
 %> beginning and backward compatibility is needed, but it is very stable now.
