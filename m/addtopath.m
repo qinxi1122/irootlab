@@ -1,4 +1,6 @@
-%> Adds directory to path with recursion into all subdirectories
+%> @brief Adds directory to path with recursion into all subdirectories
+%> @ingroup misc introspection
+%> @file
 function addtopath(directory)
 
 dirs = getdirs(directory, {directory});

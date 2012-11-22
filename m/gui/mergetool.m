@@ -33,7 +33,7 @@
 
 %> @cond
 function varargout = mergetool(varargin)
-% Last Modified by GUIDE v2.5 16-Oct-2012 09:00:41
+% Last Modified by GUIDE v2.5 22-Nov-2012 16:18:28
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -309,4 +309,10 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 function pushbutton_check_Callback(hObject, eventdata, handles)
 do_checks(handles);
+
+%#####
+function pushbuttonLaunchObjtool_Callback(hObject, eventdata, handles)
+objtool();
 %> @endcond
+
+

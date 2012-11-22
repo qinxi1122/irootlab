@@ -1,3 +1,4 @@
+%> @ingroup gruigroup
 %> @file
 %> @brief Report Dialog Box
 %> @image html Screenshot-reportdlg.png

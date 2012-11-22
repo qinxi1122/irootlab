@@ -1,8 +1,9 @@
 %> @ingroup guigroup sheware mainguis
 %> @file
-%> @brief datatool, the first GUI!, formerly "atrtool"
+%> @brief datatool, see also @ref objtool.m
 %> @image html Screenshot-datatool.png
-%> Saving file does not generate code, just saves the file.
+%>
+%> @sa objtool.m
 %
 %> @cond
 function varargout = datatool(varargin)

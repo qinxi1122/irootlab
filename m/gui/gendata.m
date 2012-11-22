@@ -1,5 +1,5 @@
 %>@file
-%>@ingroup guigroup
+%>@ingroup guigroup ioio misc graphicsapi interactive
 %>@brief Lets the user create a dataset by clicking the mouse and pressing the number keys
 colors = 'rbmk';
 markers = 'pso<';
