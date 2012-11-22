@@ -3,9 +3,8 @@
 %>@ingroup demo sampledata
 %>
 %> This dataset containg one spectrum only 1800-900 cm^-1
+%
+%> @return A dataset
+function varargout = load_hintdataset()
+varargout = {load_sampledata('hintdataset.mat', nargout <= 0)};
 
-function ds = load_hintdataset()
-
-o = dataio_mat();
-o.filename = fullfile(get_rootdir(), 'sampledata', 'hintdataset.mat');
-ds = o.load();
