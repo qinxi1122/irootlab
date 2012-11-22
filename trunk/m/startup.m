@@ -1,4 +1,5 @@
-%>@file
+%> @ingroup misc introspection
+%> @file
 %>@brief Adds all folders to the MATLAB path. This script needs to be run from the IRootLab root folder.
 
 d = dir('*');

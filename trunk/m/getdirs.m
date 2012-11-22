@@ -1,4 +1,5 @@
-%>@file
+%> @ingroup misc introspection
+%> @file
 %>@brief Recursive directory structure getter
 %>
 %> @param direc A directory to query all subdirectories from
