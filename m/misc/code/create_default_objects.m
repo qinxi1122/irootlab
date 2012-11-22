@@ -1,4 +1,4 @@
-%>@ingroup codegen
+%>@ingroup codegen guigroup
 %>@file
 %>@brief Creates a few objects in the base workspace
 %>

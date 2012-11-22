@@ -1,4 +1,4 @@
-%>@ingroup idata
+%>@ingroup idata globals
 %> @file
 %> @brief Returns the default postpr_test
 %

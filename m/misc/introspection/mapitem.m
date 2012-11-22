@@ -1,6 +1,4 @@
 %> @ingroup introspection
-%> @brief Returns an array of mapitem objects matching the informed criteria
-%
 %> @brief Map item
 classdef mapitem < handle
     properties

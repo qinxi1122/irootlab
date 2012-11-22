@@ -1,4 +1,6 @@
-%> Alters position of figure to make only the legend appear inside inner the figure area
+%> @brief Alters position of figure to make only the legend appear inside inner the figure area
+%>
+%> This pretty much inutilizes the figure for other purpose than saving the legend as an image.
 function show_legend_only()
 fig_assert();
 global SCALE;

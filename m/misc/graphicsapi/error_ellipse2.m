@@ -1,4 +1,4 @@
-%>@ingroup graphicsapi
+%>@ingroup graphicsapi maths
 %>@file
 %>@brief error ellipse, "ellipse walls" version
 %>

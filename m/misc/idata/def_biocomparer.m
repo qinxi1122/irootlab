@@ -1,6 +1,10 @@
-%>@ingroup idata
+%>@ingroup idata globals
 %> @file
-%> @brief Returns the default "fixed" biocomparer
+%> @brief Returns the default biocomparer
+%>
+%> Some options are defined in the MORE global.
+%>
+%> @sa more_assert.m, setup_write.m
 %
 %> @param out If passed, returns it; otherwise, returns a default object
 function out = def_biocomparer(out)

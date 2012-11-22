@@ -45,7 +45,13 @@ classdef as_crossc < as
         function log = do_use(o, data)
             log = log_as_crossc();
             if isempty(o.sgs)
-                log.sgs = get_default_sgs_crossc();
+                irverbose('Creating default Leave-One-Out Cross-validation SGS...', 1);
+                sgs = sgs_crossval();
+                sgs.flag_group = 1;
+                sgs.flag_perclass = 0;
+                sgs.randomseed = 0;
+                sgs.flag_loo = 1;
+                log.sgs = sgs;
             else
                 log.sgs = o.sgs;
             end;

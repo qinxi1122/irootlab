@@ -10,7 +10,7 @@
 %> @param n intensity
 %> @param ma Maximum
 %> @param flag_hex =0. If true, returns hexadecimal strings to insert into HTML code, otherwise returns 3-element vectors containing the RGB intensities.
-%> @retval [bgcolor] or [bgcolor, fgcolor]
+%> @return [bgcolor] or [bgcolor, fgcolor]
 function varargout = cellcolor(n, ma, flag_hex)
 
 if ~exist('flag_hex', 'var')
