@@ -1,6 +1,8 @@
 %>@ingroup ioio sheware
 %>@file
 %>@brief Connects to database specified in the DB global
+%>
+%> @sa db_assert.m, connect_to_cells.m, irquery.m
 function connect_to_cells()
 db_assert();
 global DB;

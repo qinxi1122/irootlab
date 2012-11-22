@@ -1,4 +1,4 @@
-%> @ingroup globals parallelgroup
+%> @ingroup globals parallelgroup assert
 %> @file
 %> @brief Initializes the PARALLEL global, if not present.
 %> @sa parallel_reset.m

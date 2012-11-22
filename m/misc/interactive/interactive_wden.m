@@ -1,6 +1,9 @@
 %>@brief Helps find thresholds for wavelet de-noising
 %>@ingroup interactive
 %>@file
+%>
+%> <h3>References</h3>
+%> ﻿[1] M. Misiti, Y. Misiti, G. Oppenheim, and J.-M. Poggi, Wavelet Toolbox User’s Guide R2012b. Mathworks, 2012.
 
 disp('*** Helps find thresholds for wavelet de-noising ***');
 varname = input('Enter dataset variable name [Demo Raman dataset]: ', 's');

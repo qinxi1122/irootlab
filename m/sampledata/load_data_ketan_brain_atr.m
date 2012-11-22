@@ -1,8 +1,6 @@
+%>@brief Loads Ketan's brain cancer dataset
 %>@file
-%>@ingroup demo
-%>@brief Loads the hint dataset
-%>
-%> This dataset containg one spectrum only 1800-900 cm^-1
+%>@ingroup demo sampledata
 
 function ds = load_data_ketan_brain_atr()
 

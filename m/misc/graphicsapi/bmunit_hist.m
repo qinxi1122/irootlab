@@ -2,6 +2,8 @@
 %> @ingroup graphicsapi
 %>
 %> Same as Integer, but plots as histogram (stem plot). Affects @ref bmtable
+%>
+%> @sa bmtable
 classdef bmunit_hist < bmunit
     methods
         function o = bmunit_hist(o)

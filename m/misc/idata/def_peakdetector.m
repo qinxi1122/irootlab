@@ -1,7 +1,7 @@
 %>@ingroup idata globals
 %> @file
 %> @brief Returns the default peakdetector
-%> @sa more_assert.m
+%> @sa more_assert.m, setup_write.m
 %
 %> @param out If passed, returns it; otherwise, returns a default object
 function out = def_peakdetector(out)

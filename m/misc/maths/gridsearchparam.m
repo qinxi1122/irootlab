@@ -1,5 +1,5 @@
 %>@file
-%>@ingroup maths
+%>@ingroup maths misc
 %
 %> Grid Searc Parameter: auxiliary class for Grid Searches.
 %>

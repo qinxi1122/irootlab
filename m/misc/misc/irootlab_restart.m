@@ -1,5 +1,5 @@
 %> @file
-%> @ingroup misc
+%> @ingroup misc usercomm introspection
 
 %> @brief Changes to irootlab root directory and runs startup again
 function irootlab_restart()

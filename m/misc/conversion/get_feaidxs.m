@@ -21,6 +21,7 @@
 %> @arg @c 'ri' if v contains index ranges
 %> @arg @c 'i' if v contains feature indexes
 %> @param flag_complement If 1, will exclude the specified variables
+%> @return indexes Vector of feature indexes
 function indexes = get_feaidxs(x, v, v_type, flag_complement)
 
 if ~exist('v_type', 'var')

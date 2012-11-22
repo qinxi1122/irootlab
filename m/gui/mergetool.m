@@ -27,7 +27,6 @@
 %> All these are spectra from the same sample (named "sample1"). Specifying "2" for the trimming dot will get rid of
 %> everything after the 2nd last dot counting from right to left. Thus, all spectra will have sample code "sample1".
 %>
-%>
 %> <h3>Image building options</h3>
 %> If <b>Build image is checked</b>, the image <b>height</b> needs to be informed. The width is automatically calculated as the number of files in the directory divided by the informed <b>height</b>.
 %> @note To build an image, the files need to have a sequential numbering between dots, as above. 

@@ -1,4 +1,4 @@
-%>@ingroup graphicsapi idata
+%>@ingroup graphicsapi
 %> @file
 %> @brief Draws hachure to above and below a curve
 %>

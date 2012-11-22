@@ -1,4 +1,4 @@
-%>@ingroup conversion
+%>@ingroup conversion maths
 %>@file
 %>@brief Converts indexes to x by linear [inter/extra]polation.
 %>

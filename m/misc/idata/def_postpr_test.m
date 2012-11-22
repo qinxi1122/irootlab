@@ -1,6 +1,7 @@
 %>@ingroup idata globals
 %> @file
 %> @brief Returns the default postpr_test
+%> @sa more_assert.m, setup_write.m
 %
 %> @param out If passed, returns it; otherwise, returns a default object
 function out = def_postpr_test(out)

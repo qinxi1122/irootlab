@@ -1,6 +1,7 @@
 %>@brief Plots polynomial baselines, Helps find order for polynomial-fit baseline correction
 %>@ingroup interactive demo
 %>@file
+%> @sa pre_bc_poly
 disp('*** Helps find polynomial order for polynomial-fit baseline correction ***');
 varname = input('Enter dataset variable name [Demo Raman dataset]: ', 's');
 

@@ -1,6 +1,9 @@
 %>@ingroup maths
 %>@file
 %>@brief Reproduces the factor rotation of Pirouette
+%>
+%> <h3>References</h3>
+%> Pirouette (Informetrix Inc.) Help Documentation.
 %
 %> @param L
 %> @param flag_normal

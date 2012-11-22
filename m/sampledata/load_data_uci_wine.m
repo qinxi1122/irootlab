@@ -1,6 +1,6 @@
-%>@file
-%>@ingroup demo
 %>@brief Loads sample data userdata_nc2nf2.txt
+%>@file
+%>@ingroup demo sampledata
 
 function ds = load_data_uci_wine()
 

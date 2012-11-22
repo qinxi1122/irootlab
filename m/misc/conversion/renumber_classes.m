@@ -8,6 +8,7 @@
 %> @param classes_orig
 %> @param classlabels_orig Needs to be a subset of @c classlabels_ref
 %> @param classlabels_ref
+%> @return classes
 function classes = renumber_classes(classes_orig, classlabels_orig, classlabels_ref)
 classes = classes_orig;
 if isempty(classes)

@@ -1,6 +1,6 @@
-%>@file
-%>@ingroup demo
 %>@brief Loads sample data raman_sample.mat
+%>@file
+%>@ingroup demo sampledata
 
 function ds = load_data_raman_sample()
 

@@ -8,9 +8,9 @@
 %>
 %> If a group existes in data_orig but not in data_ref, an error will be generated.
 %
-%> @param indexes_orig
-%> @param data_orig
-%> @param data_ref
+%> @param indexes_orig This is a selection of groups to be dealt with; indexes point to <code>unique(data_orig.groupcodes)</code>
+%> @param data_orig Original dataset
+%> @param data_ref Reference dataset
 %> @return Renumbered indexes
 function indexes = renumber_group_indexes(indexes_orig, data_orig, data_ref)
 

@@ -1,4 +1,4 @@
-%> @ingroup globals
+%> @ingroup globals assert
 %> @file
 %> @brief Initializes the MORE global, if not present.
 %>

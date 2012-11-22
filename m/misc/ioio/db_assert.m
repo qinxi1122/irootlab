@@ -1,4 +1,4 @@
-%>@ingroup globals ioio reinforcement setupgroup sheware
+%>@ingroup globals ioio setupgroup sheware assert
 %>@file
 %>@brief Initializes the DB global
 %>

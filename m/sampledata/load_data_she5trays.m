@@ -1,6 +1,6 @@
-%>@file
-%>@ingroup demo
 %>@brief Loads sample data she5trays.mat
+%>@file
+%>@ingroup demo sampledata
 
 function ds = load_data_she5trays()
 

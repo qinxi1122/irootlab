@@ -1,5 +1,6 @@
 %> @brief Art stuff
 %> @ingroup graphicsapi
+%> @sa bmtable
 classdef bmart_circle < bmart
     methods
         function o = bmart_circle(o)

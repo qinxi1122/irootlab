@@ -1,6 +1,6 @@
+%>@brief Loads the hint dataset: this dataset containg one spectrum only: 1800-900 cm^-1
 %>@file
-%>@ingroup demo
-%>@brief Loads the hint dataset
+%>@ingroup demo sampledata
 %>
 %> This dataset containg one spectrum only 1800-900 cm^-1
 

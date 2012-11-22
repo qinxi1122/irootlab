@@ -3,6 +3,8 @@
 %>@brief Wavelet De-noising
 %>
 %> This function uses MATLAB Wavelet toolbox swt() and wthresh() functions to de-noise the rows of X.
+%> <h3>References</h3>
+%> ﻿[1] M. Misiti, Y. Misiti, G. Oppenheim, and J.-M. Poggi, Wavelet Toolbox User’s Guide R2012b. Mathworks, 2012.
 %
 %> @param X
 %> @param no_levels Number of times the signal will be decimated

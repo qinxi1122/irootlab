@@ -3,6 +3,7 @@
 %> <h3>References</h3>
 %> Trevisan et al 2012. Submitted to AC.
 %>
+%> @sa sigfun.m
 classdef biocomparer < irobj
     properties
         %> =20. "half-height" distance between biomarkers. This is the distance in x-values (wavenumbers) where the degree of agreement

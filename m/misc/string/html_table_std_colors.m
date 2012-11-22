@@ -3,6 +3,9 @@
 %>@brief HTML table where data items may have associated standard deviations
 %>
 %> This version of HTML table paints each cell with a colour proportional to corresponding element in M
+%>
+%> @sa html_comparison_std.m, html_confusion.m, html_comparison.m, html_table_std.m
+
 
 %> @param M Square matrix or cell. If cell, may contain either numbers of strings
 %> @param S Matrix of standard deviations. This one must be a matrix
@@ -12,6 +15,7 @@
 %> @param minimum
 %> @param maximum
 %> @param pow =10. Color function power. See internal function cellcolor2()
+%> @return s A string
 function s = html_table_std_colors(M, S, rowlabels, collabels, cornerstr, minimum, maximum, pow)
 
 flag_std = nargin > 1 && ~isempty(S);

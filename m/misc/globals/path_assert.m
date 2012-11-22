@@ -1,4 +1,4 @@
-%> @ingroup globals setupgroup
+%> @ingroup globals setupgroup assert
 %> @file
 %> @brief Asserts the @c PATH global is present and initialized.
 %>

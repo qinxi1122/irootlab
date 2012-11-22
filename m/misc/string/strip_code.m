@@ -1,4 +1,4 @@
-%>@ingroup string
+%>@ingroup string conversion
 %>@file
 %>@brief Extracts things like 'A' from things like 'code = "A"'
 

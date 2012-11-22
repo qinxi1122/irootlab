@@ -1,6 +1,10 @@
-%>@ingroup maths datasettools
+%>@ingroup maths datasettools demo
 %>@file
 %>@brief Eliminates low-variance features
+%>
+%> Features are selected above a variance threshold.
+%>
+%> This file also demonstrates how objtool can be used to generate MATLAB code to create a function.
 %
 %> @param data Input dataset
 %> @param threshold =1e-10. Variance threshold

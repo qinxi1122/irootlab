@@ -1,4 +1,4 @@
-%>@ingroup code idata
+%>@ingroup codegen idata
 %>@file
 %>@brief Returns a list of variables not to be brought from the workspace
 %

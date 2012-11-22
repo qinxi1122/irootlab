@@ -1,4 +1,4 @@
-%>@ingroup misc reinforcement
+%>@ingroup misc assert
 %>@file
 %>@brief Makes sure that the object is able to decide upon classes
 %

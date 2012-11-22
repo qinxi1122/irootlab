@@ -1,4 +1,4 @@
-%>@ingroup ioio string
+%>@ingroup gencode string
 %>@file
 %>brief Replaces invalid characters in name with an underscore ('_')
 %

@@ -5,10 +5,17 @@
 %> Turns loadings vectors so that they make less than 90 degrees with their corresponding loadings vectors from a reference block.
 %>
 %> Works both with @ref fcon_linear blocks and @ref block_cascade_base blocks. In case of block_cascade_base, only acts on the last block
+%>
+%> This function makes sense with eigenvectors of some matrix, e.g., loadings from PCA/LDA/PLS
+%>
+%> Acts on the columns of L separately.
+%>
+%> as_crossc
 %
-%> @param b Block to act on
+%
+%> @param b Block to act on. Block must have the @c L property
 %> @param bref Reference block
-%> @return a "turning" matrix
+%> @return a [nf]x[nf] "turning" matrix/ This matrix is diagonal with elements either +1 or -1. <code>L*M</code> turns the loadings vector
 function M = adjust_turn2(b, bref)
 
 % flag_cascade = isa(b, 'block_cascade_base');

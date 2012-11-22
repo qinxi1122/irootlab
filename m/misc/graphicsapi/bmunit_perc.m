@@ -1,5 +1,7 @@
 %> @brief Unit - percentage
 %> @ingroup graphicsapi
+%>
+%> @sa bmtable
 classdef bmunit_perc < bmunit
     methods
         function o = bmunit_perc(o)

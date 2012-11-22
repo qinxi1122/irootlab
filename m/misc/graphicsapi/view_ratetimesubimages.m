@@ -6,7 +6,9 @@
 %>
 %> expected dimensions: (subdsperc, number of features, C1 (e.g. C), C2 (e.g. gamma))
 %>
-%> this function should be made into a class some time
+%> This function is not being used a lot; Could be made into a class some time
+%>
+%> @sa report_soitem::images_2d
 %
 %> @param r sovalues object
 function view_ratetimesubimages(r) %, saveprefix)

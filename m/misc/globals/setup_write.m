@@ -7,7 +7,9 @@
 %>
 %> The variables written are the graphics globals, database globals, and verbose globals.
 %>
-%> @sa verbose_assert.m, db_assert.m, fig_assert.m, path_assert.m, more_assert.m
+%> For a list of written variables to setup, please check the source code of this file.
+%>
+%> @sa verbose_assert.m, db_assert.m, fig_assert.m, path_assert.m, more_assert.m, datatool.m, objtool.m, mergetool.m, scenebuilder.m
 
 function setup_write()
 

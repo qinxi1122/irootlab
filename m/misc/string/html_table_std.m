@@ -1,6 +1,9 @@
 %>@ingroup string htmlgen
 %>@file
 %>@brief HTML table where data items may have associated standard deviations
+%>
+%> @sa html_comparison_std.m, html_confusion.m, html_table_std_colors.m, html_comparison.m
+
 
 %> @param M Square matrix or cell. If cell, may contain either numbers of strings
 %> @param S Matrix of standard deviations. This one must be a matrix
@@ -8,6 +11,7 @@
 %> @param collabels cell of column labels
 %> @param B matrix with 2-bit elements: less significant bit: "flag_better"; most significant bit: "statistically significant?"
 %> @param cornerstr =''. String to put in the corner
+%> @return s A string
 function s = html_table_std(M, S, rowlabels, collabels, B, cornerstr)
 
 if nargin < 5
