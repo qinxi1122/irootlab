@@ -1,5 +1,4 @@
 %> @brief Hierarchical split 
-%> @ingroup as needsrevision
 %>
 %> Feeds blocks with successive sub-datasets obtaining by splitting @c data using the @c hie_split class levels
 %>
@@ -7,7 +6,7 @@
 %> The classifiers in the @c clssrs property must be multi-trainable (recommended: @ref aggr_free).
 %> The classifiers must <b>not</b> be of class @c aggr_hiesplit.
 %>
-%> @todo this may be obsolete. There is new dataset property instead of this hie_split/hie_classify pair
+%> @todo Temporaritly deactivated. This may be obsolete. There is new dataset property instead of this hie_split/hie_classify pair
 %>
 %> @sa uip_reptt_hiesplit.m, demo_reptt_hiesplit.m
 classdef reptt_hiesplit < reptt

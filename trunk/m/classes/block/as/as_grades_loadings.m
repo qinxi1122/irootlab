@@ -1,4 +1,3 @@
-%> @ingroup as tentative
 %> @brief Loadings vector becomes the grades vector
 %>
 %> Trains a @ref fcon_linear block (or a @ref block_cascade) to extract one of its loadings vector.

@@ -93,16 +93,6 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/graphicsapi/resize_legend_markers.m:5: warning: argument '0' of command @param is not found in the argument list of resize_legend_markers(in size, in flag_line)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/misc/setbatch.m:5: warning: The following parameters of setbatch(in o, in params) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:5: warning: unable to resolve reference to `subsets' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:5: warning: unable to resolve reference to `nf' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `nf4gradesmode' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `nf4grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `staibilitythreshold' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `weightmode' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:7: warning: unable to resolve reference to `stabilitype' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:8: warning: unable to resolve reference to `grades' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `gradethreshold' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `grades' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/misc/misc/traintest.m:6: warning: Found unknown command `\re'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_aggr.m:16: warning: end of comment block while expecting command </b>
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/gui/uip/block/clssr/uip_aggr.m:16: warning: end of comment block while expecting command </b>
@@ -662,6 +652,13 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
+  parameter 'o'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/clssr/clssr_incr.m:47: warning: unable to resolve reference to `every' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -969,7 +966,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:7: warning: unable to resolve reference to `extract_reptt_sgs' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:5: warning: unable to resolve reference to `extract_reptt_sgs' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `data' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/factorscurve.m:25: warning: unable to resolve reference to `cube' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
@@ -1159,142 +1156,142 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg_clssr.m:21: warning: Found unknown command `\block_cascade_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:150: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:149: warning: The following parameters of fsg::calculate_grades(in o, in idxs) are not documented:
   parameter 'o'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:96: warning: The following parameters of fsg::data(in o, in data) are not documented:
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:95: warning: The following parameters of fsg::data(in o, in data) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: The following parameters of irobj::get_html(in o, in flag_stylesheet) are not documented:
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:11: warning: Found unknown command `\min'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:10: warning: Found unknown command `\min'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:33: warning: unable to resolve reference to `prepare()' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/fsg/fsg.m:32: warning: unable to resolve reference to `prepare()' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1374,8 +1371,8 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:48: warning: Found unknown command `\block_cascade_base'
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:25: warning: unable to resolve reference to `data' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:47: warning: Found unknown command `\block_cascade_base'
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/gridsearch.m:24: warning: unable to resolve reference to `data' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -1385,9 +1382,9 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:9: warning: unable to resolve reference to `nc-1' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:14: warning: Unsupported xml/html tag <bold> found
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:14: warning: Unsupported xml/html tag </bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:7: warning: unable to resolve reference to `nc-1' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:12: warning: Unsupported xml/html tag <bold> found
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:12: warning: Unsupported xml/html tag </bold> found
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irdata/irdata.m:570: warning: The following parameters of irdata::get_fea_names(in data, in idxs) are not documented:
@@ -1636,7 +1633,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/pre/pre_abs2atr.m:7: warning: Unexpected end of comment while inside <h3> tag
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/pre/pre_abs2atr.m:5: warning: Unexpected end of comment while inside <h3> tag
 
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
@@ -1792,7 +1789,7 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/pre/pre_wden.m:19: warning: image file Screenshot-Stationary is not found in IMAGE_PATH: assuming external image.
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/pre/pre_wden.m:17: warning: image file Screenshot-Stationary is not found in IMAGE_PATH: assuming external image.
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -2004,7 +2001,7 @@
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt.m:23: warning: Found unknown command `\block_cascade_base'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt_blockcube.m:9: warning: unable to resolve reference to `data' for \ref command
-/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt_hiesplit.m:2: warning: unable to resolve reference to `aggr_free' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/as/reptt_hiesplit.m:4: warning: unable to resolve reference to `aggr_free' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)
@@ -2078,6 +2075,12 @@
   parameter 'o'
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:40: warning: unable to resolve reference to `classes_html.m' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:8: warning: unable to resolve reference to `subsets' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `staibilitythreshold' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:10: warning: unable to resolve reference to `stabilitype' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:11: warning: unable to resolve reference to `grades' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:13: warning: unable to resolve reference to `gradethreshold' for \ref command
+/home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/block/blbl/subsetsprocessor.m:13: warning: unable to resolve reference to `grades' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:58: warning: unable to resolve reference to `datatool' for \ref command
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:210: warning: argument '1' of command @param is not found in the argument list of irobj::get_ancestry(in o, in flag_title)
 /home/j/Documents/phd/evel/m/irootlab-development/irootlab/trunk/m/classes/irobj/irobj.m:114: warning: argument '1' of command @param is not found in the argument list of irobj::get_html(in o, in flag_stylesheet)

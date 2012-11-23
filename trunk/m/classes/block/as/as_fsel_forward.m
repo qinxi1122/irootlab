@@ -1,4 +1,4 @@
-%> Forward Feature Selection
+%> @brief Forward Feature Selection
 %>
 %> <h3>References</h3>
 %>
