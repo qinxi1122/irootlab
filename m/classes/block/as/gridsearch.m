@@ -1,5 +1,4 @@
-%>@ingroup maths needsrevision
-%> Grid Search
+%> @brief Grid Search
 %>
 %> Grid search is an simple iterative way of optimization that avoids using the gradient of the objective function (F(.)). Instead, it
 %> evaluates F(.) at all points within a point grid and finds to find the maximum value. A new, finer grid is then formed

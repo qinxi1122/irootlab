@@ -1,8 +1,8 @@
 %> @brief eClass-based feature selection
-%> @ingroup as needsrevision
 %>
-%> @todo Not tested. Honestly, averaging coefficients does not seem to be a good idea. Need to discuss this with Plamen.
-%> The other issue is the same with LDA loadings: negative-positive-negative-positive-...
+%> @todo Temporarily deactivated
+%>
+%> Issue is similar to one wih LDA loadings: negative-positive-negative-positive-...
 classdef as_fsel_eclass < as_fsel
     properties
         %> =10.

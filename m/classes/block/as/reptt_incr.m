@@ -1,5 +1,5 @@
 %> @file
-%> @ingroup parallelgroup as
+%> @ingroup parallelgroup
 %
 %> @brief Incremental learning curve - to test incremental classifiers
 %>

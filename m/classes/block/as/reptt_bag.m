@@ -1,6 +1,4 @@
-%> @ingroup as needsrevision
-%>
-%> REPTT for bagging classifiers.
+%> @brief REPTT for bagging classifiers.
 %>
 %> Implements a nested loop: external is just a repetition ("bagging repetitions"); internal is a cross-validation loop.
 %>
@@ -30,6 +28,8 @@
 %> will rise with the bagging repetitions.
 %>
 %> Another "results" options is using extract_as_dsperc_x_rate()
+%>
+%> @todo temporarily deactivated.
 %>
 %> @sa uip_reptt_bag.m, demo_reptt_bag.m
 classdef reptt_bag < reptt

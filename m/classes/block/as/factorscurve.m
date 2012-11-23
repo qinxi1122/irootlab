@@ -1,4 +1,4 @@
-%> Used to calculate (number of factors)x(performance) curves
+%> @brief Used to calculate (number of factors)x(performance) curves
 %> 
 %> This class uses a reptt_sgs and a fcon block (@ref fcon_mold) that has the @c no_factors property.
 %> 

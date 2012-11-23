@@ -1,4 +1,4 @@
-%> LASSO feature selection
+%> @brief LASSO feature selection
 classdef as_fsel_lasso < as_fsel
     properties
         %> Number of features to be selected

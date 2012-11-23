@@ -1,4 +1,3 @@
-%> @ingroup as
 %> @brief Analysis Session (AS) base class.
 %>
 %> Analysis Session is a block that outputs some @ref irlog, and its internal calculation may take some time, usually with loops etc

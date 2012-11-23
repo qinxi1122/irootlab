@@ -1,4 +1,3 @@
-%> @ingroup as
 %> @brief Analysis Session that outputs a @ref log_grades
 classdef as_grades < as
     methods

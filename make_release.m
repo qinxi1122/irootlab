@@ -82,6 +82,7 @@ cd(tmp);
 if flag_delete_fuzzy
     tmp = pwd();
     cd([sdir, '/classes/block/clssr/frbm']);
+    pcode('*.m');
     delete('*.m');
     cd(tmp);
 end;
