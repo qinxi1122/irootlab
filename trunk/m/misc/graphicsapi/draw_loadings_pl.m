@@ -70,7 +70,7 @@ bl = fcon_linear_fixed();
 bl.L = L;
 bl.L_fea_x = x;
 if ~isempty(legends)
-    bl.t_fea_names = legends;
+    bl.L_fea_names = legends;
     bl.title = '';
 end;
 

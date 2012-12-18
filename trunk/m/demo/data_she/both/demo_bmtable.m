@@ -72,7 +72,7 @@ fcon_lda01 = fcon_lda();
 %%%%%% ... 44444 PLS ...
 
 % PLS block has a fcon_feaavg block before, just to show that bmtable is able to assimilate cases when
-% different blocks have different grade_x
+% different blocks work with different x-axis
 fcon_pls01 = fcon_pls();
 cascade_pls = block_cascade_base();
 cascade_pls.blocks = {fcon_feaavg(), fcon_pls01};

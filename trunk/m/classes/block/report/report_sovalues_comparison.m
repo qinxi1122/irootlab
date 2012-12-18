@@ -1,6 +1,4 @@
 %> @brief Comparison and p-values tables
-%>
-%> @todo implement the params GUI
 classdef report_sovalues_comparison < irreport
     properties
         %> ={[Inf, 0, 0], [1, 2]}

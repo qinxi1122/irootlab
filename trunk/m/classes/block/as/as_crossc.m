@@ -18,7 +18,9 @@
 %> [2] Kuncheva, "Combining Pattern Classifiers", 2004, page 109.
 classdef as_crossc < as
     properties
-        %> SGS, preferrably a cross-validation (@ref sgs_crossval).
+        %> (optional) SGS, preferrably a cross-validation (@ref sgs_crossval).
+        %>
+        %> This property is optional. If not specified, if will default to a a Leave-One-Out Cross-validation with sgs::flag_group = 1
         sgs;
         %> Mold block
         mold;
@@ -41,12 +43,11 @@ classdef as_crossc < as
     methods(Access=protected)
         %> Populates the @ref log_crossc and @ref data_out properties
         %>
-        %> @todo does not check whether there are differences in the number of variables
         function log = do_use(o, data)
             log = log_as_crossc();
             if isempty(o.sgs)
                 irverbose('Creating default Leave-One-Out Cross-validation SGS...', 1);
-                sgs = sgs_crossval();
+                sgs = sgs_crossval(); %#ok<*PROP>
                 sgs.flag_group = 1;
                 sgs.flag_perclass = 0;
                 sgs.randomseed = 0;

@@ -3,4 +3,4 @@
 %>@brief Returns a list of variables not to be brought from the workspace
 %
 function vars = get_excludevarnames()
-vars = {'o', 'u', 'ans', 'out', 'TEMP'};
+vars = {'lo', 'blk', 'o', 'u', 'ans', 'out', 'TEMP'};

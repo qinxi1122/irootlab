@@ -1,4 +1,4 @@
-%> Feature subset grader - Fisher's score
+%> Feature subset grader - Fisher's score: between-class variance divided by within-class variance
 %>
 %> <h3>Reference</h3>
 %> Duda et al 2001, Pattern Classification
@@ -20,7 +20,7 @@ classdef fsg_test_fisher < fsg_test
     
     methods
         function o = fsg_test_fisher(o)
-            o.classtitle = 'Fisher''s test';
+            o.classtitle = 'Fisher''s score';
             o.flag_pairwise = 0;
             o.flag_univariate = 1;
             o.flag_params = 0;

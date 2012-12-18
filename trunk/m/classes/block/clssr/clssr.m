@@ -1,7 +1,7 @@
 %> @brief Classifiers base class
 %>
-%> A classifier in IRoot is a block that outputs class probabilities for each observation. Output is given as an @c
-%> estimat dataset.
+%> A classifier is a block that outputs class probabilities for each observation. Output is given as an @c
+%> estimato dataset.
 
 classdef clssr < block
     properties(SetAccess=protected)

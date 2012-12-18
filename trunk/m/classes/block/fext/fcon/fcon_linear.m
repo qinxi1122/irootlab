@@ -2,9 +2,9 @@
 classdef fcon_linear < fcon
     properties
         %> Prefix for the factos space variables, e.g., "PC", "LD"
-        t_fea_prefix = 'LIN';
+        L_fea_prefix = 'LIN';
         %> Names of the factors!
-        t_fea_names = [];
+        L_fea_names = [];
         %> Loadings vector
         L = [];
         %> Loadings x-axis (in this case, the up-to-down dimension)
@@ -20,23 +20,27 @@ classdef fcon_linear < fcon
             o.classtitle = 'Linear Transformation';
         end;
         
-        function s = get_t_fea_name(o, idx)
-            if ~isempty(o.t_fea_names)
-                if numel(o.t_fea_names) < idx
-                    irerror(sprintf('t_fea_names size %d < %d', numel(o.t_fea_names), idx));
+        function a = get_L_fea_names(o, idxs)
+            if ~isempty(o.L_fea_names)
+                if any(idxs > numel(o.L_fea_names))
+                    ii = find(idxs > numel(o.L_fea_names));
+                    irerror(sprintf('L_fea_names size %d < %d', numel(o.L_fea_names), idxs(ii(1))));
                 end;
-                s = o.t_fea_names{idx};
-            elseif ~isempty(o.t_fea_prefix)
-                s = [o.t_fea_prefix, int2str(idx)];
+                a = o.L_fea_names(idxs);
             else
-                s = int2str(idx);
+                if ~isempty(o.L_fea_prefix)
+                    prefix = o.L_fea_prefix;
+                else
+                    prefix = 'Factor ';
+                end;
+                a = arrayfun(@(x) [prefix, int2str(x)], idxs, 'UniformOutput', 0);
             end;
         end;
     end;
     
     methods(Access=protected)
         function data = do_use(o, data)
-            data = data.transform_linear(o.L, o.t_fea_prefix);
+            data = data.transform_linear(o.L, o.L_fea_prefix);
         end;
     end;
 end

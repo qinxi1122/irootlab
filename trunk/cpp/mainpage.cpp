@@ -14,11 +14,11 @@ IRootLab is Free/Libre and Open-Source software, released under the LGPL licence
 
 Official website: http://irootlab.googlecode.com
 
-@section thisdoc This Site
+@section thisdoc This Website
 
-@note This site is for referencing purposes. For a friendly start, please check http://code.google.com/p/irootlab/downloads/list, or quick start below.
+This is a file reference. For a friendly start to IRootLab, please check below or at http://code.google.com/p/irootlab/downloads/list.
 
-This Doxygen-generated site is the official documentation of the IRootLab class and function library (*.m).
+This Doxygen-generated website is the official documentation of the IRootLab class and function library (*.m).
 This documentation contains reference pages on individual .m files within the IRootLab directory.
 It can be consulted by direct search (top right), or navigation (left). IRootLab classes are hierarchically organized (left). All files inside the "misc" directory, and some others, have been tentatively grouped into "modules" (left).
 

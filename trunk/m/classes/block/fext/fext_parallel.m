@@ -22,7 +22,6 @@ classdef fext_parallel < fext
         end;
 
         %> Trains every encapsulated block
-        %> @todo think about stacked generalization
         function o = do_train(o, data)
             
             for i = 1:numel(o.blocks)

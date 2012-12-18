@@ -47,8 +47,7 @@ o = irobj();
 set(handles.pushbuttonObjtool, 'BackgroundColor', o.color);
 
 
-%> @todo move this OpenSpec GUI initialization
-% openspecgui initialization
+% initialization
 global handles_irootlab;
 ircode_assert();
 set(handles.textVersion, 'string', sprintf('%s', irootlab_version));

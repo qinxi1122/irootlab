@@ -26,8 +26,6 @@
 %>
 %> @sa calculate_scatters.m
 %>
-%> @todo there is a check for number of eigenvalues different than number of classes-1 that needs to be solved
-%
 %> @param data Dataset
 %> @param flag_sphere=0. Deac
 %> @param flag_modified_s_b: see calculate_scatters.m

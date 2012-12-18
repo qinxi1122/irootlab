@@ -28,7 +28,7 @@ no_files = length(filenames);
 
 if flag_image
     if no_files/height ~= floor(no_files/height)
-        irerror('Invalid image height!');
+        irerror('Opus2Data: Invalid image height!');
     end;
 end;
 
@@ -131,7 +131,7 @@ if cnt_error > 0
     for i = 1:cnt_error
         irverbose(errors{i});
     end;
-    flag_error = 1;
+    flag_error = cnt_error;
     
     
     data.X = data.X(1:ii, :);

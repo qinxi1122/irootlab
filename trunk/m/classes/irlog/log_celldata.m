@@ -1,7 +1,5 @@
 %> @brief Learning curve: (percent dataset used for training)x(classification rate)
 %>
-%> @todo This class is still multiplying the rates by 100, even after I made all rates be generated in the 0-100 interval
-%>
 %> The purpose of this class is to store a cell of vectors (the @ref celldata property). The vectors may vary in size.
 %>
 %> Each row has a different "name" (@ref rownames property).

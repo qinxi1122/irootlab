@@ -7,8 +7,6 @@
 %> It has a @ref extract_reptt_sgs function for the GUI. However, a property box is not implemented at the moment.
 %>
 %> Please note that a Standardization block will be automatically inserted between the Feature Extraction block and the Classifier.
-%> 
-%> @sa reptt_sgs.m
 classdef factorscurve < as
     properties
         fcon_mold;
@@ -20,7 +18,6 @@ classdef factorscurve < as
         %> SGS object. It is optional if @ref data has more than 1 element. If @ref cube is passed, this property is ignored altogether.
         sgs;
         %> =[]. See @reptt
-        %> @todo this uses these postprocessors but is not a reptt. Why?
         postpr_test;
         %> =decider(). See @ref reptt
         postpr_est = decider();

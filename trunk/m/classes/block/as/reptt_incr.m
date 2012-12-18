@@ -64,8 +64,6 @@ classdef reptt_incr < reptt
         %>
         %> The number of recordings is currently the number of elements in the training set (one recording is taken after one row is passed
         %> to the incremental-training classifier)
-        %>
-        %> @todo fill in results properly
         function o = allocate_results(o, data)
             no_reps = size(o.obsidxs, 1);
             nb = numel(o.block_mold);

@@ -175,6 +175,8 @@ if x
   o = committees();
   o = committees_np();
   o = committees_pa();
+  o = diacomp();
+  o = diacomp_peaklocationsfe();
   o = fearchsel();
   o = fearchsel_bypass();
   o = fearchsel_factors();

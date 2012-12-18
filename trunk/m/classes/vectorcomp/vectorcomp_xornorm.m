@@ -3,7 +3,7 @@
 %> Measure of diversity. Vectors must be of same size. 
 %>
 %> <h3>References</h3>
-﻿%> [1] L. I. Kuncheva, Combining Pattern Classifiers: Methods and Algorithms. Hoboken, New Jersey, USA: Wiley, 2004.
+%> L. I. Kuncheva, Combining Pattern Classifiers: Methods and Algorithms. Wiley, 2004.
 
 classdef vectorcomp_xornorm < vectorcomp
     methods(Access=protected)

@@ -1,11 +1,17 @@
 %> @brief Cascade block: sequence of blocks represented by a block
 %>
+%> Cascade blocks can mimic the behaviour of linear transformation blocks (fcon_linear; such as PCA) if it contains one or more such blocks.
+%> It has all the properties that a fcon_linear block has, however its valid functioning will depend on the component blocks.
+%> The loadings matrix is calculated by multiplying the loadings matrix of successive component blocks.
+%>
+%> 
+%>
 %> @arg boot: all component blocks booted
 %> @arg train: after training first block, training data is inputted into it to get the training data to the second block etc
 %> @arg use: output of (k-1)-th block is inputted into k-th block
 %>
 %>@sa uip_block_cascade_base.m, blsp_crossc
-classdef block_cascade_base < blmisc
+classdef block_cascade_base < block
     properties
         %> Cell of @c block objects
         blocks = {};
@@ -23,15 +29,13 @@ classdef block_cascade_base < blmisc
         %> Loadings matrix. @ref fcon_linear mimicking. Calculates loadings matrix by multiplying
         %> (<code>L = block1.L*block2.L*...</code>). 
         L;
-        %> Feature names. @ref fcon_linear / fsel mimicking.
-        fea_names;
-%         %> Loadings feature names. @ref fcon_linear mimicking.
-%         t_fea_names;
+%         %> Feature names. @ref fcon_linear / fsel mimicking.
+%         fea_names;
+        %> Loadings feature names. @ref fcon_linear mimicking.
+        L_fea_names;
         %> Feature x-axis. @ref fcon_linear mimicking. Retrieves the @c L_fea_x from the first block.
-        %>@todo should be from the first linear block found.
         L_fea_x;
         %> x-axis name. @ref fcon_linear mimicking. Retrieves the @c xname from the first block.
-        %>@todo should be from the first linear block found.
         xname;
         xunit;
         yname;
@@ -83,9 +87,9 @@ classdef block_cascade_base < blmisc
             L = o.get_loadings();
         end;
         
-        function z = get.fea_names(o)
-            z = o.get_fea_names();
-        end;
+%         function z = get.fea_names(o)
+%             z = o.get_fea_names();
+%         end;
 
         function z = get.L_fea_x(o)
             z = o.get_L_fea_x();
@@ -150,7 +154,6 @@ classdef block_cascade_base < blmisc
     % GET EVERYTHING
     
     methods
-        %> Feature names: takes the fea_names property from the first linear block
         function z = get_L_fea_x(o)
             if numel(o.blocks) == 0
                 if o.flag_give_error
@@ -172,7 +175,6 @@ classdef block_cascade_base < blmisc
             end;
         end;
 
-        %> Feature names: takes the xname property from the first linear block
         function z = get_xname(o)
             if numel(o.blocks) == 0
                 if o.flag_give_error
@@ -243,28 +245,20 @@ classdef block_cascade_base < blmisc
             end;
         end;
 
-
-        %> Feature names: takes the fea_names property from the last block
-        function z = get_fea_names(o)
-            if numel(o.blocks) == 0
-                if o.flag_give_error
-                    irerror('Cascade block is empty!');
-                else
-                    z = {};
-                end;
-            else
-                b = o.blocks{end};
-                if ~ismember('fea_names', properties(b))
-                    if o.flag_give_error
-                        irerror('Last block does not have the "fea_names" property!');
-                    else
-                        z = {};
-                    end;
-                else
-                    z = b.fea_names;
-                end;
-            end;
-        end;
+% 
+%         %> Feature names: takes the fea_names property from the first linear block
+%         function z = get_fea_names(o)
+%             if numel(o.blocks) == 0
+%                 if o.flag_give_error
+%                     irerror('Cascade block is empty!');
+%                 else
+%                     z = {};
+%                 end;
+%             else
+%                 b = o.get_linear1();
+%                 z = b.fea_names;
+%             end;
+%         end;
 
         %> @brief Calls get_methodname() for all blocks
         function s = get_methodname(o)
@@ -279,9 +273,11 @@ classdef block_cascade_base < blmisc
         end;
 
         
-        %> Mimicking a fcon_linear::get_t_fea_name()
-        function s = get_t_fea_name(o, idx)
-            s = '';
+        %> Mimicking a fcon_linear::get_L_fea_names()
+        %>
+        %> Calls the get_L_fea_names from the first block that has this method (SEARCHING BACKWARDS)
+        function a = get_L_fea_names(o, idxs)
+            a = {};
             nb = numel(o.blocks);
             if nb == 0
                 if o.flag_give_error
@@ -291,8 +287,8 @@ classdef block_cascade_base < blmisc
             else
                 for i = nb:-1:1
                     b = o.blocks{i};
-                    if ismethod(b, 'get_t_fea_name')
-                        s = b.get_t_fea_name(idx);
+                    if ismethod(b, 'get_L_fea_names')
+                        a = b.get_L_fea_names(idxs);
                         break;
                     end;
                 end;
@@ -300,10 +296,8 @@ classdef block_cascade_base < blmisc
         end;
 
         
-        %> Cascades blocks' loadings matrices. Works only if all blocks provide one loadings matrix of course, i.e., they
+        %> Cascades blocks' loadings matrices. Works only if one or all blocks provide one loadings matrix of course, i.e., they
         %> all represent linear transforms.
-        %>
-        %> @todo One possibility is to check is there is a number of tailing blocks that have loadings
         function L = get_loadings(o)
             if ~o.flag_fcon_linear
                 if o.flag_give_error

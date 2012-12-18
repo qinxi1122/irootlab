@@ -93,11 +93,11 @@ classdef clssr_d < clssr
                 case 'linear'
                     % Pooled estimate of covariance.  Do not do pivoting, so that A can be
                     % computed without unpermuting.  Instead use SVD to find rank of R.
-                    [Q,R] = qr(data.X - o.means(data.classes+1, :), 0);
+                    [Q,R] = qr(data.X - o.means(data.classes+1, :), 0); %#ok<*PROP>
                     o.R = R / sqrt(data.no-data.nc); % SigmaHat = R'*R
                     s = svd(R);
                     if any(s <= max(data.no, data.nf) * eps(max(s)))
-                        irerror('The pooled covariance matrix of TRAINING must be positive definite.');
+                        irerror('The pooled covariance matrix of TRAINING must be positive definite. There are probably too few spectra or too many variables!');
                     end
                     o.logDetSigma = 2*sum(log(s)); % avoid over/underflow
                 
@@ -118,7 +118,7 @@ classdef clssr_d < clssr
                         o.R{k} = Rk / sqrt(nonow - 1); % SigmaHat = R'*R
                         s = svd(o.R{k});
                         if any(s <= max(nonow,data.nf) * eps(max(s)))
-                            irerror('The covariance matrix of each group in TRAINING must be positive definite.');
+                            irerror('The covariance matrix of each group in TRAINING must be positive definite. There are probably too few spectra or too many variables!');
                         end
                         o.logDetSigma(k) = 2*sum(log(s)); % avoid over/underflow
             

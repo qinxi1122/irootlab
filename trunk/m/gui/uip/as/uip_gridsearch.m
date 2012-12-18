@@ -109,8 +109,14 @@ try
     end;
     
     s = get(handles.edit_paramspecs, 'String');
+    
+    % Effort to make s into something that can be eval()'ed
     if iscell(s)
         s = sprintf('%s\n', s{:});
+    end;
+    if size(s, 1) > 1
+        s(:, end+1) = 10; % line feed
+        s = reshape(s', 1, numel(s));
     end;
 
     handles.output.params = {...
@@ -123,6 +129,7 @@ try
     'no_iterations', int2str(eval(fel(get(handles.edit_no_iterations, 'String')))), ...
     'maxtries', int2str(eval(fel(get(handles.edit_maxtries, 'String')))), ...
     'paramspecs', cell2str(eval(s)), ...
+    'flag_parallel', int2str(get(handles.checkbox_flag_parallel, 'Value')), ...
     };
     handles.output.flag_ok = 1;
     guidata(hObject, handles);

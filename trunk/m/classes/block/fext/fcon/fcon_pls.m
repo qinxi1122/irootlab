@@ -16,7 +16,7 @@ classdef fcon_pls < fcon_linear
             o.classtitle = 'Partial Least Squares';
             o.short = 'PLS';
             o.flag_trainable = 1;
-            o.t_fea_prefix = 'PLS';
+            o.L_fea_prefix = 'PLS';
         end;
     end;
     

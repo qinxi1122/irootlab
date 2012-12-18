@@ -40,7 +40,11 @@ if idx_class_origin == 0
         
     end;
 end;
-        
+
+
+if data.nf ~= size(L, 1)
+    irerror(sprintf('Input dataset (nf=%d) incompatible with loadings matrix (nf=%d)', data.nf, size(L, 1)));
+end;
 
 pieces = data_split_classes(data);
 

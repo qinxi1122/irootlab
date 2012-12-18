@@ -5,12 +5,10 @@
 %> "feature".
 %>
 %> <h3>Classes and Class Levels</h3>
-%>
 %> In IRootLab, dataset @c classes are 0-based, so valid classes will range from @c 0 to @c (\ref nc-1). @c Classes correspond to elements in the
 %> @c classlabels property.
 %>
 %> Negative classes have special meanings. See @ref get_negative_meaning.m
-%>
 %>
 %> The class labels may define a <bold>multi-level labelling system</bold>, with different
 %> levels separated by a vertical slash ("|"). See the example:
@@ -26,14 +24,14 @@
 %> @endcode
 %> In the example above, the first level represents the cancer grade, whereas the second level represents the country.
 %> If a spectrum was taken from an individual who is from Ireland and has Low-grade cancer, its class wil be 4 (remember
-%> that the classes are zero-based!).
+%> that the classes are zero-based!). There are resources to work with class levels (see blmisc_classlabels_hierarchy)
 %>
-%> @sa get_negative_meaning.m
+%> @sa get_negative_meaning.m, blmisc_classlabels_hierarchy
 classdef irdata < irobj
     properties
-        %> number of observations
+        %> number of "observations" (e.g. spectra)
         no;
-        %> number of features
+        %> number of features (i.e., variables)
         nf;
         %> a vector [no, nf]
         nonf;
@@ -42,32 +40,35 @@ classdef irdata < irobj
         %> number of classes
         nc;
 
-        %> feature x-axis
-        fea_x = [];
-        fea_names = {};
+        %> [no]x[nf] matrix. Data matrix
         X = [];
-        Y = [];
-        groupcodes = {};
-        %> For easier access than groupcodes
-        groupnumbers = [];
-        obsnames = {};
-        obsids = [];
-        filename = '';
-        %> mat or txt
-        filetype = '';
-        
+        %> [no]x[1] vector. Classes. Zero-based (first class is class zero).
+        %>
+        %> Classes may be negative, with special meanings for negative values (see @ref get_negative_meaning.m)
         classes = [];
+        %> Cell of strings. Class labels
         classlabels = {};
-        splitidxs = [];
-        
+
+        %> (optional) [no]x[1] Cell of strings. Group codes (e.g. patient names)
+        groupcodes = {};
+        %> (optional) [no]x[1] Cell of strings. Observation names (e.g. file names of the individual spectra)
+        obsnames = {};
+
         % Image properties
         %> Height of image. Spectra start counting from the bottom left upwards.
         height;
         %> Width of image. Width is actually calculated as @c no/height . If result is not integer, an error will occur.
         width;
         
-        %> dictionary to convert class labels into more human-readable text
-        classlabeldict = struct('label', {}, 'name', {});
+        filename = '';
+        %> mat or txt
+        filetype = '';
+        
+        %> feature x-axis
+        fea_x = [];
+        %> (optional) Cell of strings. Name of each feature
+        fea_names = {};
+        
         %> x-axis name, defaults to 'Wavenumber (cm^{-1})'
         xname = 'Wavenumber';
         %> x-axis unit, defaults to 'cm^{-1}'
@@ -76,6 +77,15 @@ classdef irdata < irobj
         yname = 'Absorbance';
         %> y-axis unit, defaults to 'a.u.'
         yunit = 'a.u.';
+
+        %> Output (instead of classes). For regression instead of classification
+        Y = [];
+
+        %> For easier access than groupcodes
+        groupnumbers = [];
+        obsids = [];
+        
+        splitidxs = [];
     end;
     
     properties(SetAccess=protected)
@@ -89,23 +99,43 @@ classdef irdata < irobj
         function s = do_get_html(o)
             s = '';
 
-            s = cat(2, s, '<h1>Data classes</h1>');
+            s = cat(2, s, '<h1>Data classes</h1><center>', 10);
             nl = o.get_no_levels();
-            for i = 1:nl
-                s = cat(2, s, '<h2>Level ', int2str(i), '</h2>', 10);
 
-                da = data_select_hierarchy(o, i);
-                pie = data_split_classes(da);
-                n = numel(pie);
-                cc = cell(n+2, 3);
-                cc(1, 1:3) = {'Class label', 'Number of rows', 'Number of groups'};
-                for j = 1:n
-                    cc(j+1, 1:3) = {pie(j).classlabels{1}, pie(j).no, pie(j).no_groups};
+            
+            % List of class labels with number of spectra and number of groups per class
+            da = o;
+            pie = data_split_classes(da);
+            n = numel(pie);
+            cc = cell(n+2, 4);
+            cc(1, 1:4) = {'Index', 'Class label', 'Number of rows', 'Number of groups'};
+            for j = 1:n
+                cc(j+1, 1:4) = {j, pie(j).classlabels{1}, pie(j).no, pie(j).no_groups};
+            end;
+            cc(end, 1:4) = {'', 'Total', da.no, da.no_groups};
+            s = cat(2, s, cell2html(cc));
+            
+            
+            % PER-LEVEL list of class labels with number of spectra and number of groups per class
+            if nl > 1
+                for i = 1:nl
+                    s = cat(2, s, '<h2>Level ', int2str(i), '</h2>', 10);
+
+                    da = data_select_hierarchy(o, i);
+                    pie = data_split_classes(da);
+                    n = numel(pie);
+                    cc = cell(n+2, 3);
+                    cc(1, 1:3) = {'Class label', 'Number of rows', 'Number of groups'};
+                    for j = 1:n
+                        cc(j+1, 1:3) = {pie(j).classlabels{1}, pie(j).no, pie(j).no_groups};
+                    end;
+                    cc(end, 1:3) = {'Total', da.no, da.no_groups};
+                    s = cat(2, s, cell2html(cc));
                 end;
-                cc(end, 1:3) = {'Total', da.no, da.no_groups};
-                s = cat(2, s, cell2html(cc));
             end;
             
+            
+            % Negative classes (outliers etc)
             if any(o.classes < 0)
                 s = cat(2, s, '<h2>Negative classes</h2>', 10);
                 neg = unique(o.classes(o.classes < 0));
@@ -119,8 +149,32 @@ classdef irdata < irobj
                 end;
                 s = cat(2, s, cell2html(cc));
             end;
+            
+            s = cat(2, s, '<hr />', 10);
+            
+            % Class means (figure)
+            v = vis_means();
+            figure;
+            v.use(o);
+            maximize_window([], 2);
+            s = cat(2, s, irreport.save_n_close());
+            
+            
+            % List of groups
+            if ~isempty(o.groupcodes)
+                s = cat(2, s, '<h2>Group list</h2>', 10);
+                
+                gg = unique(o.groupcodes);
+                gg = gg(:); % To make sure that it is a column vector
+                
+                for i = 1:numel(gg)
+                    gg{i, 2} = sum(strcmp(o.groupcodes, gg{i, 1}));
+                end;
+                gg = [{'Group code', 'Number of rows'}; gg]; % Adds title
+                s = cat(2, s, cell2html(gg));
+            end;
         
-            s = cat(2, s, do_get_html@irobj(o));
+            s = cat(2, s, '</center>', 10, do_get_html@irobj(o));
         end;
     end;   
     
@@ -495,8 +549,8 @@ classdef irdata < irobj
         %> data.ylabel = 'Score';
         %>
         %> @param L[nf][any] Loadings matrix
-        %> @param fea_prefix=[] Prefix to make new feature names.
-        function data = transform_linear(data, L, fea_prefix)
+        %> @param L_fea_prefix=[] Prefix to make new feature names.
+        function data = transform_linear(data, L, L_fea_prefix)
             data.X = data.X*L;
             data.fea_x = 1:data.nf;
             data.xname = 'Factor';
@@ -505,10 +559,10 @@ classdef irdata < irobj
             data.yunit = [];
 
             % Makes feature names
-            if exist('fea_prefix', 'var') && ~isempty(fea_prefix)
+            if exist('L_fea_prefix', 'var') && ~isempty(L_fea_prefix)
                 data.fea_names = cell(1, data.nf);
                 for i = 1:data.nf
-                    data.fea_names{i} = [fea_prefix int2str(i)];
+                    data.fea_names{i} = [L_fea_prefix int2str(i)];
                 end;
             else
                 data.fea_names = {};

@@ -14,7 +14,7 @@ classdef fcon_slda < fcon_linear
             o.classtitle = 'Sparse LDA';
             o.short = 'SLDA';
             o.flag_trainable = 1;
-            o.t_fea_prefix = 'SLDA';
+            o.L_fea_prefix = 'SLDA';
             o.flag_params = 0;
         end;
 

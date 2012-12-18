@@ -63,7 +63,7 @@ classdef fcon_spline < fcon_linear
         end;
          
         function data = do_use(o, data)
-            data = data.transform_linear(o.L, o.t_fea_prefix);
+            data = data.transform_linear(o.L, o.L_fea_prefix);
             data.fea_x = o.fea_x_new;
         end;
     end;
