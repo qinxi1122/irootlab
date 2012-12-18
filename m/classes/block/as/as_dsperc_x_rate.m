@@ -26,8 +26,6 @@ classdef as_dsperc_x_rate < as
     end;
     
     methods(Access=protected)
-        %> Fills in the @ref logs property
-        %> @todo I think this is not working
         function log = do_use(o, data)
             if ~isa(o.evaluator, 'reptt_blockcube')
                 irerror('Evaluator must be a reptt_blockcube!');

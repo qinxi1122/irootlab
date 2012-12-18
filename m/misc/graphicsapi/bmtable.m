@@ -681,7 +681,7 @@ classdef bmtable
         
         %> @brief Grades legend for cell
         %>
-        %> Backwards, calls of get_t_fea_name(), then sequence of get_short calls
+        %> Backwards, calls of get_L_fea_names(), then sequence of get_short calls
         %>
         %> others: makes default with idx_fea and flag_abs
         function s = get_gradeslegend(o, cel)
@@ -690,7 +690,8 @@ classdef bmtable
 
             s = blk.get_description();
             if isa(blk, 'block_cascade_base') || isa(blk, 'fcon_linear')
-                s = cat(2, s, ' ', blk.get_t_fea_name(params.idx_fea));
+                names = blk.get_L_fea_names(params.idx_fea);
+                s = cat(2, s, ' ', names{1});
             end;
         end;
     end;

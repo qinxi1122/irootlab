@@ -1,13 +1,13 @@
 %>@ingroup usercomm
 %>@file
 %> @brief Verbose function. Currently just disp'ing the string
-%> @todo implement the level codes
+%
 %> @param level
 %>   @arg @c 0 - debug
 %>   @arg @c 1 - "maybe important" info
 %>   @arg @c 2 - important info
 %>   @arg @c 3 - "must read" info
-%> @sa @ref verboselevels
+%> @sa @ref verbose_assert.m
 function irverbose(s, level)
 verbose_assert();
 global VERBOSE;

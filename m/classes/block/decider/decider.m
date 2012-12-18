@@ -1,6 +1,12 @@
 %> @brief Block that resolves @ref estimato posterior probabilities into classes.
 %>
-%> @sa uip_decider.m
+%> This is an abstraction of class decisions based on the posterior probabilities calculated by a classifier. Classifiers generate an estimato
+%> dataset which is later processed by a decider. If the highest per-class posterior probability is below the decider decisionthreshold property,
+%> it will “refuse to decide”, registering a class of -1 instead of a valid one.
+%>
+%> <h3>Reference</h3>
+%> L. I. Kuncheva, Combining pattern classifiers. Wiley, 2004.
+%> @sa 
 classdef decider < block
     properties
         %> =0. Minimum maximum probability. If not reached, assigned class will be -1, which means "refuse-to-decide". Assigning the threshold may require optimization or use of some theoretic formula.

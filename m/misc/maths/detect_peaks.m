@@ -8,7 +8,6 @@
 %> ﻿[1] K. R. Coombes et al., Quality control and peak finding for proteomics data collected from nipple aspirate fluid by surface-enhanced
 %>     laser desorption and ionization.,” Clinical chemistry, vol. 49, no. 10, pp. 1615-23, Oct. 2003.
 %>
-%>
 %
 %> @param y Vector of values.
 %> @param minalt=0 Minimum altitude (distance from zero to montain top).

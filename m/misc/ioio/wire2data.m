@@ -29,7 +29,7 @@ no_files = length(filenames);
 
 if flag_image
     if no_files/height ~= floor(no_files/height)
-        irerror('Invalid image height!');
+        irerror('Wire2Data: Invalid image height!');
     end;
 end;
 
@@ -59,7 +59,7 @@ for i = 1:no_files
             % Checks against previous size
             n1 = size(M, 1);
             if ~(n1 == nf)
-                irerror(sprrintf('Wrong number of data points: expected=%d; found=%d', nf, n1));
+                irerror(sprrintf('Wire2Data: Wrong number of data points: expected=%d; found=%d', nf, n1));
             end;
         end;
         
@@ -96,8 +96,9 @@ if cnt_error > 0
     for i = 1:cnt_error
         irverbose(errors{i});
     end;
-    flag_error = 1;
+    flag_error = cnt_error;
     
+    % Trims matrices rows because were overdimensioned
     data.X = data.X(1:ii, :);
     data.classes = data.classes(1:ii, :);
     data.obsnames = data.obsnames(1:ii, :);

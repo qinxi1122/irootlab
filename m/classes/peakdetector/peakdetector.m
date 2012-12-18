@@ -1,6 +1,8 @@
 %> @brief Peak Detector
 %>
-% @sa detect_peaks
+%> The algorithm is implemented in detect_peaks.m
+%>
+%> @sa detect_peaks.m
 classdef peakdetector < irobj
     properties
         %> =0. Minimum vertical distance between peak and zero
@@ -20,7 +22,7 @@ classdef peakdetector < irobj
         %> "lakes", i.e., replaced by zeroes
         flag_abs = 1;
     end;
-    
+        
     properties(SetAccess=protected)
         %> Horizontal spacing between points, expressed in native units.
         spacing;

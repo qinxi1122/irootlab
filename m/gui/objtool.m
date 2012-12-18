@@ -1,8 +1,9 @@
 %>@ingroup guigroup mainguis
 %>@file
 %>@brief Object browser
-%> @image html Screenshot-objtool.png
-
+%>
+%> Please read IRootLab manual chapter on objtool (available at http://irootlab.googlecode.com)
+%
 %> @param classname='irdata'
 function varargout = objtool(varargin)
 % Last Modified by GUIDE v2.5 11-Nov-2012 11:16:48
@@ -244,7 +245,7 @@ if ~isempty(objname)
 else
     a = {'(none)'};
 end;
-if get(handles.listbox_blocks, 'Value') > numel(a)
+if any(get(handles.listbox_blocks, 'Value') > numel(a))
     set(handles.listbox_blocks, 'Value', 1);
 end;
 set(handles.listbox_blocks, 'string', a);

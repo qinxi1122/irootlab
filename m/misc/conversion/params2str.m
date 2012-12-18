@@ -3,7 +3,7 @@
 %>@brief Converts a parameters cell into a string
 %>
 %> The parameters cell is like {'name1', value1, 'name2', value2, ...}
-%> @todo find and group documentation about this parameters conventioj
+%> @todo find and group documentation about this parameters convention
 %
 %> @param params
 %> @param flag_o =0. Whether to generate a string like "o.property1 = value1;\no.property2 = value2;\n ..."

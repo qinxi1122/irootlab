@@ -16,8 +16,9 @@
 %> 
 %> Alternatively you can use the 'Signal extension' followed by the 'SWT de-noising 1D' tool provided with the Wavelet Toolbox (accessed by typing 'wavemenu') to process one spetrum and get these parameters.
 %>
+%> See also MATLAB Wavelet Toolbox User's guide
 %>
-%> @image html Screenshot-Stationary Wavelet Transform Denoising 1-D-1.png
+%> @image html "Screenshot-Stationary Wavelet Transform Denoising 1-D-1.png"
 %> <center>Figure 1 - Finding thresholds using the utility from the MATLAB Wavelet Toolbox</center>
 %> @sa uip_pre_wden.m
 classdef pre_wden < pre
@@ -26,8 +27,8 @@ classdef pre_wden < pre
         waveletname = 'haar';
         %> =6
         no_levels = 6;
-        %> = [0, 0, 0, 0, 1000, 10000] - given in the coarsest-to-finest order
-        thresholds = [0, 0, 0, 0, 1000, 10000];
+        %> = [0 0 0 20 20 100] - given in the coarsest-to-finest order
+        thresholds = [0 0 0 20 20 100];
     end;
 
     

@@ -19,9 +19,7 @@
 %> @return A dataset
 function [data, flag_error] = pir2data(wild, trimdot, flag_image, height)
 
-flag_error = 0;
-
-if ~exist('trimdot')
+if ~exist('trimdot', 'var')
     trimdot = 2;
 end;
 
@@ -31,7 +29,7 @@ no_files = length(filenames);
 
 if flag_image
     if no_files/height ~= floor(no_files/height)
-        irerror('Invalid image height!');
+        irerror('Pir2Data: Invalid image height!');
     end;
 end;
 
@@ -57,7 +55,7 @@ for i = 1:no_files
         flag_open = 1;
 
         if h < 1
-            irerror(sprintf('Could not open file ''%s''!', filename));
+            irerror(sprintf('Pir2Data: Could not open file ''%s''!', filename));
         end;
         fprintf('%d/%d: %s ...\n', i, no_files, filenames{i});
 
@@ -84,12 +82,10 @@ for i = 1:no_files
             end;
 
             if flag_wns && ~flag_wants_wns
-                fclose(h);
-                irerror(sprintf('Found wavenumbers specification but expecting something else in file ''%s''!', filenames{i}));
+                irerror(sprintf('Pir2Data: Found wavenumbers specification but expecting something else in file ''%s''!', filenames{i}));
             end;
             if flag_point && ~flag_wants_point
-                fclose(h);
-                irerror(sprintf('Found y-value but expecting something else in file ''%s''!', filenames{i}));
+                irerror(sprintf('Pir2Data: Found y-value but expecting something else in file ''%s''!', filenames{i}));
             end;
 
             if flag_wns
@@ -110,7 +106,7 @@ for i = 1:no_files
         flag_open = 0;
 
         if flag_wants_wns
-            irerror('Wavenumbers specification not found in file ''%s''!', filenames{i});
+            irerror('Pir2Data: Wavenumbers specification not found in file ''%s''!', filenames{i});
         end;
 
         if nf == cnt_point
@@ -131,7 +127,7 @@ for i = 1:no_files
             data.obsnames{ii} = filenames{i};
             data.groupcodes{ii} = groupcodes{i};
         else
-            irerror('Wrong number of data points in file ''%s''!', filenames{i});
+            irerror('Pir2Data: Wrong number of data points in file ''%s''!', filenames{i});
         end;
     catch ME
         if flag_open
@@ -152,7 +148,7 @@ if cnt_error > 0
     for i = 1:cnt_error
         irverbose(errors{i});
     end;
-    flag_error = 1;
+    flag_error = cnt_error;
     
     data.X = data.X(1:ii, :);
     data.classes = data.classes(1:ii, :);

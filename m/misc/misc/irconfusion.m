@@ -134,10 +134,8 @@ classdef irconfusion < irlog
         
         %> Visualization. Draws figure with circles whose area are proportional to the percentuals of the corresponding
         %> cells of the matrix
-        %>
-        %> @todo no longer properly handling the rejected
         function o = draw_balls(o)
-            global SCALE FONTSIZE;
+            global FONTSIZE;
 
             
             FULLDIAM = 0.8; % Diameter of an 100% ball
@@ -170,6 +168,8 @@ classdef irconfusion < irlog
             
             hh = [];
             hh2 = [];
+            hhtext1 = [];
+            hhtext2 = [];
             for i = 1:ni % row loop
                 
                 ypos = (i-1)*yspacing+1;
@@ -177,6 +177,7 @@ classdef irconfusion < irlog
                 plot(xlim, ypos*[1, 1], 'k', 'LineWidth', scaled(3)); % Horizontal line
                 hold on;
                 hh(end+1) = text(xlim(1)-0.1, ypos, o.rowlabels{i}, 'HorizontalAlignment', 'right'); % Descriptive text
+                hhtext1(end+1) = hh(end);
                 
                 k = 0; % graphics column (whereas j is the matrix column)
                 for j = iif(o.flag_show_rejected, 1, 2):nj % column loop
@@ -184,7 +185,9 @@ classdef irconfusion < irlog
                     
                     if i == 1
                         hh(end+1) = text(k, -0.1, c{j}, 'HorizontalAlignment', 'right', 'Rotation', 270);
-%                         plot(k*[1, 1], ylim, 'k', 'LineWidth', scaled(3)); % Horizontal line
+                        hhtext2(end+1) = hh(end);
+
+%                         plot(k*[1, 1], ylim, 'k', 'LineWidth', scaled(3)); % Vertical line
                     end;
 
                     if Ccalc(i, j) > MINPERC_BALL
@@ -209,15 +212,60 @@ classdef irconfusion < irlog
                     end;
                 end;
             end;
+            plot(xlim([1, 2, 2, 1, 1]), ylim([1, 1, 2, 2, 1]), 'Color', [0, 0, 0], 'LineWidth', scaled(2)); % Box
 
             axis equal;
-%             axis off;
-            set(gca, 'YDir', 'reverse', 'Xlim', xlim, 'YLim', ylim);
+            axis off;
+            set(gca, 'YDir', 'reverse');
             set(gca, 'XTick', [], 'YTick', []);
             format_frank(gcf, 1, [hh, hh2]);
             for i = 1:numel(hh2)
                 set(hh2, 'FontSize', FONTSIZE*scaled(.75));
             end;
+            
+            % Let's attempt to make all the ticks/(row/column titles)/(class labels) to appear
+            maximize_window([], 1, .9); % Have to do this, because the Extent property below gives values relative to the gca(), and this changes according to the size of the figure on screen
+            pause(0.2); % Has to wait until the window maximization takes place
+            maxwid = -Inf;
+            for i = 1:ni
+%                 set(hhtext1(i), 'Unit', 'Normalized');
+                p = get(hhtext1(i), 'Extent');
+                maxwid = max([maxwid, p(3)]);
+            end;
+            maxhei = -Inf;
+            for i = 1:ni
+%                 set(hhtext2(i), 'Unit', 'Normalized');
+                p = get(hhtext2(i), 'Extent');
+                maxhei = max([maxhei, p(4)]);
+            end;
+            
+            xlim(1) = xlim(1)-maxwid-0.1;
+            ylim(1) = ylim(1)-maxhei-0.1;
+            
+            set(gca, 'Xlim', xlim, 'YLim', ylim, 'position', [0.025, 0.025, 0.95, 0.95]);
+%             
+%             maxhei = -Inf;
+%             for i = 1:ni
+% %                 set(hhtext2(i), 'Unit', 'Normalized');
+%                 p = get(hhtext2(i), 'Extent');
+%                 maxhei = max([maxhei, p(4)]);
+%             end;
+%             
+%             
+%             totalwid = maxwid+1;
+%             totalhei = maxhei+1;
+%             x = maxwid/totalwid;
+%             y = maxhei/totalhei;
+%             
+%             p = get(gca, 'Position');
+%             p(1) = x;
+%             p(3) = 1-x;
+%             p(2) = 0.025;
+%             p(4) = .975-y;
+%             if all(p([2, 4]) > 0)
+%                 set(gca, 'Position', p);
+%             end;
+%                 
         end;
     end;
 end

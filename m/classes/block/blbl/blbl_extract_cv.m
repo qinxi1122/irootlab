@@ -27,7 +27,7 @@ classdef blbl_extract_cv < blbl
             ob.L_fea_x = o.data.fea_x;
             ob.xname = o.data.xname;
             ob.xunit = o.data.xunit;
-            ob.fea_names = o.data.classlabels;
+            ob.L_fea_names = o.data.classlabels;
             oo = ob;
         end;
 

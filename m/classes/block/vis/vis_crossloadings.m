@@ -1,5 +1,4 @@
 %> @brief Loadings vector of an @ref as_crossc
-%> @todo needs testing
 classdef vis_crossloadings < vis
     properties
         data_input;

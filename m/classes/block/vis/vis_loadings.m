@@ -33,15 +33,8 @@ classdef vis_loadings < vis
     methods(Access=protected)
         function out = do_use(o, obj)
             out = [];
-            if ~isempty(obj.fea_names)
-                legends = obj.fea_names(o.idx_fea);
-            else
-                nf = length(o.idx_fea);
-                legends = cell(1, nf);
-                for i = 1:nf
-                    legends{i} = ['Factor ' int2str(o.idx_fea(i))];
-                end;
-            end;
+            
+            legends = obj.get_L_fea_names(o.idx_fea);
             
             flag_p = ~isempty(o.peakdetector);
             if ~isempty(o.data_hint)

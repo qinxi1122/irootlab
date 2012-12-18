@@ -11,8 +11,6 @@
 %> @param ks = [0.2, 0.5] a two-element vector with multipliers so that the axis limits take a distance from the points minima and maxima.
 %> The first element refers to the minima, and the second refers to the maxima.
 %> @param flag_wallpoints = 0. Whether to plot the point projections onto the walls
-%>
-%> @todo possibly not 
 function varargout = data_draw_scatter_3d2(data, idxfea, confidences, flags_min, ks, flag_wallpoints)
 
 if ~exist('confidences', 'var')

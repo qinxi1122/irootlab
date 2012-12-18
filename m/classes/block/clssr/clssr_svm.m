@@ -48,7 +48,7 @@ classdef clssr_svm < clssr
         no_svs = 0;
         svm;
         
-        FLAG_B = 1;
+        FLAG_B = 0;
     end;
 
 

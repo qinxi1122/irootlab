@@ -11,7 +11,6 @@ classdef fselrepeater < as
         %> produce a histogram of the best, e.g., Principal Component Analysis factors. Instead of passing an already PCA-transformed
         %> dataset to the as_fselrep, you can pass the PCA block in the @c fext property, so that at each iteration, the PCA block
         %> will be trained with the training set of that iteration only, not the whole dataset.
-        %> @todo if cross-calculation at these cases show to be good at all, I should implement it here using a blsp_crossc block
         fext;
         %> =0. Whether to parallelize the Feature Selection repetitions
         flag_parallel = 0;

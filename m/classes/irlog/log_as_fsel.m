@@ -7,7 +7,7 @@ classdef log_as_fsel < irlog
         grades;
         %> x-values to which @ref grades are the y-values
         fea_x;
-        %> Feature names
+        %> (Cell of strings) Feature names. Same number of elements as fea_x
         fea_names;
         %> x-axis label
         xname = '';

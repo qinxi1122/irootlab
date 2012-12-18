@@ -2,7 +2,7 @@
 classdef report_default < irreport
     methods
         function o = report_default()
-            o.classtitle = 'Default';
+            o.classtitle = 'Default report';
             o.inputclass = 'irobj';
             o.flag_params = 0;
             o.flag_graphics = 0;
