@@ -1,5 +1,9 @@
 %> @brief Visualization - Class means
 classdef vis_means < vis
+    properties
+        peakdetector;
+    end;
+    
     methods
         function o = vis_means(o)
             o.classtitle = 'Class means';
@@ -11,7 +15,7 @@ classdef vis_means < vis
     methods(Access=protected)
         function out = do_use(o, obj)
             out = [];
-            data_draw_means(obj);
+            data_draw_means(obj, o.peakdetector);
             make_box();
         end;
     end;
