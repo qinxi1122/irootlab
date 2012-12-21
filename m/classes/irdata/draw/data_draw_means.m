@@ -2,7 +2,13 @@
 %>@file
 %>@brief Draws class means
 
-function data = data_draw_means(data)
+%> @param data Dataset
+%> @param peakdetector (optional) @ref peakdetector object. If passed, will used it to draw peaks.
+%>
+%> @sa irdata, peakdetector
+function data = data_draw_means(data, peakdetector)
+
+flag_pd = nargin >= 2 && ~isempty(peakdetector);
 
 cm = classes2colormap(data.classes, 1);
 
@@ -19,6 +25,13 @@ for i = 1:numel(ucl)
     htemp = plot_curve_pieces(data.fea_x, ytemp, 'Color', cm(i, :), 'LineWidth', scaled(3));
     hs(end+1) = htemp{1};
     hold on;
+    
+    if flag_pd
+        peakd = peakdetector.boot(data.fea_x, ytemp);
+        idxs_peaks = peakd.use([], ytemp);
+        draw_peaks(data.fea_x, ytemp, idxs_peaks);
+    end;
+    
 end;
 hl = legend(hs, data_get_legend(data));
 
