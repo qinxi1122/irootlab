@@ -15,8 +15,8 @@ y(y == Inf) = [];
 
 x = round(x*100)/100;
 
-modedelta = abs(mode(diff(x)));
-tol = 1.1*abs(modedelta); % distance difference tolerance
+% modedelta = abs(mode(diff(x)));
+% tol = 1.1*abs(modedelta); % distance difference tolerance
 
 no_points = length(x);
 i = 1;
@@ -32,12 +32,15 @@ while 1
         if i == 1
             flag_new_piece = 1;
         else
-            dist = abs(x(i)-x(i-1));
+            if i > 2
+                dist = abs(x(i)-x(i-1));
+                tol = abs(x(i-1)-x(i-2));
 
-            if dist > tol
-                flag_plot = 1;
-                flag_new_piece = 1;
-            end;
+                if dist > tol*1.9
+                    flag_plot = 1;
+                    flag_new_piece = 1;
+                end;
+            end;        
         end;
     end;
 
