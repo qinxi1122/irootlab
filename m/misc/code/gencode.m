@@ -23,8 +23,8 @@ classdef gencode < handle
         flag_data;
         flag_handle; % whether the data is a handle class, just in case
         
-        %> Whether the "o" object is in the workspace
-        flag_o = 0;
+        %> Whether the "u" object is in the workspace
+        flag_u = 0;
         %> generated code
         code = {};
         %> Also generated code, but does not get emptied by @c execute()
@@ -50,8 +50,8 @@ classdef gencode < handle
         end;
 
         function z = get.varname(o)
-            if o.flag_o
-                z = 'o';
+            if o.flag_u
+                z = 'u';
             else
                 z = o.blockname;
             end;
@@ -122,7 +122,7 @@ classdef gencode < handle
 
             o.code = {}; % Clears generated code
             o.allcode = {};
-            o.flag_o = 0;
+            o.flag_u = 0;
             
             o.add_code('');
 %             o.add_code(['% -- @ ', datestr(now), 10]);
@@ -134,17 +134,17 @@ classdef gencode < handle
             o.assert_started();
             
             o.add_code(sprintf('u = %s();\n', o.classname)); % C O D E - creates o.refblock
-            o.flag_o = 1;
+            o.flag_u = 1;
             if ~isempty(o.params)
                 o.add_code(params2str(o.params, 1)); % C O D E - sets parameters
             end;
             
             o = o.execute();
 
-            if o.flag_leave_block && o.flag_o
+            if o.flag_leave_block && o.flag_u
                 o.blockname = find_varname([o.classname]); % Name for the block
                 o = o.add_code(sprintf('%s = u;\n', o.blockname));
-                o.flag_o = 0;
+                o.flag_u = 0;
                 o = o.execute();
             end;
         end;
