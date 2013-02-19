@@ -158,6 +158,7 @@ end;
 
 
 %######################################
+%> This if for the "boot", "train", and "use" block options
 function do_block2(what)
 % global handles_datatool;
 blockname = get_selected_1stname(2);
