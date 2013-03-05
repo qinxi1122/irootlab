@@ -233,7 +233,7 @@ classdef irconfusion < irlog
                 maxwid = max([maxwid, p(3)]);
             end;
             maxhei = -Inf;
-            for i = 1:ni
+            for i = 1:numel(hhtext2)
 %                 set(hhtext2(i), 'Unit', 'Normalized');
                 p = get(hhtext2(i), 'Extent');
                 maxhei = max([maxhei, p(4)]);
