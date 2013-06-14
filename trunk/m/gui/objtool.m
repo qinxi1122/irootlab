@@ -71,6 +71,7 @@ setup_load();
 refresh();
 move_popup(idx);
 
+check_hsc()
 % handles = guidata(hObject);
 % handles.K1 = 
 

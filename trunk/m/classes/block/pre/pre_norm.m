@@ -6,7 +6,7 @@
 classdef pre_norm < pre_norm_base
     methods
         function o = pre_norm()
-            o.classtitle = 'Normalization - all';
+            o.classtitle = 'Normalization';
             o.flag_params = 1;
         end;
     end;

@@ -18,8 +18,8 @@ classdef fsel < fext
         grades = []; 
         %> x-axis values corresponding to the @c grades y-axis values
         fea_x;
-%         %> Input feature names, empty or having as many elements as fea_x
-%         fea_names = [];
+        %> Input feature names, empty or having as many elements as fea_x
+        fea_names = [];
         %> Name corresponding to fea_x
         xname = '';
         xunit = '';

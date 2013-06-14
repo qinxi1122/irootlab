@@ -83,6 +83,7 @@ for i = 1:no_files
         data.groupcodes{ii} = groupcodes{i};
     catch ME
         irverbose(['ERROR: ', ME.message]);
+        irverbose(ME.getReport());
         cnt_error = cnt_error+1;
         errors{end+1} = filename;
     end;

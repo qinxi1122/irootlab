@@ -1,4 +1,4 @@
-%> architecture optimization for the knn classifier
+%> CUSTOM
 classdef goer_fearchsel__ffs__ldc < goer_1i
     methods
         %> Constructor

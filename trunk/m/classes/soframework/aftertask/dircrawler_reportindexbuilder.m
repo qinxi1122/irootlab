@@ -1,4 +1,4 @@
-%> Report deleter
+%> Report index builder
 classdef dircrawler_reportindexbuilder < dircrawler
     properties(SetAccess=protected)
         map = {};

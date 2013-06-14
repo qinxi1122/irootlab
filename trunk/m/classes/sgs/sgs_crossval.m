@@ -9,6 +9,9 @@ classdef sgs_crossval < sgs
         no_reps = 10;
         %> =0. Whether leave-one-out or K-fold.
         flag_loo = 0;
+        %> =0. Whether to automatically reduce the number of folds if no_reps is
+        %> too big for the dataset.
+        flag_autoreduce = 0;
     end;
     
     properties(Access=private)
@@ -28,10 +31,17 @@ classdef sgs_crossval < sgs
             if o.flag_loo
                 o.pvt_no_reps = o.no_unitss;
             else
-                if o.no_reps > o.no_unitss
-                    irerror(sprintf('Cross-validation k=%d is bigger than the number of units=%d in dataset!', o.no_reps, o.no_unitss));
+                if any(o.no_reps > o.no_unitss)
+                    min_value = min(o.no_unitss);
+                    if o.flag_autoreduce
+                        o.pvt_no_reps = min_value;
+                        irverbose(sprintf('INFO: Cross-validation k reduced from %d to %d', o.no_reps, min_value));
+                    else
+                        irerror(sprintf('Cross-validation k=%d is bigger than the number of units=%d in dataset!', o.no_reps, min(o.no_unitss)));
+                    end;
+                else
+                    o.pvt_no_reps = o.no_reps;
                 end;
-                o.pvt_no_reps = o.no_reps;
             end;
         end;
         

@@ -5,10 +5,7 @@ classdef sosetup
     properties
         %> Manifests an intention to go parallel
         flag_parallel = NaN;
-
-        flag_skip_existing = NaN;
-
-        
+      
         stabnumber = 10;
         
         %> ='single'. Possible values: 'single'; 'ovr'-"One-Versus-Reference". The operation of this will depend on the particular implementation,
@@ -90,8 +87,6 @@ classdef sosetup
         undersel_lasso_unders = NaN;
         clarchsel_lasso_nfs = NaN;
 
-            
-
         % LDC properties
 %         clarchsel_ldc_nfs = NaN;
         undersel_ldc_unders = NaN;
@@ -112,8 +107,7 @@ classdef sosetup
         % DIST properties
 %         clarchsel_dist_nfs = NaN;
         undersel_dist_unders = NaN;
-        
-        
+
         % FEARCHSEL_FFS
         fearchsel_ffs_nf_max = NaN;
         fearchsel_manova_nf_max = NaN;
@@ -176,7 +170,10 @@ classdef sosetup
             %===
             spp = sostage_pp_rubbernorm();
             spp.ndec = 1;  % Note that the default is to decimate once!
-            spp.norm_types = '1';
+            spp.norm_types = 'n'; % Vector normalization!
+            % The normalization defaults to Vector because Amide I was giving trouble
+            % after feature averaging
+
             o.sostage_pp = spp;
 
 
@@ -311,7 +308,7 @@ classdef sosetup
             ch2.vectorcomp.flag_logtake = 0;
             
             %-----
-            %----- Chooser UNDERSEL
+            %----- Chooser for FEARCHSEL
             %-----
             ch3 = chooser();
             ch3.rate_maxloss = .01;
@@ -319,12 +316,7 @@ classdef sosetup
             ch3.time_mingain = .25;
             ch3.vectorcomp = vectorcomp_ttest_right();
             ch3.vectorcomp.flag_logtake = 0;
-            
-          
-            %-----
-            %----- Chooser CROSS
-            %-----
-            ch4 = chooser_notime();
+
             
 
             % Conservative chooser
@@ -354,13 +346,6 @@ classdef sosetup
             flag = ~isempty(flag) && str2double(flag); 
             flag = flag && license('test', 'distrib_computing_toolbox');
             o.flag_parallel = flag;
-
-            sflag = getenv('FLAG_SKIP_EXISTING');
-            if ~isempty(sflag)
-                o.flag_skip_existing = str2double(sflag);
-            else
-                o.flag_skip_existing = 1;
-            end;
         end;
     end;
 end

@@ -1,3 +1,4 @@
+% CUSTOM flag_parallel??? really???????
 %> Feature Extraction Design - Partial Least Squares - dist classifier
 classdef goer_fearchsel__spline__dist < goer_1i
     methods

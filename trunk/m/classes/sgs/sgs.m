@@ -23,6 +23,10 @@ classdef sgs < irobj
         flag_setup = 0;
         data;
         pieces;
+        %> Number of "units" in dataset. This may be a single value containing
+        %> the number of observations or groups, depending on .flag_group, or
+        %> a vector containing that information for each class, if .flag_perclass is
+        %> True.
         no_unitss;
         maps;
         

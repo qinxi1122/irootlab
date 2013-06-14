@@ -43,6 +43,8 @@ classdef goer < filesession
         %> Use this function to setup a sodesigner in a way that is not general enough to deserve its own class
         %>
         %> For example, altering the NF_MAX of s FEARCHSEL_FFS for a specific classifier
+        %>
+        %> This method typically has assignments like <code>d.oo.xxxxxx = zzzzzz;</code>
         function d = customize_session(o, d)
         end;
     end;

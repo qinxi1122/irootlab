@@ -83,7 +83,7 @@ classdef dataloader
     methods(Access=protected)
         function s = get_filename_internal(o, ovrindex_, cvsplitindex_, ttindex_)
             [route, name, ext] = fileparts(o.basefilename); %#ok<NASGU>
-            s = fullfile(route, sprintf('%s_ovr%02d_cv%02d_tt%1d.mat', name, ovrindex_, cvsplitindex_, ttindex_));
+            s = fullfile(route, sprintf('subds_%s_ovr%02d_cv%02d_tt%1d.mat', name, ovrindex_, cvsplitindex_, ttindex_));
         end;
 
     end;
@@ -105,6 +105,7 @@ classdef dataloader
         function pieces = split_dataset(o, ds)
             osgs = sgs_crossval();
             osgs.no_reps = o.k;
+            osgs.flag_perclass = 1; % I have made this obligatory to ensure that all classes are present in every training and test dataset
             osgs.flag_group = o.flag_group && ~isempty(ds.groupcodes); % splits per group if there are groups in dataset
             osgs.flag_perclass = 1;
             osgs.randomseed = o.randomseed;

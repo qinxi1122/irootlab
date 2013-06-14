@@ -1,4 +1,4 @@
-%> architecture optimization for the knn classifier
+%> CUSTOM
 classdef goer_fearchsel__lasso__dist < goer_1i
     methods
         %> Constructor

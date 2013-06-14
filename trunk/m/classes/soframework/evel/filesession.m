@@ -4,7 +4,7 @@
 %>
 %> Loading setups and objects from this file is the main feature of the filesession class.
 %>
-%> Apart from this, filesession contains a few tools (e.g. get_preprocessed())
+%> Apart from this, filesession contains a few tools (e.g. go_cube())
 %>
 %> @todo clean this
 classdef filesession < as
@@ -170,7 +170,7 @@ classdef filesession < as
             log = cube.use(ds);
             
             sor = sovalues();
-            sor = sor.read_log_cube(cube, []);
+            sor = sor.read_log_cube(log, []);
             sor = sor.set_field('sostage', sostages);
             sor.chooser = o.chooser;
             

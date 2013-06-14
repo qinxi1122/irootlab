@@ -29,8 +29,9 @@ for it = 1:numel(totry)
         s_code = sprintf('[mint, flag_error] = %s2data(''%s'', 0, 0, 0);', totry{it}, wild_new);
         eval(s_code);
         flag_ok = ~flag_error;
-    catch ME %#ok<NASGU>
-        % Not this one
+    catch ME
+        irverbose('detect_spectrum_type() caught error:');
+        irverbose(ME.getReport());
     end;
     
     if flag_ok
