@@ -57,7 +57,7 @@ classdef soitem_merger_merger_fitest < soitem
 
             out = sovalues();
             out.chooser = o.items(1).sovalues.chooser;
-            out.ax(2) = o.items(2).sovalues.ax(2);
+            out.ax(2) = o.items(1).sovalues.ax(2);
             out.ax(1) = o.items(1).sovalues.ax(1);
             out.ax(1).ticks = uniquenesses({o.items(1).sovalues.values.title});
             for i = 1:ni

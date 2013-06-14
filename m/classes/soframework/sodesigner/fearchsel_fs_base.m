@@ -42,8 +42,7 @@ classdef fearchsel_fs_base < fearchsel
             end;
             
             ofs.nf_select = nf_select_eff;
-            ofs.data = ds;
-            log = ofs.go();
+            log = ofs.use(ds);
 
 
             %*********************************************************

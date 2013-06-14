@@ -52,6 +52,7 @@ colors_markers();
 gui_set_position(hObject);
 setup_load();
 
+check_hsc();
 
 % --- Outputs from this function are returned to the command line.
 function varargout = datatool_OutputFcn(hObject, eventdata, handles) 

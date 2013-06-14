@@ -7,6 +7,7 @@
 %>       <li> dataloader_scene.m</li>
 %>     </ul></li>
 %>   <li>Creates data splits</li>
+%> </ul>
 classdef scenebuilder
     properties
         %> Filename of the base dataset
@@ -14,6 +15,15 @@ classdef scenebuilder
         
         %> classlabel of the reference class (e.g. "control"). Must be provided if the dataset has 3 classes or more.
         reflabel = [];
+        
+        %> Cross-validation "k"
+        crossval_k = 10;
+        
+        %> MySQL database host
+        db_host = 'bioph.lancs.ac.uk';
+        
+        %> MySQL database name
+        db_name = 'taskman';
         
         %> There is no default (has to be set otherwise go() will give error)
         scenename = [];
@@ -67,6 +77,12 @@ classdef scenebuilder
         end;
         
         function o = boot(o)
+            o.setup_dbvars();
+            
+            assert_connected_to_cells();
+            o.probe_scene();
+
+            
             if isempty(o.scenename)
                 irerror('Please provide a name for the scene');
             end;
@@ -95,15 +111,13 @@ classdef scenebuilder
         end;
     end;
     
-    
-    
 
     
     methods
         function o = go(o)
             o = o.assert_booted();
 
-            o = o.check_protection();
+%             o = o.check_protection();
             o = o.save_files();
             o = o.create_datasplits();
             o = o.write_database();
@@ -113,26 +127,22 @@ classdef scenebuilder
     
     
     
-
-    
-    
-    
     methods
-        function o = check_protection(o)
-            if exist('protection.m', 'file');
-                protection();
-                
-                if ~flag_allow_overwrite
-                    irerror('Scene is already created! Change protection.m to allow overwrite.');
-                end;
-            end;
-        end;
+        % This is not being used anymore (now it asks for the user to type "yes")
+%         function o = check_protection(o)
+%             if exist('protection.m', 'file');
+%                 protection();
+%                 
+%                 if ~flag_allow_overwrite
+%                     irerror('Scene is already created! Change (or delete) protection.m to allow overwrite.');
+%                 end;
+%             end;
+%         end;
         
         
         %> Saves files
         %>
-        %> The files 'protection.m' and 'sosetup_scene.m' are only created if they don't exist yet.
-        %> Makes sense, since the first is a control file to further build attempts, and the second has is insensitive to properties from this class.
+        %> The file 'sosetup_scene.m' is only created if it doesn't exist yet.
         %>
         %> @param tosave [no_files]x[2] cell. 1st column is filename; 2nd column is the file contents
         function o = save_files(o)
@@ -140,9 +150,9 @@ classdef scenebuilder
                       'run_tasks.m', o.get_s_run_tasks_m();
                      };
                  
-            if ~exist('protection.m', 'file')
-                tosave(end+1, :) = {'protection.m', o.get_s_protection_m()};
-            end;
+%             if ~exist('protection.m', 'file')
+%                 tosave(end+1, :) = {'protection.m', o.get_s_protection_m()};
+%             end;
             
             if ~exist('sosetup_scene.m', 'file')
                 tosave(end+1, :) = {'sosetup_scene.m', o.get_s_sosetup_scene_m()};
@@ -168,16 +178,20 @@ classdef scenebuilder
             
             o = o.save_setup();
         end;
+
         
-        %> Saves irootlab_setup.m to point to pre-determined database
-        function o = save_setup(o)
+        function o = setup_dbvars(o)
             setup_load();
             db_assert();
             global DB;
-            DB.host = 'bioph.lancs.ac.uk';
-            DB.name = 'taskman';
+            DB.host = o.db_host;
+            DB.name = o.db_name;
             DB.user = 'taskman_user';
             DB.pass = 'adamondra';
+        end;
+        
+        %> Saves irootlab_setup.m to point to pre-determined database
+        function o = save_setup(o)
             setup_write();
         end;
 
@@ -186,7 +200,7 @@ classdef scenebuilder
             rehash('path'); % I think this is neede but not sure
             oo = sosetup_scene();
             obj = dataloader_scene();
-            obj.flag_group = oo.cubeprovider.flag_group;
+            obj.flag_group = oo.cubeprovider.flag_group; % This should be always True; not grouping = cheating
             obj.create_splits();
         end;
             
@@ -195,13 +209,14 @@ classdef scenebuilder
 
         
         function flag = probe_scene(o)
-            flag = ~isempty(irquery('select id from task_scene where name = "{S}"', o.scenename));
+            q = irquery('select id from task_scene where name = "{S}"', o.scenename);
+            id = q.id;
+            flag = ~isempty(id);
         end
         
         function flag = create_scene(o)
             flag = 0;
-            a = irquery('select id from task_scene where name = "{S}"', o.scenename);
-            if isempty(a.id)
+            if ~o.probe_scene()
                 irquery('insert into task_scene (name) values ("{S}")', o.scenename);
                 flag = 1;
             end;
@@ -234,6 +249,30 @@ classdef scenebuilder
 
     
     methods
+        function o = report_scene(o)
+            fprintf('\n__Tasks completion________________\n');
+            if ~o.probe_scene()
+                disp('Scene not yet created in database');
+            else
+                q = irquery('select id from task_scene where name = "{S}"', o.scenename);
+                id = q.id;
+                q = irquery('select status, count(status) as cnt from task_tasklist where idscene={S} group by status', id);
+                n = numel(q.status);
+                if n > 0
+                    for i = 1:n
+                        if i == 1
+                            disp(' Task status    Count')
+                            disp(' --------------------')
+                        end;
+                        fprintf(' %-14s %5d\n', q.status{i}, q.cnt(i))
+                    end;
+                else
+                    disp('Tasks not created yet');
+                end;
+            end;
+            disp('==================================');
+        end;
+        
         function o = check_tasks(o)
             o.refresh();
             
@@ -287,6 +326,7 @@ classdef scenebuilder
 'o.reflabel = ''', o.reflabel, ''';', 10, ...
 'o.randomseed = ', int2str(randi(1e9)), ';', 10, ...
 'o.basefilename = ''', o.filename, ''';',  10, ...
+'o.k = ', int2str(o.crossval_k), ';', 10, ...
 ];
         end;
         
@@ -309,13 +349,13 @@ classdef scenebuilder
         end;
         
 
-        %> Returns string for protection.m file
-        function s = get_s_protection_m(o)
-            s = [ ...
-'% Activate this flag to allow build_scene.m to redo everything', 10, ...
-'flag_allow_overwrite = 0;', 10, ...
-];
-        end;
+%         %> Returns string for protection.m file
+%         function s = get_s_protection_m(o)
+%             s = [ ...
+% '% Activate this flag to allow build_scene.m to redo everything', 10, ...
+% 'flag_allow_overwrite = 0;', 10, ...
+% ];
+%         end;
         
     end;
 end

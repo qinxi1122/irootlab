@@ -75,26 +75,25 @@ function [fg, bg] = cellcolor2(n, min, max, pow)
 % min = exp(min);
 % max = exp(max);
 
-
-n = n^pow;
-min = min^pow;
-max = max^pow;
-
-
 N = 100;
-
 cm = autumn(N);
 cm = cm(end:-1:1, :);
 
-idx = (n-min)/(max-min)*(N-1)+1;
-if idx < 1
-    idx = 1;
+if min == max
+    vbg = [.8, .8, .8];
+else
+    n = n^pow;
+    min = min^pow;
+    max = max^pow;
+    idx = (n-min)/(max-min)*(N-1)+1;
+    if idx < 1
+        idx = 1;
+    end;
+    if idx > N
+        idx = N;
+    end;
+    vbg = cm(round(idx), :);
 end;
-if idx > N
-    idx = N;
-end;
-
-vbg = cm(round(idx), :);
 bg = color2hex(vbg);
 fg = color2hex(iif(vbg(2) < .5, [1, 1, 1], [0, 0, 0]));
 

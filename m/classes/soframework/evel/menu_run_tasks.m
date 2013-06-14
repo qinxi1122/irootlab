@@ -1,4 +1,5 @@
-%> This script depends on a file called "scenesetup.m" which must create a scenebuilder variable called "a"
+%> This function depends on a file called "scenesetup.m" which must create a scenebuilder variable called "a"
+function menu_run_tasks()
 scenesetup;
 setup_load();
 assert_connected_to_cells();
@@ -6,18 +7,38 @@ tm = taskmanager();
 tm.scenename = a.scenename;
 tm = tm.boot();
 while 1
-    option = menu(sprintf('Tasks runner for scene "%s"', tm.scenename), {'Run until all gone', 'Reset failed', 'Reset ongoing', 'Reset all'}, 'Cancel', 0);
+    a.report_scene();
+    option = menu(sprintf('Tasks runner for scene "%s"', tm.scenename), { ...
+        'Run until all tasks are completed', ...
+        'Reset ongoing', ...
+        'Reset failed', ...
+        'Reset ongoing and failed', ...
+        'Reset all'}, 'Cancel', 0);
     switch option
         case 1
     [o, idxs] = tm.run_until_all_gone();
     fprintf('Idxs run:\n%s\n', mat2str(idxs));
         case 2
-            tm.reset_failed();
+            if confirm()
+                tm.reset_ongoing();
+            end;
         case 3
-            tm.reset_ongoing();
+            tm.reset_failed();
         case 4
-            tm.reset_all();
+            if confirm()
+                tm.reset_ongoing();
+                tm.reset_failed();
+            end;
+        case 5
+            if confirm()
+                tm.reset_all();
+            end;
         case 0
             break;
     end;
 end;
+
+
+%------
+function flag = confirm()
+flag = strcmp(input('Please type "yes" to confirm: ', 's'), 'yes');

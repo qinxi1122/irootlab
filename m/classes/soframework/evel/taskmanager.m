@@ -170,7 +170,7 @@ classdef taskmanager
             
                 o.data = {};
             catch ME
-                rethrow ME;
+                rethrow(ME);
             end;
         end;
 
@@ -222,7 +222,19 @@ classdef taskmanager
     
     %>>>>>>>>>> DANGEROUS METHODS!!!!!!!!
 
-    methods    
+    methods
+        %> Resets single task to "0". Called to clear ongoing status upon user pressing Ctrl+C
+        function o = on_cleanup(o, id)
+            global FLAG_CLEANUP;
+            if FLAG_CLEANUP
+                irquery('update task_tasklist set status = "0" where id = {Si}', id);
+                irverbose(sprintf('>>>>> TM >>>>> Reset task id=%d', id), 3);
+                disp('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+            else
+                disp('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
+            end;
+        end;
+        
         %> Resets all "ongoing" statuses to "0". Careful!!!! Make sure no one is running any task!
         function o = reset_ongoing(o)
             o.assert_connected();
@@ -366,6 +378,7 @@ classdef taskmanager
         
         %> @return [o, flag]  @c flag signals if the task has really run
         function [o, flag] = run_task(o, idx)
+            global FLAG_CLEANUP; % Controls task reset upon user pressing Ctrl+C
             flag = 0;
             o.assert_connected();
             
@@ -411,7 +424,12 @@ classdef taskmanager
 
             % Finally runs the task
             try
-                irverbose(sprintf('>>>>> TM >>>>> Running task %d ...', idx), 3);
+                irverbose('>>>>> TM >>>>> RUNNING TASK:')
+                irverbose(sprintf('>>>>> TM >>>>>         index: %d', idx), 3);
+                irverbose(sprintf('>>>>> TM >>>>>     classname: %s', z.classname), 3);
+                irverbose(sprintf('>>>>> TM >>>>> #dependencies: %d', z.dependencies), 3);
+                irverbose(sprintf('>>>>> TM >>>>>   output file: %s', z.fn_output), 3);
+
                 
                 obj = eval([z.classname, '();']);
                 
@@ -428,6 +446,8 @@ classdef taskmanager
                 obj.des.oo.dataloader.cvsplitindex = z.cvsplitindex;
                 obj.des.oo.cubeprovider.no_reps_stab = z.stabilization;
                 
+                c = onCleanup(@()o.on_cleanup(z.id));
+                FLAG_CLEANUP = 1;
                 obj.go();
                 
                 % attempts to load the newly created file (just to make sure, I was getting messages of corrupt files!)
@@ -448,6 +468,7 @@ classdef taskmanager
                 irquery('update task_tasklist set status = "failed", failedreports = "{S}", when_finished = "{S}" where id = {Si}', ...
                     fr, datestr(now(), 'yyyy-mm-dd HH:MM:SS'), z.id);
             end;
+            FLAG_CLEANUP = 0;
         end;
     end;
     

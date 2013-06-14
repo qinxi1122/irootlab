@@ -480,9 +480,6 @@ classdef irdata < irobj
             out = data.split_map(splitidxs2maps(data.splitidxs));
         end;
         
-
-        
-        
         
         %> Maps rows. Single-output version of split_map()
         %>
@@ -490,19 +487,6 @@ classdef irdata < irobj
         function out = map_rows(data, idxnew)
             out = data.split_map({idxnew});
         end;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         %> Manual feature selection.

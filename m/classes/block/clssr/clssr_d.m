@@ -97,7 +97,7 @@ classdef clssr_d < clssr
                     o.R = R / sqrt(data.no-data.nc); % SigmaHat = R'*R
                     s = svd(R);
                     if any(s <= max(data.no, data.nf) * eps(max(s)))
-                        irerror('The pooled covariance matrix of TRAINING must be positive definite. There are probably too few spectra or too many variables!');
+                        irerror(sprintf('The pooled covariance matrix of TRAINING must be positive definite. There are probably too few spectra (%d) or too many variables (%d)!', data.no, data.nf));
                     end
                     o.logDetSigma = 2*sum(log(s)); % avoid over/underflow
                 

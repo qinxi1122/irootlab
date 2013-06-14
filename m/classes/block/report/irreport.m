@@ -73,7 +73,7 @@ classdef irreport < vis
             save_as_png([], fn, res);
             save_as_fig([], fn);
             close;
-            pause(0.05); % Attempt to wait until MATLAB gets internally sorted
+            pause(0.25); % Attempt to wait until MATLAB gets internally sorted
             
             s = irreport.get_imgtag(fn, perc);
         end;

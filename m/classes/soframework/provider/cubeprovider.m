@@ -1,5 +1,7 @@
 %> @brief Provides a reptt_blockcube object
 %>
+%> The idea of these "provider" class is to serve as data (parameters) storage and produce objects when requested, using the
+%> stored data to set-up the object.
 %>
 classdef cubeprovider
     properties
@@ -96,6 +98,7 @@ classdef cubeprovider
             u.flag_perclass = 1;
             u.randomseed = o.randomseed;
             u.flag_loo = 0;
+            u.flag_autoreduce = 1; % Will automatically reduce "k" if the dataset does not allow for so.
             u.no_reps = o.no_reps; 
         end;
     end;

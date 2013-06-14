@@ -1,11 +1,13 @@
 %> @brief sostage - Rubberband -> Normalization
 %>
+%> The normalization defaults to Vector because Amide I was giving trouble
+%> after feature averaging
 %>
 classdef sostage_pp_rubbernorm < sostage_pp
     properties
-        %> ='1'. Defaults to "Amide 1 Peak"
+        %> ='n'. Defaults to "Vector Normalization
         %> @warning Must not have any vertical normalization (e.g. standardization or mean-centering)! Because the pre-processing is applied to training and test sets separately sometimes.
-        norm_types = '1';
+        norm_types = 'n';
         
         
     end;

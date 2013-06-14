@@ -18,7 +18,9 @@ classmap_assert();
 colors_markers();
 setup_load();
 
-disp(get_credits);
-disp(get_welcome);
+fprintf(['\n', ...
+         '*********************************************************************************************************\n']);
+fprintf([get_credits, '\n', get_welcome(), '\n', get_cite(), '\n']);
+global HSC; HSC = 1;
 
 clear d n b p i;

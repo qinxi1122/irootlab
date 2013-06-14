@@ -1,3 +1,4 @@
+% CUSTOM finally sth justifiable
 %> Goer for the FHG_PCAL<DA class - 10 factors for PCA
 classdef goer_fhg_pcalda10 < goer_1i
     methods

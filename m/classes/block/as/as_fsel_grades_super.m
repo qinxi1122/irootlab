@@ -40,10 +40,8 @@ classdef as_fsel_grades_super < as_fsel
     
     methods(Access=protected)
         function log2 = do_use(o, data)
-            o.as_grades_data.data = data;
-            log1 = o.as_grades_data.go();
-            o.as_fsel_grades.input = log1;
-            log2 = o.as_fsel_grades.go();
+            log1 = o.as_grades_data.use(data);
+            log2 = o.as_fsel_grades.use(log1);
         end;
     end;
 end

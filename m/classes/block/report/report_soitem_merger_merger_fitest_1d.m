@@ -7,6 +7,22 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
 %         maximum = [];
 %     end;
 %     
+
+
+    properties
+        %> =1. Whether to generate the p-values tables
+        flag_ptable = 1;
+        
+        %> ={'rates', 'times3'}
+        names = {'rates', 'times3'}
+        
+        %> vectorcomp_ttest_right() with no logtake. vectorcomp object used tor the p-values tables
+        vectorcomp = [];
+
+        %> Maximum number of table rows
+        maxrows = 20;
+    end;
+
     methods
         function o = report_soitem_merger_merger_fitest_1d()
             o.classtitle = '1D Classification table';
@@ -33,7 +49,15 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
         function s = get_html_graphics(o, item) %#ok<MANU>
 %             it = soitem_sovalues();
             sov = item.get_sovalues_1d();
-            r = report_soitem_sovalues();
+%             r = report_soitem_sovalues();
+            
+            r = report_sovalues_comparison();
+            r.dimspec = {[0, 0], [1, 2]};
+            r.flag_ptable = o.flag_ptable;
+            r.names = o.names;
+            r.vectorcomp = o.vectorcomp;
+            r.maxrows = o.maxrows;
+            
             s = r.get_html_tables(sov);
         end;
     end;

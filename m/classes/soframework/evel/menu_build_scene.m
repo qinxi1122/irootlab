@@ -1,34 +1,50 @@
-%> This script depends on a file called "scenesetup.m" which must create a scenebuilder variable called "a"
+%> This function depends on a file called "scenesetup.m" which must create a scenebuilder variable called "a"
+function menu_build_scene()
 scenesetup;
-
+a.boot();
 while 1
-    option = menu(sprintf('Building menu for scene "%s"', a.scenename), ...
-        {
-         'Check tasks', ...
-         'Build tasks in database only', ...
-         'Generate M files only', ...
-         'Create dataset splits only', ...
-         'Build everything', ...
-         'Delete existing tasks', ...
+    a.report_scene();
+    option = menu(sprintf('Scene building menu for scene "%s"', a.scenename), ...
+        {'Build everything', ...
+         'Create .m files only', ...
+         'Create tasks in database only', ...       
+         'Create sub-datasets only', ...
+         'Delete existing tasks from database', ...
+         'Check tasks to create', ...
         }, 'Cancel', 0);
-    switch option
-        case 1
-            a.check_tasks();
-        case 2
-            a.write_database();
-        case 3
-            a.save_files();
-        case 4
-            a.create_datasplits();
-        case 5
-            a.go();
-        case 6
-            if strcmp(input('Confirm this with a "Yes" ', 's'), 'Yes')
-                a.delete_tasks();
-            end;
-        case 0
-            break;
-    end;
+    try
+        switch option
+            case 1
+                if confirm()
+                    a.go();
+                end;
+            case 2
+                if confirm()
+                    a.save_files();
+                end;
+            case 3
+                if confirm()
+                    a.write_database();
+                end;
+            case 4
+                if confirm()
+                    a.create_datasplits();
+                end;
+            case 5
+                if confirm()
+                    a.delete_tasks();
+                end;
+            case 6
+                a.check_tasks();
+            case 0
+                break;
+        end;
+    catch ME
+        % Displays error and goes back to menu
+        fprintf(2, strrep(ME.getReport(), '%', '%%')); % displays in red
+    end;        
 end;
 
-
+%------
+function flag = confirm()
+flag = strcmp(input('Please type "yes" to confirm: ', 's'), 'yes');

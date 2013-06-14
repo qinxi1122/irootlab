@@ -51,7 +51,8 @@ while 1
             h{no_plots} = plot(x(piece_start:i-1), y(piece_start:i-1), varargin{:});
         else
             % 1-point plot
-            h{no_plots} = plot(x(piece_start:i-1)*[1, 1]+[-modedelta, modedelta]*.3, y(piece_start:i-1)*[1, 1], varargin{:});
+%             h{no_plots} = plot(x(piece_start:i-1)*[1, 1]+[-modedelta, modedelta]*.3, y(piece_start:i-1)*[1, 1], varargin{:});
+            h{no_plots} = plot(x(piece_start), y(piece_start), varargin{:});
         end;
         hold on;
     end;

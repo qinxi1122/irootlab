@@ -68,11 +68,9 @@ setup_load();
 path_assert();
 global PATH;
 set(handles.editPath, 'String', PATH.data_spectra);
-
-% Update handles structure
-guidata(hObject, handles);
-
+guidata(hObject, handles); % Update handles structure
 gui_set_position(hObject);
+check_hsc();
 
 
 % --- Outputs from this function are returned to the command line.

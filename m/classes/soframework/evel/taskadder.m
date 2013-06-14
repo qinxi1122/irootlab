@@ -399,7 +399,7 @@ classdef taskadder
                     scl = clwrapper_eff{m};
 
                     % ClArchSel
-                    fn_foldmerger_clarchselout{m} = sprintf('output_foldmerger_clarchsel__%s__ovr%02d.mat', scl, i);
+                    fn_foldmerger_clarchselout{ii, m} = sprintf('output_foldmerger_clarchsel__%s__ovr%02d.mat', scl, i);
                     [o.tm, idx_foldmerger_clarchselout(ii, m)] = o.tm.add_task('goer_foldmerger_items', fn_clarchselout(ii, :, m), fn_foldmerger_clarchselout{ii, m}, ...
                         i, 0, idx_clarchsel{ii}(:, m), -1); %#ok<NASGU>
 

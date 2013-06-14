@@ -50,6 +50,7 @@ for i = 1:no_files
     filename = fullfile(path_, filenames{i});
     flag_imported = 0; % whether file was imported successfully
     lastmsg = '';
+    lastME = 0;
     for j = 1:numel(namestotry)
         flag_break = 0;
         try
@@ -73,6 +74,7 @@ for i = 1:no_files
         catch ME
             fclose('all');
             lastmsg = ME.message;
+            lastME = ME;
         end;
         
         if flag_break
@@ -82,6 +84,9 @@ for i = 1:no_files
     
     if ~flag_imported
         irverbose(sprintf('Not possible to read file %s. Last error message was ''%s''', filename, lastmsg), 3);
+        if lastME
+            irverbose(lastME.getReport());
+        end;
         cnt_error = cnt_error+1;
         errors{end+1} = filename;
     else

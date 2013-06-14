@@ -52,11 +52,11 @@ for i = 1:no_files
     flag_open = 0;
     try
         h = fopen(filename, 'r');
-        flag_open = 1;
-
-        if h < 1
+        if h < 0
             irerror(sprintf('Pir2Data: Could not open file ''%s''!', filename));
         end;
+        flag_open = 1;
+
         fprintf('%d/%d: %s ...\n', i, no_files, filenames{i});
 
         flag_wants_wns = 1;
@@ -134,7 +134,8 @@ for i = 1:no_files
             fclose(h);
         end;
             
-        irverbose(['ERROR: ', ME.message]);
+        %irverbose(['ERROR: ', ME.message]);
+        irverbose(ME.getReport());
         cnt_error = cnt_error+1;
         errors{end+1} = filename;
     end;
