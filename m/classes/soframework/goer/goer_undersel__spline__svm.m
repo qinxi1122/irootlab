@@ -3,7 +3,6 @@ classdef goer_undersel__spline__svm < goer_1i
     methods
         %> Constructor
         function o = setup(o)
-
             o.classname = 'undersel_svm';
         end;
         

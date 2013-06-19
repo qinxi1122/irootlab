@@ -1,4 +1,4 @@
-%> In this type of SODATAITEM, the sovalues object contains a values.dia field
+%> items property is an array of soitem_diachoice()
 classdef soitem_merger_merger_fitest < soitem
     properties
         %> Array of soitem_merger_fitest objects

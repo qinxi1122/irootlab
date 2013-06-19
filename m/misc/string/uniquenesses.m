@@ -4,11 +4,16 @@
 %>
 %> Iterates through the strings to find a piece in the middle that is different in each string.
 %>
+%> Update 18/06/2013: Removes all matches of (...) from strings before
+%>
 %> @param cc Cell of strings
 %> @return dd Cell of strings
 function dd = uniquenesses(cc)
-
 n = numel(cc);
+for i = 1:n
+    cc{i} = regexprep(cc{i}, '\([a-zA-Z0-9]*\)', '');
+end;
+
 nn = cellfun(@numel, cc);
 bk = 1;
 flag_break = 0;

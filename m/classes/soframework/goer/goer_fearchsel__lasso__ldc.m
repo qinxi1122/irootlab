@@ -8,8 +8,6 @@ classdef goer_fearchsel__lasso__ldc < goer_1i
         end;
 
         function d = customize_session(o, d)
-            % Make your experiments here
-            d.oo.fearchsel_lasso_nf_max = 80;
         end;
     end;
 end

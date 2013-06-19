@@ -4,6 +4,6 @@ classdef soitem_fhgs < soitem_fhg
         %> Array of @ref log_fselrepeater
         logs;
         %> Cell of @ref soitem
-        items
+        items;
     end;
 end

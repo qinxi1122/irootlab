@@ -22,7 +22,7 @@ classdef report_sovalues_comparison < irreport
 
     methods
         function o = report_sovalues_comparison()
-            o.classtitle = 'Classification performance tables';
+            o.classtitle = 'Flat comparison table';
             o.inputclass = 'sovalues';
             o.flag_params = 1;
         end;

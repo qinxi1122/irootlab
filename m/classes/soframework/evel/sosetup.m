@@ -3,21 +3,100 @@
 %> What you are going to do with this output structure, it is entirely your choice!
 classdef sosetup
     properties
-        %> Manifests an intention to go parallel
-        flag_parallel = NaN;
-      
-        stabnumber = 10;
+        % This part of the code was generated back by code_props()
+        % |
+        % |
+        % |
+
         
-        %> ='single'. Possible values: 'single'; 'ovr'-"One-Versus-Reference". The operation of this will depend on the particular implementation,
-        %> and many sostages will ignore this. Actually this is something that will work for the sostages that produce biomarkers, only
-        splittype = NaN;
+        %> ANN architecture optimization - List of numbers of features to assign to feature extraction block
+        clarchsel_ann_nfs =  -1;
+        %> ANN architecture optimization - List of candidate ANN architectures
+        clarchsel_ann_archs =  {1, 3, 5, 10, 15, 20, 30, [7 4], [10 5], [10 9], [20 11]};
+        %> Undersampling optimization - ANN classifier - List of number of classifiers trained with undersampled data
+        undersel_ann_unders =  [1 2 3 4 5 7 9];
+        %> SVM architecture optimization - List of numbers of features to assign to feature extraction block
+        clarchsel_svm_nfs =  -1;
+        %> SVM architecture optimization - List of candidate "C" parameters (Gaussian kernel)
+        clarchsel_svm_cs = 10.^(2:.25:5);
+        %> SVM architecture optimization - List of candidate "gamma" parameters (Gaussian kernel)
+        clarchsel_svm_gammas = 10.^(-7:.5:-1);
+        %> Undersampling optimization - SVM classifier - List of number of classifiers trained with undersampled data
+        undersel_svm_unders =  [1 2 3 4 5 7 9];
+        %> FRBM (Fuzzy classifie) architecture optimization - List of numbers of features to assign to feature extraction block
+        clarchsel_frbm_nfs =  -1;
+        %> Undersampling optimization - FRBM classifier - List of number of classifiers trained with undersampled data
+        undersel_frbm_unders =  [1 2 3 4 5 7 9];
+        %> k-NN architecture optimization - List of numbers of features to assign to feature extraction block
+        clarchsel_knn_nfs =  -1;
+        %> k-NN architecture optimization - List of candidate "k"s (number of neighbors)
+        clarchsel_knn_ks =  [1 2 3 5 7 11 13 15 17];
+        %> Undersampling optimization - k-NN classifier - List of number of classifiers trained with undersampled data
+        undersel_knn_unders =  [1 2 3 4 5 7 9];
+        %> LASSO architecture optimization - List of numbers of features
+        clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:152];
+        %> Undersampling optimization - LASSO classifier - List of number of classifiers trained with undersampled data
+        undersel_lasso_unders =  [1 2 3 4 5 7 9];
+        %> Undersampling optimization - LDC classifier - List of number of classifiers trained with undersampled data
+        undersel_ldc_unders =  [1 2 3 4 5 7 9];
+        %> Undersampling optimization - QDC classifier - List of number of classifiers trained with undersampled data
+        undersel_qdc_unders =  [1 2 3 4 5 7 9];
+        %> Undersampling optimization - Distance classifier - List of number of classifiers trained with undersampled data
+        undersel_dist_unders =  [1 2 3 4 5 7 9];
+        %> Feature Extraction optimization - FFS(classifier) - maximum number of features
+        fearchsel_ffs_nf_max =  50;
+        %> Feature Extraction optimization - FFS(MANOVA) - maximum number of features
+        fearchsel_manova_nf_max =  50;
+        %> Feature Extraction optimization - Fisher criterion-based FS - maximum number of features
+        fearchsel_fisher_nf_max =  50;
+        %> Feature Extraction optimization - LASSO embedded FS - maximum number of features
+        fearchsel_lasso_nf_max =  50;
+        %> Feature Extraction optimization - PCA - list of numbers of features
+        fearchsel_pca_nfs = [1:9, 11:2:151];
+        %> Feature Extraction optimization - PLS - list of numbers of features
+        fearchsel_pls_nfs = [1:9, 11:2:151];
+        %> Feature Extraction optimization - B-Spline Representation - list of numbers of features
+        fearchsel_spline_nfs =  6:70;
+        %> Feature Histogram Generation - FFS(classifier) - number of features to select
+        fhg_ffs_nf_select =  10;
+        %> Feature Histogram Generation - LASSO embedded FS - number of features to select
+        fhg_lasso_nf_select =  10;
+        %> Feature Histogram Generation - FFS(MANOVA) - number of features to select
+        fhg_manova_nf_select =  10;
+        %> Feature Histogram Generation - FS-Fisher - number of peaks to pick from Fisher feature grades curve
+        fhg_fisher_nf_select =  10;
+        %> Feature Histogram Generation - PCA-LDA - number of peaks to pick from PCA-LDA loadings vector
+        fhg_pcalda_nf_select =  10;
+        %> Feature Histogram Generation - LDA - number of peaks to pick from LDA loadings vector
+        fhg_lda_nf_select =  10;
+    end;
     
-        %> ='rates'. Recording to base the choice on
-        ratesname = NaN;
+    % Properties that don't get published in sosetup_scene.m
+    properties
+        %> Manifests an intention to parallelize code whenever possible
+        flag_parallel = 0;
         
         %> randomseed for the undersampling sgs
-        under_randomseed = NaN;
+        under_randomseed = 0;
         
+        %> This is set in goer_fhg_pcalda*.m
+        fhg_pcalda_no_factors = NaN;
+        % LS properties
+        undersel_ls_unders = [1, 2, 3, 4, 5, 7, 9];
+
+        % LSTH properties
+        clarchsel_lsth_nfs = NaN;
+        undersel_lsth_unders = [1, 2, 3, 4, 5, 7, 9];
+
+        lcr2_no_folds = 50;
+        lcr2_subdspercs = [.1, .15, .2:.1:1];
+
+        %> Maximum percentage of total number of diagnosissystem's to include in the majority vote classifier
+        committees_maxperc = 0.5;
+    end;
+
+    % Objects as properties
+    properties
         %> a dataloader_she object (that needs to be tuned for the specific dataset classes (NT/NDI/Trai))
         dataloader;
         
@@ -48,110 +127,12 @@ classdef sosetup
 
         %> chooser object to be used for final single choice.
         diacomp_chooser;
-
-        
-        pand_chooser;
-        
-        % (model/stage)-specific design properties
-        % All properties are initialized to NaN to make sure that they won't be forgotten, any subsequent attempt to use them will give an error
-        
-        
-        % ANN properties
-        clarchsel_ann_nfs = NaN;;
-        clarchsel_ann_archs = NaN;
-        undersel_ann_unders = NaN;
-        
-        
-        % SVM properties
-        %> Design property: list of prospective C's
-        clarchsel_svm_nfs = NaN;
-        clarchsel_svm_cs = NaN;
-        %> Design property: list of prospective gamma's
-        clarchsel_svm_gammas = NaN;
-        undersel_svm_unders = NaN;
-        
-        
-        % FRBM properties
-        %> (Design property) Different scales to try
-        clarchsel_frbm_scales = NaN;
-        clarchsel_frbm_nfs = NaN;
-        undersel_frbm_unders = NaN;
-
-
-        % KNN properties
-        clarchsel_knn_nfs = NaN;
-        clarchsel_knn_ks = NaN;
-        undersel_knn_unders = NaN;
-
-        % LASSO properties
-        undersel_lasso_unders = NaN;
-        clarchsel_lasso_nfs = NaN;
-
-        % LDC properties
-%         clarchsel_ldc_nfs = NaN;
-        undersel_ldc_unders = NaN;
-
-        % QDC properties
-%         clarchsel_qdc_nfs = NaN;
-        undersel_qdc_unders = NaN;
-
-
-        % LS properties
-%         clarchsel_ls_nfs = NaN;
-        undersel_ls_unders = NaN;
-
-        % LS properties
-        clarchsel_lsth_nfs = NaN;
-        undersel_lsth_unders = NaN;
-
-        % DIST properties
-%         clarchsel_dist_nfs = NaN;
-        undersel_dist_unders = NaN;
-
-        % FEARCHSEL_FFS
-        fearchsel_ffs_nf_max = NaN;
-        fearchsel_manova_nf_max = NaN;
-        fearchsel_fisher_nf_max = NaN;
-        fearchsel_lasso_nf_max = NaN;
-        
-
-        fearchsel_pca_nfs = NaN;
-        fearchsel_pls_nfs = NaN;
-        
-        fearchsel_fhana_nf_max = NaN;
-
-        fearchsel_spline_nfs = NaN;
-        
-        
-        lcr2_no_folds = NaN;
-        lcr2_subdspercs = NaN;
-        
-        fhg_ffs_nf_select = NaN;
-        fhg_lasso_nf_select = NaN;
-        fhg_manova_nf_select = NaN;
-        fhg_fisher_nf_select = NaN;
-        fhg_pcalda_nf_select = NaN;
-        fhg_lda_nf_select = NaN;
-        
-        fhg_pcalda_no_factors = NaN;
-        
-        %> Maximum percentage of total number of diagnosissystem's to include in the committee
-        committees_maxperc = 0.5;
     end;
-
+    
+    
     methods
         %> Constructor
         function o = sosetup()
-            o.flag_parallel = 0;
-
-            o.splittype = 'single';
-
-            o.ratesname = 'rates';            
-
-            o.under_randomseed = 0;
-
-            
-            
             %-----
             %----- Data loader setup
             %-----
@@ -164,18 +145,15 @@ classdef sosetup
             sdp.subdspercs = [1];
             sdp.randomseed = 0;
             o.subdatasetprovider = sdp;
-
             
             %=== Pre-processing sostage_pp
             %===
             spp = sostage_pp_rubbernorm();
-            spp.ndec = 1;  % Note that the default is to decimate once!
-            spp.norm_types = 'n'; % Vector normalization!
+            spp.nf_resample = 0;  % Note that the default is not to resample
             % The normalization defaults to Vector because Amide I was giving trouble
             % after feature averaging
-
+            spp.norm_types = 'n'; % Vector normalization!
             o.sostage_pp = spp;
-
 
             %=== Feature Extraction sostage_fe setup
             %===
@@ -184,14 +162,12 @@ classdef sosetup
             sfe = sostage_fe_bypass();
             o.sostage_fe = sfe;
             
-            
-            %=== Feature Extraction sostage_fe setup
+            %=== Classification sosstage_cl setup
             %===
             scl = sostage_cl_ldc();
             scl.flag_cb = 1;
             o.sostage_cl = scl;
             
-
             %=== Cubeprovider setup
             %===
             cp = cubeprovider(); %#ok<*CPROP,*PROP>
@@ -204,88 +180,8 @@ classdef sosetup
             cp.ttlogprovider = ttlogprovider();
             o.cubeprovider = cp;
             
-            %====== Setup for various classifiers
-            %====== 
-            
-            %=== Unders setup
-            %===
-            UNDERS = [1, 2, 3, 4, 5, 7, 9];
-            
-            o.undersel_ann_unders = UNDERS;
-            o.undersel_svm_unders = UNDERS;
-            o.undersel_knn_unders = UNDERS;
-            o.undersel_ldc_unders = UNDERS;
-            o.undersel_qdc_unders = UNDERS;
-            o.undersel_frbm_unders = UNDERS;
-            o.undersel_lasso_unders = UNDERS;
-            o.undersel_ls_unders = UNDERS;
-            o.undersel_lsth_unders = UNDERS;
-            o.undersel_dist_unders = UNDERS;
-
-            
-%             o.clarchsel_ann_nfs = [3, 5, 10, 20, 50, 100];
-            o.clarchsel_ann_nfs = -1; % Note that sostage_fe starts as a bypass
-            o.clarchsel_ann_archs = {[1], [3], [5], [10], [15], [20], [30], [7, 4], [10, 5], [10, 9], [20, 11]};  %#ok<*NBRAK>
-        
-        
-            % Data Analysis Stage-independent
-%             o.clarchsel_knn_nfs = [3, 5, 7, 9, 11, 13, 15, 20, 25, 30, 35, 50];
-            o.clarchsel_knn_nfs = -1; % Note that sostage_fe starts as a bypass
-            o.clarchsel_knn_ks = [1, 2, 3, 5, 7, 11, 13, 15, 17];
-
-            
-            o.clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:152];
-
-%             o.clarchsel_svm_nfs = [7, 10, 15, 30, 50, 100];
-            o.clarchsel_svm_nfs = -1; % Note that sostage_fe starts as a bypass
-            o.clarchsel_svm_cs = 10.^(2:.25:5);
-            o.clarchsel_svm_gammas = 10.^(-7:.5:-1);
-
-            
-            o.fearchsel_ffs_nf_max = 50;
-            o.fearchsel_manova_nf_max = 50;
-            o.fearchsel_fisher_nf_max = 50;
-            o.fearchsel_lasso_nf_max = 50;
-            
-            o.fearchsel_fhana_nf_max = 50;
-            
-%             o.clarchsel_frbm_nfs = [3, 5, 10, 15, 20, 25, 30, 50, 100];
-%             o.clarchsel_frbm_scales = 1; % No need to try different scales for FRBM
-            
-%             o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-
-%             o.fearchsel_lasso_nfs = 3:3:81;
-            
-            o.fearchsel_pca_nfs = [1:9, 11:2:151];
-            o.fearchsel_pls_nfs = [1:9, 11:2:151];
-            
-%             o.clarchsel_ldc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-% 
-%             o.clarchsel_qdc_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-% 
-%             o.clarchsel_ls_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-% 
-%             o.clarchsel_dist_nfs = [3, 5, 10, 15, 20, 25, 30, 35, 40];
-% 
-%             o.clarchsel_lsth_nfs = 3:3:81;
-            
-            o.lcr2_no_folds = 50;
-            o.lcr2_subdspercs = [.1, .15, .2:.1:1];
-            
-            o.fearchsel_spline_nfs = 6:70;
-            
-            o.fhg_ffs_nf_select = 10;
-            o.fhg_lasso_nf_select = 10;
-            o.fhg_manova_nf_select = 10;
-            o.fhg_fisher_nf_select = 10;
-            o.fhg_pcalda_nf_select = 10;
-            o.fhg_lda_nf_select = 10;
-
-          
-            
             %=== Choosers setup
             %===
-            
             %-----
             %----- Chooser CLARCHSEL1
             %-----
@@ -295,7 +191,6 @@ classdef sosetup
             ch1.time_mingain = .25; % 25% default
             ch1.vectorcomp = vectorcomp_ttest_right();
             ch1.vectorcomp.flag_logtake = 0;
-
 
             %-----
             %----- Chooser UNDERSEL
@@ -317,20 +212,15 @@ classdef sosetup
             ch3.vectorcomp = vectorcomp_ttest_right();
             ch3.vectorcomp.flag_logtake = 0;
 
-            
-
             % Conservative chooser
             cc = ch3;
             cc.rate_maxloss = 0.002;
-            
             
             
             o.clarchsel_chooser = ch1;
             o.undersel_chooser = ch2;
             o.fearchsel_chooser = ch3;
             o.diacomp_chooser = cc;
-            o.pand_chooser = cc;
-
 
             o = o.setup_from_env();
         end;
@@ -346,6 +236,47 @@ classdef sosetup
             flag = ~isempty(flag) && str2double(flag); 
             flag = flag && license('test', 'distrib_computing_toolbox');
             o.flag_parallel = flag;
+        end;
+        
+        function a = get_propsmap(o) %#ok<*MANU>
+            a = {...
+'sostage_pp.nf_resample' , 'Resampling to reduce initial number of features within pre-processing. If set as <= 0, does not resample';
+'clarchsel_ann_archs', 'ANN architecture optimization - List of candidate ANN architectures';
+'clarchsel_ann_nfs', 'ANN architecture optimization - List of numbers of features to assign to feature extraction block';
+'undersel_ann_unders', 'Undersampling optimization - ANN classifier - List of number of classifiers trained with undersampled data';
+'clarchsel_svm_cs', 'SVM architecture optimization - List of candidate "C" parameters (Gaussian kernel)';
+'clarchsel_svm_gammas', 'SVM architecture optimization - List of candidate "gamma" parameters (Gaussian kernel)';
+'clarchsel_svm_nfs', 'SVM architecture optimization - List of numbers of features to assign to feature extraction block';
+'undersel_svm_unders', 'Undersampling optimization - SVM classifier - List of number of classifiers trained with undersampled data';
+'clarchsel_frbm_nfs', 'FRBM (Fuzzy classifier) architecture optimization - List of numbers of features to assign to feature extraction block';
+'undersel_frbm_unders', 'Undersampling optimization - FRBM classifier - List of number of classifiers trained with undersampled data';
+'clarchsel_knn_ks', 'k-NN architecture optimization - List of candidate "k"s (number of neighbors)';
+'clarchsel_knn_nfs', 'k-NN architecture optimization - List of numbers of features to assign to feature extraction block';
+'undersel_knn_unders', 'Undersampling optimization - k-NN classifier - List of number of classifiers trained with undersampled data';
+'clarchsel_lasso_nfs', 'LASSO architecture optimization - List of numbers of features';
+'undersel_lasso_unders', 'Undersampling optimization - LASSO classifier - List of number of classifiers trained with undersampled data';
+'undersel_ldc_unders', 'Undersampling optimization - LDC classifier - List of number of classifiers trained with undersampled data';
+'undersel_qdc_unders', 'Undersampling optimization - QDC classifier - List of number of classifiers trained with undersampled data';
+'undersel_dist_unders', 'Undersampling optimization - Distance classifier - List of number of classifiers trained with undersampled data';
+'fearchsel_ffs_nf_max', 'Feature Extraction optimization - FFS(classifier) - maximum number of features';
+'fearchsel_manova_nf_max', 'Feature Extraction optimization - FFS(MANOVA) - maximum number of features';
+'fearchsel_fisher_nf_max', 'Feature Extraction optimization - Fisher criterion-based FS - maximum number of features';
+'fearchsel_lasso_nf_max', 'Feature Extraction optimization - LASSO embedded FS - maximum number of features';
+'fearchsel_pca_nfs', 'Feature Extraction optimization - PCA - list of numbers of features';
+'fearchsel_pls_nfs', 'Feature Extraction optimization - PLS - list of numbers of features';
+'fearchsel_spline_nfs', 'Feature Extraction optimization - B-Spline Representation - list of numbers of features';
+'fhg_ffs_nf_select', 'Feature Histogram Generation - FFS(classifier) - number of features to select';
+'fhg_lasso_nf_select', 'Feature Histogram Generation - LASSO embedded FS - number of features to select';
+'fhg_manova_nf_select', 'Feature Histogram Generation - FFS(MANOVA) - number of features to select';
+'fhg_fisher_nf_select', 'Feature Histogram Generation - FS-Fisher - number of peaks to pick from Fisher feature grades curve';
+'fhg_pcalda_nf_select', 'Feature Histogram Generation - PCA-LDA - number of peaks to pick from PCA-LDA loadings vector';
+'fhg_lda_nf_select', 'Feature Histogram Generation - LDA - number of peaks to pick from LDA loadings vector';
+};
+        end;
+        
+        function s = get_propscode(o)
+            props = o.get_propsmap();
+            s = code_props(o, props);
         end;
     end;
 end

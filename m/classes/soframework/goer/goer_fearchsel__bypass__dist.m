@@ -3,7 +3,6 @@ classdef goer_fearchsel__bypass__dist < goer_1i
     methods
         %> Constructor
         function o = setup(o)
-
             o.classname = 'fearchsel_bypass';
         end;
 

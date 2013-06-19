@@ -13,6 +13,9 @@ classdef goer < filesession
         
         %> The sodesigner within
         des;
+        
+        %> Task index
+        taskidx;
     end;
     
     methods
@@ -52,7 +55,7 @@ classdef goer < filesession
     methods(Sealed)
         %> Returns sodesigner object with soitem object assigned.
         %>
-        %> The soitem object is either created or loaded from file. If created, splittype will be set
+        %> The soitem object is either created or loaded from file.
         function des = get_session(o)
             if isempty(o.classname)
                 irerror(sprintf('classname property of class "%s" hasn''t been assigned', class(o)));
@@ -84,6 +87,7 @@ classdef goer < filesession
                     o.des = o.des.go();
                     r.time_go = toc(t);
                     r.item = o.des.output;
+                    r.taskidx = o.taskidx;
 
                     % I don't know why sometimes the file is saved corrupted!
                     % The solution is to try loading after saving and try re-saving if not ok

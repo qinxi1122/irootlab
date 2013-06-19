@@ -21,5 +21,4 @@ end;
 
 % This did the trick!!! Saving beautifully now
 set(h, 'PaperPositionMode', 'auto');
-
 print(['-f', int2str(h)], '-dpng', ['-r', int2str(dpi)], '-opengl', fn);

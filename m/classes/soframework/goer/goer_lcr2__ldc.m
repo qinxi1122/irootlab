@@ -11,7 +11,6 @@ classdef goer_lcr2__ldc < goer_1i
     methods
         function d = customize_session(o, d)
             % Make your experiments here
-%             d.oo.flag_parallel = 0;
         end;
     end;
 end

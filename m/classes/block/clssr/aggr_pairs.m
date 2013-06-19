@@ -16,13 +16,18 @@ classdef aggr_pairs < aggr
             o.short = 'OVO';
         end;
         
-        function s = get_methodname(o)
-            if isempty(o.block_mold)
-                s = get_methodname@aggr(o);
-            else
-                s = ['OVO-', o.block_mold.get_methodname()];
-            end;
-        end;
+
+%        function s = get_short(o)
+%            if isempty(o.block_mold)
+%                s = get_methodname@aggr(o);
+%            else
+%                s = ['OVO-', o.block_mold.get_methodname()];
+%            end;
+%            s = [iif(isempty(o.block_mold), get_short@irobj(o), o.block_mold., '(OVO)'];
+%        end;
+%
+%        function s = get_methodname(o)
+%        end;
     end;
     
     methods(Access=protected)

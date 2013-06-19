@@ -1,6 +1,10 @@
 %> @ingroup maths
 %> @file
-%> @brief Originally created for Nik's study
+%> @brief Originally created for Nik's study [1]
+%>
+%> [1] Purandare, N. C., Patel, I. I., Trevisan, J., Bolger, N., Kelehan, R., von Bünau, G., ... & Martin, F. L. (2013).
+%>     Biospectroscopy insights into the multi-stage process of cervical cancer development: probing for spectral biomarkers
+%>     in cytology to distinguish grades. Analyst.
 %
 %> @param ds a two-class, 1-feature dataset
 %> @return threshold

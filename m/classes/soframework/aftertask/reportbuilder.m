@@ -2,13 +2,14 @@
 classdef reportbuilder
     properties
         map = {...
-%                'soitem_sovalues', {'get_report_soitem_sovalues'}; ...
-%               'soitem_items', {'get_report_soitem_items'}; ...
-%               'soitem_foldmerger_fitest', {'get_report_soitem_foldmerger_fitest'}; ...
-               'soitem_fhgs', {'get_report_soitem_fhg', 'get_report_soitem_fhg_histcomp'}; ...
-               'soitem_merger_fhg', {'get_report_soitem_merger_fhg'}; ...
-               'soitem_merger_merger_fhg', {'get_report_soitem_merger_merger_fhg'}; ...
-               'soitem_merger_merger_fitest', {'get_report_soitem_merger_merger_fitest', 'get_report_soitem_merger_merger_fitest_1d'}; ...
+               'soitem_diachoice', {{'get_report_soitem_sovalues', 'Flat comparison table (grouped by classifier and feature extraction)'}}; ... % soitem_diachoice descends from soitem_sovalues, but the former is output of latter (and fewer) tasks
+               'soitem_items', {{'get_report_soitem_items', 'Curves/Images from Model Selection'}}; ...
+               'soitem_foldmerger_fitest', {{'get_report_soitem_foldmerger_fitest', 'Confusion matrices for each system set-up'}}; ...
+               'soitem_fhgs', {{'get_report_soitem_fhg', 'Feature histograms'}, {'get_report_soitem_fhg_histcomp', 'Histograms comparison'}}; ...
+               'soitem_merger_fhg', {{'get_report_soitem_merger_fhg', 'Histograms and biomarkers comparison tables'}}; ...
+               'soitem_merger_merger_fhg', {{'get_report_soitem_merger_merger_fhg', 'General biomarker comparison tables'}}; ...
+               'soitem_merger_merger_fitest', {{'get_report_soitem_merger_merger_fitest', 'General 2D performance comparison table'}, ...
+                                               {'get_report_soitem_merger_merger_fitest_1d', 'General flat performance comparion table'}}; ...
               };
           
         %> If activated, won't call the "use()" methods of the reports
@@ -22,7 +23,45 @@ classdef reportbuilder
         DATAFILENAME = 'reportbuilder_state.data'
         %> whether finished
         flag_finished = 0;
+        %> Indicates which reports are switched on. I deactitaved 2 reports that generated figures
+        flags_map2 = boolean([1, 0, 0, 1, 1, 1, 1, 1, 1]);
     end;
+    
+    methods
+        function o = set_flag_map2(o, i, x)
+            if isempty(o.flags_map2)
+                [dummy, o.flags_map2] = o.get_map2();
+            end;
+            o.flags_map2(i) = x;
+        end;
+        
+        %> Flattens .map
+        function [z, flags, titles] = get_map2(o)
+            m = size(o.map, 1);
+            z = {};
+            k = 0;
+            for i = 1:m
+                n = length(o.map{i, 2});
+                for j = 1:n
+                    k = k+1;
+                    z(k, :) = {o.map{i, 1}, o.map{i, 2}{j}{1}};
+                    titles{k} = o.map{i, 2}{j}{2};
+                end;
+            end;
+            
+            if isempty(o.flags_map2)
+                flags = boolean(ones(1, k));
+            else
+                flags = boolean(o.flags_map2);
+            end;
+        end;
+        
+        %> Flat map with only the activated reports
+        function z = get_map3(o)
+            [a, flags, titles] = o.get_map2(); %#ok<NASGU>
+            z = a(flags, :);
+        end;
+    end;        
     
     methods
         function o = reportbuilder()
@@ -123,99 +162,8 @@ classdef reportbuilder
             % Save state
             o.save_state(state);
         end;
-
+       
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        function s = process_dir(o)
-            s = '';
-            S_BACK = ['<p><input type="button" value="Back" onclick="window.history.back();" />&nbsp;&nbsp;<a href="index.html">Back</a></p>', 10];
-            a = o.map;
-            classes = a(:, 1); no_classes = numel(classes);
-            getters = a(:, 2);
-            
-            dd = dir('../output*.mat'); % Probes if there is any mat file at current directory
-            if ~isempty(dd)
-                names = {dd.name};
-                no_files = numel(names);
-                
-                
-                s = cat(2, s, '<table class=bo>', 10);
-                temp = cellfun(@(x) ['<td class=bob><div class=hel>', x, '</div></td>', 10], {'File name', 'Time', 'Description', 'Data', 'Reports'}, 'UniformOutput', 0);
-                s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
-                
-                ipro = progress2_open('Report builder', [], 0, no_files);
-                no_files_eff = no_files;
-                no_processed = 0;
-                for i = 1:no_files
-                    fn = names{i};
-                    try
-                        clear r;
-                        load(fullfile('..', fn));
-                        
-                        if ~exist('r', 'var')
-                            % MAT file has no "r" variable, skips file
-                            no_files_eff = no_files_eff-1;
-                        else
-                            item = r.item;
-                            flag_has = 0;
-                            s_reports = '';
-                            for z = 1:no_classes
-                                if isa(item, classes{z})
-                                    irverbose(sprintf('Processing file "%s"...', fn));
-                                    s_getters = getters{z};
-                                    for j = 1:numel(s_getters)
-                                        o_report = o.(s_getters{j});
-                                        o_report.title = ['File "', fn, '"'];
-                                        if ~o.flag_simulation
-                                            o_html = o_report.use(item);
-                                        else
-                                            o_html = log_html;
-                                            o_html.html = 'Simulation mode';
-                                        end;
-                                        flag_has = 1;
-                                        o_html.html = cat(2, S_BACK, o_html.html, S_BACK);
-                                        filename = [fn, '__', class(o_report), '.html'];
-                                        o.save(filename, o_html);
-                                        s_reports = cat(2, s_reports, sprintf('<a href="%s">%s</a><br />\n', filename, o_report.classtitle));
-                                    end;
-                                end;
-                            end;
-                            
-                            if flag_has
-                                temp = cellfun(@(x) ['<td class=bob1>', x, '</td>', 10], {fn, num2str(r.time_go), item.get_description, item.dstitle, s_reports}, 'UniformOutput', 0);
-                                s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
-                                no_processed = no_processed+1;
-                            else
-                                no_files_eff = no_files_eff-1;
-                            end;
-                        end;                        
-                    catch ME
-                        s = cat(2, s, '<tr>', sprintf('<td colspan=5 class=bob1><p>Error processing file "%s"</p>', fn), strrep(ME.getReport(), char(10), '<br />'), '</td>', 10, '</tr>', 10);
-                        irverbose(sprintf('Failed processing file "%s": %s', fn, ME.message));
-                    end;
-                    
-                    ipro = progress2_change(ipro, [], [], no_processed, no_files_eff);
-                end;
-                progress2_close(ipro);
-                s = cat(2, s, '</table>', 10);
-            end;
-        end;
-
         %> Loads state file. Creates if does not exist
         function state = load_state(o) %#ok<STOUT>
             if ~exist(o.DATAFILENAME, 'file')
@@ -277,11 +225,13 @@ classdef reportbuilder
         %> @return [filemap structure, total number of reports]
         function [tt, no_total] = build_filemap(o)
             no_total = 0;
-            a = o.map;
+            a = o.get_map3();
             classes = a(:, 1);
             getters = a(:, 2);
             
             dd = dir('output*.mat');
+%             [dummy, idxs] = sort([dd.datenum]);
+%             dd = dd(idxs); % Sorts by date
             if ~isempty(dd)
                 names = {dd.name};
                 no_files = numel(names);
@@ -300,25 +250,29 @@ classdef reportbuilder
                             tt(it).statusmsg = 'No "r" variable inside .mat file';
                         else
                             item = r.item;
-                            b = cellfun(@(x) (isa(item, x)), classes); % Finds classes that match class of item
-                            gttr = getters(b);
-                            gttr = [gttr{:}]; % list of report getters; this operation creates flat list
-                            no_reports = numel(gttr);
-                            for j = 1:no_reports
-                                o_report = o.(gttr{j}); % Instantializes report just to get class name
-                                tt(it).list(j).s_getter = gttr{j};
-                                tt(it).list(j).outfilename = [fn, '__', class(o_report), '.html'];
-                                tt(it).list(j).title = o_report.classtitle;
-                            end;
-                            if no_reports > 0
-                                tt(it).status = 0; %#ok<*AGROW>
-                                tt(it).time_go = r.time_go;
-                                tt(it).descr = item.get_description();
-                                tt(it).dstitle = item.dstitle();
-                                tt(it).no_reports = no_reports;
-                                no_total = no_total+no_reports;
-                            else
+                            if strcmp(item.dstitle, '(not used)')
                                 flag_has = 0;
+                            else
+                                b = cellfun(@(x) (isa(item, x)), classes); % Finds classes that match class of item
+                                gttr = getters(b);
+                                no_reports = numel(gttr);
+                                for j = 1:no_reports
+                                    o_report = o.(gttr{j}); % Instantializes report just to get class name
+                                    tt(it).list(j).s_getter = gttr{j};
+                                    tt(it).list(j).outfilename = [fn, '__', class(o_report), '.html'];
+                                    tt(it).list(j).title = o_report.classtitle;
+                                end;
+                                if no_reports > 0
+                                    tt(it).status = 0; %#ok<*AGROW>
+                                    tt(it).time_go = r.time_go;
+                                    tt(it).descr = item.get_description();
+                                    tt(it).dstitle = item.dstitle();
+                                    tt(it).no_reports = no_reports;
+                                    taskidxs(it) = r.taskidx;
+                                    no_total = no_total+no_reports;
+                                else
+                                    flag_has = 0;
+                                end;
                             end;
                         end;                        
                     catch ME
@@ -333,6 +287,9 @@ classdef reportbuilder
                     ipro = progress2_change(ipro, [], [], i);
                 end;
                 progress2_close(ipro);
+                
+                [dummy, idxs] = sort(taskidxs); % Sorts reports by task index
+                tt = tt(idxs);
             end;
         end;
         
@@ -374,8 +331,19 @@ classdef reportbuilder
                         end;
                         s_reports = cat(2, s_reports, s_);
                     end;
+                    
+                    s_fn = mi.infilename;
+                    a = o.describe_filename(s_fn);
+                    if ~isempty(a)
+                        s_fn = [s_fn, 10, '<ul>', 10];
+                        for i = 1:numel(a)
+                            s_fn = [s_fn, '<li>', a{i}, '</li>', 10];
+                        end;
+                        s_fn = [s_fn, '</ul>', 10];
+                    end;
+                    
                     temp = cellfun(@(x) ['<td class=bob1>', x, '</td>', 10], ...
-                        {mi.infilename, num2str(mi.time_go), mi.descr, mi.dstitle, ...
+                        {s_fn, num2str(mi.time_go), mi.descr, mi.dstitle, ...
                         s_reports}, 'UniformOutput', 0);
                     s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
                 else
@@ -393,17 +361,32 @@ classdef reportbuilder
 
 
         
+        %> Finds tokens (or absence thereof) within a filename
+        %> @return cell of strings to be probably converted into a UL
+        function a = describe_filename(o, fn)
+            % Patterns to match and their corresponding explanation
+            tt = {'_grag_', 'Per group';
+                  '_np_', 'Non-pairwise classifier';
+                  '_pa_', 'Pairwise (one-versus-one) classifier';
+                  '_ovr00', 'All classes'};
+            % Patterns NOT TO MATCH and their corresponding explanations
+            tt2 = {'_ovr00', '2 classes (one-versus-reference)';
+                   '_grag_', 'Per row'};
+           
+            a = {};
+            for i = 1:size(tt, 1)
+                if any(strfind(fn, tt{i, 1}))
+                    a{end+1} = tt{i, 2};
+                end;
+            end;
+            for i = 1:size(tt2, 1)
+                if ~any(strfind(fn, tt2{i, 1}))
+                    a{end+1} = tt2{i, 2};
+                end;
+            end;
+        end;
         
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         function o = save(o, filename, log_html)
 %             fn = fullfile(o.dirname, filename);

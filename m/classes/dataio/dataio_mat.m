@@ -16,10 +16,10 @@ classdef dataio_mat < dataio
             %> *1* checks for dataclass variable within file
             load(o.filename, '-mat', 'dataclass');
             if ~exist('dataclass', 'var')
-                irverbose('dataio_mat is creating default ''irdata'' object ...');
+%                irverbose('dataio_mat is creating default ''irdata'' object ...');
                 data = irdata();
             else
-                irverbose(sprintf('new ''%s'' from file ''%s''...', dataclass, o.filename), 0);
+%                irverbose(sprintf('new ''%s'' from file ''%s''...', dataclass, o.filename), 0);
                 data = eval(dataclass);
             end;
 

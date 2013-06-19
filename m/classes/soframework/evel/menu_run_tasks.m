@@ -2,6 +2,7 @@
 function menu_run_tasks()
 scenesetup;
 setup_load();
+c = onCleanup(@()on_cleanup());
 assert_connected_to_cells();
 tm = taskmanager();
 tm.scenename = a.scenename;
@@ -38,6 +39,11 @@ while 1
     end;
 end;
 
+
+%------
+function on_cleanup()
+db_reset(); % To avoid not finding SHEware DB if the user goes to objtool afterwards
+disp('DB global was reset.')
 
 %------
 function flag = confirm()

@@ -14,26 +14,25 @@ classdef dataio_txt_irootlab < dataio
             data = irdata();
             
             [no_cols, deli] = get_no_cols_deli(o.filename);
-            mask = repmat('%s', 1, no_cols);
+            mask = repmat('%q', 1, no_cols);
             
             fid = fopen(o.filename);
             flag_exp_header = 0;
             flag_exp_table = 0;
-            fieldnames = [];
-            fieldsfound = struct();
+            fieldsfound = struct('name', {}, 'flag_cell', {}, 'idxs', {});
             
             while 1
                 if flag_exp_table % expecting table
                     % reads everything, i.e., row fields
-                    cc = textscan(fid, mask, 'Delimiter', deli, 'CollectOutput', 1); % Is this not quite slow?
-                    cc = cc{1};
+                    cc = textscan(fid, newmask, 'Delimiter', deli, 'CollectOutput', 0);
                     
-                    for i = 1:length(fieldnames)
-                        fn = fieldnames{i};
-                        if fieldsfound.(fn).flag_cell
-                            data.(fn) = cc(:, fieldsfound.(fn).idxs);
+                    for i = 1:length(fieldsfound)
+                        fn = fieldsfound(i).name;
+                        idxs = fieldsfound(i).idxs;
+                        if fieldsfound(i).flag_cell
+                            data.(fn) = cc{idxs}; %fieldsfound.(fn).idxs); % have to see if row or col
                         else
-                            data.(fn) = str2double(cellfun(@strip_quotes, cc(:, fieldsfound.(fn).idxs), 'UniformOutput', 0));
+                            data.(fn) = cell2mat(cc(idxs));
                         end;
                     end;
                     break;
@@ -48,24 +47,32 @@ classdef dataio_txt_irootlab < dataio
                 
                 if flag_exp_header
                     % goes through header to find which columns contain what
+                    newmask = '';
+                    num_fields = 0;
+                    fn_now = '@#$!*%@!'; % Current field name
                     for i = 1:no_cols
-                        for j = 1:length(data.rowfieldnames)
-                            s = strip_quotes(cc{i});
-                            if strcmp(s, data.rowfieldnames{j})
-                                if ~isfield(fieldsfound, s)
-                                    fieldsfound.(s) = struct('flag_cell', {data.flags_cell(j)}, 'idxs', {[]});
-                                end;
-                                fieldsfound.(s).idxs(end+1) = i;
+                        s = strip_quotes(cc{i});
+                        if ~strcmp(s, fn_now)
+                            b = strcmp(s, data.rowfieldnames);
+                            if any(b)
+                                j = find(b); j = j(1);
+                                num_fields = num_fields+1;
+                                fieldsfound(num_fields).name = s;
+                                flag_cell = data.flags_cell(j);
+                                fieldsfound(num_fields).flag_cell = flag_cell;
+                                fn_now = s;
+                            else
+                                irerror(sprintf('Unknown field: "%s"', s));
                             end;
                         end;
+                        fieldsfound(num_fields).idxs(end+1) = i;
+                        newmask = [newmask, '%', iif(flag_cell, 'q', 'f')]; %#ok<AGROW>
                     end;
-                    fieldnames = fields(fieldsfound);
                     flag_exp_header = 0;
                     flag_exp_table = 1;
                 else
                     s = strip_quotes(cc{1});
-                    if length(s) >= 7 && strcmp(s(1:5), 'IRoot')
-                    elseif strcmp(s, 'classlabels')
+                    if strcmp(s, 'classlabels')
                         data.classlabels = eval(strip_quotes(cc{2}));
                     elseif strcmp(s, 'fea_x')
                         % discards empty elements at the end of the cell

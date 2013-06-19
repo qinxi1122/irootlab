@@ -30,10 +30,11 @@ classdef sostage_pp_rubbernorm < sostage_pp
         
             out.blocks = {cutter1};
             
-            if o.ndec > 0
-                for i = 1:o.ndec
-                    out.blocks{end+1} = fcon_feaavg();
-                end;
+            % @TODO: resampling is present only in the rubbernorm pre-processing
+            if o.nf_resample > 0
+                b = fcon_resample();
+                b.no_fea = o.nf_resample;
+                out.blocks{end+1} = b;
             end;
 
             rbbc = pre_bc_rubber();

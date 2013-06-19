@@ -18,7 +18,7 @@ classdef report_soitem_sovalues < report_soitem
 
     methods
         function o = report_soitem_sovalues()
-            o.classtitle = 'Classification performance tables';
+            o.classtitle = 'Flat comparison table';
             o.inputclass = 'soitem_sovalues';
             o.flag_params = 0;
         end;

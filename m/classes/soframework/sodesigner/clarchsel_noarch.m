@@ -1,9 +1,5 @@
-%> ClArchSel base class for those classifiers whose only optimization is the number of features in the FE coupled stage
+%> ClArchSel base class for those classifiers with nothing to be optimized
 classdef clarchsel_noarch < clarchsel
-%     properties
-%         nfs;
-%     end;
-    
     methods        
         function o = customize(o)
             o = customize@clarchsel(o);
@@ -29,5 +25,5 @@ classdef clarchsel_noarch < clarchsel
             out.dstitle = '(not used)';
         end;
     end;
-
 end
+

@@ -2,6 +2,7 @@
 %>@ingroup maths misc
 %
 %> Grid Searc Parameter: auxiliary class for Grid Searches.
+%> I think this is deprecated.
 %>
 %> @attention Works in log base 10
 %>

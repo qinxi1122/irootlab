@@ -2,6 +2,8 @@
 classdef vis_means < vis
     properties
         peakdetector;
+        %> =1. whether to plot_curve_pieces or just plot
+        flag_pieces = 1;
     end;
     
     methods
@@ -15,7 +17,7 @@ classdef vis_means < vis
     methods(Access=protected)
         function out = do_use(o, obj)
             out = [];
-            data_draw_means(obj, o.peakdetector);
+            data_draw_means(obj, o.peakdetector, o.flag_pieces);
             make_box();
         end;
     end;

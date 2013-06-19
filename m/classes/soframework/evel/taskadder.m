@@ -376,7 +376,7 @@ classdef taskadder
             
             
             %%%%%%% Fold merging for ClArchSel and FeArchSel
-            %%%%%%%
+            %%%%%%% (to see curves like (number of factors)x(classification rate))
             %%%%%%%
             %%%%%%%
             %%%%%%%
@@ -392,7 +392,7 @@ classdef taskadder
                 no_fe = numel(fe_now);
                 
 
-                %-----> Fold Merging
+                %-----> Fold Merging to see curves, not estimations
                 
                 % First concentrated the cross-validation results into single ones (FOLDMERGER)
                 for m = 1:no_clwrapper_eff

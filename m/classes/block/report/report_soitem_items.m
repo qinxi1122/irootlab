@@ -3,7 +3,7 @@
 classdef report_soitem_items < report_soitem
     methods
         function o = report_soitem_items()
-            o.classtitle = 'Items report';
+            o.classtitle = 'Curves/Images from Model Selection';
             o.inputclass = 'soitem_items';
             o.flag_params = 0;
         end;
@@ -42,7 +42,6 @@ classdef report_soitem_items < report_soitem
                         maximize_window(); s = cat(2, s, o.save_n_close());
                     end;
                 elseif nd == 2
-
                     %   If 2D, extract dataset and plot 3 things:
                     p = blbl_extract_ds_from_sovalues();
                     p.dimspec = {[0 0], [1 2]};
@@ -69,21 +68,24 @@ classdef report_soitem_items < report_soitem
                     vis_alldata01.use(ds);
                     hold on;
                     p = vis_means();
+                    p.flag_pieces = 0;
                     vis_means01 = p;
                     vis_means01.use(ds);
                     a = get(gca, 'title');
-                    set(a, 'string', ['Individual & Averages - ', sov.ax(2).label, ' - "', get(a, 'string'), '"']);
+                    set(a, 'string', ['Individual & Averages - ', sov.ax(2).label, ' - "', get(a, 'string'), '"'])
+                    set(gca(), 'ylim', [min(ds.X(:)), max(ds.X(:))]);
+                    make_box();
                     maximize_window([], 2.5);
                     s = cat(2, s, o.save_n_close());
 
-                    %     - Averages only
-                    figure;
-                    vis_means01.use(ds);
-%                     maximize_window([], 2.5);
-                    a = get(gca, 'title');
-                    set(a, 'string', ['Averages - ', sov.ax(2).label, ' - "', get(a, 'string'), '"']);
-                    maximize_window([], 2.5);
-                    s = cat(2, s, o.save_n_close());
+% What for??? % %                     %     - Averages only
+% % %                     figure;
+% % %                     vis_means01.use(ds);
+% % % %                     maximize_window([], 2.5);
+% % %                     a = get(gca, 'title');
+% % %                     set(a, 'string', ['Averages - ', sov.ax(2).label, ' - "', get(a, 'string'), '"']);
+% % %                     maximize_window([], 2.5);
+% % %                     s = cat(2, s, o.save_n_close());
                 end;
             end;            
 

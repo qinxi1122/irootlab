@@ -5,6 +5,8 @@
 %>
 %> Could be solved with blocks? Yes. This is an example of "convergent evolution". Because sostage used to have optimization routines inside
 %> (these have been all moved to sodesigner).
+%>
+%> .title property is very important because will be used as part or full block title.
 classdef sostage < irobj
     % "Standalone" property
     properties
@@ -19,15 +21,15 @@ classdef sostage < irobj
         blk = do_get_block(o);
     end;
     
-    
-    methods(Sealed)
-        %> Just calls do_get_block() (at the moment)
+    methods
         function blk = get_block(o)
             blk = o.do_get_block();
             blk.title = o.title;
         end;
-        
-        
+    end;
+    
+    
+    methods(Sealed)
         function s = get_description(o)
             s = replace_underscores(o.title);
         end;

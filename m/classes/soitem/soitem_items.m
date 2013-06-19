@@ -12,7 +12,7 @@ classdef soitem_items < soitem
              o.moreactions = [o.moreactions, {'extract_sovalues'}];
         end;
 
-        %> @warning This function is not testing for incorrect dimensions within sostage.values
+        %> Performs a "fold merge" of several @warning This function is not testing for incorrect dimensions within sostage.values
         function out = extract_sovalues(o)
             no_items = numel(o.items);
             

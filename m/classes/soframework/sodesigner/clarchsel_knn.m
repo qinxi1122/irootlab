@@ -1,5 +1,6 @@
 %> architecture optimization for the knn classifier
 classdef clarchsel_knn < clarchsel
+    % Automatically set
     properties
         ks;
         nfs;
