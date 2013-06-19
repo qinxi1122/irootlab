@@ -25,7 +25,7 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
 
     methods
         function o = report_soitem_merger_merger_fitest_1d()
-            o.classtitle = '1D Classification table';
+            o.classtitle = 'Flat comparison table';
             o.inputclass = 'soitem_merger_merger_fitest';
 %             o.flag_params = 1;
         end;

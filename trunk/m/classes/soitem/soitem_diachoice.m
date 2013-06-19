@@ -1,10 +1,7 @@
-%> In this type of SODATAITEM, the sovalues object contains a values.dia field
+%> Here, the sovalues object within is requested to decide.
+%>
+%> This soitem will be typically an input to a "merge" task (not foldmerge)
 classdef soitem_diachoice < soitem_sovalues
-% % %     properties
-% % %         %> sovalues object
-% % %         sovalues;
-% % %     end;
-    
     methods(Sealed)
         %> Retrieves a sostage from the sovalues to replace in the diagnosissystem
         function dia_out = get_modifieddia(o)

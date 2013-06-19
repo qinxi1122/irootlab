@@ -5,7 +5,6 @@ classdef clarchsel_ls < clarchsel_noarch
     methods
         function o = customize(o)
             o = customize@clarchsel_noarch(o);
-%             o.nfs = o.oo.clarchsel_ls_nfs;
         end;
 
         function sos = get_sostage_cl(o)

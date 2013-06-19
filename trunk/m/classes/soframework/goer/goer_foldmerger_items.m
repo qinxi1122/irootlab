@@ -1,4 +1,3 @@
-
 %> architecture optimization for the ann classifier
 classdef goer_foldmerger_items < goer_ni
     methods

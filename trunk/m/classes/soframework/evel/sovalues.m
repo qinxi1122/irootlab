@@ -72,6 +72,7 @@ classdef sovalues < irlog
         end;
         
         
+        %> @brief Merges several sovalues into one.
         %> @param oo array of sovalue
         %> @param flag_mean Whether to take means before merging
         function out = foldmerge(oo, flag_mean)

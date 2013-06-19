@@ -4,9 +4,10 @@
 
 %> @param data Dataset
 %> @param peakdetector (optional) @ref peakdetector object. If passed, will used it to draw peaks.
+%> @param flag_pieces=1 Whether to use plot_curve_pieces() or normal plot
 %>
 %> @sa irdata, peakdetector
-function data = data_draw_means(data, peakdetector)
+function data = data_draw_means(data, peakdetector, flag_pieces)
 
 flag_pd = nargin >= 2 && ~isempty(peakdetector);
 
@@ -22,8 +23,14 @@ for i = 1:numel(ucl)
     ytemp = mean(data.X(data.classes == ucl(i), :), 1);
     ymin = min([ymin, ytemp]);
     ymax = max([ymax, ytemp]);
-    htemp = plot_curve_pieces(data.fea_x, ytemp, 'Color', cm(i, :), 'LineWidth', scaled(3));
-    hs(end+1) = htemp{1};
+    aa = {data.fea_x, ytemp, 'Color', cm(i, :), 'LineWidth', scaled(3)};
+    if flag_pieces
+        htemp = plot_curve_pieces(aa{:});
+        hs(end+1) = htemp{1};
+    else
+        hs(end+1) = plot(aa{:});
+    end;
+
     hold on;
     
     if flag_pd

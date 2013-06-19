@@ -1,4 +1,4 @@
-%> Merges individual cross-validated estimates from several fitest outputs into a single sodataitem_diachoice with a sovalues to be looked at
+%> Merges individual cross-validated estimates from several fhg outputs into a single sodataitem_diachoice with a sovalues to be looked at
 classdef fhgmerger < sodesigner
     % Bit lower level
     methods(Access=protected)

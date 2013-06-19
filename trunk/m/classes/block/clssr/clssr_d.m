@@ -40,19 +40,6 @@ classdef clssr_d < clssr
     methods
         function o = clssr_d(o)
             o.classtitle = 'Gaussian fit';
-            o.short = 'DC';
-        end;
-
-        function s = get_short(o)
-            switch o.type
-                case 'linear'
-                    s = 'L';
-                case 'quadratic'
-                    s = 'Q';
-                otherwise
-                    s = '?';
-            end;
-            s = [s, get_short@irobj(o)];
         end;
 
         %> If title is not empty, will not mess with description too much

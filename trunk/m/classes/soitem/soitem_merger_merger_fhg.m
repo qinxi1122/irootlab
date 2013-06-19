@@ -1,4 +1,6 @@
-%> In this type of SODATAITEM, the sovalues object contains a values.dia field
+%> Items is an array of soitem_merger_fhg
+%>
+%> Not sure it this applies: In this type of SODATAITEM, the sovalues object contains a values.dia field
 classdef soitem_merger_merger_fhg < soitem
     properties
         %> Array of soitem_merger_fhg objects

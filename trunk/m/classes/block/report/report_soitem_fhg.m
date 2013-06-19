@@ -10,7 +10,7 @@ classdef report_soitem_fhg < report_soitem
     
     methods
         function o = report_soitem_fhg()
-            o.classtitle = 'FHG';
+            o.classtitle = 'Feature Histograms';
             o.inputclass = 'soitem_fhg';
             o.flag_params = 0;
         end;

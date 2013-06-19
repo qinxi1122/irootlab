@@ -132,20 +132,11 @@ classdef filesession < as
             nc = o.nc_;
         end;
         
-% % % % % % % % % % % % % %         function n = get_no_datasets(o)
-% % % % % % % % % % % % % %             switch o.oo.splittype
-% % % % % % % % % % % % % %                 case 'single'
-% % % % % % % % % % % % % %                     n = 1;
-% % % % % % % % % % % % % %                 case 'ovr'
-% % % % % % % % % % % % % %                     n = o.get_nc()-1;
-% % % % % % % % % % % % % %                 otherwise
-% % % % % % % % % % % % % %                     irerror(sprintf('splittyle "%s" not supported', o.oo.splittype));
-% % % % % % % % % % % % % %             end;
-% % % % % % % % % % % % % %         end;
-
         %> Sets up a sostage_cl object either to utilize counterbalance, or else to use 1-fold undersampling
         function sos = setup_sostage_cl(o, sos, flag_cb)
-            sos.flag_pairwise = strcmp(o.oo.splittype, 'single') && sos.flag_2class && o.get_nc() > 2;
+            % Forces pairwise on classifiers that can work with 2 classes only and dataset has
+            % more than 2 classes (e.g., LASSO)
+            sos.flag_pairwise = sos.flag_2class && o.get_nc() > 2; 
             sos.under_randomseed = o.oo.under_randomseed;
             if flag_cb
                 sos.flag_cb = 1;
@@ -179,28 +170,6 @@ classdef filesession < as
             titles = cell(si);
             sor = sor.set_field('spec', specs);
         end;
-
-        
-        
-% go straight to the dataoader now !!!% % % % % % %         %> Returns many datasets sccording to splittype
-% % % % % % % %         %> @param index =1. "Index of dataset" to be passed to the dataloader
-% % % % % % % %         function dss = get_dss(o, index)
-% % % % % % % %             if nargin < 2 || isempty(index)
-% % % % % % % %                 index = 1;
-% % % % % % % %             end;
-% % % % % % % %             
-% % % % % % % %             ds = o.oo.dataloader.get_raw(index);
-% % % % % % % %             
-% % % % % % % %             ds = o.oo.subdatasetprovider.get_edgesubdataset(ds, o.portion);
-% % % % % % % %             switch o.oo.splittype
-% % % % % % % %                 case 'single'
-% % % % % % % %                     dss = ds;
-% % % % % % % %                 case 'ovr'
-% % % % % % % %                     dss = o.oo.dataloader.get_ovr(ds);
-% % % % % % % %                 otherwise
-% % % % % % % %                     irerror(sprintf('Splittyle "%s" not recognized', o.oo.splittype));
-% % % % % % % %             end;
-% % % % % % % %         end;
     end;
     
     

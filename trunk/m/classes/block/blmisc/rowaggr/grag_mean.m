@@ -9,7 +9,7 @@ classdef grag_mean < grag
             o.inputclass = 'irdata';
         end;
     end;
-    
+
     methods(Access=protected)
         function o = process_group(o, idxs)
 %             if ~isempty(o.indata.groupcodes)

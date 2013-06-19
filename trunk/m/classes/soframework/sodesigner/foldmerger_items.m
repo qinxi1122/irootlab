@@ -1,4 +1,4 @@
-%> Cross-validated Fit-estimate with the individual datasets
+%> Just makes a soitem_itemsoutput that has all items of the input.
 classdef foldmerger_items < sodesigner
     methods
         %> Gives an opportunity to change somethin inside the item, e.g. activate/desactivate pairwise

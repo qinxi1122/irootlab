@@ -3,7 +3,6 @@ classdef goer_fearchsel__pls__dist < goer_1i
     methods
         %> Constructor
         function o = setup(o)
-
             o.classname = 'fearchsel_pls';
         end;
 

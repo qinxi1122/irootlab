@@ -23,7 +23,7 @@ else
     [~, prefix] = fileparts(prefix);
     prefix = strrep(prefix, '_', '__'); % Doxygen replaces all underscores with double underscores
 
-    url = fullfile(PATH.doc, 'html', [prefix, '_8m.html']);
+    url = [PATH.doc, '/html/', prefix, '_8m.html'];
     
 % %     dd = dir(fullfile(PATH.doc, 'html', [prefix '*.html']));
 % %     if ~isempty(dd)
@@ -47,7 +47,7 @@ else
 end;
 
 if flag_default
-    url = fullfile(PATH.doc, 'html', 'index.html');
+    url = [PATH.doc, '/html/index.html'];
 end;
 
 if ~isempty(url)

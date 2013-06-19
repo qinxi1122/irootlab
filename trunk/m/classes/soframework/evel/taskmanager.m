@@ -229,9 +229,6 @@ classdef taskmanager
             if FLAG_CLEANUP
                 irquery('update task_tasklist set status = "0" where id = {Si}', id);
                 irverbose(sprintf('>>>>> TM >>>>> Reset task id=%d', id), 3);
-                disp('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-            else
-                disp('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
             end;
         end;
         
@@ -427,11 +424,12 @@ classdef taskmanager
                 irverbose('>>>>> TM >>>>> RUNNING TASK:')
                 irverbose(sprintf('>>>>> TM >>>>>         index: %d', idx), 3);
                 irverbose(sprintf('>>>>> TM >>>>>     classname: %s', z.classname), 3);
-                irverbose(sprintf('>>>>> TM >>>>> #dependencies: %d', z.dependencies), 3);
+                irverbose(sprintf('>>>>> TM >>>>> #dependencies: %s', mat2str(z.dependencies)), 3);
                 irverbose(sprintf('>>>>> TM >>>>>   output file: %s', z.fn_output), 3);
 
                 
                 obj = eval([z.classname, '();']);
+                obj.taskidx = idx;
                 
                 if isa(obj, 'goer_1i')
                     obj.fn_input = z.fns_input;

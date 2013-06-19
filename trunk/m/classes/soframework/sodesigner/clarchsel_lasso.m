@@ -17,7 +17,7 @@ classdef clarchsel_lasso < clarchsel
         function out = do_design(o)
             item = o.input;
             dia = item.get_modifieddia();
-            dia.sostage_fe = sostage_fe_bypass;
+            dia.sostage_fe = sostage_fe_bypass; % Feature extraction is embedded within LASSO
             sos = sostage_cl_lasso();
             sos = o.setup_sostage_cl(sos, 0);
             sos.flag_precond = 0;

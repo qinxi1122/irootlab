@@ -3,13 +3,14 @@
 %> @brief Calls Properties GUIs for all component blocks
 %
 %> @param blk instance of block to be created
-%> @param ?
+%> @param input (optional) Input to block
 function varargout = uip_block_cascade_base(varargin)
 global blk;
 blk = varargin{1};
-input = [];
-if nargin >= 1
+input = []; flag_input = 0;
+if nargin >= 1 && ~isempty(varargin{2})
     input = varargin{2};
+    flag_input = 1;
 end;
 output.flag_ok = 0;
 output.params = {};
@@ -42,7 +43,7 @@ for i = 1:no_blocks
         end;
     end;
     
-    if i < no_blocks
+    if i < no_blocks && flag_input
         blknow = blk.blocks{i}.train(input);
         input = blknow.use(input);
     end;

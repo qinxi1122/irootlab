@@ -20,7 +20,6 @@ classdef vis_crossloadings < vis
     
     methods(Access=protected)
         function out = do_use(o, obj)
-            global SCALE;
             out = [];
             nb = length(obj.blocks);
             l = 0;
@@ -61,6 +60,7 @@ classdef vis_crossloadings < vis
             format_xaxis(obj.blocks{1});
             if o.flag_abs
                 y0 = 0;
+                y1 = ymax*1.05;
             else
                 yspan = ymax-ymin;
                 y0 = ymin-yspan*0.05;

@@ -3,7 +3,7 @@
 classdef report_soitem_foldmerger_fitest < report_soitem
     methods
         function o = report_soitem_foldmerger_fitest()
-            o.classtitle = 'Estimation report';
+            o.classtitle = 'Confusion matrices';
             o.inputclass = 'soitem_foldmerger_fitest';
             o.flag_params = 0;
         end;

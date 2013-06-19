@@ -5,9 +5,7 @@
 ds = load_data_ketan_brain_atr();
 
 %Dataset load
-o = dataio_mat();
-o.filename = '/home/j/Documents/phd/data/matlab/ketan/brain/ketan_brain_atr_3classes.mat';
-ds01 = o.load();
+ds01 = load_data_ketan_brain_atr();
 u = vis_alldata();
 vis_alldata01 = u;
 figure;

@@ -80,14 +80,18 @@ classdef irobj
             end;
         end;
         
+        %> title > short > classtitle
         function s = get_short(o)
-            if isempty(o.short)
+            if ~isempty(o.title)
+                s = o.title;
+            elseif isempty(o.short)
                 s = o.classtitle;
             else
                 s = o.short;
             end;
         end;
         
+        %> This is used only to compose sequence string e.g. xxx->yyy->zzz
         function s = get_methodname(o)
             s = o.get_short();
         end;
@@ -131,6 +135,7 @@ classdef irobj
                         flag_func = 1;
                     catch ME %#ok<NASGU>
                         irverbose(['irobj::get_params() Caught exception ', ME.message]);
+%                         disp(ME.getReport());
                     end;
                     if flag_func
                         break;

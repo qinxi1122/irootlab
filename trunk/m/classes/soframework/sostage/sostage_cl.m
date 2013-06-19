@@ -28,6 +28,14 @@ classdef sostage_cl < sostage
         blk = do_get_base(o);
     end;
 
+    methods
+        %> Overriden so that it does NOT set the block title
+        function blk = get_block(o)
+            blk = o.do_get_block();
+        end;
+    end;
+
+    
     
     %> Methods reimplemented
     methods(Access=protected)
@@ -62,6 +70,7 @@ classdef sostage_cl < sostage
                 os.flag_group = 0;
 
                 u = aggr_bag();
+                u.title = [blk.title, '(U', int2str(o.under_no_reps), ')'];
                 u.sgs = os;
                 u.block_mold = blk;
                 
@@ -71,6 +80,7 @@ classdef sostage_cl < sostage
             if o.flag_pairwise
                 agg = aggr_pairs(); % mold
                 agg.block_mold = blk;
+                agg.title = [blk.title, '(OVO)'];
                 blk = agg;
             end;
         end;
@@ -81,6 +91,7 @@ classdef sostage_cl < sostage
         %> Returns the base classifier
         function blk = get_base(o)
             blk = o.do_get_base();
+            blk.title = o.title;
         end;
     end;
 end
