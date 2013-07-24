@@ -32,7 +32,6 @@ if ~isempty(hh)
     legend(hh, data_get_legend(data));
 end;
 
-set_title('Class means with standard deviation intervals', data);
 ylabel([data.yname, iif(~isempty(data.yunit), sprintf(' (%s)', data.yunit), '')]);
 format_xaxis(data);
 format_ylim([ymin, ymax]);

@@ -51,7 +51,7 @@ classdef diagnosissystem < irobj
         %> Puts everything together in a single block
         function blk = get_block(o)
             blk = make_one(o.get_sequence());
-            blk.title = o.get_sequencedescription();
+            blk.title = o.get_s_sequence([], 0);
         end;
         
         %> Returns sequence without the pre-processing block
@@ -59,21 +59,26 @@ classdef diagnosissystem < irobj
             cc = o.get_sequence();
             cc2 = o.get_sequence(0);
             blk = make_one(cc(2:end));
-            blk.title = o.get_sequencedescription(cc2(2:end));
+            blk.title = o.get_s_sequence(cc2(2:end), 0);
         end;
         
         %> Returns the sequence description
         %>
         %> Note that it uses get_methodname() from the blocks, rather than classtitles
-        function s = get_sequencedescription(o, cc)
-            
+        %>
+        %> @param cc (Optional) Cell of blocks. Defaults to o.get_sequence(0)
+        %> @flag_short=0 Passes on to irobj.get_methodname()
+        function s = get_s_sequence(o, cc, flag_short)
             if nargin < 2 || isempty(cc)
                 cc = o.get_sequence(0);
+            end;
+            if nargin < 3 || isempty(flag_short)
+                flag_short = 0;
             end;
             
             s = '';
             for i = 1:numel(cc)
-                s = cat(2, s, iif(i == 1, '', '->'), cc{i}.get_methodname());
+                s = cat(2, s, iif(i == 1, '', '->'), cc{i}.get_methodname(flag_short));
             end;
         end;
     end;

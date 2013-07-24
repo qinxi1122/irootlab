@@ -5,14 +5,18 @@
 %> @param Y vector with integer values
 %> @param height
 %> @param classlabels
-function draw_indexedimage(Y, height, classlabels)
+%> @param direction='ver' Same as irdata.direction
+function draw_indexedimage(Y, height, direction, classlabels)
 
 width = numel(Y)/height;
 if width ~= floor(width)
     irerror(sprintf('Invalid height: number of image points not divisible by specified height: %d', height));
 end;
 
-if nargin < 3
+if nargin < 3 || isempty(direction)
+    direction = 'ver';
+end;
+if nargin < 4 || isempty(classlabels)
     classlabels = [];
 end;
 
@@ -32,8 +36,12 @@ end;
 legend(h, legends);
 
 
-% [Q1, Q2] = meshgrid(1:width, 1:height);
-imagesc(reshape(Y, height, width));
+if strcmp(direction, 'hor')
+    M = reshape(Y, width, height)';
+else
+    M = reshape(Y, height, width);
+end;
+imagesc(M);
 
 colormap(cm);
 

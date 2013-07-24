@@ -59,7 +59,7 @@ o.flag_set_position = 0;
 cla(handles.axes1, 'reset');
 axes(handles.axes1);
 o = o.use(data);
-
+title('');
 
 %#########
 function params = get_params(handles)

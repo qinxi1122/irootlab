@@ -7,9 +7,9 @@ classdef merger_fitest < sodesigner
             ni = numel(items);
             
             for i = 1:ni
-                titles{i, 1} = items{i}.diaa{1}.get_sequencedescription();
+                titles{i, 1} = items{i}.diaa{1}.get_s_sequence([], 1);
                 values(i, 1) = sovalues.read_logs(items{i}.logs);
-                specs{i, 1} = items{i}.diaa{1}.get_sequencedescription();
+                specs{i, 1} = items{i}.diaa{1}.get_s_sequence([], 1);
                 diaaa{i, 1} = items{i}.diaa;
             end;
             
@@ -29,7 +29,7 @@ classdef merger_fitest < sodesigner
 
             out = soitem_diachoice();
             out.sovalues = r;
-            out.title = [upper(class(o)), ': ', int2str(ni), ' Performance estimation', iif(ni > 1, 's', '')];
+            out.title = ['(Set-ups + estimations) merge (', int2str(ni), ' item', iif(ni > 1, 's', ''), ')'];
             out.dstitle = items{1}.dstitle;
         end;
     end;

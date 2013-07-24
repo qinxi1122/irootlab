@@ -68,6 +68,35 @@ classdef irobj
         end;
     end;    
     
+    methods(Sealed)
+        %> Returns description string
+        %> 
+        %> Precedence according with flag_short:
+        %> @arg 0: title > short > classtitle
+        %> @arg 1: short > title > classtitle
+        %>
+        %> @param flag_short=0
+        %>
+        %> I am sealing this to make sure that no class will try to improvise on this function.
+        function s = get_description(o, flag_short)
+            if nargin < 2 || isempty(flag_short)
+                flag_short = 0;
+            end;
+            if flag_short
+                ff = {'short', 'title', 'classtitle'};
+            else
+                ff = {'title', 'short', 'classtitle'};
+            end;
+            for i = 1:numel(ff)
+                x = o.(ff{i});
+                if ~isempty(x)
+                    s = x; break;
+                end;
+            end;
+            % Note that classtitle is always non-empty, so s will be always set
+        end;
+    end;
+    
     methods
         %>@brief Sets several properties of an object at once
         %>@param o
@@ -80,20 +109,14 @@ classdef irobj
             end;
         end;
         
-        %> title > short > classtitle
-        function s = get_short(o)
-            if ~isempty(o.title)
-                s = o.title;
-            elseif isempty(o.short)
-                s = o.classtitle;
-            else
-                s = o.short;
-            end;
-        end;
         
         %> This is used only to compose sequence string e.g. xxx->yyy->zzz
-        function s = get_methodname(o)
-            s = o.get_short();
+        %> @param flag_short=0
+        function s = get_methodname(o, flag_short)
+            if nargin < 2 || isempty(flag_short)
+                flag_short = 0;
+            end;
+            s = o.get_description(flag_short);
         end;
         
         %> Object reports are plain text. HTML would be cool but c'mon, we don't need that sophistication
@@ -173,26 +196,26 @@ classdef irobj
             o.log = [];
         end;
         
-        %> Default behaviour: returns class of object plus object's title
-        function s = get_description(o)
-            s = '';
-            if ~isempty(o.title)
-                s = o.title;
-            else
-                a = {o.get_methodname(), class(o)};
-                qtd = 0;
-                for i = 1:numel(a)
-                    if ~isempty(a{i})
-                        s = [s, iif(qtd > 0, ' ~ ', ''), a{i}];
-                        qtd = qtd+1;
-                    end;
-                end;
-                if ~isempty(s)
-                    s = ['[', s, ']'];
-                    s = replace_underscores(s);
-                end;
-            end;
-        end;
+%        %> Default behaviour: returns class of object plus object's title
+%        function s = get_description(o)
+%            s = '';
+%            if ~isempty(o.title)
+%                s = o.title;
+%            else
+%                a = {o.get_methodname(), class(o)};
+%                qtd = 0;
+%                for i = 1:numel(a)
+%                    if ~isempty(a{i})
+%                        s = [s, iif(qtd > 0, ' ~ ', ''), a{i}];
+%                        qtd = qtd+1;
+%                    end;
+%                end;
+%                if ~isempty(s)
+%                    s = ['[', s, ']'];
+%                    s = replace_underscores(s);
+%                end;
+%            end;
+%        end;
 
         %> @param o
         %> @param flag_title=1

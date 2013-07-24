@@ -5,6 +5,9 @@
 %> Right tail test:
 %> @ H0: mean(v1-v2) < 0
 %>
+%> Please note that in the cross-test table (created by crosstest()), v1 corresponds to the row,
+%> and v2 corresponds to the column.
+%>
 %> It does the test twice, the second time with reversed vectors. So, if one p-value is small, the other one is likely to be very high
 classdef vectorcomp_ttest_right < vectorcomp
     properties
@@ -25,7 +28,7 @@ classdef vectorcomp_ttest_right < vectorcomp
     
     methods
         function o = vectorcomp_ttest_right(o)
-            o.classtitle = 'T-Test Right-tail';
+            o.classtitle = 'T-Test right tail';
             o.flag_params = 0;
         end;
     end;

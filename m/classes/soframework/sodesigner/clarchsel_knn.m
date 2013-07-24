@@ -1,4 +1,6 @@
 %> architecture optimization for the knn classifier
+%>
+%> Specs are nf and k
 classdef clarchsel_knn < clarchsel
     % Automatically set
     properties
@@ -49,7 +51,7 @@ classdef clarchsel_knn < clarchsel
             out.sovalues = r;
             out.dia = item.get_modifieddia();
             out.dstitle = ds.title;
-            out.title = [upper(class(o)), ': ', out.dia.get_sequencedescription()];
+            out.title = o.make_title_dia(out.dia);
         end;
     end;
 end

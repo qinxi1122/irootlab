@@ -19,8 +19,6 @@ legend(h, llabels);
 
 alpha(0);
 
-
-set_title('All curves', data);
 format_xaxis(data);
 format_yaxis(data);
 format_ylim(data);

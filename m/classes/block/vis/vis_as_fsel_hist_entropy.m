@@ -1,4 +1,6 @@
 %> @brief Draws entropy curves based on a as_fsel_hist object
+%>
+%> @todo this is obsolete. Should take log_hist as input, not as_fsel_hist (which doesn't exist anymore)
 classdef vis_as_fsel_hist_entropy < vis
     properties
         %> ={[Inf, 0, 0], [1, 2]}

@@ -77,6 +77,20 @@ classdef gridsearchparam
             end;
         end;
         
+        
+        function z = get_value_string(o, idx)
+            if o.flag_numeric
+                z = o.values(idx);
+            else
+                z = o.values{idx};
+            end;
+            if o.flag_log
+                z = ['10^', num2str(log10(z))];
+            else
+                z = num2str(z);
+            end;
+        end;
+        
         %> If log, takes log
         function z = get_values_numeric(o)
             if ~o.flag_numeric
@@ -90,7 +104,12 @@ classdef gridsearchparam
         
         function z = get_legends(o)
             a = o.get_ticklabels();
-            z = cellfun(@(x) sprintf('%s=%s', o.name, x), a, 'UniformOutput', 0);
+            if o.flag_numeric && o.flag_log
+                x = cellfun(@(z) ['10^{', z, '}'], a, 'UniformOutput', 0);
+            else
+                x = a;
+            end;
+            z = cellfun(@(x) sprintf('%s=%s', o.name, x), x, 'UniformOutput', 0);
         end;
 
         

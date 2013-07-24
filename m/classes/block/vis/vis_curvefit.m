@@ -80,7 +80,8 @@ classdef vis_curvefit < vis
             set(gca, 'XLim', [x_(1)-.25, x_(end)+.25]);
             xlabel('log_{10}(Concentration)');
             ylabel('Distance from reference class');
-            title('Effect curve');
+            %title('Effect curve');
+            set_title(o.classtitle, data);
             format_frank();
             make_box();
         end;

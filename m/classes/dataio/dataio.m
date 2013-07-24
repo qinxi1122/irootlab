@@ -13,6 +13,9 @@ classdef dataio < irobj
     end;
     
     methods
+        function o = dataio()
+            o.flag_params = 0;
+        end;
         function data = load(filename, range)
         end
         function save(data, filename)

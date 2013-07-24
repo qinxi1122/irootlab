@@ -29,6 +29,7 @@ classdef vis_cov < vis
             end;
             
             data_draw_covariance(obj, o.type, y_ref, o.flag_inv);
+            set_title(o.classtitle, obj);
         end;
     end;
 end

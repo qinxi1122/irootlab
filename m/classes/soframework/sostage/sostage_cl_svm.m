@@ -4,9 +4,9 @@
 classdef sostage_cl_svm < sostage_cl
     properties
         %> SVM's C
-        c;
+        c = 1;
         %> SVM's gamma
-        gamma;
+        gamma = 1;
     end;
 
     methods(Access=protected)
@@ -24,5 +24,10 @@ classdef sostage_cl_svm < sostage_cl
             o.title = 'SVM';
             o.flag_cbable = 1;
         end;
+        
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_cl(o), sprintf('(C=%.2g,gamma=%.2g)', o.c, o.gamma)];
+        end;
+
     end;
 end

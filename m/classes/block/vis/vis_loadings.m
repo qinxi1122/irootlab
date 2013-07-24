@@ -57,6 +57,7 @@ classdef vis_loadings < vis
                               o.peakdetector);
             end;
             format_xaxis(obj);
+            set_title(o.classtitle, obj);
             make_box();
         end;
     end;

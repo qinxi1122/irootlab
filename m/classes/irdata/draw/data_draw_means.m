@@ -42,7 +42,6 @@ for i = 1:numel(ucl)
 end;
 hl = legend(hs, data_get_legend(data));
 
-set_title('Class means', data);
 ylabel([data.yname, iif(~isempty(data.yunit), sprintf(' (%s)', data.yunit), '')]);
 format_xaxis(data);
 format_ylim([ymin, ymax]);

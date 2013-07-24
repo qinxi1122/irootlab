@@ -1,6 +1,6 @@
 %> architecture optimization for the lasso classifier
 %>
-%>
+%> specs are nf
 classdef clarchsel_lasso < clarchsel
     properties
         nfs;
@@ -50,7 +50,7 @@ classdef clarchsel_lasso < clarchsel
             out.sovalues = r;            
             out.dia = dia;
             out.dstitle = ds.title;
-            out.title = [upper(class(o)), ': ', out.dia.get_sequencedescription()];
+            out.title = o.make_title_dia(out.dia);
         end;
     end;
 end

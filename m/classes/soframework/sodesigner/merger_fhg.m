@@ -9,7 +9,7 @@ classdef merger_fhg < sodesigner
             
             for i = 1:ni
                 it = items{i};
-                out.s_methodologies{i} = it.s_methodology;
+                out.s_methodologies{i} = it.s_setup;
                 out.stabs(i) = it.stab;
                 if i == 1
                     out.logs = it.log;

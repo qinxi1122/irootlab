@@ -39,7 +39,6 @@ surf(xx, yy, mm, cc);
 format_xaxis(data);
 set(gca, 'YLim', [min_data, max_data]);
 zlabel('%');
-title('Surface of histograms');
 shading('interp');
 format_frank();
 

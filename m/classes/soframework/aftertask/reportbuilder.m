@@ -1,17 +1,6 @@
-% %> Report builder
+%> Report builder
 classdef reportbuilder
     properties
-        map = {...
-               'soitem_diachoice', {{'get_report_soitem_sovalues', 'Flat comparison table (grouped by classifier and feature extraction)'}}; ... % soitem_diachoice descends from soitem_sovalues, but the former is output of latter (and fewer) tasks
-               'soitem_items', {{'get_report_soitem_items', 'Curves/Images from Model Selection'}}; ...
-               'soitem_foldmerger_fitest', {{'get_report_soitem_foldmerger_fitest', 'Confusion matrices for each system set-up'}}; ...
-               'soitem_fhgs', {{'get_report_soitem_fhg', 'Feature histograms'}, {'get_report_soitem_fhg_histcomp', 'Histograms comparison'}}; ...
-               'soitem_merger_fhg', {{'get_report_soitem_merger_fhg', 'Histograms and biomarkers comparison tables'}}; ...
-               'soitem_merger_merger_fhg', {{'get_report_soitem_merger_merger_fhg', 'General biomarker comparison tables'}}; ...
-               'soitem_merger_merger_fitest', {{'get_report_soitem_merger_merger_fitest', 'General 2D performance comparison table'}, ...
-                                               {'get_report_soitem_merger_merger_fitest_1d', 'General flat performance comparion table'}}; ...
-              };
-          
         %> If activated, won't call the "use()" methods of the reports
         flag_simulation = 0;
     end;
@@ -23,6 +12,18 @@ classdef reportbuilder
         DATAFILENAME = 'reportbuilder_state.data'
         %> whether finished
         flag_finished = 0;
+    
+        %> Classes-reports correspondence
+        map = {...
+               'soitem_diachoice', {{'get_report_soitem_sovalues', 'Flat comparison table (grouped by classifier and feature extraction)'}}; ... % soitem_diachoice descends from soitem_sovalues, but the former is output of latter (and fewer) tasks
+               'soitem_items', {{'get_report_soitem_items', 'Curves/Images from Model Selection'}}; ...
+               'soitem_foldmerger_fitest', {{'get_report_soitem_foldmerger_fitest', 'Confusion matrices for each system set-up'}}; ...
+               'soitem_fhgs', {{'get_report_soitem_fhg_hist', 'Feature histogram'}, {'get_report_soitem_fhg_histcomp', 'Histograms comparison'}}; ...
+               'soitem_merger_fhg', {{'get_report_soitem_merger_fhg', 'Histograms and biomarkers comparison tables'}}; ...
+               'soitem_merger_merger_fhg', {{'get_report_soitem_merger_merger_fhg', 'Cross-dataset biomarker comparison tables'}}; ...
+               'soitem_merger_merger_fitest', {{'get_report_soitem_merger_merger_fitest', 'General 2D performance comparison table'}, ...
+                                               {'get_report_soitem_merger_merger_fitest_1d', 'General flat performance comparion table'}}; ...
+              };
         %> Indicates which reports are switched on. I deactitaved 2 reports that generated figures
         flags_map2 = boolean([1, 0, 0, 1, 1, 1, 1, 1, 1]);
     end;
@@ -30,7 +31,7 @@ classdef reportbuilder
     methods
         function o = set_flag_map2(o, i, x)
             if isempty(o.flags_map2)
-                [dummy, o.flags_map2] = o.get_map2();
+                [dummy, o.flags_map2] = o.get_map2(); %#ok<ASGLU>
             end;
             o.flags_map2(i) = x;
         end;
@@ -78,10 +79,22 @@ classdef reportbuilder
                 ipro = progress2_change(ipro, [], [], state.cnt);
             end;
             progress2_close(ipro);
-            o.create_index();
+            o.create_indexes();
             irverbose('Report builder finished!');
             o.print_link();
             o.flag_finished = 1;
+        end;        
+        
+        %> Resets progress, will cause report execution to restart next
+        %> time
+        function o = reset(o)
+            state = o.load_state(); % Will create "state" variable in local workspace
+            state.i_file = 0;
+            state.i_report = 0;
+            state.no_files = numel(state.filemap);
+            state.flag_finished = 0;
+            state.cnt = 0;
+            o.save_state(state);
         end;
 
         function o = print_link(o)
@@ -92,7 +105,7 @@ classdef reportbuilder
 
         
         %> Resets report building progress by re-creating state file
-        function o = reset(o)
+        function o = rebuild(o)
             o.create_state();
             o.flag_finished = 0;
         end;
@@ -118,10 +131,6 @@ classdef reportbuilder
         function state = cycle_(o, state)
             S_BACK = ['<p><input type="button" value="Back" onclick="window.history.back();" />&nbsp;&nbsp;<a href="index.html">Back</a></p>', 10];
             
-            % Increment pointers
-            if state.i_file == 0
-                state.i_file = 1;
-            end;
             state.i_report = state.i_report+1;
             if state.i_file == 0 || state.i_report > state.filemap(state.i_file).no_reports
                 state.i_file = state.i_file+1;
@@ -156,6 +165,7 @@ classdef reportbuilder
             end;
             o_html.html = cat(2, S_BACK, o_html.html, S_BACK);
             o.save(li.outfilename, o_html);
+            state.filemap(state.i_file).list(state.i_report).flag_saved = 1;
             cd(p);
             state.cnt = state.cnt+1;
             
@@ -224,12 +234,13 @@ classdef reportbuilder
         %>
         %> @return [filemap structure, total number of reports]
         function [tt, no_total] = build_filemap(o)
+            tt = struct.empty;
             no_total = 0;
             a = o.get_map3();
             classes = a(:, 1);
             getters = a(:, 2);
             
-            dd = dir('output*.mat');
+            dd = dir('soout_*.mat');
 %             [dummy, idxs] = sort([dd.datenum]);
 %             dd = dd(idxs); % Sorts by date
             if ~isempty(dd)
@@ -251,7 +262,7 @@ classdef reportbuilder
                         else
                             item = r.item;
                             if strcmp(item.dstitle, '(not used)')
-                                flag_has = 0;
+                                flag_has = 0; % Skips file if the dataset hasn't been used
                             else
                                 b = cellfun(@(x) (isa(item, x)), classes); % Finds classes that match class of item
                                 gttr = getters(b);
@@ -260,6 +271,7 @@ classdef reportbuilder
                                     o_report = o.(gttr{j}); % Instantializes report just to get class name
                                     tt(it).list(j).s_getter = gttr{j};
                                     tt(it).list(j).outfilename = [fn, '__', class(o_report), '.html'];
+                                    tt(it).list(j).flag_saved = 0;
                                     tt(it).list(j).title = o_report.classtitle;
                                 end;
                                 if no_reports > 0
@@ -268,7 +280,7 @@ classdef reportbuilder
                                     tt(it).descr = item.get_description();
                                     tt(it).dstitle = item.dstitle();
                                     tt(it).no_reports = no_reports;
-                                    taskidxs(it) = r.taskidx;
+                                    tt(it).taskidx = r.taskidx;
                                     no_total = no_total+no_reports;
                                 else
                                     flag_has = 0;
@@ -281,15 +293,17 @@ classdef reportbuilder
                         irverbose(sprintf('Failed processing file "%s": %s', fn, ME.message));
                     end;
                     if flag_has
+                        temp = taskadder.parse_filename(fn);
+                        ff = fields(temp);
+                        for j = 1:numel(ff)
+                            tt(it).(ff{j}) = temp.(ff{j});
+                        end;
                         tt(it).infilename = fn;
                         it = it+1;
                     end;
                     ipro = progress2_change(ipro, [], [], i);
                 end;
                 progress2_close(ipro);
-                
-                [dummy, idxs] = sort(taskidxs); % Sorts reports by task index
-                tt = tt(idxs);
             end;
         end;
         
@@ -301,91 +315,112 @@ classdef reportbuilder
                 irverbose(sprintf('Created directory ``%s``', ff), 1);
             end;
         end;
-        
-        %> Creates index.html
-        function o = create_index(o)
+    end;
+    
+    
+    methods
+        function o = create_indexes(o)
             state = o.load_state(); % Will create "state" variable in local workspace
             o.assert_dir_exists(state.dirname);
-            no_files = numel(state.filemap);
+            [clsr, hist] = o.split_filemap(state.filemap);
+            
+            o.create_indexes_(state, clsr);
+            o.create_indexes_(state, hist);
+        end;
+        
+        function o = create_indexes_(o, state, filemap)
+            flag_any_fhg = any([state.filemap.flag_fhg]); % To save from linking to FHG tables if there is no FHG task
+            nMap = numel(filemap);
+            if nMap == 0
+                return;
+            end;
+            flag_fhg = filemap(1).flag_fhg;
+            if ~flag_fhg 
+                colnames = {'taskidx', 'taskname', 'ovr', 'cv', 'fename', 'clname', 'pairwise', 'grag'};
+            else
+                colnames = {'taskidx', 'taskname', 'ovr', 'cv', 'stab', 'casename'};
+            end;
+            ncSort = numel(colnames);
+            
+            % Makes reports strings and adds into filemap as a new "column"
+            colnames{end+1} = 'reports';
+            for k = 1:numel(filemap)
+                fmk = filemap(k);
+                s = '';
+                for j = 1:numel(fmk.list)
+                    li = fmk.list(j);
+                    if li.flag_saved
+                        s = cat(2, s, sprintf('<a href="%s">%s</a><br />\n', ...
+                             li.outfilename, li.title));
+                    else
+                        s = cat(2, s, sprintf('<font color=#444444><em>%s</em></font><br />\n', ...
+                             li.title));
+                    end;
+                end;
+                filemap(k).reports = s;
+            end;
+            
+            % Adds a "load data" column
+            colnames{end+1} = 'loadlog';
+            for k = 1:numel(filemap)
+                filemap(k).loadlog = sprintf('<a href="matlab:load_soitem(''%s'')">L</a><br />\n', ...
+                    filemap(k).infilename);
+            end;
+            
+            nc = numel(colnames);
 
-            s_ = iif(~isempty(state.scenename), ...
-                     ['Reports for Scene "', state.scenename, '"'], ...
-                     'Reports index');
-            s = ['<h1>', s_, '</h1>', 10];
-            s = cat(2, s, '<center>', 10, '<table class=bo>', 10);
-            temp = cellfun(@(x) ['<td class=bob><div class=hel>', x, '</div></td>', 10], {'File name', 'Time', 'Description', 'Dataset name', 'Reports'}, 'UniformOutput', 0);
-            s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
+            cc = {};
+            for i = 1:ncSort
+                % HTML from start
+
+                s_ = iif(~isempty(state.scenename), ...
+                         ['Reports for Scene "', state.scenename, '"'], ...
+                         'Reports index');
+                s = ['<body bgcolor=#c6e8e0><h1>', s_, '</h1>', 10];
                 
-            for i = 1:no_files
-                mi = state.filemap(i); % Map Item
-                if mi.status == 0
-                    s_reports = '';
-                    for j = 1:numel(mi.list)
-                        li = mi.list(j);
-                        if exist(fullfile(state.dirname, li.outfilename), 'file')
-                            s_ = sprintf('<a href="%s">%s</a><br />\n', ...
-                                 li.outfilename, li.title);
-                        else
-                            s_ = sprintf('<font color=#444444><em>%s</em></font><br />\n', ...
-                                 li.title);
-                        end;
-                        s_reports = cat(2, s_reports, s_);
-                    end;
-                    
-                    s_fn = mi.infilename;
-                    a = o.describe_filename(s_fn);
-                    if ~isempty(a)
-                        s_fn = [s_fn, 10, '<ul>', 10];
-                        for i = 1:numel(a)
-                            s_fn = [s_fn, '<li>', a{i}, '</li>', 10];
-                        end;
-                        s_fn = [s_fn, '</ul>', 10];
-                    end;
-                    
-                    temp = cellfun(@(x) ['<td class=bob1>', x, '</td>', 10], ...
-                        {s_fn, num2str(mi.time_go), mi.descr, mi.dstitle, ...
-                        s_reports}, 'UniformOutput', 0);
-                    s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
-                else
-                    s = cat(2, s, '<tr>', sprintf('<td class=bob1>%s</td>\n', mi.infilename), ...
-                        '<td colspan=4 class=bob1>', mi.statusmsg, ...
-                        '</td>', 10, '</tr>', 10);
+                if flag_fhg || flag_any_fhg
+                    s = cat(2, s, ['<p><a href="', o.colname2filename('taskidx', ~flag_fhg), '">',...
+                         iif(flag_fhg, 'Classification', 'Biomarkers identification'), ...
+                         ' reports</a></p>']);
                 end;
-            end;
-            s = cat(2, s, '</table>', 10, '</center>', 10);
-            o_html = log_html();
-            o_html.title = sprintf('Index of reports for directory "%s"', pwd());
-            o_html.html = s;
-            o.save(fullfile(state.dirname, 'index.html'), o_html);
-        end;
 
+                fni = o.colname2filename(colnames{i}, flag_fhg);
+                % Headers
+                for j = 1:nc
+                    if j > ncSort
+                        a1 = ''; a2 = '';
+                    elseif i == j
+                        a1 = ''; a2 = '&#x25B2;';
+                    else
+                        fn = o.colname2filename(colnames{j}, flag_fhg);
+                        a1 = sprintf('<a href="%s">', fn);
+                        a2 = '</a>';
+                    end;
+                    cc{1}{j} = [a1, colnames{j}, a2];
+                end;
 
-        
-        %> Finds tokens (or absence thereof) within a filename
-        %> @return cell of strings to be probably converted into a UL
-        function a = describe_filename(o, fn)
-            % Patterns to match and their corresponding explanation
-            tt = {'_grag_', 'Per group';
-                  '_np_', 'Non-pairwise classifier';
-                  '_pa_', 'Pairwise (one-versus-one) classifier';
-                  '_ovr00', 'All classes'};
-            % Patterns NOT TO MATCH and their corresponding explanations
-            tt2 = {'_ovr00', '2 classes (one-versus-reference)';
-                   '_grag_', 'Per row'};
-           
-            a = {};
-            for i = 1:size(tt, 1)
-                if any(strfind(fn, tt{i, 1}))
-                    a{end+1} = tt{i, 2};
+                filemap_ = o.sort_by_column(filemap, colnames{i});
+                
+                % Table body
+                for k = 1:nMap
+                    fmk = filemap_(k);
+                    if fmk.status == 0
+                        for j = 1:nc
+                            cc{k+1}{j} = fmk.(colnames{j});
+                        end;
+                    else
+                        cc{k+1}{1} = [fmk.infilename, ' - ', fmk.statusmsg]; % Gotta test this making some report give error on purpose
+                    end;
                 end;
-            end;
-            for i = 1:size(tt2, 1)
-                if ~any(strfind(fn, tt2{i, 1}))
-                    a{end+1} = tt2{i, 2};
-                end;
+
+                s = cat(2, s, o.cell2table(cc), 10, '</body>');
+                
+                o_html = log_html();
+                o_html.title = sprintf('Reports index - sorted by "%s"', colnames{i});
+                o_html.html = s;
+                o.save(fullfile(state.dirname, fni), o_html);
             end;
         end;
-        
        
         
         function o = save(o, filename, log_html)
@@ -396,15 +431,84 @@ classdef reportbuilder
                 irerror(sprintf('Could''t create file "%s"', fn));
             end;
             fwrite(h, log_html.get_embodied());
+            irverbose(sprintf('Created file "%s"', fn), 1);
             fclose(h);
         end;
     end;
    
+    
+    
+    
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%% STATIC METHODS
     
-    %
-    % Report object getters
+    methods(Static)
+        function s = colname2filename(colname, flag_fhg)
+            if strcmp(colname, 'taskidx') && ~flag_fhg
+                % "Absolute" index is file from classificfation framwework sorted by taskidx
+                s = 'index.html';
+            else
+                s = sprintf('%s_sortby_%s.html', iif(flag_fhg, 'hist', 'clsr'), colname);
+            end;
+        end;
+        
+        %> Splits filemap into the non-FHG (classification framework) and FHG (biomarkers identification framework)
+        function [clsr, hist] = split_filemap(filemap)
+            flags = [filemap.flag_fhg];
+            clsr = filemap(~flags);
+            hist = filemap(flags);
+        end;
+
+        
+        %> Generates HTML table
+        function s = cell2table(cc)
+            nRows = numel(cc);
+            nCols = numel(cc{1});
+
+            s = '';
+            s = cat(2, s, '<center>', 10, '<table class=bo style="background-color: #ffffff">', 10);
+            temp = cellfun(@(x) ['<td class=bob><div class=hel>', x, '</div></td>', 10], cc{1}, 'UniformOutput', 0);
+            s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
+            for i = 2:nRows % skips header
+                c = cc{i};
+                if numel(c) == 1
+                    % Error
+                    s = cat(2, s, sprintf('<tr><td colspan=%d class=bob1>%s</td></tr>\n', nCols, c{1}));
+                else
+                    temp = cellfun(@(x) ['<td class=bob1>', iif(ischar(x), x, num2str(x)), '</td>', 10], c, 'UniformOutput', 0);
+                    s = cat(2, s, '<tr>', 10, temp{:}, '</tr>', 10);
+                end;
+            end;
+            s = cat(2, s, '</table>', 10, '</center>', 10);
+        end;
+
+        function filemap_ = sort_by_column(filemap, colname)
+            if ischar(filemap(1).(colname))
+                a = cellfun(@(x) sprintf('%100s', x), {filemap.(colname)}, 'UniformOutput', 0);
+            else
+                a = arrayfun(@(x) sprintf('%5d', x), [filemap.(colname)], 'UniformOutput', 0);
+            end;
+            % OVR always included in sort key
+            for i = 1:numel(a)
+                a{i} = [a{i}, sprintf('%5s', filemap(i).ovr)];
+            end;
+            % Taskidx always included in sort key
+            for i = 1:numel(a)
+                a{i} = [a{i}, sprintf('%5d', filemap(i).taskidx)];
+            end;
+            [dummy, idxs] = sort(a); %#ok<ASGLU>
+            filemap_ = filemap(idxs);
+        end;
+    end;
+
+    
+    
+    
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%% Report object getters
     %
     % These routines allow full control over the report object parameters
     % Parameters for these routines can be got from objtool if the GUI interface for the report is properly set.
@@ -429,17 +533,17 @@ classdef reportbuilder
             r.flag_biocomp_nf4grades = 1;
         end;
         
-        function r = get_report_soitem_fhg(o)
-            r = report_soitem_fhg();
-            r.flag_images = 1;
-            r.flag_tables = 1;
-            r.peakdetector = [];
-            r.subsetsprocessor = [];
-        end;
+%        function r = get_report_soitem_fhg(o)
+%            r = report_soitem_fhg();
+%            r.flag_images = 1;
+%            r.flag_tables = 1;
+%           r.peakdetector = [];
+%            r.subsetsprocessor = [];
+%        end;
 
         function r = get_report_soitem_fhg_hist(o)
             r = report_soitem_fhg_hist();
-            r.data_hint = load_hintdataset();
+            r.data_hint = load_data_hint();
             r.peakdetector = [];
             r.subsetsprocessor = [];
         end;

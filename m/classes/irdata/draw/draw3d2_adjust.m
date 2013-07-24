@@ -46,12 +46,9 @@ for i = 1:3
     plot3(xx, yy, zz, 'k', 'LineWidth', scaled(2));
 end;
 
-
 set(gca, 'XLim', minmax(:, 1)');
 set(gca, 'YLim', minmax(:, 2)');
 set(gca, 'ZLim', minmax(:, 3)');
 
-
-set_title(sprintf('3D Scatter Plot'), data);
 format_frank();
 box off;

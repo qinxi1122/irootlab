@@ -65,10 +65,10 @@ classdef report_soitem_merger_merger_fhg < report_soitem
                 % Generates sub-reports for these groups separately
                 for i = 1:n
                     if i > 1; s = cat(2, s, '<hr />', 10); end;
-                    s = cat(2, s, sprintf('<h1>Methodology: "%s"</h1>\n', item.items(1).s_methodologies{groupidxs{i}(1)}), o.get_html_biocomparison(item, groupidxs{i}));
+                    s = cat(2, s, sprintf('<h1>FHG setup: "%s"</h1>\n', item.items(1).s_methodologies{groupidxs{i}(1)}), o.get_html_biocomparison(item, groupidxs{i}));
                 end;
 
-                s = cat(2, s, '<h1>Methodology table merge</h1>', item.html_biocomparisontable_stab(def_subsetsprocessor(o.subsetsprocessor), o.peakdetector, o.biocomparer));
+                s = cat(2, s, '<h1>FHG setups table merge</h1>', item.html_biocomparisontable_stab(def_subsetsprocessor(o.subsetsprocessor), o.peakdetector, o.biocomparer));
 
                 s = cat(2, s, '<hr />', 10);
             end;

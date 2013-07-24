@@ -18,6 +18,7 @@ classdef filesession < as
         %> @ref sosetup object
         oo;
         
+        
         %> Indicates preferred parallelization mode. 'inner' means in the reptt_blockcube, or other. 'outer' means at the dataset level.
         %> For more, check the constructor source code. 
         %>@todo obsolete
@@ -32,9 +33,11 @@ classdef filesession < as
         portion = 'primary';
     end;
     
-    properties(SetAccess=protected)
-        flag_parallel_ds = 0;
-    end;
+%     properties(SetAccess=protected)
+%         flag_parallel_ds = 0;
+%         %> =1 Whether sosetup_scene must be present
+%         flag_requires_sosetup_scene = 1;
+%     end;
 
     properties(Access=private)
         nc_ = [];
@@ -44,8 +47,15 @@ classdef filesession < as
     % Constructor
     methods
         function o = filesession()
-            o.oo = sosetup_scene();
-            
+            try
+                o.oo = sosetup_scene();
+            catch ME
+%                 if o.flag_requires_sosetup_scene
+                    irverbose(['WARNING: ', ME.message], 1);
+%                 else
+                    o.oo = sosetup(); % Default
+%                 end;
+            end;
             o = o.customize();
         end;
     end;
@@ -64,6 +74,10 @@ classdef filesession < as
             end;
         end;
         
+        %> Must be called once before do_go()
+        %>
+        %> @arg retrieves number of classes from dataset
+        %> 
         function o = configure(o)
             if ~isempty(o.oo.dataloader)
                 try
@@ -76,25 +90,25 @@ classdef filesession < as
                 o.nc_ = -1;
             end;
             
-            if o.oo.flag_parallel
-                flag_outer = 0;
-                switch o.paralleltype
-% % % % % % % %                     case 'outer'
-% % % % % % % %                         if o.get_no_datasets() > 1
-% % % % % % % %                             % Even manifesting preferred outer parallelization, it only makes sense if there is more than one dataset
-% % % % % % % %                             flag_outer = 1;
-% % % % % % % %                         end;
-                    case 'inner'
-                    otherwise
-                        irerror(sprintf('paralleltype "%s" not recognized', o.paralleltype));
-                end;
-                
-% % % % % % % %                 o.flag_parallel_ds = flag_outer;
-                o.oo.cubeprovider.flag_parallel = ~flag_outer;
-            else
-                o.flag_parallel_ds = 0;
-                o.oo.cubeprovider.flag_parallel = 0;
-            end;
+% Useless % % % % % % % % %             if o.oo.flag_parallel
+% % % % % % % % % %                 flag_outer = 0;
+% % % % % % % % % %                 switch o.paralleltype
+% % % % % % % % % % % % % % % % % %                     case 'outer'
+% % % % % % % % % % % % % % % % % %                         if o.get_no_datasets() > 1
+% % % % % % % % % % % % % % % % % %                             % Even manifesting preferred outer parallelization, it only makes sense if there is more than one dataset
+% % % % % % % % % % % % % % % % % %                             flag_outer = 1;
+% % % % % % % % % % % % % % % % % %                         end;
+% % % % % % % % % %                     case 'inner'
+% % % % % % % % % %                     otherwise
+% % % % % % % % % %                         irerror(sprintf('paralleltype "%s" not recognized', o.paralleltype));
+% % % % % % % % % %                 end;
+% % % % % % % % % %                 
+% % % % % % % % % % % % % % % % % %                 o.flag_parallel_ds = flag_outer;
+% % % % % % % % % %                 o.oo.cubeprovider.flag_parallel = ~flag_outer;
+% % % % % % % % % %             else
+% % % % % % % % % %                 o.flag_parallel_ds = 0;
+% % % % % % % % % %                 o.oo.cubeprovider.flag_parallel = 0;
+% % % % % % % % % %             end;
             
             o.flag_configured = 1;
         end;
@@ -170,6 +184,11 @@ classdef filesession < as
             titles = cell(si);
             sor = sor.set_field('spec', specs);
         end;
+        
+         %> Makes a string title using a diagnosissystem
+         function s = make_title_dia(o, dia)
+             s = [upper(class(o)), ': ', dia.get_s_sequence([], 1)];
+         end;
     end;
     
     

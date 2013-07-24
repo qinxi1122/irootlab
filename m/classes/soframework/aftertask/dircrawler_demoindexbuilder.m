@@ -1,4 +1,4 @@
-%> Report deleter
+%> Creates the HTML for browse_demos.m
 classdef dircrawler_demoindexbuilder < dircrawler
     properties(SetAccess=protected)
         map = {};

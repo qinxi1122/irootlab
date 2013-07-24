@@ -16,6 +16,7 @@ classdef vis_log_as_fsel < vis
         function out = do_use(o, obj)
             out = [];
             obj.draw(o.data_hint, o.flag_mark);
+            set_title(o.classtitle, obj);
         end;
     end;
 end

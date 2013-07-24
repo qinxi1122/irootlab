@@ -85,6 +85,12 @@ classdef dataio_txt_irootlab < dataio
                         data.fea_x = str2double(cc);
                     elseif strcmp(s, 'table')
                         flag_exp_header = 1;
+                    elseif strcmp(s, 'direction')
+                        data.direction = strip_quotes(cc{2});
+                    elseif strcmp(s, 'height')
+                        data.height = str2num(strip_quotes(cc{2})); %#ok<*ST2NM>
+                    elseif strcmp(s, 'title')
+                        data.height = str2num(strip_quotes(cc{2})); %#ok<*ST2NM>
                     else
                         % Never mind
                     end;
@@ -95,7 +101,7 @@ classdef dataio_txt_irootlab < dataio
             % Makes sure claslabels is correct
             ncc = max(data.classes)+1;
             if ncc > numel(data.classlabels)
-                warning('Number of classlabels lower than number of classes');
+                irverbose('WARNING: Number of classlabels lower than number of classes', 2);
                 nl = data.get_no_levels();
                 suffix = repmat('|1', 1, nl-1);
                 for i = numel(data.classlabels)+1:ncc
@@ -149,9 +155,12 @@ classdef dataio_txt_irootlab < dataio
             newl = sprintf('\n');
             
             fwrite(h, ['IRootLab ' irootlab_version() repmat(tab, 1, no_cols-1) newl]);
+            fwrite(h, ['title' tab data.title repmat(tab, 1, no_cols-2) newl]);
             fwrite(h, ['classlabels' tab cell2str(data.classlabels) repmat(tab, 1, no_cols-2) newl]);
             temp = sprintf(['%g' tab], data.fea_x);
             fwrite(h, ['fea_x' tab temp(1:end-1) repmat(tab, 1, no_cols-data.nf-1) newl]);
+            fwrite(h, ['height' tab int2str(data.height) repmat(tab, 1, no_cols-2) newl]);
+            fwrite(h, ['direction' tab data.direction repmat(tab, 1, no_cols-2) newl]);
             fwrite(h, ['table' repmat(tab, 1, no_cols-1) newl]);
             
             

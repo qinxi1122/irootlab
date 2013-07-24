@@ -1,4 +1,4 @@
-%> @brief Passes on to report_estlog, to show confusion matrices
+%> @brief Shows curves or images from foldmerge of some model selection (e.g. clarchsel or fearchsel)
 %>
 classdef report_soitem_items < report_soitem
     methods

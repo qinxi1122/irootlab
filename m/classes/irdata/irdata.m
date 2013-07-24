@@ -54,12 +54,6 @@ classdef irdata < irobj
         %> (optional) [no]x[1] Cell of strings. Observation names (e.g. file names of the individual spectra)
         obsnames = {};
 
-        % Image properties
-        %> Height of image. Spectra start counting from the bottom left upwards.
-        height;
-        %> Width of image. Width is actually calculated as @c no/height . If result is not integer, an error will occur.
-        width;
-        
         filename = '';
         %> mat or txt
         filetype = '';
@@ -78,6 +72,17 @@ classdef irdata < irobj
         %> y-axis unit, defaults to 'a.u.'
         yunit = 'a.u.';
 
+        
+        % Image properties
+        %> Height of image. Spectra start counting from the bottom left upwards.
+        height;
+        %> Width of image. Width is actually calculated as @c no/height . If result is not integer, an error will occur.
+        width;
+        %> ='ver'. States how the pixels are organized.
+        %> 'ver': bottom-up, left-right
+        %> 'hor': left-right, bottom-up
+        direction = 'ver';
+        
         %> Output (instead of classes). For regression instead of classification
         Y = [];
 
@@ -286,7 +291,7 @@ classdef irdata < irobj
         %> compatibility
         %> Also works when the input is an object.
         function data = import_from_struct(data, DATA)
-            temp = setxor(properties(data), {'nf', 'nonf', 'no_groups', 'nc', 'width'})';
+            temp = setxor(properties(data)', {'nf', 'nonf', 'no_groups', 'nc', 'width'})';
             propmap = repmat(temp, 1, 2);
             propmap = [propmap; {'x', 'fea_x'; 'class_labels', 'classlabels'; 'idspectrum_s', 'obsids'; 'file_names', 'obsnames'; ...
                                  'colony_codes', 'groupcodes'; 'group_codes', 'groupcodes'}]; % Names that changed over time
@@ -366,9 +371,11 @@ classdef irdata < irobj
             pp = setxor(pp, {'flag_params', 'rowfieldnames', 'flags_cell'});
         end;
         
-        
+        %> Makes copy with empty fields whose names are in .rowfieldnames
+        %> Additionally, resets .height
         function dnew = copy_emptyrows(data)
             dnew = data;
+            dnew.height = [];
             rr = data.rowfieldnames;
 
             for i = 1:numel(rr)
@@ -682,5 +689,28 @@ classdef irdata < irobj
             ww = ww/sum(ww);
         end;
 
+        
+        
+        %> Changes direction and swaps width and height
+        %>
+        %> This is called "transpose2" because MATLAB objects have a built-in 
+        %> "transpose" already
+        function data = transpose2(data)
+            hei = data.height;
+            if isempty(hei)
+                irerror('Height not provided and dataset does not have height.');
+            end;
+            wid = data.no/hei;
+            if floor(wid) ~= wid
+                irerror(sprintf('Height %d not divisible by %d!', hei, data.no));
+            end;
+
+            if strcmp(data.direction, 'hor')
+                data.direction = 'ver';
+            else
+                data.direction = 'hor';
+            end;
+            data.height = wid;
+        end;
     end;
 end

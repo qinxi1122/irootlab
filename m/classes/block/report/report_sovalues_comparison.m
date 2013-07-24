@@ -85,8 +85,6 @@ classdef report_sovalues_comparison < irreport
 
             R = R(:, ii);
             Mp = o.vectorcomp.crosstest(R); % Matrix for the p-values (last column) of the firts table
-
-            
             
             flag_choice = ~isempty(choiceidx);
             choiceheader = '';
@@ -100,12 +98,12 @@ classdef report_sovalues_comparison < irreport
             s0 = '';
             s0 = cat(2, s0, '<center><table class=bo>', 10, '<tr>', 10, choiceheader, ...
                 '<td class="bob"><div class="hel">#</div></td>', 10, ...
-                '<td class="bob"><div class="hel">Model</div></td>', 10);
+                '<td class="bob"><div class="hel">System</div></td>', 10);
             
             for i = 1:nnames
                 s0 = cat(2, s0, '<td class="bob"><div class="hec">', labeldict(o.names{i}), '</div></td>', 10);
             end;
-            s0 = cat(2, s0, '<td class="bob"><div class="hec"><em>p</em>-values', '</div></td>', 10);
+% (04/07/2013) Examiners didn't like this column            s0 = cat(2, s0, '<td class="bob"><div class="hec"><em>p</em>-values', '</div></td>', 10);
             if flag_rejected
                 s0 = cat(2, s0, '<td class="bob"><div class="hec">Refused (%)</div></td>', 10);
             end;
@@ -143,16 +141,19 @@ classdef report_sovalues_comparison < irreport
                 
                     s0 = cat(2, s0, sprintf('<td class="nu%s">', clad), sprintf('%.2f &plusmn; %.2f', mv, civ), '</td>', 10);
                 end;
+
                 
-                if i == ni
-                    stemp = '-';
-                else
-                    x = Mp(i, i+1);
-                    stemp = iif(x < 0.001, '< 0.001', sprintf('%.3f', x));
-                end;
+% (04/07/2013) Examiners didn't like this column
+%                 % P-value column
+%                 if i == ni
+%                     stemp = '-';
+%                 else
+%                     x = Mp(i, i+1);
+%                     stemp = iif(x < 0.001, '< 0.001', sprintf('%.3f', x));
+%                 end;
+%                 s0 = cat(2, s0, sprintf('<td class="nu%s">', clad), stemp, '</td>', 10);
                 
-                s0 = cat(2, s0, sprintf('<td class="nu%s">', clad), stemp, '</td>', 10);
-                
+                % Rejected column
                 if flag_rejected
                     s0 = cat(2, s0, sprintf('<td class="nu%s">%.2f</td>', clad, 100*mean(values(ii(i)).oc.C(:, 1))), 10);
                 end;
@@ -164,6 +165,8 @@ classdef report_sovalues_comparison < irreport
 
             s1 = '';
             if o.flag_ptable
+                s1 = cat(2, s1, '<h4><em>p</em>-values tables</h4>', 10, '<p>Vector comparer object: <b>', ...
+                    o.vectorcomp.get_description(0), ' (<a href="matlab:edit(''', class(o.vectorcomp), '.m'')">', class(o.vectorcomp), '</a>)</b></p>');
                 for i = 1:nnames
                     R = permute(squeeze(sovalues.getYY(values, o.names{i})), [2, 1]);
                     R = R(:, ii);
@@ -187,7 +190,7 @@ classdef report_sovalues_comparison < irreport
             end;
             
             s = '';
-            s = cat(2, s, '<h5>Best case in each architecture</h5>', 10, s0, 10, s1, 10);
+            s = cat(2, s, '<h4>Comparison table</h5>', 10, s0, 10, s1, 10);
         end;
     end;
     

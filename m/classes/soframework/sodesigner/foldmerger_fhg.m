@@ -21,7 +21,9 @@ classdef foldmerger_fhg < sodesigner
                 out.logs = logs;
                 out.log = log;
                 out.stab = item1.stab;
-                out.s_methodology = item1.s_methodology;
+                out.s_setup = item1.s_setup;
+                out.title = o.make_title_dia(item1.dia);
+                out.dstitle = item1.dstitle;
             end;
         end;
     end;

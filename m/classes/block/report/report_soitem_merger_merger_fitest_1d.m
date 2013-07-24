@@ -1,4 +1,11 @@
-%> @brief 
+%> @brief 1D comparison table
+%>
+%> Compares performance estimations between several system set-ups
+%>
+%> The visual output is similar to report_soitem_sovalues, but this one handles
+%> soitem_merger_merger_fitest object, which contains the soitem's grouped to do the 2D
+%> comparison tables. So, this class has first to call
+%> soitem_merger_merger_fitest::get_sovalues_1d().
 classdef report_soitem_merger_merger_fitest_1d < report_soitem
 %     properties
 %         %> =(auto). Minimum value for the colour scaling of the HTML cells
@@ -25,7 +32,7 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
 
     methods
         function o = report_soitem_merger_merger_fitest_1d()
-            o.classtitle = 'Flat comparison table';
+            o.classtitle = '1D comparison table';
             o.inputclass = 'soitem_merger_merger_fitest';
 %             o.flag_params = 1;
         end;
@@ -46,7 +53,7 @@ classdef report_soitem_merger_merger_fitest_1d < report_soitem
     methods
         %> Generates a table with the best in each architecture, with its respective time and confidence interval
         %> @param item a soitem_merger_merger_fitest object
-        function s = get_html_graphics(o, item) %#ok<MANU>
+        function s = get_html_graphics(o, item)
 %             it = soitem_sovalues();
             sov = item.get_sovalues_1d();
 %             r = report_soitem_sovalues();

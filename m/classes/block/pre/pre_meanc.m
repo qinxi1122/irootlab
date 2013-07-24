@@ -1,5 +1,7 @@
-%> @brief Trained Mean-centering
-classdef pre_meanc < pre
+%> @brief Mean-centering (trained)
+%>
+%> Descends from pre_norm_base to organize in GUI but is unrelated to other pre_norm_*
+classdef pre_meanc < pre_norm_base
     properties(SetAccess=protected)
         means = [];
     end;

@@ -1,5 +1,6 @@
 %> This file is used by @ref start_scene.m to create a new scenesetup.m file
-
+% Configuration of database, scene name, dataset, reference class,
+% cross-validation "k", and methods to be executed.
 a = scenebuilder(); % do not change this line
 
 %===
@@ -70,18 +71,22 @@ a.clembedded = {'lasso'};
 
 % Feature Histogram Generation (FHG) options
 
-% List of classifiers to guide Forward Feature Selection (FFS).
-% The available options are the same as in "clwrapper" above. Beware of
-% time-consuming classifiers!
-a.fhg_ffs_cl = {};
+% List of classifiers to guide wrapper feature selection methods defined in
+% fhg_fswrapper_fs below. The available options are the same as in
+% "clwrapper" above. Beware of time-consuming classifiers!
+a.fhg_fswrapper_cl = {};
+% List of wrapper feature selection methods to be used in combination with
+% each of the classifiers defined in fhg_fswrapper_cl above. Available options:
+%     'ffs' - Forward feature selection
+a.fhg_fswrapper_fs = {}
 
-% Stabilization for FHG using FFS + classifier. 0 (zero) means no stabilization,
-% whereas a number >=2 creates an internal subsampling loop that
-% stabilizes FFS.
+% Stabilization for FHG using Wrapper feature selection (WFS) + classifier.
+% 0 (zero) means no stabilization, whereas a number >=2 creates an internal
+% subsampling loop that stabilizes FFS.
 %
-% This parameter only has effect if fhg_ffs_cl above is not empty
+% This parameter only has effect if fhg_fswrapper_cl and fhg_fswrapper_fs above
+% are not empty.
 a.fhg_stab = [0, 2, 10];
-
 
 % Other FHG methods not using FFS. Available options:
 %     'fisher' - Univariate feature selection using the Fisher criterion [7]

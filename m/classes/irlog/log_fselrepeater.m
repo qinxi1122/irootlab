@@ -129,6 +129,16 @@ classdef log_fselrepeater < irlog
             out.title = sprintf('Stabilities (''%s'', ''%s'')', type, type2);
             out = out.assert_fix();
         end;
+        
+        %> Draws stacked histogram for legend purpose only
+        function o = draw_stackedhist_for_legend(o)
+            ds_hint = [];
+            ssp = subsetsprocessor();
+            pd = def_peakdetector();
+            hist = ssp.use(o);
+            hist.draw_stackedhists(ds_hint, {[], [.8, .8, .8]}, pd);
+            freezeColors();
+        end;
     end;
     
 

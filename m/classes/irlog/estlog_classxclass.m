@@ -33,6 +33,9 @@ classdef estlog_classxclass < estlog
         function o = do_record(o, pars)
             est = pars.est;
             ds_test = pars.ds_test;
+            if isempty(est.classes)
+                irerror('Classes of estimation dataset are empty! Are you sure it has been put through a decider?');
+            end;
             if numel(est.classes) ~= numel(ds_test.classes)
                 irerror('Number of items in estimation is different from number of items in reference dataset!');
             end;

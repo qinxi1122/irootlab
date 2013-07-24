@@ -11,7 +11,7 @@ classdef merger_merger_fitest < sodesigner
             for i = 1:ni
                 out.items(i) = items{i}; % Converts cell to object array
             end;
-            out.title = ['Merge of ', int2str(ni), ' MERGE_FitEst', iif(ni > 1, '''s', '')];
+            out.title = ['Merge of (Set-ups + estimations) merge) (', int2str(ni), ' item', iif(ni > 1, 's', ''), ')'];
             out.dstitle = items{1}.dstitle;
         end;
     end;

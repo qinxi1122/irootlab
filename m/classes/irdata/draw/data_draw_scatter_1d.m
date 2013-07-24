@@ -206,5 +206,4 @@ feanames = data.get_fea_names(idx_fea);
 xlabel(feanames{1});
 
 legend(hh, data_get_legend(data));
-set_title(sprintf('1D Scatter Plot'), data);
 format_frank([], SCALE);

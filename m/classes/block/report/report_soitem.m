@@ -10,8 +10,9 @@ classdef report_soitem < irreport
 
     % *-*-*-*-*-*-*-* TOOLS
     methods
-        function s = get_standardheader(o, obj) %#ok<MANU>
-            s = ['<h1>', obj.title, '; Dataset: ', obj.dstitle, '</h1>', 10];
+        function s = get_standardheader(o, obj)
+            s = ['<h1>', o.get_description(), '</h1>', 10, '<p>Input description: <b>', obj.get_description(), '</b></p>', 10, ...
+                 iif(~isempty(obj.dstitle), ['<p>Input dataset: <b>', obj.dstitle, '</b></p>', 10], '')];
         end;
 
         %> Creates curves from sovalues object.

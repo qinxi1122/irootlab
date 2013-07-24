@@ -13,36 +13,20 @@ classdef sosetup
         clarchsel_ann_nfs =  -1;
         %> ANN architecture optimization - List of candidate ANN architectures
         clarchsel_ann_archs =  {1, 3, 5, 10, 15, 20, 30, [7 4], [10 5], [10 9], [20 11]};
-        %> Undersampling optimization - ANN classifier - List of number of classifiers trained with undersampled data
-        undersel_ann_unders =  [1 2 3 4 5 7 9];
         %> SVM architecture optimization - List of numbers of features to assign to feature extraction block
         clarchsel_svm_nfs =  -1;
         %> SVM architecture optimization - List of candidate "C" parameters (Gaussian kernel)
         clarchsel_svm_cs = 10.^(2:.25:5);
         %> SVM architecture optimization - List of candidate "gamma" parameters (Gaussian kernel)
         clarchsel_svm_gammas = 10.^(-7:.5:-1);
-        %> Undersampling optimization - SVM classifier - List of number of classifiers trained with undersampled data
-        undersel_svm_unders =  [1 2 3 4 5 7 9];
         %> FRBM (Fuzzy classifie) architecture optimization - List of numbers of features to assign to feature extraction block
         clarchsel_frbm_nfs =  -1;
-        %> Undersampling optimization - FRBM classifier - List of number of classifiers trained with undersampled data
-        undersel_frbm_unders =  [1 2 3 4 5 7 9];
         %> k-NN architecture optimization - List of numbers of features to assign to feature extraction block
         clarchsel_knn_nfs =  -1;
         %> k-NN architecture optimization - List of candidate "k"s (number of neighbors)
         clarchsel_knn_ks =  [1 2 3 5 7 11 13 15 17];
-        %> Undersampling optimization - k-NN classifier - List of number of classifiers trained with undersampled data
-        undersel_knn_unders =  [1 2 3 4 5 7 9];
         %> LASSO architecture optimization - List of numbers of features
         clarchsel_lasso_nfs = [1, 2, 3, 5:2:15, 18:3:36, 40:4:152];
-        %> Undersampling optimization - LASSO classifier - List of number of classifiers trained with undersampled data
-        undersel_lasso_unders =  [1 2 3 4 5 7 9];
-        %> Undersampling optimization - LDC classifier - List of number of classifiers trained with undersampled data
-        undersel_ldc_unders =  [1 2 3 4 5 7 9];
-        %> Undersampling optimization - QDC classifier - List of number of classifiers trained with undersampled data
-        undersel_qdc_unders =  [1 2 3 4 5 7 9];
-        %> Undersampling optimization - Distance classifier - List of number of classifiers trained with undersampled data
-        undersel_dist_unders =  [1 2 3 4 5 7 9];
         %> Feature Extraction optimization - FFS(classifier) - maximum number of features
         fearchsel_ffs_nf_max =  50;
         %> Feature Extraction optimization - FFS(MANOVA) - maximum number of features
@@ -57,6 +41,8 @@ classdef sosetup
         fearchsel_pls_nfs = [1:9, 11:2:151];
         %> Feature Extraction optimization - B-Spline Representation - list of numbers of features
         fearchsel_spline_nfs =  6:70;
+        %> Undersampling optimization - All classification methods - List of number of classifiers trained with undersampled data
+        undersel_unders =  [1 2 3 4 5 7 9];
         %> Feature Histogram Generation - FFS(classifier) - number of features to select
         fhg_ffs_nf_select =  10;
         %> Feature Histogram Generation - LASSO embedded FS - number of features to select
@@ -81,12 +67,9 @@ classdef sosetup
         
         %> This is set in goer_fhg_pcalda*.m
         fhg_pcalda_no_factors = NaN;
-        % LS properties
-        undersel_ls_unders = [1, 2, 3, 4, 5, 7, 9];
 
         % LSTH properties
         clarchsel_lsth_nfs = NaN;
-        undersel_lsth_unders = [1, 2, 3, 4, 5, 7, 9];
 
         lcr2_no_folds = 50;
         lcr2_subdspercs = [.1, .15, .2:.1:1];
@@ -152,7 +135,7 @@ classdef sosetup
             spp.nf_resample = 0;  % Note that the default is not to resample
             % The normalization defaults to Vector because Amide I was giving trouble
             % after feature averaging
-            spp.norm_types = 'n'; % Vector normalization!
+            spp.normtypes = 'n'; % Vector normalization!
             o.sostage_pp = spp;
 
             %=== Feature Extraction sostage_fe setup
@@ -243,21 +226,13 @@ classdef sosetup
 'sostage_pp.nf_resample' , 'Resampling to reduce initial number of features within pre-processing. If set as <= 0, does not resample';
 'clarchsel_ann_archs', 'ANN architecture optimization - List of candidate ANN architectures';
 'clarchsel_ann_nfs', 'ANN architecture optimization - List of numbers of features to assign to feature extraction block';
-'undersel_ann_unders', 'Undersampling optimization - ANN classifier - List of number of classifiers trained with undersampled data';
 'clarchsel_svm_cs', 'SVM architecture optimization - List of candidate "C" parameters (Gaussian kernel)';
 'clarchsel_svm_gammas', 'SVM architecture optimization - List of candidate "gamma" parameters (Gaussian kernel)';
 'clarchsel_svm_nfs', 'SVM architecture optimization - List of numbers of features to assign to feature extraction block';
-'undersel_svm_unders', 'Undersampling optimization - SVM classifier - List of number of classifiers trained with undersampled data';
 'clarchsel_frbm_nfs', 'FRBM (Fuzzy classifier) architecture optimization - List of numbers of features to assign to feature extraction block';
-'undersel_frbm_unders', 'Undersampling optimization - FRBM classifier - List of number of classifiers trained with undersampled data';
 'clarchsel_knn_ks', 'k-NN architecture optimization - List of candidate "k"s (number of neighbors)';
 'clarchsel_knn_nfs', 'k-NN architecture optimization - List of numbers of features to assign to feature extraction block';
-'undersel_knn_unders', 'Undersampling optimization - k-NN classifier - List of number of classifiers trained with undersampled data';
 'clarchsel_lasso_nfs', 'LASSO architecture optimization - List of numbers of features';
-'undersel_lasso_unders', 'Undersampling optimization - LASSO classifier - List of number of classifiers trained with undersampled data';
-'undersel_ldc_unders', 'Undersampling optimization - LDC classifier - List of number of classifiers trained with undersampled data';
-'undersel_qdc_unders', 'Undersampling optimization - QDC classifier - List of number of classifiers trained with undersampled data';
-'undersel_dist_unders', 'Undersampling optimization - Distance classifier - List of number of classifiers trained with undersampled data';
 'fearchsel_ffs_nf_max', 'Feature Extraction optimization - FFS(classifier) - maximum number of features';
 'fearchsel_manova_nf_max', 'Feature Extraction optimization - FFS(MANOVA) - maximum number of features';
 'fearchsel_fisher_nf_max', 'Feature Extraction optimization - Fisher criterion-based FS - maximum number of features';
@@ -265,12 +240,14 @@ classdef sosetup
 'fearchsel_pca_nfs', 'Feature Extraction optimization - PCA - list of numbers of features';
 'fearchsel_pls_nfs', 'Feature Extraction optimization - PLS - list of numbers of features';
 'fearchsel_spline_nfs', 'Feature Extraction optimization - B-Spline Representation - list of numbers of features';
+'undersel_unders', 'Undersampling optimization - All classification methods - List of number of classifiers trained with undersampled data';
 'fhg_ffs_nf_select', 'Feature Histogram Generation - FFS(classifier) - number of features to select';
 'fhg_lasso_nf_select', 'Feature Histogram Generation - LASSO embedded FS - number of features to select';
 'fhg_manova_nf_select', 'Feature Histogram Generation - FFS(MANOVA) - number of features to select';
 'fhg_fisher_nf_select', 'Feature Histogram Generation - FS-Fisher - number of peaks to pick from Fisher feature grades curve';
 'fhg_pcalda_nf_select', 'Feature Histogram Generation - PCA-LDA - number of peaks to pick from PCA-LDA loadings vector';
 'fhg_lda_nf_select', 'Feature Histogram Generation - LDA - number of peaks to pick from LDA loadings vector';
+'cubeprovider.no_reps_fhg', 'Feature Histogram Generation - Number of feature selection repetitions per fold of the outer cross-validation loop';
 };
         end;
         

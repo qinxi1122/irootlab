@@ -13,6 +13,7 @@ classdef vis_alldata < vis
             out = [];
             data_draw(obj);
             make_box();
+            set_title(o.classtitle, obj);
         end;
     end;
 end

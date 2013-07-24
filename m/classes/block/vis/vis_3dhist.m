@@ -12,6 +12,7 @@ classdef vis_3dhist < vis
         function out = do_use(o, obj)
             out = [];
             data_draw_3dhist(obj);
+            set_title(o.classtitle, obj);
         end;
     end;
 end

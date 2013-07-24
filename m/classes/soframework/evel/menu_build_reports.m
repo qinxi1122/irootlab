@@ -12,6 +12,7 @@ while 1
     r.print_status();
     option = menu(sprintf('Report building menu for scene "%s"', a.scenename), ...
         {'Run/Continue', ...
+         'Reset', ...
          'Rebuild list', ...
          'Choose report types', ...
         }, 'Cancel', 0);
@@ -24,10 +25,10 @@ while 1
                     break;
                 end;
             case 2
-                if confirm()
-                    r = r.reset();
-                end;
+                r = r.reset();
             case 3
+                r = r.rebuild();
+            case 4
                 while 1
                     [z, flags, titles] = r.get_map2();
                     for i = 1:numel(flags)

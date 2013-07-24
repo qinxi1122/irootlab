@@ -13,6 +13,7 @@ classdef vis_hachures < vis
             out = [];
             
             data_draw_hachures(obj);
+            set_title(o.classtitle, obj);
             make_box();
         end;
     end;

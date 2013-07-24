@@ -7,10 +7,13 @@ classdef sostage_pp_std < sostage_pp
         function o = sostage_pp_std()
             o.title = 'Standardization';
         end;
+    end;
         
-        function out = get_default(o)
+    methods(Access=protected)
+        function a = get_blocks(o)
             out = pre_norm();
             out.types = 's';
+            a = {out};
         end;
     end;
 end

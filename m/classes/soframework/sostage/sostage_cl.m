@@ -4,13 +4,13 @@
 classdef sostage_cl < sostage
     properties
         %> Counterbalance?
-        flag_cb;
+        flag_cb = 0;
         %> Whether to go pairwise
-        flag_pairwise;
+        flag_pairwise = 0;
         %> Whether to undersample
-        flag_under;
+        flag_under = 0;
         %> Number of component classifiers in the undersampling
-        under_no_reps;
+        under_no_reps = 0;
         %> Random seed for the SGS that will undersample the dataset for the classifier
         under_randomseed = 0;
     end;
@@ -24,14 +24,24 @@ classdef sostage_cl < sostage
     
     
     methods(Access=protected, Abstract)
-        %> (Abstract) This is the method which returns the base classifier 
+        %> (Abstract) This is the method which returns the base classifier that may be wrapped (see source of do_get_block())
         blk = do_get_base(o);
     end;
 
     methods
-        %> Overriden so that it does NOT set the block title
-        function blk = get_block(o)
-            blk = o.do_get_block();
+% % % % % %         %> Overriden so that it does NOT set the block title
+% % % % % %         function blk = get_block(o)
+% % % % % %             blk = o.do_get_block();
+% % % % % %         end;
+        
+        function s = get_blocktitle(o)
+            s = o.title;
+            if o.flag_under
+                s = [s, '(U', int2str(o.under_no_reps), ')'];
+            end;
+            if o.flag_pairwise || o.flag_2class
+                s = [s, '(OVO)'];
+            end;
         end;
     end;
 
@@ -59,7 +69,6 @@ classdef sostage_cl < sostage
                 o.flag_pairwise = 1;
             end;
             
-            
             if o.flag_under
                 os = sgs_randsub();
                 os.randomseed = o.under_randomseed;
@@ -69,6 +78,8 @@ classdef sostage_cl < sostage
                 os.type = 'balanced';
                 os.flag_group = 0;
 
+                % I am setting the title because this may be wrapped inside a
+                % agg_pairs, with title out of the reach of sostage.get_block()
                 u = aggr_bag();
                 u.title = [blk.title, '(U', int2str(o.under_no_reps), ')'];
                 u.sgs = os;
@@ -80,7 +91,6 @@ classdef sostage_cl < sostage
             if o.flag_pairwise
                 agg = aggr_pairs(); % mold
                 agg.block_mold = blk;
-                agg.title = [blk.title, '(OVO)'];
                 blk = agg;
             end;
         end;
@@ -91,7 +101,8 @@ classdef sostage_cl < sostage
         %> Returns the base classifier
         function blk = get_base(o)
             blk = o.do_get_base();
-            blk.title = o.title;
+% % % % %             blk.title = o.title;
+% % % % %             blk.short = o.title;
         end;
     end;
 end
