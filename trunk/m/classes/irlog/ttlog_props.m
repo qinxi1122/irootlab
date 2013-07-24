@@ -51,13 +51,14 @@ classdef ttlog_props < ttlog
             o.flag_ui = 0;
         end;
         
-        function s = get_description(o)
-            ss = '';
-            if ~isempty(o.propnames)
-                ss = [' propnames = ' cell2str(o.propnames)];
-            end;
-            s = replace_underscores([class(o) ss]);
-        end;
+% @todo Better to implement something to show detailed information in the future. In the meantime, this is NOT the solution
+%        function s = get_description(o)
+%            ss = '';
+%            if ~isempty(o.propnames)
+%                ss = [' propnames = ' cell2str(o.propnames)];
+%            end;
+%            s = replace_underscores([class(o) ss]);
+%        end;
         
         %> @param pars Structure with a @c .clssr field.
         function o = record(o, pars)

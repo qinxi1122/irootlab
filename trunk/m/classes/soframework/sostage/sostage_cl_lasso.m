@@ -34,5 +34,10 @@ classdef sostage_cl_lasso < sostage_cl
             o.flag_2class = 1;
             o.flag_embeddedfe = 1;
         end;
+        
+        
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_cl(o), '(nf=', mat2str(o.nf), ')'];
+        end;
     end;
 end

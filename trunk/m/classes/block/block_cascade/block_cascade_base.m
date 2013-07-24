@@ -261,14 +261,18 @@ classdef block_cascade_base < block
 %         end;
 
         %> @brief Calls get_methodname() for all blocks
-        function s = get_methodname(o)
+        %> @param flag_short=0
+        function s = get_methodname(o, flag_short)
+            if nargin < 2 || isempty(flag_short)
+                flag_short = 0;
+            end;
             s = '';
             for i = 1:length(o.blocks)
                 if i > 1
                     s = [s '->'];
                 end;
                 b = o.blocks{i};
-                s = [s b.get_methodname()];
+                s = [s b.get_methodname(flag_short)];
             end;
         end;
 

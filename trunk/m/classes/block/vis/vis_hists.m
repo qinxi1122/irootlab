@@ -1,4 +1,4 @@
-%> @brief Visualization - Histograms from @ref as_fsel_hist
+%> @brief Visualization - Histograms from @ref log_hist
 %>
 %> This visualization plots the histograms for each moment of a Forward Feature Selection: first feature selected; second feature
 %> selected ...
@@ -21,7 +21,6 @@ classdef vis_hists < vis
     methods(Access=protected)
         function out = do_use(o, obj)
             out = [];
-
             obj.draw_hists(o.idx_hist, o.data_hint, o.flag_group);
         end;
     end;

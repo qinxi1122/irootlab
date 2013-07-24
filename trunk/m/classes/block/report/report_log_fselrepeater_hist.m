@@ -7,6 +7,8 @@ classdef report_log_fselrepeater_hist < irreport
         peakdetector = def_peakdetector();
         %> =[]. Hint dataset
         data_hint;
+        %> ='kun' (Kuncheva) (@sa feacons_kun.m) Feature stability type
+        stabilitytype = 'kun';
     end;
     
     methods
@@ -51,12 +53,20 @@ classdef report_log_fselrepeater_hist < irreport
             
             figure;
             v.use(hist);
-            set(gca, 'color', 1.15*[0.8314    0.8157    0.7843]);
-            maximize_window(gcf(), 4);
-            set(gcf, 'InvertHardCopy', 'off'); % This is apparently needed to preserve the gray background
-            set(gcf, 'color', [1, 1, 1]);
+            make_axis_gray();
             legend off;
+            maximize_window(gcf(), 4);
             s = cat(2, s, o.save_n_close());
+            
+            % Stability curve
+            ds_stab = log.extract_dataset_stabilities(o.stabilitytype, 'uni');
+            ov = vis_means();
+            figure;
+            ov.use(ds_stab);
+            legend off;
+            title('');
+%             maximize_window(gcf(), 2);
+            s = cat(2, s, o.save_n_close([], 0));
         end;       
     end;
 end

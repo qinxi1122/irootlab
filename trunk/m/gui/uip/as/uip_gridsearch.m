@@ -189,6 +189,11 @@ set(handles.edit_paramspecs, 'string', sprintf('{''k'', 1:50, 0}'));
 function pushbutton_t_svm_Callback(hObject, eventdata, handles)
 set(handles.edit_paramspecs, 'string', sprintf('{''c'', 10.^[-1:2:5], 1; ...\n''gamma'', 10.^[-7:2:1], 1}'));
 
+%#####
+function pushbutton_t_pcasvm_Callback(hObject, eventdata, handles)
+set(handles.edit_paramspecs, 'string', sprintf('{''blocks{1}.no_factors'', 1:5:101, 0; ...\n''blocks{2}.c'', 10.^[-1:2:5], 1; ...\n''blocks{2}.gamma'', 10.^[-7:2:1], 1}'));
+
+
 function popupmenu_sgs_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');

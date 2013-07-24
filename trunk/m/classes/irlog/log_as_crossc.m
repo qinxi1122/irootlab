@@ -42,9 +42,9 @@ classdef log_as_crossc < irlog
             
             out = fcon_linear_fixed();
             out.L = L;
-            out.L_fea_x = o.data_out(1).fea_x;
-            out.xname = o.data_out(1).xname;
-            out.xunit = o.data_out(1).xunit;
+            out.L_fea_x = o.blocks{1}.L_fea_x;
+            out.xname = o.blocks{1}.xname;
+            out.xunit = o.blocks{1}.xunit;
         end;
         
         %> Extracts datasets

@@ -1,6 +1,6 @@
 %>@ingroup datasettools
 %> @file
-%> @brief does a series of tests on the file to guess its format
+%> @brief does a series of tests on the dataset file to try to guess its format
 function classname = detect_file_type(filename)
 
 if ~exist(filename, 'file')

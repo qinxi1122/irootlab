@@ -137,7 +137,6 @@ classdef irconfusion < irlog
         function o = draw_balls(o)
             global FONTSIZE;
 
-            
             FULLDIAM = 0.8; % Diameter of an 100% ball
             MINPERC_BALL = 0.02; % Minimum percentage to draw a ball
             MINPERC_TEXT = 0.1; % Minimum percentage to write percentage text

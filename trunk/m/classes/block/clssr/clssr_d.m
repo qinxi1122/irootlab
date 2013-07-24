@@ -42,14 +42,14 @@ classdef clssr_d < clssr
             o.classtitle = 'Gaussian fit';
         end;
 
-        %> If title is not empty, will not mess with description too much
-        function s = get_description(o)
-            if ~isempty(o.title)
-                s = get_description@clssr(o);
-            else
-                s = [get_description@clssr(o), ' type = ', o.type];
-            end;
-        end;
+% Better not implement these things        %> If title is not empty, will not mess with description too much
+%        function s = get_description(o)
+%            if ~isempty(o.title)
+%                s = get_description@clssr(o);
+%            else
+%                s = [get_description@clssr(o), ' type = ', o.type];
+%            end;
+%        end;
     end;
     
     methods(Access=protected)
@@ -105,7 +105,11 @@ classdef clssr_d < clssr
                         o.R{k} = Rk / sqrt(nonow - 1); % SigmaHat = R'*R
                         s = svd(o.R{k});
                         if any(s <= max(nonow,data.nf) * eps(max(s)))
-                            irerror('The covariance matrix of each group in TRAINING must be positive definite. There are probably too few spectra or too many variables!');
+                            irerror(sprintf(['The covariance of each class in TRAINING must ',...
+                                'be positive definite. There are probably too few spectra in ', ...
+                                'class "%s" (%d) or too many variables (%d)!'], ...
+                                data.classlabels{k}, size(Xtemp, 1), data.nf));
+%                             irerror('The covariance matrix of each group in TRAINING must be positive definite. There are probably too few spectra or too many variables!');
                         end
                         o.logDetSigma(k) = 2*sum(log(s)); % avoid over/underflow
             

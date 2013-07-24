@@ -40,6 +40,7 @@ classdef vis_log_grades < vis
             end;
             format_xaxis(obj);
             format_yaxis(obj);
+            set_title(o.classtitle, obj);
             make_box();
         end;
     end;

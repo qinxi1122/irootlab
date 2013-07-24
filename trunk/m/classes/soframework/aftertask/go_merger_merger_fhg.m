@@ -11,7 +11,7 @@
 %> @endcode
 %>
 function go_merger_merger_fhg()
-fn_output = 'output_merger_merger_fhg.mat';
+fn_output = 'soout_merger_merger_fhg.mat';
 
 if exist(fn_output, 'file')
     delete(fn_output);

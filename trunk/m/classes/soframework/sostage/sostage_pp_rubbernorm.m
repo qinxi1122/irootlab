@@ -7,49 +7,26 @@ classdef sostage_pp_rubbernorm < sostage_pp
     properties
         %> ='n'. Defaults to "Vector Normalization
         %> @warning Must not have any vertical normalization (e.g. standardization or mean-centering)! Because the pre-processing is applied to training and test sets separately sometimes.
-        norm_types = 'n';
-        
-        
+        normtypes = 'n';
     end;
 
     methods
         function o = sostage_pp_rubbernorm()
-            o.title = 'RBBC-NAm';
+            o.title = 'RBBC-N';
+        end;
+
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_pp(o), '(', o.normtypes, ')'];
         end;
     end;
     
-    
     methods(Access=protected)
-        function out = do_get_block(o)
-            out = block_cascade();
-
-            cutter1 = fsel();
-            cutter1 = cutter1.setbatch({'v_type', 'rx', ...
-            'flag_complement', 0, ...
-            'v', [1800, 900]});
-        
-            out.blocks = {cutter1};
-            
-            % @TODO: resampling is present only in the rubbernorm pre-processing
-            if o.nf_resample > 0
-                b = fcon_resample();
-                b.no_fea = o.nf_resample;
-                out.blocks{end+1} = b;
-            end;
-
+        function a = get_blocks(o)
             rbbc = pre_bc_rubber();
             rbbc.flag_trim = 1;
-            out.blocks{end+1} = rbbc;
-            
             norer = pre_norm();
-            norer.types = o.norm_types;
-            out.blocks{end+1} = norer;
-            
-            if o.flag_spline
-                osp = fcon_spline();
-                osp.no_basis = o.spline_nf;
-                out.blocks{end+1} = osp;
-            end;
+            norer.types = o.normtypes;
+            a = {rbbc, norer};
         end;
     end;
 end

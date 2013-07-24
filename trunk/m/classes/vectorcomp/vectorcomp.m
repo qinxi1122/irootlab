@@ -31,6 +31,13 @@ classdef vectorcomp < irobj
         %>
         %> Performs the test with all combinations of the columns of R
         %>
+        %> The resulting table should be read as: the row represents the first variable
+        %> and the column represents the second variable.
+        %>
+        %> Examples:
+        %> @arg for a 2-sided t-test: H0: mean_row_i - mean_col_j = 0
+        %> @arg for a right-tail t-test: H0: mean_row_i - mean_col_j < 0
+        %>
         %> @param o
         %> @param R a matrix of shape [v1, v2, v3, v4, ...]
         %> @return a matrix [number of v's]x[number of v's]

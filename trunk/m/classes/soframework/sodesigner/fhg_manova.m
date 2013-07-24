@@ -9,7 +9,7 @@ classdef fhg_manova < fhg
             fsg.flag_logtake = 1;
             
             fb = as_fsel_forward();
-            fb.nf_select = o.oo.fhg_ffs_nf_select;
+            fb.nf_select = o.oo.fhg_manova_nf_select;
             fb.fsg = fsg;
         end;
     end;

@@ -87,7 +87,7 @@ classdef factorscurve < as
             sov = sov.read_log_cube(log);
             
             out = irdata();
-            out.title = ['(#factors)x(%rate) curve - ', o.fcon_mold.classtitle, '->', o.clssr.classtitle];
+            out.title = [data.title, iif(isempty(data.title), '', ' - '), '(#factors)x(%rate) curve - ', o.fcon_mold.classtitle, '->', o.clssr.classtitle];
             out.xname = 'Number of factors';
             out.xunit = '';
             out.yname = 'Classification rate';

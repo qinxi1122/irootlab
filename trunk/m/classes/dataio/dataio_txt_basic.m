@@ -16,24 +16,39 @@
 %> <center>Figure 1 - basic TXT file type</center>
 %> </ul>
 classdef dataio_txt_basic < dataio
+    properties
+        %> 2-element vector specifying the wavenumber range.
+        %> This is necessary because this file format does not have this information.
+        %> However, the parameter is optional (the default data fea_x will be
+        %> [1, 2, 3, 4, ...])
+        range = [];
+
+        %> (optional) Image height. If specified, will assign it the loaded dataset
+        height = [];
+        %> ='hor'. Whether the pixels are taken horizontally ('hor') or vertically ('ver') to form the image.
+        %> It was found that OPUS numbers the point in the image map left-right, bottom-up, hence 'hor'.
+        %> Same as irdata.direction (although irdata.direction has a different default).
+        direction = 'hor';
+    end;
+    
     methods
         function o = dataio_txt_basic()
             o.flag_xaxis = 0;
+            o.flag_params = 1;
         end;
 
         
         
         %> Loader
-        function data = load(o, range)
-
+        function data = load(o)z
             [no_cols, delimiter] = get_no_cols_deli(o.filename);
 
             data = irdata();
 
-            if nargin < 2 || isempty(range)
+            if isempty(o.range)
                 data.fea_x = 1:no_cols-1;
             else
-                data.fea_x = linspace(range(1), range(2), no_cols-1);
+                data.fea_x = linspace(o.range(1), o.range(2), no_cols-1);
             end;
 
 
@@ -66,6 +81,10 @@ classdef dataio_txt_basic < dataio
             
             data.filename = o.filename;
             data.filetype = 'txt';
+            if ~isempty(o.height)
+                data.height = o.height;
+                data.direction = o.direction;
+            end;
         end;
 
         

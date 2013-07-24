@@ -21,5 +21,9 @@ classdef sostage_cl_ann < sostage_cl
             o.title = 'ANN';
             o.flag_cbable = 1;
         end;
+        
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_cl(o), '(', mat2str(o.hiddens), ')'];
+        end;
     end;
 end

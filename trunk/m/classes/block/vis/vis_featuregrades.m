@@ -33,8 +33,8 @@ classdef vis_featuregrades < vis
             draw_loadings(data.fea_x, grades, xhint, yhint, [], 0, [], 0, 0, 0);
             format_xaxis(data);
             ylabel(fsg_.classtitle);
+            set_title(o.classtitle, data);
             make_box();
-            
             out = [];
         end;
     end;

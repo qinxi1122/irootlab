@@ -19,7 +19,7 @@ classdef fhg < sodesigner
     
     methods
         %> Must return a unique string describing the FHG methodology. Defaults to <code>class(o)</code>
-        function [s, s2] = get_s_methodology(o, dia) %#ok<INUSD>
+        function [s, s2] = get_s_setup(o, dia) %#ok<INUSD>
             s = upper(class(o));
             s2 = '';
         end;
@@ -37,23 +37,24 @@ classdef fhg < sodesigner
             sgs = o.oo.cubeprovider.get_sgs_fhg();
 
             ah = fselrepeater(); 
-            ah.data = ds;
             ah.sgs = sgs;
             ah.fext = pre_std();
             ah.flag_parallel = o.oo.flag_parallel;
             ah.as_fsel = o.get_as_fsel(ds, dia);
-            log = ah.go();
+            log = ah.use(ds);
             
             out = soitem_fhg();
             out.log = log;
             out.dia = dia;
             out.stab = o.oo.cubeprovider.no_reps_stab;
-            out.s_methodology = o.get_s_methodology(dia);
+            out.s_setup = o.get_s_setup(dia);
             out.dstitle = ds.title;
             out.dstitle = ds.title;
-            out.title = [out.s_methodology, ...
+            out.title = [out.s_setup, ...
                          iif(out.stab >= 0, sprintf('stab%02d', o.oo.cubeprovider.no_reps_stab), '')...
-                         ': ', out.dia.get_sequencedescription()];
+                         ': Does the sequence description look right? --- ', out.dia.get_s_sequence([], 0)];
+% @todo I put this tag above because it is unlikely that the sequence descrption will show what we want to see (e.g. ....->FFS->LDC)
+% Sort everything out once tested
         end;        
     end;
 end

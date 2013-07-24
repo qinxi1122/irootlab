@@ -65,11 +65,11 @@ no_lambdas = size(D, 2);
 lambdas = diag(D);
 [vv, ii] = sort(lambdas, 'descend');
 
-if numel(vv) < data.nc-1
-%     disp('OLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLHAAAAA');
-%     dbstack;
-%     keyboard;
-end;
+% % % if numel(vv) < data.nc-1
+% % % %     disp('OLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLHAAAAA');
+% % % %     dbstack;
+% % % %     keyboard;
+% % % end;
 
 if ~flag_p
     % Returns the nc-1 vectors corresponding to the c-1 largest eigenvalues

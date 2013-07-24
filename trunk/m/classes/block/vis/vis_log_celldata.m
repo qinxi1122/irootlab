@@ -19,6 +19,7 @@ classdef vis_log_celldata < vis
         function out = do_use(o, obj)
             out = [];
             obj.draw(o.idx, o.flag_std);
+            set_title(o.classtitle, obj);
         end;
     end;
 end

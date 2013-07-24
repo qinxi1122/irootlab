@@ -13,5 +13,9 @@ classdef sostage_fe_spline < sostage_fe
             out = fcon_spline();
             out.no_basis = o.nf;
         end;
+        
+        function s = get_blocktitle(o)
+            s = [o.title, '(nf=', int2str(o.nf), ')'];
+        end;
     end;
 end

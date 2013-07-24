@@ -47,7 +47,7 @@ classdef foldmerger_fitest < sodesigner
                 
             out.logs = logs;
             out.items = items;
-            out.title = ['Cross-validation ', dia.get_sequencedescription()];
+            out.title = ['Fold merge (', int2str(no_cv), ') for system set-up "', dia.get_s_sequence([], 1), '"'];
             out.dstitle = dstitle;
         end;
     end;

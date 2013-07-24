@@ -633,49 +633,78 @@ else
     global PATH; %#ok<*TLEV>
     global ATRTOOL_LOAD_OK ATRTOOL_LOAD_RANGE;
     try
-        types = {'mat', 'txt'};
-        [name, path, filterindex] = uigetfile({'*.mat;*.txt', 'Supported file types (*.mat;*.txt)'; ...
-                                               '*.*', 'All files (*.*)'; ...
-                                               '*.mat', 'MAT-files (*.mat)'; ...
-                                               '*.txt', 'TXT-files (*.txt)'; ...
-                                               '*.0', 'OPUS-files (*.txt)'; ...
+% % %         types = {'mat', 'txt'};
+        [name, path, filterindex] = uigetfile({'*.*', 'Auto-detect file type'; ...
+                                               '*.*', 'MAT IRootLab format'; ...
+                                               '*.*', 'TXT IRootLab format'; ...
+                                               '*.*', 'TXT "Pirouette-like" format'; ...
+                                               '*.*', 'TXT Basic format'; ...
+                                               '*.*', 'OPUS FPA image format (image)'; ...
+                                               '*.*', 'DPT Data point table format (image)'; ...
+                                               '*.*', 'TXT "Pirouette-like" format (image)'; ...
+                                               '*.*', 'TXT Basic format (image)'; ...
                                               }, 'Select file to open', PATH.data_load); %#ok<*NASGU>
         if name > 0
+            flag_continue = 1;
             name_full = fullfile(path, name);
-            classname = detect_file_type(name_full);
+            if filterindex == 1
+                classname = detect_file_type(name_full);
+                if isempty(classname)
+                    irerrordlg(sprintf('Could not detect type of file ''%s''', name), 'Sorry');
+                    flag_continue = 0;
+                end;
+            else
+                suff = {'mat', 'txt_irootlab', 'txt_pir', 'txt_basic', 'opus_nasse', 'txt_dpt', ...
+                        'txt_pir_image', 'txt_basic_image'};
+                classname = ['dataio_', suff{filterindex-1}];
+            end;
 
             % Either way, will update the path
             PATH.data_load = path;
             setup_write();
-
-            if isempty(classname)
-                irerrordlg(sprintf('Could not detect type of file ''%s''', name), 'Sorry');
-            else
+            
+            if flag_continue
                 oio = eval(classname);
-                s_range = '';
-                flag_ok = 1;
-                if ~oio.flag_xaxis
-                    datatool_fearange();
-                    if ~isempty(ATRTOOL_LOAD_OK)
-                        s_range = '';
-                        if ~isempty(ATRTOOL_LOAD_RANGE)
-                            s_range = [mat2str(ATRTOOL_LOAD_RANGE)]; %#ok<NBRAK>
-                        end;
-                    else
-                        flag_ok = 0;
+                oio.filename = name_full;
+% % % % %                 
+% % % % %                 % Very old code to ask for wavenumber range for TXT Basic format
+% % % % %                 s_range = '';
+% % % % %                 if ~oio.flag_xaxis
+% % % % %                     datatool_fearange();
+% % % % %                     if ~isempty(ATRTOOL_LOAD_OK)
+% % % % %                         s_range = '';
+% % % % %                         if ~isempty(ATRTOOL_LOAD_RANGE)
+% % % % %                             s_range = [mat2str(ATRTOOL_LOAD_RANGE)]; %#ok<NBRAK>
+% % % % %                         end;
+% % % % %                     else
+% % % % %                         flag_continue = 0;
+% % % % %                     end;
+% % % % %                 end;
+% % % % %             end;
+% % % % % 
+% % % %             if flag_continue
+
+
+                % UIP dialog
+                yetmore = '';
+                pp = oio.get_params(oio);
+                if ~pp.flag_ok
+                    flag_continue = 0;
+                else
+                    if numel(pp.params) > 0
+                        eval(['oio = oio.setbatch(', params2str(pp.params), ');']); % Why this line? Check for errors?
+                        yetmore = ['o = o.setbatch(', params2str(pp.params), ');', 10];
                     end;
-
                 end;
+            end;
 
-                if flag_ok
+            if flag_continue
+                name_new = find_varname('ds');
+                code = sprintf('o = %s();\no.filename = ''%s'';\n%s%s = o.load();\n', classname, name_full, yetmore, name_new);
 
-                    name_new = find_varname('ds');
-                    code = sprintf('o = %s();\no.filename = ''%s'';\n%s = o.load(%s);\n', classname, name_full, name_new, s_range);
+                ircode_eval(code, 'Dataset load');
+                refresh();
 
-                    ircode_eval(code, 'Dataset load');
-                    refresh();
-
-                end;
             end;
         end;
 
@@ -844,12 +873,13 @@ end;
 ds = evalin('base', [dsname ';']);
 [pa, na, ex] = fileparts(ds.filename);
 try
-    classnames = {'dataio_mat', 'dataio_txt_irootlab', 'dataio_txt_pir', 'dataio_txt_basic'};
+    classnames = {'dataio_mat', 'dataio_txt_irootlab', 'dataio_txt_pir', 'dataio_txt_basic', 'dataio_txt_libsvm'};
     [name, path, filterindex] = uiputfile({'*.mat', 'MAT file (*.mat)'; ...
                                            '*.txt', 'TXT file (IRootLab format) (*.txt)'; ...
                                            '*.txt', 'TXT file (pir format) (*.txt)'; ...
-                                           '*.txt', 'TXT file (basic format) (*.txt)' ...
-                                          }, 'Save as', fullfile(PATH.data_save, [na, ex]));
+                                           '*.txt', 'TXT file (basic format) (*.txt)'; ...
+                                           '*.txt', 'TXT file (LIBSVM format) (*.txt)'; ...
+                                          }, 'Save as', fullfile(PATH.data_save, [na, '.mat'])); % Extension is changed to "mat" because it is first option in menu
  
     if name > 0
         filename = fullfile(path, name);

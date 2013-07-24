@@ -72,7 +72,7 @@ classdef fearchsel_fs_base < fearchsel
             out.dia = item.get_modifieddia();
             out.log_as_fsel = log;
             out.dstitle = ds.title;
-            out.title = [upper(class(o)), ': ', out.dia.get_sequencedescription()];
+            out.title = o.make_title_dia(out.dia);
         end;        
     end;    
 

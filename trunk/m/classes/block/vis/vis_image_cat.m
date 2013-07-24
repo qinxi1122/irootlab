@@ -33,7 +33,6 @@ classdef vis_image_cat < vis
                 irerror(sprintf('Invalid mode: %d', o.mode));
             end;
         end;
-            
         
        
         function data = implement_min_ppc(o, data)
@@ -67,7 +66,7 @@ classdef vis_image_cat < vis
         
         function out = do_use(o, obj)
             out = [];
-            if obj.height < 1
+            if isempty(obj.height) || obj.height < 1
                 irerror('Dataset has no defined image dimensions!');
             end;
             
@@ -84,8 +83,9 @@ classdef vis_image_cat < vis
 
             Z = renumber_vector_idooo(Z);
             
-            draw_indexedimage(Z, obj.height, classlabels);
-
+            draw_indexedimage(Z, obj.height, obj.direction, classlabels);
+            set_title(o.classtitle, obj);
+            
             if o.flag_set_position
                 set(gca, 'Position', [0, 0, 1, 1]);
             end;

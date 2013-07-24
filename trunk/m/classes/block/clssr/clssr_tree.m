@@ -32,13 +32,13 @@ classdef clssr_tree < clssr
             o.short = 'BTree';
         end;
         
-        function s = get_description(o)
-            no_leaves = 0;
-            if ~isempty(o.nodes)
-                no_leaves = sum([o.nodes.flag_leaf]);
-            end;
-            s = [get_description@clssr(o), '; number of leaves: ', int2str(no_leaves)];
-        end;
+%        function s = get_description(o)
+%            no_leaves = 0;
+%            if ~isempty(o.nodes)
+%                no_leaves = sum([o.nodes.flag_leaf]);
+%            end;
+%            s = [get_description@clssr(o), '; number of leaves: ', int2str(no_leaves)];
+%        end;
         
         
         function o = prune(o)

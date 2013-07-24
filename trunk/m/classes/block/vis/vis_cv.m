@@ -43,6 +43,8 @@ classdef vis_cv < vis
             end;
 
             % Eliminates the vector corresponding to the origin class
+            % This will synchonize colors with other plots that plot data from the
+            % origin class.
             labels = o.data_input.classlabels;
             colorindexes = 1:size(CV, 2);
             if o.idx_class_origin > 0
@@ -64,6 +66,7 @@ classdef vis_cv < vis
                       
                       
             format_xaxis(o.data_input);
+            set_title(o.classtitle, obj);
             make_box();
         end;
     end;

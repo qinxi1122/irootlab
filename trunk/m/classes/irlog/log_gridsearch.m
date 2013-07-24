@@ -10,17 +10,29 @@ classdef log_gridsearch < irlog
     methods
         function o = log_gridsearch()
             o.classtitle = 'Grid search';
-            o.moreactions = [o.moreactions, {'extract_sovaluess'}];
+            o.moreactions = [o.moreactions, {'extract_sovaluess', 'extract_block'}];
             o.flag_ui = 0;
         end;
     end;
     
     methods
-        %> Extracts fold-wise blocks
+        %> Extracts one sovalues object for each move
+        %>
+        %> Move is when the search space is shifted without zooming the space, and
+        %> next iteration is when the space is zoomed. 
         function out = extract_sovaluess(o)
             for i = 1:numel(o.sovaluess)
                 out{i} = o.sovaluess(i);
             end;
+        end;
+        
+        %> Extracts best block from last sovaluess
+        function out = extract_block(o)
+            r = o.sovaluess(end);
+            
+            ch = r.chooser;
+            temp = ch.use(r.values);
+            out = r.values(temp{:}).mold;
         end;
     end;
 end

@@ -45,9 +45,15 @@ classdef fcon_pca < fcon_linear
             o.xunit = data.xunit;
         end;
         
-        
-%         function data = do_use(o, data)
-%             data = data.transform_linear(o.L, o.L_fea_prefix);
-%         end;
+        %> Overriden to imprint variance percentages in feature names
+        function data = do_use(o, data)
+            C = cov(data.X);
+            totalVar = sum(diag(C));
+            data = do_use@fcon_linear(o, data);
+            for i = 1:data.nf
+                varNow = var(data.X(:, i))/totalVar*100;
+                data.fea_names{i} = sprintf('%s%d (%.3g%%)', o.L_fea_prefix, data.fea_x(i), varNow);
+            end;
+        end;
     end;
 end

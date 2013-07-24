@@ -37,22 +37,13 @@ classdef subsetsprocessor < blbl
         
         %> ='kun'. stability type to pass to the function ref featurestability.m
         stabilitytype = 'kun';
+
+        % Post-processing of the HISTOGRAMS AFTER generated
         
-% % % % %         %> =0 (without effect). 
-
-       % Post-processing of the HISTOGRAMS AFTER generated
-       
-       %> =0. Minimum number of hits within the histogram matrix. All values will be trimmed to zero below that. It is expressed
-       %> as a fraction of the total number of hits of each position-wise histogram.
-       minhits_perc = 0;
+        %> =0. Minimum number of hits within the histogram matrix. All values will be trimmed to zero below that. It is expressed
+        %> as a fraction of the total number of hits of each position-wise histogram.
+        minhits_perc = 0;
     end;
-    
-%     properties(Dependent)
-%         %> Number of features of dataset
-%         nf = [];
-%     end;
-
-    
     
     methods
         function o = subsetsprocessor()
@@ -64,11 +55,6 @@ classdef subsetsprocessor < blbl
     
     % Calculations
     methods(Access=protected)
-% %         function nf = get.nf(o)
-% %             nf = numel(o.input.fea_x);
-% %         end;
-        
-        %> Input is a 
         function log = do_use(o, input)
             log = log_hist();
             log.hitss = o.get_hitss(input);

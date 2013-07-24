@@ -6,7 +6,7 @@
 
 
 %> @param M Square matrix or cell. If cell, may contain either numbers of strings
-%> @param S Matrix of standard deviations. This one must be a matrix
+%> @param S (Optional) Matrix of standard deviations. This one must be a matrix
 %> @param rowlabels cell of row labels
 %> @param collabels cell of column labels
 %> @param B matrix with 2-bit elements: less significant bit: "flag_better"; most significant bit: "statistically significant?"
@@ -16,6 +16,9 @@ function s = html_table_std(M, S, rowlabels, collabels, B, cornerstr)
 
 if nargin < 5
     B = [];
+end;
+if isempty(S)
+    S = zeros(size(M));
 end;
 flag_colour = ~isempty(B);
 if nargin < 6

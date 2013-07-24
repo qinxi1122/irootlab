@@ -3,7 +3,7 @@
 %>
 classdef sostage_cl_knn < sostage_cl
     properties
-        k;
+        k = 1;
     end;
     methods(Access=protected)
         function out = do_get_base(o)
@@ -20,6 +20,10 @@ classdef sostage_cl_knn < sostage_cl
         function o = sostage_cl_knn()
             o.title = 'k-NN';
             o.flag_cbable = 0;
+        end;
+        
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_cl(o), '(k=', int2str(o.k), ')'];
         end;
     end;
 end

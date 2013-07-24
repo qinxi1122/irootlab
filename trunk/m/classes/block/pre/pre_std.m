@@ -1,5 +1,7 @@
-%> @brief Trained Standardization
-classdef pre_std < pre
+%> @brief Standardization (trained)
+%>
+%> Descends from pre_norm_base to organize in GUI but is unrelated to other pre_norm_*
+classdef pre_std < pre_norm_base
     properties(SetAccess=private)
         means = [];
         stds = [];
@@ -7,7 +9,7 @@ classdef pre_std < pre
     
     methods
         function o = pre_std(o)
-            o.classtitle = 'Trained Standardization';
+            o.classtitle = 'Standardization';
             o.short = 'Std';
             o.flag_trainable = 1;
             o.flag_params = 0;

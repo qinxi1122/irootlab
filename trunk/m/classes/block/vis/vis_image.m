@@ -21,7 +21,7 @@ classdef vis_image < vis
     methods(Access=protected)
         function out = do_use(o, obj)
             out = [];
-            if obj.height < 1
+            if isempty(obj.height) || obj.height < 1
                 irerror('Dataset has no defined image dimensions!');
             end;
             
@@ -29,7 +29,7 @@ classdef vis_image < vis
             if o.mode == 1 % classes
                 Z = obj.classes;
                 Z = renumber_vector_idooo(Z);
-                draw_indexedimage(Z, obj.height, obj.classlabels);
+                draw_indexedimage(Z, obj.height, obj.direction, obj.classlabels);
             elseif o.mode == 0 || o.mode == 2 % feature or Y
                 if o.mode == 0
                     x = obj.X(:, o.idx_fea);
@@ -39,11 +39,11 @@ classdef vis_image < vis
                 
                 x(obj.classes < 0) = NaN;
 
-                draw_image(x, obj.height);
+                draw_image(x, obj.height, obj.direction);
             else
                 irerror(sprintf('Invalid mode: %d', o.mode));
             end;
-
+            set_title(o.classtitle, obj);
 
             if o.flag_set_position
                 set(gca, 'Position', [0, 0, 1, 1]);

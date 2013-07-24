@@ -20,5 +20,5 @@ if nargin < 3 || isempty(dpi)
 end;
 
 % This did the trick!!! Saving beautifully now
-set(h, 'PaperPositionMode', 'auto');
+set(h, 'PaperPositionMode', 'auto', 'Units', 'pixels');
 print(['-f', int2str(h)], '-dpng', ['-r', int2str(dpi)], '-opengl', fn);

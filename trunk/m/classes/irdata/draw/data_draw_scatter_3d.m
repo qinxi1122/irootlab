@@ -73,7 +73,6 @@ ylabel(feanames{2});
 zlabel(feanames{3});
 
 hleg = legend(handles, data_get_legend(data));
-set_title(sprintf('3D Scatter Plot'), data);
 format_frank();
 
 if nargout <= 1

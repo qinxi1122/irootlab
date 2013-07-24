@@ -681,7 +681,7 @@ classdef bmtable
         
         %> @brief Grades legend for cell
         %>
-        %> Backwards, calls of get_L_fea_names(), then sequence of get_short calls
+        %> Backwards, calls of get_L_fea_names(), then sequence of get_description calls
         %>
         %> others: makes default with idx_fea and flag_abs
         function s = get_gradeslegend(o, cel)

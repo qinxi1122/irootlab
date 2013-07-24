@@ -26,6 +26,7 @@ classdef vis_scatter3d2 < vis
         function out = do_use(o, obj)
             out = [];
             data_draw_scatter_3d2(obj, o.idx_fea, o.confidences, o.flags_min, o.ks, o.flag_wallpoints);
+            set_title(o.classtitle, obj);
         end;
     end;
 end

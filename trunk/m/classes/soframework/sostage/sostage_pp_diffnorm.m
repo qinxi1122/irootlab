@@ -1,4 +1,4 @@
-%> @brief sostage - Classification LDC/QDC
+%> @brief sostage - Differentiation followed by vector normalization
 %>
 %>
 classdef sostage_pp_diffnorm < sostage_pp
@@ -8,21 +8,20 @@ classdef sostage_pp_diffnorm < sostage_pp
         diff_ncoeff = 9;
         %> ='n'. Defaults to "Vector Normalization"
         %> @warning Must not have any vertical normalization (e.g. standardization or mean-centering)! Because the pre-processing is applied to training and test sets separately sometimes.
-        norm_types = 'n';
+        normtypes = 'n';
     end;
     
     methods
         function o = sostage_pp_diffnorm()
-            o.title = 'Diff-VN';
+            o.title = 'Diff-N';
+        end;
+        function s = get_blocktitle(o)
+            s = [get_blocktitle@sostage_pp(o), '(', o.normtypes, ')'];
         end;
     end;
 
     methods(Access=protected)
-        function out = do_get_block(o)
-            cutter1 = fsel();
-            cutter1 = cutter1.setbatch({'v_type', 'rx', ...
-            'flag_complement', 0, ...
-            'v', [1800, 900]});
+        function a = get_blocks(o)
 
             difer = pre_diff_sg();
             difer.order = o.diff_order;
@@ -30,10 +29,9 @@ classdef sostage_pp_diffnorm < sostage_pp
             difer.ncoeff = o.diff_ncoeff;
         
             norer = pre_norm();
-            norer.types = o.norm_types;
+            norer.types = o.normtypes;
 
-            out = block_cascade();    
-            out.blocks = {cutter1, difer, norer};            
+            a = {difer, norer};
         end;
     end;
 end

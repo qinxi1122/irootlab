@@ -1,4 +1,7 @@
 %> @brief 2D Scatterplot
+%>
+%> Visualizations with subplots. Uses title of subplots as x-label
+%>
 %> @sa data_draw_scatter_2d.m, uip_vis_scatter2d.m
 classdef vis_scatter2d < vis
     properties

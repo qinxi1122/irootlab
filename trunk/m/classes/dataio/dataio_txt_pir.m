@@ -6,6 +6,15 @@
 %> @image html dataformat_pir.png
 %> <center>Figure 1 - "Pirouette" TXT file type</center>
 classdef dataio_txt_pir < dataio
+    properties
+        %> (optional) Image height. If specified, will assign it the loaded dataset
+        height = [];
+        %> ='hor'. Whether the pixels are taken horizontally ('hor') or vertically ('ver') to form the image.
+        %> It was found that OPUS numbers the point in the image map left-right, bottom-up, hence 'hor'.
+        %> Same as irdata.direction (although irdata.direction has a different default).
+        direction = 'hor';
+    end;
+
     methods
         %> Loader
         function data = load(o)
@@ -79,6 +88,10 @@ classdef dataio_txt_pir < dataio
             data.filename = o.filename;
             data.filetype = 'txt2';
             data = data.make_groupnumbers();
+            if ~isempty(o.height)
+                data.height = o.height;
+                data.direction = o.direction;
+            end;
         end;
     
         

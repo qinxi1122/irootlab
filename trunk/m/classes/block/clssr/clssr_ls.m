@@ -32,14 +32,14 @@ classdef clssr_ls < clssr
             o.flag_ui = 0;
         end;
 
-        %> If title is not empty, will not mess with description too much
-        function s = get_description(o)
-            if ~isempty(o.title)
-                s = get_description@clssr(o);
-            else
-                s = [get_description@clssr(o), ' type = ', o.type];
-            end;
-        end;
+%        %> If title is not empty, will not mess with description too much
+%        function s = get_description(o)
+%            if ~isempty(o.title)
+%                s = get_description@clssr(o);
+%            else
+%                s = [get_description@clssr(o), ' type = ', o.type];
+%            end;
+%        end;
     end;
     
     

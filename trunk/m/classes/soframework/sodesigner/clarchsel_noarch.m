@@ -21,7 +21,7 @@ classdef clarchsel_noarch < clarchsel
             out = soitem_sostagechoice();
             out.sovalues = [];
             out.dia = dia;
-            out.title = [upper(class(o)), ': ', out.dia.get_sequencedescription()];
+            out.title = o.make_title_dia(out.dia);
             out.dstitle = '(not used)';
         end;
     end;

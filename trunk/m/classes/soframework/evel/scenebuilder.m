@@ -44,9 +44,12 @@ classdef scenebuilder
         %> @sa taskadder for more information
         fhg_stab = [0, 2, 5, 10, 20];
         
-        %> List of classifiers to use with fhg_ffs
+        %> List of classifiers to use in combination with fhg_fswrapper_fs
         %> @sa taskadder for more information
-        fhg_ffs_cl = {'ldc', 'qdc', 'knn'};
+        fhg_fswrapper_cl = {'ldc', 'qdc', 'knn'};
+        %> List of classifiers to use in combination with fhg_fswrapper_cl
+        %> @sa taskadder for more information
+        fhg_fswrapper_fs = {'ffs'};
         %> List of other FHG's to run (apart from fhg_ffs)
         %> @sa taskadder for more information
         fhg_others = {'lasso', 'manova', 'fisher'};
@@ -231,7 +234,8 @@ classdef scenebuilder
             ta.clembedded = o.clembedded;
             ta.fe = o.fe;
             ta.fhg_stab = o.fhg_stab;
-            ta.fhg_ffs_cl = o.fhg_ffs_cl;
+            ta.fhg_fswrapper_cl = o.fhg_fswrapper_cl;
+            ta.fhg_fswrapper_fs = o.fhg_fswrapper_fs;
             ta.fhg_others = o.fhg_others;
             ta.tm = o.get_taskmanager();
         end;

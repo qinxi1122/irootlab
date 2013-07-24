@@ -21,6 +21,7 @@ classdef cubeprovider
         no_reps_fhg;
 
         %> Number of sub-samples for the "inner randsub" (get_sgs_fhg_stab())
+        %> taskmanager takes care of setting this.
         no_reps_stab;
 
         

@@ -17,7 +17,7 @@ classdef goer < filesession
         %> Task index
         taskidx;
     end;
-    
+
     methods
         function o = goer()
             o = o.setup();

@@ -8,7 +8,6 @@ classdef sodesigner < filesession
 
     methods(Access=protected)
         function o = do_go(o)
-            o.output = soitem();
             t = tic();
             item = o.design();
             item.time_design = toc(t);

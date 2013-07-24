@@ -126,7 +126,7 @@ for i = 1:nl
         color2 = colors_eff{i};
         width2 = scaled(3);
     else
-        color1 = colors_eff{i};
+            color1 = colors_eff{i};
         width1 = scaled(2);
     end;
 
@@ -138,7 +138,7 @@ for i = 1:nl
     else
         for j = 1:1 %numel(y)
             hh = stem(x, y, 'Color', color1, 'LineWidth', 2*width1, 'Marker', 'none');
-            if j == 1
+            if ~flag_envelope && j == 1
                 handles(i) = hh;
             end;
         end;
@@ -146,7 +146,7 @@ for i = 1:nl
     hold on;
     
     if flag_envelope
-        plot(x, Lenv(:, i)', 'Color', color2, 'LineWidth', width2);
+        handles(i) = plot(x, Lenv(:, i)', 'Color', color2, 'LineWidth', width2);
     end;
     
 

@@ -50,9 +50,10 @@ classdef soitem_merger_fhg < soitem
         %> @param varargin see @ref get_nf4grades
         function s = html_nf4grades(o, varargin)
             [M, titles] = o.get_nf4grades(varargin{:});
-            means = mean(M, 2);
-            stds = std(M, [], 2);
-            s = ['<center>', html_table_std(round(means*100)/100, round(stds*100)/100, titles, {'nf4grades'}), '</center>', 10];
+            M = M(:);
+%             stds = std(M, [], 2);
+%             s = ['<center>', html_table_std(round(means*100)/100, round(stds*100)/100, titles, {'nf4grades'}), '</center>', 10];
+            s = ['<center>', html_table_std(M, [], titles, {'Number of informative features'}), '</center>', 10];
         end;
         
            
@@ -136,7 +137,6 @@ classdef soitem_merger_fhg < soitem
             nf4gradesmax = Inf;
             for i = 1:n
                 nf4gradesmax = min(o.logs(idxs(i)).nfmax, nf4gradesmax);
-                
             end;
             
             ssp.nf4gradesmode = 'fixed';

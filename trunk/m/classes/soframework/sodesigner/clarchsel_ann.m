@@ -1,6 +1,6 @@
 %> architecture optimization for the ann classifier
 %>
-%>
+%> system specs are nf and architecture only
 classdef clarchsel_ann < clarchsel
     properties
         archs;
@@ -53,6 +53,7 @@ classdef clarchsel_ann < clarchsel
             out = soitem_sostagechoice();
             out.sovalues = r;
             out.dia = item.get_modifieddia();
+            out.title = o.make_title_dia(out.dia);
         end;
     end;
 end

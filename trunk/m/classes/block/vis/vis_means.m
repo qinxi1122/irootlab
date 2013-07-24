@@ -18,6 +18,7 @@ classdef vis_means < vis
         function out = do_use(o, obj)
             out = [];
             data_draw_means(obj, o.peakdetector, o.flag_pieces);
+            set_title(o.classtitle, obj);
             make_box();
         end;
     end;
