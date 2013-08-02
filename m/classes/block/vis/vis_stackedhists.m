@@ -12,7 +12,7 @@ classdef vis_stackedhists < vis
         function o = vis_stackedhists(o)
             o.classtitle = 'Stacked Histograms';
             o.inputclass = {'log_hist'};
-            o.flag_params = 0;
+            o.flag_params = 1;
         end;
     end;
     

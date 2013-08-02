@@ -224,7 +224,7 @@ classdef estlog < ttlog
                     end;
                     
                     S = sum(sum(C, 2) ~= 0, 3); % counts non-zero t-wise rows for each row
-                    C = sum(C, 3)./repmat(S, 1, ncol);
+                    C = sum(C, 3)./(repmat(S, 1, ncol)+realmin);
                 case 4 % Standard deviation
                     if ~flag_perc
                         irerror('EstLog: Invalid aggregation: Standard deviation of hits does not make sense!');

@@ -13,7 +13,7 @@ classdef report_log_fselrepeater_hist < irreport
     
     methods
         function o = report_log_fselrepeater_hist()
-            o.classtitle = 'Histogram';
+            o.classtitle = 'Histogram report';
             o.inputclass = 'log_fselrepeater';
             o.flag_params = 1;
             o.flag_ui = 1;

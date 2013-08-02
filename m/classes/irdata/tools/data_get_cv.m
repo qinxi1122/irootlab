@@ -57,5 +57,5 @@ end;
 cv = zeros(data.nf, data.nc);
 for k = 1:data.nc
     m = (mean(pieces(k).X, 1)*L)';
-    cv(:, k) = L*(m+v_shift);
+    cv(:, k) = L*(m+v_shift); % Linear combination of loadings vectors here
 end;

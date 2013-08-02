@@ -40,7 +40,7 @@ classdef dataio_txt_basic < dataio
         
         
         %> Loader
-        function data = load(o)z
+        function data = load(o)
             [no_cols, delimiter] = get_no_cols_deli(o.filename);
 
             data = irdata();

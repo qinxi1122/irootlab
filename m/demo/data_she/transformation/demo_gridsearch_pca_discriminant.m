@@ -54,10 +54,10 @@ u.chooser = [];
 u.postpr_test = grag_classes_first01;
 u.postpr_est = [];
 u.log_mold = {};
-u.no_iterations = 1;
+u.no_refinements = 1;
 u.paramspecs = {'blocks{2}.no_factors', 1:58, 0;
     'blocks{4}.type', {'linear', 'quadratic'}, 0};
-u.maxtries = 1;
+u.maxmoves = 1;
 gridsearch01 = u;
 
 %%

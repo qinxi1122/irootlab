@@ -32,6 +32,9 @@ ya = zeros(1, no_points);
 
 for i = 1:length(x)
     ya = ya+exp(-(xa-x(i)).^2/(2*wid^2));
+%     if any(isnan(ya))
+%         keyboard;
+%     end;
 end;
 
 delta_x = xa(2)-xa(1);

@@ -42,13 +42,11 @@ classdef gridsearch < as
         %> There isn't a default, this must be provided
         postpr_est;
         
-        %> Number of grid search iterations, succesivelly shrinking around optimal point
-        %>
-        %> All parameters need to be numeric
-        no_iterations = 1;
+        %> Number of times to zoom close to best point
+        no_refinements = 0;
         %> =3. Maximum number of tries per iteration. A try counts when the chosen item was on any edge. In this case, the search space will
-        %> be shifted to have the chosen in the middle, without zoom
-        maxtries = 3;
+        %> be shifted to have the chosen in the middle, without refinements
+        maxmoves = 3;
         %> Array of gridsearchparam objects
         params = gridsearchparam.empty;
         %> Parameters specifications in a cell
@@ -84,8 +82,8 @@ classdef gridsearch < as
                 irerror('No paramaters for gridsearch!');
             end;
             
-            if o.no_iterations > 1 && ~all([o.params.flag_numeric])
-                irerror('For more than one iterations, all parameters must be numeric!');
+            if o.no_refinements > 0 && ~all([o.params.flag_numeric])
+                irerror('In order to refine search, all parameters must be numeric!');
             end;
         end;
         
@@ -156,12 +154,13 @@ classdef gridsearch < as
             
 
             % main loop
-            iter = 1;
-            isov = 1;
-            itry = 1;
-            ipro = progress2_open('GRIDSEARCH', [], 0, o.no_iterations);
+            irefin = 0;
+            iiter = 1;
+            imove = 0;
+            nExpected = o.no_refinements+1; % Expected iterations
+            ipro = progress2_open('GRIDSEARCH', [], 0, nExpected);
             while 1
-                s_it = sprintf('Iteration: %d; try: %d', iter, itry);
+                s_it = sprintf('Iteration: %d (refinement: %d; move: %d)', iiter, irefin, imove);
                 
                 irverbose ('**************', 2);
                 irverbose(['************** Grid search ', s_it], 2);
@@ -227,7 +226,7 @@ classdef gridsearch < as
                     sov.ax(2) = raxisdata_singleton();
                 end;
                 
-                log.sovaluess(isov) = sov;
+                log.sovaluess(iiter) = sov;
                 
 
                 
@@ -238,34 +237,35 @@ classdef gridsearch < as
                 flag_shrink = 0;
                 flag_moved = 0;
                 if flag_edge
-                    if itry >= o.maxtries
-                        irverbose(sprintf('Hit the edge for %d tries, giving up the iteration', itry));
+                    if imove >= o.maxmoves
+                        irverbose(sprintf('Still hit the edge after %d moves', imove));
                         flag_shrink = 1;
                     else
-                        irverbose('Chosen was on edge, iteration didn''t count, will move to chosen in the centre', 1);
+                        irverbose('Hit the edge, will move to have best point in the centre', 1);
                         for j = 1:nj
                             params(j) = params(j).move_to(idxs(j));
                         end;
-                        itry = itry+1;
+                        imove = imove+1;
+                        nExpected = nExpected+1;
                         flag_moved = 1;
                     end;
                 else
                     flag_shrink = 1;
                 end;
                 
-                if flag_shrink && iter < o.no_iterations
-                    % Prepares for the next iteration
+                if flag_shrink && irefin < o.no_refinements
+                    % Prepares for refinement
                     for j = 1:nj
                         params(j) = params(j).shrink_around(idxs(j));
                     end;
-                    iter = iter+1;
-                    itry = 1;
+                    irefin = irefin+1;
+                    imove = 0;
                 elseif ~flag_moved
                     break;
                 end;
-                isov = isov+1;  
-                
-                ipro = progress2_change(ipro, [], [], iter);
+                iiter = iiter+1;  
+
+                ipro = progress2_change(ipro, [], [], iiter, nExpected);
             end;
             progress2_close(ipro);
         end;

@@ -66,7 +66,7 @@ function pushbuttonOK_Callback(hObject, eventdata, handles)
 try
     sfsg = listbox_get_selected_1stname(handles.popupmenu_fsg);
     if isempty(sfsg)
-        sfsg = '[]';
+        sfsg = 'fsg_test_t';
     end;
 
     handles.output.params = {...

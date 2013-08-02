@@ -61,8 +61,8 @@ u.sgs = sgs_crossval01;
 u.chooser = [];
 u.postpr_test = grag_mean01;
 u.postpr_est = [];
-u.no_iterations = 1;
-u.maxtries = 1;
+u.no_refinements = 1;
+u.maxmoves = 1;
 
 gridsearch01 = u;
 
