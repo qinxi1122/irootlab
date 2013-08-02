@@ -31,8 +31,8 @@ u.chooser = [];
 u.postpr_test = [];
 u.postpr_est = decider();
 u.log_mold = {};
-u.no_iterations = 1;
-u.maxtries = 1;
+u.no_refinements = 1;
+u.maxmoves = 1;
 u.paramspecs = {'k', 1:2:79, 0};
 gridsearch01 = u;
 

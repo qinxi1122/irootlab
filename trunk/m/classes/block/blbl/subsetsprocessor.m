@@ -76,10 +76,9 @@ classdef subsetsprocessor < blbl
         function n = get_nf4grades(o, input)
             switch o.nf4gradesmode
                 case 'fixed'
+                    n = o.get_nf_select(input);
                     if isempty(o.nf4grades)
-                        n = o.get_nf_select(input);
-                    else
-                        n = o.nf4grades;
+                        n = min(o.nf4grades, n);
                     end;
                 case 'stability'
                     w = o.get_stabilities(input);

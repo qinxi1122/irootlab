@@ -75,7 +75,7 @@ else
         eval(['o = o.setbatch(', params2str(get_params(handles)), ');']);
         set(handles.text_wait, 'String', 'Ok', 'ForegroundColor', [0, 0.7, 0]);
         log_hist = o.use(input);
-        log_hist.draw_stackedhists([], {[], .80*[1, 1, 1]}, def_peakdetector());
+        log_hist.draw_stackedhists([], {[], .80*[1, 1, 1]}, def_peakdetector(), 0);
     catch ME
         set(handles.text_wait, 'String', '');
         send_error(ME); % irerrordlg(ME.message, 'Error');

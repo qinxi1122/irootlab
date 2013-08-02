@@ -84,7 +84,9 @@ classdef log_hist < log_grades
         %> @param colors =(default colors). Either a cell of 2 elements or 4 elements. If it is a cell of two elements,
         %> the non-informative and informative histograms will have gradients
         %> @param peakdetector Use it to mark peaks in the histogram
-        function draw_stackedhists(o, data_hint, colors, peakdetector)
+        %> @param flag_trace_minalt =~isempty(peakd) Whether to draw the threshold line. Only works if the peak detector is passed.
+
+        function draw_stackedhists(o, data_hint, colors, peakdetector, flag_trace_minalt)
             if nargin < 2 || isempty(data_hint)
                 xhint = [];
                 yhint = [];
@@ -100,8 +102,11 @@ classdef log_hist < log_grades
             if nargin < 4
                 peakdetector = [];
             end;
+            if ~exist('flag_trace_minalt', 'var') || isempty(flag_trace_minalt)
+                flag_trace_minalt = ~isempty(peakdetector);
+            end;
             
-            draw_stacked(o.fea_x, o.hitss, o.nf4grades, colors, xhint, yhint, peakdetector, 1, 1, 1, 1);
+            draw_stacked(o.fea_x, o.hitss, o.nf4grades, colors, xhint, yhint, peakdetector, flag_trace_minalt, 1, 1, 1);
             format_xaxis(o);
             format_yaxis(o);
             make_box();

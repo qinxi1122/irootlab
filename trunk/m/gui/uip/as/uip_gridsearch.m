@@ -61,7 +61,7 @@ end;
 set(handles.edit_log_mold, 'String', handles.names_log_mold);
 
 % others
-listbox_load_from_workspace('block', handles.popupmenu_postpr_est, 1, 'Leave blank');
+listbox_load_from_workspace('block', handles.popupmenu_postpr_est, 1, {'Use default decider', 'Leave blank'});
 listbox_load_from_workspace('block', handles.popupmenu_postpr_test, 1, 'Leave blank');
 listbox_load_from_workspace({'block_cascade_base', 'clssr'}, handles.popupmenu_clssr, 0);
 listbox_load_from_workspace('chooser', handles.popupmenu_chooser, 1, 'Use default');
@@ -97,7 +97,11 @@ try
     end;
     spostpr_est = listbox_get_selected_1stname(handles.popupmenu_postpr_est);
     if isempty(spostpr_est)
-        spostpr_est = '[]';
+        if get(handles.popupmenu_postpr_est, 'Value') == 1
+            spostpr_est = 'decider()';
+        else
+            spostpr_est = '[]';
+        end;
     end;
     sclssr = listbox_get_selected_1stname(handles.popupmenu_clssr);
     if isempty(sclssr)
@@ -126,8 +130,8 @@ try
     'postpr_test', spostpr_test, ...
     'postpr_est', spostpr_est, ...
     'log_mold', params2str2(handles.names_log_mold) ...
-    'no_iterations', int2str(eval(fel(get(handles.edit_no_iterations, 'String')))), ...
-    'maxtries', int2str(eval(fel(get(handles.edit_maxtries, 'String')))), ...
+    'no_refinements', int2str(eval(fel(get(handles.edit_no_iterations, 'String')))), ...
+    'maxmoves', int2str(eval(fel(get(handles.edit_maxtries, 'String')))), ...
     'paramspecs', cell2str(eval(s)), ...
     'flag_parallel', int2str(get(handles.checkbox_flag_parallel, 'Value')), ...
     };
@@ -183,15 +187,15 @@ local_show_description(handles, handles.popupmenu_chooser);
 
 %#####
 function pushbutton_t_knn_Callback(hObject, eventdata, handles)
-set(handles.edit_paramspecs, 'string', sprintf('{''k'', 1:50, 0}'));
+set(handles.edit_paramspecs, 'string', sprintf('{''k'', 1:2:20, 0}'));
 
 %#####
 function pushbutton_t_svm_Callback(hObject, eventdata, handles)
-set(handles.edit_paramspecs, 'string', sprintf('{''c'', 10.^[-1:2:5], 1; ...\n''gamma'', 10.^[-7:2:1], 1}'));
+set(handles.edit_paramspecs, 'string', sprintf('{''c'', 10.^[-1:2:7], 1; ...\n''gamma'', 10.^[-7:2:1], 1}'));
 
 %#####
 function pushbutton_t_pcasvm_Callback(hObject, eventdata, handles)
-set(handles.edit_paramspecs, 'string', sprintf('{''blocks{1}.no_factors'', 1:5:101, 0; ...\n''blocks{2}.c'', 10.^[-1:2:5], 1; ...\n''blocks{2}.gamma'', 10.^[-7:2:1], 1}'));
+set(handles.edit_paramspecs, 'string', sprintf('{''blocks{1}.no_factors'', 10:10:100, 0; ...\n''blocks{2}.c'', 10.^[-1:2:7], 1; ...\n''blocks{2}.gamma'', 10.^[-7:2:1], 1}'));
 
 
 function popupmenu_sgs_CreateFcn(hObject, eventdata, handles)
