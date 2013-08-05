@@ -8,6 +8,9 @@
 %> <center>Figure 1 - Example of IRootLab TXT file open in a spreadsheet editing program.</center>
 classdef dataio_txt_irootlab < dataio
     properties(SetAccess=protected)
+        %> This affects saving: whether to save the classes as strings.
+        %> This is set to 1 in dataio_txt_irootlab2
+        flag_stringclasses = 0;
     end;
     methods
         function data = load(o)
@@ -19,7 +22,8 @@ classdef dataio_txt_irootlab < dataio
             fid = fopen(o.filename);
             flag_exp_header = 0;
             flag_exp_table = 0;
-            fieldsfound = struct('name', {}, 'flag_cell', {}, 'idxs', {});
+            fieldsfound = struct('name', {}, 'flag_cell', {}, 'idxs', {}, 'flag_classes', {});
+            flag_stringclasses = 0;  % Whether classes are specified as strings or numbers
             
             while 1
                 if flag_exp_table % expecting table
@@ -29,8 +33,24 @@ classdef dataio_txt_irootlab < dataio
                     for i = 1:length(fieldsfound)
                         fn = fieldsfound(i).name;
                         idxs = fieldsfound(i).idxs;
-                        if fieldsfound(i).flag_cell
-                            data.(fn) = cc{idxs}; %fieldsfound.(fn).idxs); % have to see if row or col
+                        if fieldsfound(i).flag_classes
+                            if any(cellfun(@(x) isempty(str2num(x)), cc{idxs}, 'UniformOutput', 1))
+                                % Classes are expressed as strings
+                                flag_stringclasses = 1; %#ok<*PROP>
+                                clalpha = cc{idxs};
+                                data.classlabels = unique_appear(clalpha');
+
+                                no_obs = numel(clalpha);
+                                data.classes(no_obs, 1) = -1; % pre-allocates
+                                for i = 1:no_obs
+                                    data.classes(i) = find(strcmp(data.classlabels, clalpha{i}))-1;
+                                end;
+                            else
+                                % Classes are expressed as numbers
+                                data.(fn) = cellfun(@str2num, cc{idxs}, 'UniformOutput', 1);
+                            end;
+                        elseif fieldsfound(i).flag_cell
+                            data.(fn) = cc{idxs};
                         else
                             data.(fn) = cell2mat(cc(idxs));
                         end;
@@ -60,13 +80,14 @@ classdef dataio_txt_irootlab < dataio
                                 fieldsfound(num_fields).name = s;
                                 flag_cell = data.flags_cell(j);
                                 fieldsfound(num_fields).flag_cell = flag_cell;
+                                fieldsfound(num_fields).flag_classes = strcmp(s, 'classes');
                                 fn_now = s;
                             else
                                 irerror(sprintf('Unknown field: "%s"', s));
                             end;
                         end;
                         fieldsfound(num_fields).idxs(end+1) = i;
-                        newmask = [newmask, '%', iif(flag_cell, 'q', 'f')]; %#ok<AGROW>
+                        newmask = [newmask, '%', iif(strcmp(s, 'classes') || flag_cell, 'q', 'f')]; %#ok<AGROW>
                     end;
                     flag_exp_header = 0;
                     flag_exp_table = 1;
@@ -90,7 +111,7 @@ classdef dataio_txt_irootlab < dataio
                     elseif strcmp(s, 'height')
                         data.height = str2num(strip_quotes(cc{2})); %#ok<*ST2NM>
                     elseif strcmp(s, 'title')
-                        data.height = str2num(strip_quotes(cc{2})); %#ok<*ST2NM>
+                        data.title = str2num(strip_quotes(cc{2})); %#ok<*ST2NM>
                     else
                         % Never mind
                     end;
@@ -98,19 +119,21 @@ classdef dataio_txt_irootlab < dataio
             end;
             
             
-            % Makes sure claslabels is correct
-            ncc = max(data.classes)+1;
-            if ncc > numel(data.classlabels)
-                irverbose('WARNING: Number of classlabels lower than number of classes', 2);
-                nl = data.get_no_levels();
-                suffix = repmat('|1', 1, nl-1);
-                for i = numel(data.classlabels)+1:ncc
-                    data.classlabels{i} = ['Class ', int2str(i-1), suffix];
+            if ~flag_stringclasses
+                % Makes sure claslabels is correct
+                ncc = max(data.classes)+1;
+                if ncc > numel(data.classlabels)
+                    irverbose('WARNING: Number of classlabels lower than number of classes', 2);
+                    nl = data.get_no_levels();
+                    suffix = repmat('|1', 1, nl-1);
+                    for i = numel(data.classlabels)+1:ncc
+    %                     data.classlabels{i} = ['Class ', int2str(i-1), suffix];
+                        data.classlabels{i} = [int2str(i-1), suffix];
+                    end;
                 end;
+
+                data = data.eliminate_unused_classlabels();
             end;
-            
-            data = data.eliminate_unused_classlabels();
-                
             
             data.filename = o.filename;
             data.filetype = 'txt_irootlab';
@@ -156,7 +179,9 @@ classdef dataio_txt_irootlab < dataio
             
             fwrite(h, ['IRootLab ' irootlab_version() repmat(tab, 1, no_cols-1) newl]);
             fwrite(h, ['title' tab data.title repmat(tab, 1, no_cols-2) newl]);
-            fwrite(h, ['classlabels' tab cell2str(data.classlabels) repmat(tab, 1, no_cols-2) newl]);
+            if ~o.flag_stringclasses
+                fwrite(h, ['classlabels' tab cell2str(data.classlabels) repmat(tab, 1, no_cols-2) newl]);
+            end;
             temp = sprintf(['%g' tab], data.fea_x);
             fwrite(h, ['fea_x' tab temp(1:end-1) repmat(tab, 1, no_cols-data.nf-1) newl]);
             fwrite(h, ['height' tab int2str(data.height) repmat(tab, 1, no_cols-2) newl]);
@@ -183,6 +208,11 @@ classdef dataio_txt_irootlab < dataio
                 ptr = ptr+1;
                 flag_buffer = 1;
                 
+                if o.flag_stringclasses
+                    labels = classes2labels(data.classes, data.classlabels);
+                end;
+
+                
                 rowptr = 1;
                 flag_calc_len = 0;
                 rowlen = 0; % average row length
@@ -194,10 +224,15 @@ classdef dataio_txt_irootlab < dataio
                     % data row
                     ptr_save = ptr;
                     for i = 1:no_fields
-                        if data.flags_cell(fieldidxs(i))
-                            s = sprintf('%s\t', data.(data.rowfieldnames{fieldidxs(i)}){rowptr, :});
+                        fn = data.rowfieldnames{fieldidxs(i)};
+                        if strcmp(fn, 'classes') && o.flag_stringclasses
+                            s = sprintf('%s\t', labels{rowptr});
                         else
-                            s = sprintf('%g\t', data.(data.rowfieldnames{fieldidxs(i)})(rowptr, :));
+                            if data.flags_cell(fieldidxs(i))
+                                s = sprintf('%s\t', data.(fn){rowptr, :});
+                            else
+                                s = sprintf('%g\t', data.(fn)(rowptr, :));
+                            end;
                         end;
                         buffer(ptr:ptr+length(s)-1) = s;
                         ptr = ptr+length(s);
