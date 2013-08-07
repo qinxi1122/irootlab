@@ -84,6 +84,7 @@ classdef dataio_opus_nasse < dataio
             end;
 
 
+            data.assert_not_nan();
             data.filename = o.filename;
             data.filetype = '0';
             data = data.make_groupnumbers();

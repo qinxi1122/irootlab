@@ -35,8 +35,8 @@ classdef vis_scatter3dgif < vis
             set(gcf, 'Color', 'w');
 %             set(h, 'Position', [.4, .4, .4+p(3)-p(1), .4+p(4)-p(2)]);
 
-            msgbox('Please move and format the legend to your taste, then press Enter at the MATLAB command line.');
-                
+            msgbox(sprintf('Please move and format the legend to your taste, then press Enter at the MATLAB command line.\nNote: don''t delete the legend.'));
+               
             input('Please press Enter when ready to record animated GIF ');
 
             if isempty(o.filename)
@@ -55,7 +55,7 @@ classdef vis_scatter3dgif < vis
                     [im, map] = rgb2ind(frame.cdata, 256, 'nodither');
                     im(1, 1, 1, length(o.rots)) = 0;
                 end;
-                im(:, :, 1, i) = rgb2ind(frame.cdata, map, 'nodither');
+                 im(:, :, 1, i) = rgb2ind(frame.cdata, map, 'nodither');
             end
             imwrite(im, map, fn, 'DelayTime', 0, 'LoopCount', inf);
         end;

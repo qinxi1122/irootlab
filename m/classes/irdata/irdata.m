@@ -712,5 +712,15 @@ classdef irdata < irobj
             end;
             data.height = wid;
         end;
+        
+        %> Asserts that there is no NaN in data.X
+        function data = assert_not_nan(data)
+            if any(isnan(data.X))
+                irerror('Dataset X property has NaNs!!!');
+            end;
+            if any(isnan(data.classes))
+                irerror('Dataset classes property has NaNs!!!');
+            end;
+        end;
     end;
 end

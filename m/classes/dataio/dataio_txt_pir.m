@@ -85,6 +85,7 @@ classdef dataio_txt_pir < dataio
             end;
 
             
+            data.assert_not_nan();
             data.filename = o.filename;
             data.filetype = 'txt2';
             data = data.make_groupnumbers();

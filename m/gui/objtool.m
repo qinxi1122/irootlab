@@ -381,6 +381,7 @@ function filter_actions()
 handles = find_handles();
 filter = fel(get(handles.edit_filter, 'String'));
 if ~isempty(filter)
+    filter = lower(filter);
     idxs = find(cellfun(@(x) (~isempty(x)), cellfun(@(x) (findstr(filter, x)), handles.al, 'UniformOutput', 0))); %#ok<FSTR>
     b = zeros(1, numel(handles.a));
     for i = 1:numel(idxs)

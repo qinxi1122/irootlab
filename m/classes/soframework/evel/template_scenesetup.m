@@ -1,11 +1,16 @@
 %> This file is used by @ref start_scene.m to create a new scenesetup.m file
 % Configuration of database, scene name, dataset, reference class,
 % cross-validation "k", and methods to be executed.
+%
+% Please note that if anything is changed to this file, the database tasks will
+% need to be rebuilt.
 a = scenebuilder(); % do not change this line
 
 %===
 %=== Dataset setup
 %===
+% If you change any of these options, the dataset splits will have to be
+% re-generated apart from the database tasks.
 
 % File name of your dataset. This can be in any dataset that can be opened in
 % objtool. Full path or relative path can be used, e.g.,
@@ -78,7 +83,7 @@ a.fhg_fswrapper_cl = {};
 % List of wrapper feature selection methods to be used in combination with
 % each of the classifiers defined in fhg_fswrapper_cl above. Available options:
 %     'ffs' - Forward feature selection
-a.fhg_fswrapper_fs = {}
+a.fhg_fswrapper_fs = {};
 
 % Stabilization for FHG using Wrapper feature selection (WFS) + classifier.
 % 0 (zero) means no stabilization, whereas a number >=2 creates an internal

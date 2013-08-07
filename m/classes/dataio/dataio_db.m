@@ -131,6 +131,7 @@ classdef dataio_db < dataio
             end
             data.X = X;
 
+            data.assert_not_nan();
             data = data_sort_classlabels(data);
             data = data.make_groupnumbers();
 
