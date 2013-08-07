@@ -79,6 +79,7 @@ classdef dataio_txt_basic < dataio
             end;
             
             
+            data.assert_not_nan();
             data.filename = o.filename;
             data.filetype = 'txt';
             if ~isempty(o.height)

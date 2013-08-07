@@ -48,6 +48,7 @@ classdef dataio_mat < dataio
             end;
                 
 
+            data.assert_not_nan();
             data.filename = o.filename;
             data.filetype = 'mat';
             data = data.make_groupnumbers();

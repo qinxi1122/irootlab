@@ -152,6 +152,9 @@ classdef gridsearch < as
 
             log = log_gridsearch();
             
+            if o.flag_parallel
+                parallel_open();
+            end;
 
             % main loop
             irefin = 0;
@@ -268,6 +271,11 @@ classdef gridsearch < as
                 ipro = progress2_change(ipro, [], [], iiter, nExpected);
             end;
             progress2_close(ipro);
+            
+            if o.flag_parallel
+                % I don't need a try..."finally" for this, not critical, really
+                parallel_close();
+            end;
         end;
     end;        
             

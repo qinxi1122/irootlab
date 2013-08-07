@@ -94,7 +94,12 @@ classdef dataio_txt_irootlab < dataio
                 else
                     s = strip_quotes(cc{1});
                     if strcmp(s, 'classlabels')
-                        data.classlabels = eval(strip_quotes(cc{2}));
+                        try
+                            data.classlabels = eval(strip_quotes(cc{2}));
+                        catch ME
+                            irerror(['Error trying to parse the "classlabels" property!', 10, 10, 'Original error:', 10, ME.message]);
+                        end;
+                            
                     elseif strcmp(s, 'fea_x')
                         % discards empty elements at the end of the cell
                         for i = length(cc):-1:1
@@ -135,6 +140,7 @@ classdef dataio_txt_irootlab < dataio
                 data = data.eliminate_unused_classlabels();
             end;
             
+            data.assert_not_nan();
             data.filename = o.filename;
             data.filetype = 'txt_irootlab';
             data = data.make_groupnumbers();

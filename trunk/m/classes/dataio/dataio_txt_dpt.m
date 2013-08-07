@@ -41,6 +41,7 @@ classdef dataio_txt_dpt < dataio
                 ds.height = o.height;
                 ds.direction = o.direction;
             end;
+            ds.assert_not_nan();
         end;
         
         %> Saver
