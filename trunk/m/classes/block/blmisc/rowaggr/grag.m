@@ -53,7 +53,7 @@ classdef grag < rowaggr
                     o.no_out = o.no_out+1;
                     
                     % Half the bottleneck is here
-                    idxs = find(strcmp(codes{i}, data.groupcodes));
+                    idxs = find(strcmp(codes{i}, data.groupcodes)); % observation indexes
                     o.outdata.groupcodes{o.no_out} = o.indata.groupcodes{idxs(1)};
                     
                     % The other half is here
