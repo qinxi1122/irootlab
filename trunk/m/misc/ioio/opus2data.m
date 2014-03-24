@@ -84,7 +84,7 @@ for i = 1:no_files
     
     if ~flag_imported
         irverbose(sprintf('Not possible to read file %s. Last error message was ''%s''', filename, lastmsg), 3);
-        if lastME
+        if isa(lastME, 'MException')
             irverbose(lastME.getReport());
         end;
         cnt_error = cnt_error+1;
